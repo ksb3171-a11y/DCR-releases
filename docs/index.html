@@ -1339,9 +1339,10 @@ async function loadSiteImages() {
     const key = el.getAttribute('data-image-key')
     const url = CLOUDINARY_URL + 'dcr-homepage/' + key
     const probe = new Image()
-    probe.onload = () => showImage(el, url)
+    const bust = '?v=' + Date.now()
+    probe.onload = () => showImage(el, url + bust)
     probe.onerror = () => {} // 이미지 없으면 플레이스홀더 유지
-    probe.src = url + '?v=' + Date.now()
+    probe.src = url + bust
   })
 }
 
@@ -1382,7 +1383,7 @@ function enableAdminMode() {
           const data = await res.json()
           el.style.opacity = '1'
           if (data.error) { alert('업로드 실패: ' + data.error.message); return }
-          showImage(el, data.secure_url)
+          showImage(el, data.secure_url + '?v=' + Date.now())
         } catch(err) {
           el.style.opacity = '1'
           alert('업로드 실패: ' + err.message)
