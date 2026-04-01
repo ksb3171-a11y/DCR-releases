@@ -1339,13 +1339,20 @@ function createUploadOverlay() {
 }
 
 async function loadSiteImages() {
+  // Supabase에서 저장된 이미지 URL 조회
+  const { data: rows } = await _sb.from('site_images').select('key, url')
+  const urlMap = {}
+  if (rows) rows.forEach(r => urlMap[r.key] = r.url)
+
   document.querySelectorAll('[data-image-key]').forEach(el => {
     const key = el.getAttribute('data-image-key')
+    if (urlMap[key]) { showImage(el, urlMap[key]); return }
+    // Supabase에 없으면 기본 경로에서 탐색
     const url = CLOUDINARY_URL + 'dcr-homepage/' + key
     const probe = new Image()
     const bust = '?v=' + Date.now()
     probe.onload = () => showImage(el, url + bust)
-    probe.onerror = () => {} // 이미지 없으면 플레이스홀더 유지
+    probe.onerror = () => {}
     probe.src = url + bust
   })
 }
@@ -1381,13 +1388,16 @@ function enableAdminMode() {
         const fd = new FormData()
         fd.append('file', file)
         fd.append('upload_preset', CLOUDINARY_PRESET)
-        fd.append('public_id', 'dcr-homepage/' + key)
+        fd.append('public_id', 'dcr-homepage/' + key + '_' + Date.now())
         try {
           const res = await fetch(CLOUDINARY_UPLOAD, { method: 'POST', body: fd })
           const data = await res.json()
           el.style.opacity = '1'
           if (data.error) { alert('업로드 실패: ' + data.error.message); return }
-          showImage(el, data.secure_url + '?v=' + Date.now())
+          const newUrl = data.secure_url
+          // Supabase에 URL 저장 (upsert)
+          await _sb.from('site_images').upsert({ key, url: newUrl })
+          showImage(el, newUrl)
         } catch(err) {
           el.style.opacity = '1'
           alert('업로드 실패: ' + err.message)
