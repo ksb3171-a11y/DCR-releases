@@ -1359,10 +1359,10 @@
           <tr>
             <th>#</th>
             <th>Name</th>
-            <th>Organization</th>
             <th>Email</th>
             <th>Expires</th>
             <th>Status</th>
+            <th>Blocked</th>
             <th>Joined</th>
           </tr>
         </thead>
@@ -1495,7 +1495,7 @@ async function openMembersModal() {
 
   const { data: profiles, error } = await _sb
     .from('profiles')
-    .select('id, full_name, organization, expires_at, created_at')
+    .select('id, name, expires_at, is_blocked, created_at')
     .order('created_at', { ascending: false })
 
   if (error || !profiles) {
@@ -1518,13 +1518,14 @@ async function openMembersModal() {
       : '–'
     const joined = p.created_at ? new Date(p.created_at).toLocaleDateString('ko-KR') : '–'
     const email = emailMap[p.id] || '–'
+    const blocked = p.is_blocked ? '<span style="color:#f48771;font-weight:700">Yes</span>' : '–'
     return `<tr>
       <td>${i + 1}</td>
-      <td>${p.full_name || '–'}</td>
-      <td>${p.organization || '–'}</td>
+      <td>${p.name || '–'}</td>
       <td>${email}</td>
       <td>${expText}</td>
       <td>${status}</td>
+      <td>${blocked}</td>
       <td>${joined}</td>
     </tr>`
   }).join('')
