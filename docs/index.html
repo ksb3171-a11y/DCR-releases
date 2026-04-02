@@ -215,8 +215,54 @@
     .admin-mode [data-image-key]:hover .upload-overlay { display:flex; }
     #adminBadge {
       display:none; position:fixed; bottom:24px; left:24px; z-index:9999;
+      display:none; gap:8px; align-items:center;
+    }
+    #adminBadge .admin-tag {
       background:#4ec9b0; color:#000; font-size:12px; font-weight:700;
       padding:7px 16px; border-radius:20px; box-shadow:0 4px 16px rgba(0,0,0,0.4);
+    }
+    #adminBadge .admin-members-btn {
+      background:rgba(78,201,176,0.15); color:#4ec9b0; font-size:12px; font-weight:700;
+      padding:7px 16px; border-radius:20px; box-shadow:0 4px 16px rgba(0,0,0,0.4);
+      border:1px solid rgba(78,201,176,0.4); cursor:pointer;
+    }
+    #adminBadge .admin-members-btn:hover { background:rgba(78,201,176,0.3); }
+
+    /* 회원 목록 모달 */
+    #membersModal {
+      display:none; position:fixed; inset:0; z-index:99999;
+      background:rgba(0,0,0,0.7); align-items:center; justify-content:center;
+    }
+    #membersModal.open { display:flex; }
+    #membersModal .modal-box {
+      background:#1e1e2e; border:1px solid rgba(78,201,176,0.3);
+      border-radius:12px; width:90%; max-width:900px; max-height:80vh;
+      display:flex; flex-direction:column; box-shadow:0 8px 40px rgba(0,0,0,0.7);
+    }
+    #membersModal .modal-header {
+      display:flex; align-items:center; justify-content:space-between;
+      padding:16px 24px; border-bottom:1px solid rgba(255,255,255,0.08);
+    }
+    #membersModal .modal-header h3 { color:#4ec9b0; font-size:15px; font-weight:700; margin:0; }
+    #membersModal .modal-close {
+      background:none; border:none; color:#888; font-size:20px; cursor:pointer; line-height:1;
+    }
+    #membersModal .modal-close:hover { color:#fff; }
+    #membersModal .modal-body { overflow-y:auto; padding:0; flex:1; }
+    #membersModal table { width:100%; border-collapse:collapse; font-size:12px; }
+    #membersModal thead th {
+      background:#16162a; color:#4ec9b0; font-weight:700;
+      padding:10px 16px; text-align:left; position:sticky; top:0;
+      border-bottom:1px solid rgba(255,255,255,0.08);
+    }
+    #membersModal tbody tr { border-bottom:1px solid rgba(255,255,255,0.04); }
+    #membersModal tbody tr:hover { background:rgba(255,255,255,0.03); }
+    #membersModal tbody td { padding:10px 16px; color:#c8c8c8; }
+    #membersModal .badge-active { color:#4ec9b0; font-weight:700; }
+    #membersModal .badge-expired { color:#f48771; font-weight:700; }
+    #membersModal .modal-footer {
+      padding:12px 24px; border-top:1px solid rgba(255,255,255,0.08);
+      font-size:11px; color:#555;
     }
     #quickBtns {
       position:fixed; right:24px; bottom:24px; z-index:9998;
@@ -1295,7 +1341,39 @@
   </div>
 </div>
 
-<div id="adminBadge">🛠 Admin Mode</div>
+<div id="adminBadge">
+  <span class="admin-tag">🛠 Admin Mode</span>
+  <button class="admin-members-btn" onclick="openMembersModal()">👥 Members</button>
+</div>
+
+<!-- 회원 목록 모달 -->
+<div id="membersModal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3>👥 Member List</h3>
+      <button class="modal-close" onclick="closeMembersModal()">×</button>
+    </div>
+    <div class="modal-body">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Organization</th>
+            <th>Email</th>
+            <th>Expires</th>
+            <th>Status</th>
+            <th>Joined</th>
+          </tr>
+        </thead>
+        <tbody id="membersTableBody">
+          <tr><td colspan="7" style="text-align:center;color:#555;padding:32px">Loading...</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="modal-footer" id="membersFooter">–</div>
+  </div>
+</div>
 
 <!-- 퀵버튼 -->
 <div id="quickBtns">
@@ -1372,7 +1450,7 @@ function showImage(el, url) {
 function enableAdminMode() {
   if (document.body.classList.contains('admin-mode')) return
   document.body.classList.add('admin-mode')
-  document.getElementById('adminBadge').style.display = 'block'
+  document.getElementById('adminBadge').style.display = 'flex'
   document.querySelectorAll('[data-image-key]').forEach(el => {
     el.style.position = 'relative'
     el.appendChild(createUploadOverlay())
@@ -1406,6 +1484,57 @@ function enableAdminMode() {
       input.click()
     })
   })
+}
+
+// ── ADMIN MEMBERS MODAL ──
+async function openMembersModal() {
+  document.getElementById('membersModal').classList.add('open')
+  const tbody = document.getElementById('membersTableBody')
+  const footer = document.getElementById('membersFooter')
+  tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:#555;padding:32px">Loading...</td></tr>'
+
+  const { data: profiles, error } = await _sb
+    .from('profiles')
+    .select('id, full_name, organization, expires_at, created_at')
+    .order('created_at', { ascending: false })
+
+  if (error || !profiles) {
+    tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:#f48771;padding:32px">Failed to load: ' + (error?.message || 'unknown') + '</td></tr>'
+    return
+  }
+
+  // auth.users 이메일은 profiles에 없으므로 별도 조회
+  const { data: { users } } = await _sb.auth.admin.listUsers().catch(() => ({ data: { users: [] } }))
+  const emailMap = {}
+  if (users) users.forEach(u => emailMap[u.id] = u.email)
+
+  const now = new Date()
+  tbody.innerHTML = profiles.map((p, i) => {
+    const exp = p.expires_at ? new Date(p.expires_at) : null
+    const active = exp && exp > now
+    const expText = exp ? exp.toLocaleDateString('ko-KR') : '–'
+    const status = exp
+      ? (active ? '<span class="badge-active">Active</span>' : '<span class="badge-expired">Expired</span>')
+      : '–'
+    const joined = p.created_at ? new Date(p.created_at).toLocaleDateString('ko-KR') : '–'
+    const email = emailMap[p.id] || '–'
+    return `<tr>
+      <td>${i + 1}</td>
+      <td>${p.full_name || '–'}</td>
+      <td>${p.organization || '–'}</td>
+      <td>${email}</td>
+      <td>${expText}</td>
+      <td>${status}</td>
+      <td>${joined}</td>
+    </tr>`
+  }).join('')
+
+  const activeCount = profiles.filter(p => p.expires_at && new Date(p.expires_at) > now).length
+  footer.textContent = `Total: ${profiles.length} members  |  Active: ${activeCount}  |  Expired: ${profiles.length - activeCount}`
+}
+
+function closeMembersModal() {
+  document.getElementById('membersModal').classList.remove('open')
 }
 
 // ── AUTH STATE ──
