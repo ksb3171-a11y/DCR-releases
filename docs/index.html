@@ -1516,7 +1516,7 @@ async function openMembersModal() {
     const status = exp
       ? (active ? '<span class="badge-active">Active</span>' : '<span class="badge-expired">Expired</span>')
       : '–'
-    const joined = p.created_at ? new Date(p.created_at).toLocaleDateString('ko-KR') : '–'
+    const joined = p.created_at ? new Date(p.created_at).toLocaleString('ko-KR') : '–'
     const email = emailMap[p.id] || '–'
     const blocked = p.is_blocked ? '<span style="color:#f48771;font-weight:700">Yes</span>' : '–'
     return `<tr>
