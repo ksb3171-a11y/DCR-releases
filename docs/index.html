@@ -591,6 +591,78 @@
       .ai-features { grid-template-columns:1fr; }
       .footer-inner { grid-template-columns:1fr; gap:24px; }
     }
+
+    /* ── FEATURE REQUEST BOARD ── */
+    #boardModal { display:none; position:fixed; inset:0; z-index:100000; background:rgba(0,0,0,0.78); backdrop-filter:blur(4px); align-items:center; justify-content:center; padding:20px; }
+    #boardModal.open { display:flex; }
+    .board-box { background:#15152a; border:1px solid rgba(78,201,176,0.25); border-radius:14px; width:100%; max-width:920px; height:86vh; max-height:880px; display:flex; flex-direction:column; box-shadow:0 24px 64px rgba(0,0,0,0.7); overflow:hidden; }
+    .board-head { display:flex; align-items:center; justify-content:space-between; padding:16px 22px; border-bottom:1px solid var(--border); background:#101025; }
+    .board-head h3 { color:var(--accent); font-size:16px; font-weight:700; margin:0; display:flex; align-items:center; gap:8px; }
+    .board-head .board-close { background:none; border:none; color:var(--dim); font-size:22px; cursor:pointer; line-height:1; }
+    .board-head .board-close:hover { color:#fff; }
+    .board-toolbar { display:flex; align-items:center; gap:10px; flex-wrap:wrap; padding:12px 22px; border-bottom:1px solid var(--border); }
+    .board-chips { display:flex; gap:6px; flex-wrap:wrap; }
+    .board-chip { background:transparent; border:1px solid var(--border); color:var(--dim); font-size:12px; padding:5px 12px; border-radius:20px; cursor:pointer; transition:all .15s; font-family:inherit; }
+    .board-chip.active, .board-chip:hover { background:rgba(78,201,176,0.12); border-color:rgba(78,201,176,0.4); color:var(--accent); }
+    .board-sort { margin-left:auto; display:flex; gap:8px; align-items:center; }
+    .board-newbtn { background:var(--accent); color:#0d0d1a; font-weight:700; font-size:12px; padding:7px 16px; border-radius:6px; border:none; cursor:pointer; font-family:inherit; }
+    .board-newbtn:hover { opacity:.88; }
+    .board-body { flex:1; overflow-y:auto; padding:14px 22px 22px; }
+    .board-empty { text-align:center; color:#555; padding:60px 20px; font-size:13px; }
+
+    .req-card { display:flex; gap:14px; padding:16px; border:1px solid var(--border); border-radius:10px; margin-bottom:10px; background:var(--card); cursor:pointer; transition:border-color .15s; }
+    .req-card:hover { border-color:rgba(78,201,176,0.3); }
+    .req-vote { display:flex; flex-direction:column; align-items:center; gap:3px; min-width:46px; }
+    .req-vote button { width:40px; height:38px; border-radius:8px; border:1px solid var(--border); background:rgba(255,255,255,0.03); color:var(--dim); cursor:pointer; font-size:13px; transition:all .15s; }
+    .req-vote button.voted { background:rgba(78,201,176,0.15); border-color:var(--accent); color:var(--accent); }
+    .req-vote button:hover { border-color:var(--accent); color:var(--accent); }
+    .req-vote .vc { font-family:Consolas,monospace; font-size:13px; color:var(--text); font-weight:700; }
+    .req-main { flex:1; min-width:0; }
+    .req-title { font-size:14px; font-weight:700; color:#e8e8e8; margin-bottom:6px; }
+    .req-meta { display:flex; gap:8px; align-items:center; flex-wrap:wrap; font-size:11px; color:var(--dim); }
+    .req-excerpt { font-size:12px; color:var(--dim); margin-top:8px; line-height:1.5; overflow:hidden; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; }
+    .req-replied { color:var(--accent); }
+
+    .cat-badge { font-size:10px; font-family:Consolas,monospace; padding:2px 8px; border-radius:4px; border:1px solid var(--border); text-transform:uppercase; letter-spacing:.5px; }
+    .cat-analysis { color:var(--accent2); border-color:rgba(86,156,214,0.4); }
+    .cat-design   { color:var(--accent);  border-color:rgba(78,201,176,0.4); }
+    .cat-ui       { color:var(--accent3); border-color:rgba(197,134,192,0.4); }
+    .cat-bug      { color:#f48771;        border-color:rgba(244,135,113,0.4); }
+    .cat-etc      { color:var(--dim); }
+
+    .st-badge { font-size:10px; font-weight:700; padding:2px 9px; border-radius:10px; white-space:nowrap; }
+    .st-proposed    { background:rgba(255,255,255,0.08); color:var(--dim); }
+    .st-reviewing   { background:rgba(86,156,214,0.15);  color:var(--accent2); }
+    .st-planned     { background:rgba(220,220,170,0.15); color:var(--gold); }
+    .st-in_progress { background:rgba(197,134,192,0.15); color:var(--accent3); }
+    .st-done        { background:rgba(78,201,176,0.18);  color:var(--accent); }
+    .st-declined    { background:rgba(244,135,113,0.12); color:#f48771; }
+
+    .board-back { background:none; border:none; color:var(--dim); font-size:12px; cursor:pointer; margin-bottom:14px; padding:0; font-family:inherit; }
+    .board-back:hover { color:var(--accent); }
+    .detail-title { font-size:20px; font-weight:700; color:#e8e8e8; margin-bottom:10px; line-height:1.3; }
+    .detail-meta { display:flex; gap:8px; align-items:center; flex-wrap:wrap; font-size:12px; color:var(--dim); margin-bottom:18px; }
+    .detail-body { font-size:14px; color:var(--text); line-height:1.7; white-space:pre-wrap; margin-bottom:24px; word-break:break-word; }
+    .detail-reply { background:rgba(78,201,176,0.06); border:1px solid rgba(78,201,176,0.2); border-radius:10px; padding:16px 18px; margin-bottom:20px; }
+    .detail-reply .rl { font-size:11px; font-weight:700; color:var(--accent); margin-bottom:8px; display:flex; align-items:center; gap:6px; }
+    .detail-reply .rt { font-size:13px; color:var(--text); line-height:1.6; white-space:pre-wrap; word-break:break-word; }
+
+    .admin-panel { border-top:1px dashed rgba(78,201,176,0.3); margin-top:20px; padding-top:18px; }
+    .admin-panel .apl { font-size:11px; color:var(--accent); font-weight:700; margin-bottom:12px; }
+    .board-field { margin-bottom:12px; }
+    .board-field label { display:block; font-size:12px; color:var(--dim); margin-bottom:6px; }
+    .board-field input, .board-field textarea, .board-field select { width:100%; background:rgba(255,255,255,0.05); border:1px solid var(--border); color:var(--text); font-size:13px; padding:10px 12px; border-radius:8px; outline:none; font-family:inherit; resize:vertical; }
+    .board-field textarea { min-height:130px; line-height:1.6; }
+    .board-field input:focus, .board-field textarea:focus, .board-field select:focus { border-color:rgba(78,201,176,0.5); }
+    .board-actions { display:flex; gap:10px; align-items:center; margin-top:8px; flex-wrap:wrap; }
+    .board-btn { background:var(--accent); color:#0d0d1a; font-weight:700; font-size:13px; padding:10px 22px; border-radius:8px; border:none; cursor:pointer; font-family:inherit; }
+    .board-btn:hover { opacity:.88; }
+    .board-btn.ghost { background:transparent; border:1px solid var(--border); color:var(--dim); }
+    .board-btn.ghost:hover { border-color:var(--accent); color:var(--accent); }
+    .board-btn.danger { background:rgba(244,135,113,0.15); color:#f48771; border:1px solid rgba(244,135,113,0.4); }
+    .board-msg { font-size:12px; padding:8px 12px; border-radius:6px; margin-bottom:12px; display:none; }
+    .board-msg.show { display:block; }
+    .board-msg.error { background:rgba(224,92,92,0.12); border:1px solid rgba(224,92,92,0.3); color:#e05c5c; }
   </style>
 </head>
 <body>
@@ -604,6 +676,7 @@
     <li><a href="#screenshots" data-i18n="nav.screenshots">Screenshots</a></li>
     <li><a href="#ai"          data-i18n="nav.ai">AI</a></li>
     <li><a href="#download"    data-i18n="nav.download">Download</a></li>
+    <li><a href="#" onclick="event.preventDefault();openBoard()" data-i18n="nav.board">Feedback</a></li>
   </ul>
   <div class="nav-right">
     <!-- 비로그인 상태 -->
@@ -1377,6 +1450,7 @@
 
 <!-- 퀵버튼 -->
 <div id="quickBtns">
+  <button onclick="openBoard()" title="Feature Requests" style="font-size:18px">💡</button>
   <button onclick="window.scrollTo({top:0,behavior:'smooth'})" title="맨 위로">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
   </button>
@@ -1386,6 +1460,46 @@
   <button onclick="window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'})" title="맨 아래로">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
   </button>
+</div>
+
+<!-- FEATURE REQUEST BOARD -->
+<div id="boardModal">
+  <div class="board-box">
+    <div class="board-head">
+      <h3>💡 <span data-i18n="board.title">Feature Requests</span></h3>
+      <button class="board-close" onclick="closeBoard()">×</button>
+    </div>
+
+    <!-- LIST VIEW -->
+    <div id="boardList" style="display:flex;flex-direction:column;flex:1;min-height:0">
+      <div class="board-toolbar">
+        <div class="board-chips" id="boardChips">
+          <button class="board-chip active" data-cat="all">All</button>
+          <button class="board-chip" data-cat="analysis">Analysis</button>
+          <button class="board-chip" data-cat="design">Design</button>
+          <button class="board-chip" data-cat="ui">UI</button>
+          <button class="board-chip" data-cat="bug">Bug</button>
+          <button class="board-chip" data-cat="etc">Etc</button>
+        </div>
+        <div class="board-sort">
+          <select id="boardSort" class="board-chip" style="cursor:pointer">
+            <option value="top">▲ Top voted</option>
+            <option value="recent">🕒 Recent</option>
+          </select>
+          <button class="board-newbtn" onclick="boardShowNew()" data-i18n="board.new">+ New Request</button>
+        </div>
+      </div>
+      <div class="board-body" id="boardBody">
+        <div class="board-empty">Loading…</div>
+      </div>
+    </div>
+
+    <!-- DETAIL VIEW -->
+    <div id="boardDetail" class="board-body" style="display:none"></div>
+
+    <!-- NEW REQUEST VIEW -->
+    <div id="boardNew" class="board-body" style="display:none"></div>
+  </div>
 </div>
 
 <script>
@@ -1715,6 +1829,201 @@ _sb.auth.onAuthStateChange((_, session) => {
 loadSiteImages()
 
 // ─────────────────────────────────────────────
+// FEATURE REQUEST BOARD
+// ─────────────────────────────────────────────
+const FR_CATS = ['analysis','design','ui','bug','etc']
+const FR_STATUS = ['proposed','reviewing','planned','in_progress','done','declined']
+const FR_STATUS_LABEL = { proposed:'Proposed', reviewing:'Reviewing', planned:'Planned', in_progress:'In Progress', done:'Done', declined:'Declined' }
+let _frCat = 'all', _frSort = 'top', _frReqs = [], _frMyVotes = new Set()
+
+function isBoardAdmin() { return _user && _user.email === ADMIN_EMAIL }
+function frEsc(s) { return (s || '').replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c])) }
+function frDate(d) { return d ? new Date(d).toLocaleDateString(currentLang === 'en' ? 'en-US' : 'ko-KR') : '' }
+
+function openBoard() {
+  document.getElementById('boardModal').classList.add('open')
+  boardShowList()
+  loadRequests()
+}
+function closeBoard() { document.getElementById('boardModal').classList.remove('open') }
+
+function boardShowList() {
+  document.getElementById('boardList').style.display = 'flex'
+  document.getElementById('boardDetail').style.display = 'none'
+  document.getElementById('boardNew').style.display = 'none'
+}
+
+async function loadRequests() {
+  const body = document.getElementById('boardBody')
+  body.innerHTML = '<div class="board-empty">Loading…</div>'
+  const { data, error } = await _sb.from('feature_requests')
+    .select('id,title,body,category,author_name,status,admin_reply,admin_reply_at,vote_count,is_hidden,created_at')
+  if (error) { body.innerHTML = '<div class="board-empty">Failed to load: ' + frEsc(error.message) + '</div>'; return }
+  _frReqs = data || []
+  _frMyVotes = new Set()
+  if (_user) {
+    const { data: votes } = await _sb.from('feature_votes').select('request_id').eq('user_id', _user.id)
+    if (votes) votes.forEach(v => _frMyVotes.add(v.request_id))
+  }
+  renderRequests()
+}
+
+function renderRequests() {
+  const body = document.getElementById('boardBody')
+  let list = _frReqs.slice()
+  if (_frCat !== 'all') list = list.filter(r => r.category === _frCat)
+  list.sort((a, b) => _frSort === 'recent'
+    ? new Date(b.created_at) - new Date(a.created_at)
+    : (b.vote_count - a.vote_count) || (new Date(b.created_at) - new Date(a.created_at)))
+  if (!list.length) { body.innerHTML = '<div class="board-empty">No requests yet. Be the first to suggest a feature!</div>'; return }
+  body.innerHTML = list.map(r => {
+    const voted = _frMyVotes.has(r.id)
+    return `<div class="req-card" onclick="boardShowDetail('${r.id}')">
+      <div class="req-vote" onclick="event.stopPropagation()">
+        <button class="${voted ? 'voted' : ''}" onclick="toggleVote('${r.id}')" title="Upvote">▲</button>
+        <span class="vc">${r.vote_count}</span>
+      </div>
+      <div class="req-main">
+        <div class="req-title">${frEsc(r.title)}</div>
+        <div class="req-meta">
+          <span class="cat-badge cat-${r.category}">${r.category}</span>
+          <span class="st-badge st-${r.status}">${FR_STATUS_LABEL[r.status] || r.status}</span>
+          <span>${frEsc(r.author_name)}</span>
+          <span>· ${frDate(r.created_at)}</span>
+          ${r.admin_reply ? '<span class="req-replied">· 💬 Admin replied</span>' : ''}
+          ${r.is_hidden ? '<span style="color:#f48771">· hidden</span>' : ''}
+        </div>
+        <div class="req-excerpt">${frEsc(r.body)}</div>
+      </div>
+    </div>`
+  }).join('')
+}
+
+async function toggleVote(id) {
+  if (!_user) { closeBoard(); openModal('login'); return }
+  const req = _frReqs.find(r => r.id === id)
+  if (!req) return
+  const voted = _frMyVotes.has(id)
+  if (voted) { _frMyVotes.delete(id); req.vote_count = Math.max(0, req.vote_count - 1) }
+  else { _frMyVotes.add(id); req.vote_count++ }
+  renderRequests()
+  if (document.getElementById('boardDetail').style.display === 'block') boardShowDetail(id)
+  if (voted) await _sb.from('feature_votes').delete().eq('request_id', id).eq('user_id', _user.id)
+  else       await _sb.from('feature_votes').insert({ request_id: id, user_id: _user.id })
+}
+
+function boardShowDetail(id) {
+  const r = _frReqs.find(x => x.id === id)
+  if (!r) return
+  document.getElementById('boardList').style.display = 'none'
+  document.getElementById('boardNew').style.display = 'none'
+  const el = document.getElementById('boardDetail')
+  el.style.display = 'block'
+  const voted = _frMyVotes.has(r.id)
+  let html = `<button class="board-back" onclick="boardShowList()">← Back to list</button>
+    <div class="detail-title">${frEsc(r.title)}</div>
+    <div class="detail-meta">
+      <span class="cat-badge cat-${r.category}">${r.category}</span>
+      <span class="st-badge st-${r.status}">${FR_STATUS_LABEL[r.status] || r.status}</span>
+      <span>${frEsc(r.author_name)}</span><span>· ${frDate(r.created_at)}</span>
+      <button class="board-btn ghost" style="padding:5px 14px;margin-left:auto" onclick="toggleVote('${r.id}')">▲ ${r.vote_count}${voted ? ' ✓' : ''}</button>
+    </div>
+    <div class="detail-body">${frEsc(r.body)}</div>`
+  if (r.admin_reply) {
+    html += `<div class="detail-reply"><div class="rl">💬 Admin Reply · ${frDate(r.admin_reply_at)}</div><div class="rt">${frEsc(r.admin_reply)}</div></div>`
+  }
+  if (isBoardAdmin()) {
+    html += `<div class="admin-panel">
+      <div class="apl">🛠 Admin Controls</div>
+      <div class="board-field"><label>Status</label>
+        <select id="adStatus">${FR_STATUS.map(s => `<option value="${s}" ${s === r.status ? 'selected' : ''}>${FR_STATUS_LABEL[s]}</option>`).join('')}</select></div>
+      <div class="board-field"><label>Admin Reply</label>
+        <textarea id="adReply" placeholder="Official reply…">${frEsc(r.admin_reply || '')}</textarea></div>
+      <div class="board-actions">
+        <button class="board-btn" onclick="adminSaveReq('${r.id}')">Save</button>
+        <button class="board-btn ghost" onclick="adminToggleHide('${r.id}')">${r.is_hidden ? 'Unhide' : 'Hide'}</button>
+        <button class="board-btn danger" onclick="adminDeleteReq('${r.id}')">Delete</button>
+      </div>
+    </div>`
+  }
+  el.innerHTML = html
+}
+
+async function adminSaveReq(id) {
+  const status = document.getElementById('adStatus').value
+  const reply = document.getElementById('adReply').value.trim()
+  const patch = { status, admin_reply: reply || null, admin_reply_at: reply ? new Date().toISOString() : null }
+  const { error } = await _sb.from('feature_requests').update(patch).eq('id', id)
+  if (error) { alert('Save failed: ' + error.message); return }
+  Object.assign(_frReqs.find(r => r.id === id), patch)
+  boardShowDetail(id)
+}
+async function adminToggleHide(id) {
+  const r = _frReqs.find(x => x.id === id)
+  const { error } = await _sb.from('feature_requests').update({ is_hidden: !r.is_hidden }).eq('id', id)
+  if (error) { alert('Failed: ' + error.message); return }
+  r.is_hidden = !r.is_hidden
+  boardShowDetail(id)
+}
+async function adminDeleteReq(id) {
+  if (!confirm('Delete this request permanently?')) return
+  const { error } = await _sb.from('feature_requests').delete().eq('id', id)
+  if (error) { alert('Delete failed: ' + error.message); return }
+  _frReqs = _frReqs.filter(r => r.id !== id)
+  boardShowList(); renderRequests()
+}
+
+function boardShowNew() {
+  if (!_user) { closeBoard(); openModal('login'); return }
+  document.getElementById('boardList').style.display = 'none'
+  document.getElementById('boardDetail').style.display = 'none'
+  const el = document.getElementById('boardNew')
+  el.style.display = 'block'
+  el.innerHTML = `<button class="board-back" onclick="boardShowList()">← Back to list</button>
+    <div class="detail-title" style="font-size:18px">Suggest a Feature</div>
+    <div class="board-msg error" id="newMsg"></div>
+    <div class="board-field"><label>Category</label>
+      <select id="newCat">${FR_CATS.map(c => `<option value="${c}">${c}</option>`).join('')}</select></div>
+    <div class="board-field"><label>Title</label>
+      <input id="newTitle" maxlength="140" placeholder="Short summary of your idea"></div>
+    <div class="board-field"><label>Description</label>
+      <textarea id="newBody" maxlength="4000" placeholder="Describe the feature and why it would help…"></textarea></div>
+    <div class="board-actions">
+      <button class="board-btn" id="newSubmit" onclick="submitRequest()">Submit</button>
+      <button class="board-btn ghost" onclick="boardShowList()">Cancel</button>
+    </div>`
+}
+
+async function submitRequest() {
+  if (!_user) { openModal('login'); return }
+  const title = document.getElementById('newTitle').value.trim()
+  const body = document.getElementById('newBody').value.trim()
+  const category = document.getElementById('newCat').value
+  const msg = document.getElementById('newMsg')
+  msg.classList.remove('show')
+  if (title.length < 2) { msg.textContent = 'Please enter a title (min 2 characters).'; msg.classList.add('show'); return }
+  if (body.length < 1) { msg.textContent = 'Please enter a description.'; msg.classList.add('show'); return }
+  const btn = document.getElementById('newSubmit'); btn.disabled = true
+  const { error } = await _sb.from('feature_requests').insert({
+    title, body, category,
+    author_id: _user.id,
+    author_name: _profile?.name || _user.email.split('@')[0]
+  })
+  btn.disabled = false
+  if (error) { msg.textContent = 'Submit failed: ' + error.message; msg.classList.add('show'); return }
+  boardShowList()
+  loadRequests()
+}
+
+document.getElementById('boardChips').addEventListener('click', e => {
+  const b = e.target.closest('.board-chip'); if (!b) return
+  document.querySelectorAll('#boardChips .board-chip').forEach(x => x.classList.remove('active'))
+  b.classList.add('active'); _frCat = b.dataset.cat; renderRequests()
+})
+document.getElementById('boardSort').addEventListener('change', e => { _frSort = e.target.value; renderRequests() })
+document.getElementById('boardModal').addEventListener('click', function (e) { if (e.target === this) closeBoard() })
+
+// ─────────────────────────────────────────────
 // i18n
 // ─────────────────────────────────────────────
 const LANGS = {
@@ -1733,6 +2042,9 @@ const T = {
     'nav.ai':         'AI',
     'nav.download':   'Download',
     'nav.cta':        'Free Download',
+    'nav.board':      'Feedback',
+    'board.title':    'Feature Requests',
+    'board.new':      '+ New Request',
     'hero.badge':     'v1.0 — OpenSees-based · Full KBC/KCI Support',
     'hero.title':     'From Structural Analysis to Design,<br><em>All in One Platform</em>',
     'hero.sub':       'A desktop application integrating OpenSees-based linear/nonlinear structural analysis with KCI-standard RC design. Seamless from modeling to reports.',
@@ -1893,6 +2205,9 @@ const T = {
     'nav.ai':         'AI',
     'nav.download':   'Download',
     'nav.cta':        '무료 다운로드',
+    'nav.board':      '기능개선 요청',
+    'board.title':    '기능개선 요청',
+    'board.new':      '+ 새 요청',
     'hero.badge':     'v1.0 — OpenSees 기반 · KBC/KCI 완전 지원',
     'hero.title':     '건축 구조 해석부터 설계까지<br><em>하나의 플랫폼</em>에서',
     'hero.sub':       'OpenSees 기반 선형·비선형 구조해석과 KBC/KCI 기준 RC 설계를 통합한 데스크톱 애플리케이션. 모델링에서 보고서까지 끊김 없이.',
@@ -2053,6 +2368,9 @@ const T = {
     'nav.ai':         'AI',
     'nav.download':   'ダウンロード',
     'nav.cta':        '無料ダウンロード',
+    'nav.board':      'ご要望',
+    'board.title':    '機能リクエスト',
+    'board.new':      '+ 新規リクエスト',
     'hero.badge':     'v1.0 — OpenSeesベース · KBC/KCI完全対応',
     'hero.title':     '構造解析から設計まで<br><em>ひとつのプラットフォーム</em>で',
     'hero.sub':       'OpenSeesベースの線形・非線形構造解析とKCI基準RC設計を統合したデスクトップアプリケーション。モデリングからレポートまでシームレスに。',
@@ -2213,6 +2531,9 @@ const T = {
     'nav.ai':         'AI',
     'nav.download':   '下载',
     'nav.cta':        '免费下载',
+    'nav.board':      '功能建议',
+    'board.title':    '功能建议',
+    'board.new':      '+ 新建请求',
     'hero.badge':     'v1.0 Beta — OpenSees · KBC/KCI · AI驱动',
     'hero.vs_ai':     'AI驱动',
     'hero.title':     '结构设计的新标准<br><em>AI重塑结构工程</em>',
