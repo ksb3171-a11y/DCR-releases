@@ -1,0 +1,113 @@
+/* ============================================================================
+   DCR Design System — Design Tokens (single source)
+   DEC-VISUAL A: "Dark technical elegance" — refined dark + teal, data/verification friendly.
+   Used by all site pages. Do NOT hardcode colors/sizes in page files; reference tokens.
+   ============================================================================ */
+
+:root {
+  /* ── Surfaces (deep navy-black, clear elevation steps) ── */
+  --bg:          #0a0a13;   /* page base */
+  --surface-1:   #10101e;   /* sections / large panels */
+  --surface-2:   #16162a;   /* cards */
+  --surface-3:   #1d1d38;   /* raised cards / hovers */
+  --surface-glass: rgba(13,13,26,0.78);  /* nav / overlays (backdrop-blur) */
+
+  /* ── Borders ── */
+  --border:        rgba(255,255,255,0.08);
+  --border-strong: rgba(255,255,255,0.15);
+  --border-accent: rgba(78,201,176,0.42);
+
+  /* ── Text (raised for WCAG AA on dark) ── */
+  --text:        #e6e6ef;   /* body — brighter than legacy #c8c8c8 */
+  --text-soft:   #c3c3d4;   /* secondary body */
+  --text-dim:    #9292a8;   /* captions / labels */
+  --text-mute:   #6a6a82;   /* disabled / fine print */
+
+  /* ── Primary accent (teal — engineering signature) ── */
+  --accent:        #4ec9b0;
+  --accent-bright: #5fdcc2;
+  --accent-ink:    #042019;             /* text/icon ON accent fill */
+  --accent-soft:   rgba(78,201,176,0.12);
+  --accent-glow:   rgba(78,201,176,0.30);
+
+  /* ── Secondary accents — DATA / CATEGORY use only (no decorative spam) ── */
+  --blue:   #569cd6;
+  --violet: #c586c0;
+  --gold:   #dcdcaa;
+
+  /* ── Semantic (performance verdicts / verification badges) ── */
+  --ok:        #4ec98a;
+  --ok-soft:   rgba(78,201,138,0.14);
+  --warn:      #e0b341;
+  --warn-soft: rgba(224,179,65,0.14);
+  --danger:    #e06c6c;
+  --danger-soft: rgba(224,108,108,0.14);
+
+  /* ── Typography ── */
+  --font-ui:   'Pretendard','Segoe UI','Malgun Gothic',Arial,sans-serif;
+  --font-mono: 'Consolas','Courier New',monospace;
+
+  /* Modular type scale (responsive clamp) */
+  --fs-display: clamp(2.6rem, 1.6rem + 4.4vw, 4.6rem);  /* hero headline */
+  --fs-h1:      clamp(2.0rem, 1.4rem + 2.6vw, 3.1rem);  /* section title */
+  --fs-h2:      clamp(1.5rem, 1.2rem + 1.3vw, 2.0rem);
+  --fs-h3:      clamp(1.15rem, 1.05rem + 0.5vw, 1.35rem);
+  --fs-lead:    clamp(1.05rem, 1.0rem + 0.4vw, 1.25rem); /* subtitles */
+  --fs-body:    1rem;        /* 16px base */
+  --fs-sm:      0.875rem;    /* 14px */
+  --fs-cap:     0.78rem;     /* 12.5px labels */
+  --fs-mono:    0.85rem;
+
+  --lh-tight: 1.18;
+  --lh-snug:  1.4;
+  --lh-body:  1.7;
+
+  --fw-reg: 400;
+  --fw-med: 500;
+  --fw-sb:  600;
+  --fw-bold:700;
+
+  /* ── Spacing rhythm (4px base) ── */
+  --sp-1: 0.25rem;  --sp-2: 0.5rem;   --sp-3: 0.75rem;  --sp-4: 1rem;
+  --sp-5: 1.5rem;   --sp-6: 2rem;     --sp-7: 3rem;     --sp-8: 4rem;
+  --sp-9: 6rem;     --sp-10: 8rem;
+
+  /* ── Layout ── */
+  --container:   1440px;   /* content cap — wider for engineering density on large monitors */
+  --container-narrow: 980px;
+  --gutter:      clamp(20px, 4.5vw, 72px);  /* breathing room scales with viewport */
+  --section-y:   clamp(64px, 9vw, 128px);
+
+  /* ── Radius ── */
+  --r-sm:  8px;
+  --r-md:  12px;
+  --r-lg:  18px;
+  --r-xl:  26px;
+  --r-pill: 999px;
+
+  /* ── Shadow ── */
+  --shadow-1: 0 2px 12px rgba(0,0,0,0.35);
+  --shadow-2: 0 12px 40px rgba(0,0,0,0.5);
+  --shadow-accent: 0 8px 40px rgba(78,201,176,0.18);
+
+  /* ── Motion ── */
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --dur-fast: 0.15s;
+  --dur:      0.28s;
+  --dur-slow: 0.6s;
+
+  /* ── Legacy aliases (so ported modal/board/auth CSS works unchanged) ── */
+  --dim:     var(--text-dim);
+  --bg2:     var(--surface-1);
+  --bg3:     var(--surface-3);
+  --card:    var(--surface-2);
+  --radius:  var(--r-md);
+  --accent2: var(--blue);
+  --accent3: var(--violet);
+}
+
+/* Reduced-motion respect (accessibility) */
+@media (prefers-reduced-motion: reduce) {
+  :root { --dur-fast: 0s; --dur: 0s; --dur-slow: 0s; }
+  html { scroll-behavior: auto; }
+}

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pricing — DCR</title>
+  <meta name="description" content="Transparent, self-serve pricing for DCR. Company-first licensing with a shared pool of floating seats — your concurrent users — and unlimited named members. 30-day free trial." />
+  <meta property="og:title" content="DCR — Pricing" />
+  <meta property="og:description" content="Company account · floating seat pool (concurrent users) · unlimited members · 30-day free trial. No 'request a quote.'" />
+  <meta property="og:type" content="website" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/modals.css" />
+  <style>
+    /* ── Page hero (shared pattern, teal accent) ── */
+    .page-hero { padding-top: calc(64px + var(--sp-9)); padding-bottom: var(--sp-6); position: relative; overflow: hidden; }
+    .page-hero::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background-image: linear-gradient(rgba(78,201,176,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(78,201,176,0.05) 1px, transparent 1px);
+      background-size: 64px 64px; mask-image: radial-gradient(120% 90% at 50% 0%, #000 30%, transparent 76%);
+    }
+    .page-hero .container { position: relative; z-index: 1; text-align: center; }
+    .page-hero .eyebrow { justify-content: center; }
+    .page-hero h1 { font-size: var(--fs-h1); font-weight: var(--fw-bold); color: #fff; line-height: var(--lh-tight); letter-spacing: -0.01em; margin: var(--sp-3) 0 var(--sp-4); }
+    .page-hero h1 em { color: var(--accent); font-style: normal; }
+    .page-hero .section-lead { margin-inline: auto; text-align: center; }
+
+    /* ── Seat selector ── */
+    .seat-bar { display: inline-flex; align-items: center; gap: var(--sp-4); margin-top: var(--sp-6); padding: 10px 16px; border: 1px solid var(--border); border-radius: var(--r-pill); background: var(--surface-2); }
+    .seat-bar label { font-size: var(--fs-sm); color: var(--text-soft); }
+    .seat-stepper { display: inline-flex; align-items: center; gap: 0; border: 1px solid var(--border-strong); border-radius: var(--r-sm); overflow: hidden; }
+    .seat-stepper button { width: 32px; height: 32px; background: var(--surface-3); color: var(--text); border: none; font-size: 16px; cursor: pointer; font-family: var(--font-mono); }
+    .seat-stepper button:hover { background: var(--accent); color: var(--accent-ink); }
+    .seat-stepper input { width: 48px; height: 32px; text-align: center; background: var(--surface-1); color: #fff; border: none; border-inline: 1px solid var(--border-strong); font-family: var(--font-mono); font-size: var(--fs-body); -moz-appearance: textfield; }
+    .seat-stepper input::-webkit-outer-spin-button, .seat-stepper input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+    .seat-hint { font-size: var(--fs-cap); color: var(--text-dim); }
+
+    /* ── Plan cards ── */
+    .plan-card { display: flex; flex-direction: column; gap: var(--sp-4); position: relative; }
+    .plan-card.featured { border-color: var(--border-accent); box-shadow: var(--shadow-accent); }
+    .plan-ribbon { position: absolute; top: -11px; left: 50%; transform: translateX(-50%); font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent-ink); background: var(--accent); border-radius: var(--r-pill); padding: 3px 12px; font-weight: var(--fw-bold); white-space: nowrap; }
+    .plan-name { font-size: var(--fs-h3); font-weight: var(--fw-sb); color: #fff; }
+    .plan-tag { font-size: var(--fs-cap); color: var(--text-dim); }
+    .plan-price { font-family: var(--font-mono); font-size: clamp(1.7rem, 1.3rem + 1.4vw, 2.3rem); font-weight: var(--fw-bold); color: #fff; line-height: 1.1; }
+    .plan-price .per { font-size: var(--fs-sm); color: var(--text-dim); font-weight: var(--fw-reg); }
+    .plan-total { font-size: var(--fs-sm); color: var(--accent); font-family: var(--font-mono); min-height: 1.2em; }
+    .plan-renew { font-size: var(--fs-cap); color: var(--warn); min-height: 1em; }
+    .plan-list { list-style: none; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+    .plan-list li { display: flex; gap: 10px; align-items: flex-start; font-size: var(--fs-sm); color: var(--text-soft); }
+    .plan-list li::before { content: '✓'; color: var(--accent); font-weight: var(--fw-bold); flex-shrink: 0; }
+
+    /* ── Seat model band ── */
+    .model-band { background: var(--surface-1); border-block: 1px solid var(--border); }
+    .model-flow { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: var(--sp-4); margin-top: var(--sp-5); }
+    .model-node { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: var(--sp-4) var(--sp-5); border: 1px solid var(--border); border-radius: var(--r-md); background: var(--surface-2); min-width: 150px; }
+    .model-node .ico { font-size: 22px; }
+    .model-node b { color: #fff; font-size: var(--fs-sm); }
+    .model-node span { font-size: var(--fs-cap); color: var(--text-dim); text-align: center; }
+    .model-arrow { color: var(--accent); font-size: 20px; }
+
+    @media (max-width: 760px) { .model-arrow { transform: rotate(90deg); } }
+  </style>
+</head>
+<body data-page="pricing">
+
+<div id="site-nav"></div>
+
+<main id="top">
+
+<!-- ════════════ PAGE HERO ════════════ -->
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow" data-i18n="prc.eyebrow">Pricing</span>
+    <h1 data-i18n-html="prc.title">Transparent pricing.<br><em>No "request a quote."</em></h1>
+    <p class="section-lead" data-i18n="prc.lead">DCR is licensed to your company, not to individuals. Buy a shared pool of floating seats — your concurrent users — and add unlimited named members. See exactly what you pay before you commit.</p>
+    <div class="seat-bar">
+      <label for="seatInput" data-i18n="prc.seatLabel">Seats (concurrent users)</label>
+      <div class="seat-stepper">
+        <button type="button" id="seatMinus" aria-label="Decrease seats">−</button>
+        <input id="seatInput" type="number" min="1" max="999" value="1" />
+        <button type="button" id="seatPlus" aria-label="Increase seats">+</button>
+      </div>
+    </div>
+    <div class="seat-hint" style="margin-top:var(--sp-3)" data-i18n="prc.seatHint">1 seat = 1 person using DCR at the same time. Members beyond your seat count can still have accounts — they just can't all run simultaneously.</div>
+  </div>
+</section>
+
+<!-- ════════════ PLAN CARDS ════════════ -->
+<section class="section" style="padding-top:var(--sp-7)">
+  <div class="container">
+    <div class="grid grid-3">
+      <!-- Pioneer (featured) -->
+      <article class="card plan-card featured reveal">
+        <span class="plan-ribbon" data-i18n="prc.pioneerRibbon">1st-year offer</span>
+        <div>
+          <div class="plan-name" data-i18n="prc.pioneerName">Pioneer</div>
+          <div class="plan-tag" data-i18n="prc.pioneerTag">Annual · first year only</div>
+        </div>
+        <div class="plan-price"><span data-plan-price="pioneer_annual">$900</span> <span class="per" data-i18n="prc.perSeatYear">/ seat / year</span></div>
+        <div class="plan-total" data-total-plan="pioneer_annual">—</div>
+        <div class="plan-renew" data-i18n="prc.pioneerRenew">Renews at $1,800 / seat / year</div>
+        <ul class="plan-list">
+          <li data-i18n="prc.f.full">Full modeling, analysis, design &amp; reports</li>
+          <li data-i18n="prc.f.updates">All updates &amp; priority support</li>
+          <li data-i18n="prc.f.commercial">Commercial-use license</li>
+          <li data-i18n="prc.f.pioneerLock">Founding-customer first-year price</li>
+        </ul>
+        <button class="btn btn-primary btn-block" data-subscribe="pioneer_annual" data-i18n="prc.subscribe">Subscribe</button>
+      </article>
+
+      <!-- Annual -->
+      <article class="card plan-card reveal d1">
+        <div>
+          <div class="plan-name" data-i18n="prc.annualName">Annual</div>
+          <div class="plan-tag" data-i18n="prc.annualTag">Best value · 2 months free</div>
+        </div>
+        <div class="plan-price"><span data-plan-price="annual">$1,800</span> <span class="per" data-i18n="prc.perSeatYear">/ seat / year</span></div>
+        <div class="plan-total" data-total-plan="annual">—</div>
+        <div class="plan-renew">&nbsp;</div>
+        <ul class="plan-list">
+          <li data-i18n="prc.f.full">Full modeling, analysis, design &amp; reports</li>
+          <li data-i18n="prc.f.updates">All updates &amp; priority support</li>
+          <li data-i18n="prc.f.commercial">Commercial-use license</li>
+          <li data-i18n="prc.f.save">Two months free vs. monthly</li>
+        </ul>
+        <button class="btn btn-secondary btn-block" data-subscribe="annual" data-i18n="prc.subscribe">Subscribe</button>
+      </article>
+
+      <!-- Monthly -->
+      <article class="card plan-card reveal d2">
+        <div>
+          <div class="plan-name" data-i18n="prc.monthlyName">Monthly</div>
+          <div class="plan-tag" data-i18n="prc.monthlyTag">Flexible · cancel anytime</div>
+        </div>
+        <div class="plan-price"><span data-plan-price="monthly">$180</span> <span class="per" data-i18n="prc.perSeatMonth">/ seat / month</span></div>
+        <div class="plan-total" data-total-plan="monthly">—</div>
+        <div class="plan-renew">&nbsp;</div>
+        <ul class="plan-list">
+          <li data-i18n="prc.f.full">Full modeling, analysis, design &amp; reports</li>
+          <li data-i18n="prc.f.updates">All updates &amp; support</li>
+          <li data-i18n="prc.f.commercial">Commercial-use license</li>
+          <li data-i18n="prc.f.flex">No annual commitment</li>
+        </ul>
+        <button class="btn btn-secondary btn-block" data-subscribe="monthly" data-i18n="prc.subscribe">Subscribe</button>
+      </article>
+    </div>
+
+    <div style="text-align:center;margin-top:var(--sp-6)">
+      <span class="badge badge-beta"><span class="dot"></span><span data-i18n="prc.trialBadge">30-day free trial — no credit card</span></span>
+      <p class="dim" style="font-size:var(--fs-cap);margin-top:var(--sp-3)" data-i18n="prc.ccyNote">Fixed USD price list with no live exchange-rate conversion. Pioneer renews at the displayed fixed Annual price.</p>
+      <p class="dim" id="billingModeNote" style="font-size:var(--fs-cap);margin-top:var(--sp-2);display:none"></p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ SEAT MODEL BAND ════════════ -->
+<section class="section model-band">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow" style="align-self:center" data-i18n="prc.modelEyebrow">How licensing works</span>
+      <h2 class="section-title" data-i18n="prc.modelTitle">Company first, then seats</h2>
+      <p class="section-lead" style="text-align:center" data-i18n="prc.modelLead">One company account holds a pool of floating seats. Anyone on your team can have an account; your seat count caps how many run DCR at the same time.</p>
+    </div>
+    <div class="model-flow reveal">
+      <div class="model-node"><span class="ico">🏢</span><b data-i18n="prc.n1t">Company</b><span data-i18n="prc.n1d">Top-level account &amp; billing owner</span></div>
+      <span class="model-arrow">→</span>
+      <div class="model-node"><span class="ico">🎟️</span><b data-i18n="prc.n2t">Seat pool</b><span data-i18n="prc.n2d">Concurrent users = subscriptions bought</span></div>
+      <span class="model-arrow">→</span>
+      <div class="model-node"><span class="ico">👥</span><b data-i18n="prc.n3t">Members</b><span data-i18n="prc.n3d">Unlimited named logins, share the pool</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ HOW SEATS WORK ════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="grid grid-3">
+      <article class="card feature-card reveal"><div class="card-ico">🔄</div><h3 data-i18n="prc.s1t">Floating concurrency</h3><p data-i18n="prc.s1d">Seats are shared, not assigned. When a colleague signs out, the seat frees up for the next person — no per-person license juggling.</p></article>
+      <article class="card feature-card reveal d1"><div class="card-ico">∞</div><h3 data-i18n="prc.s2t">Unlimited members</h3><p data-i18n="prc.s2d">Add your whole team as named members at no extra cost. You only pay for how many work at the same time.</p></article>
+      <article class="card feature-card reveal d2"><div class="card-ico">🧾</div><h3 data-i18n="prc.s3t">One company bill</h3><p data-i18n="prc.s3d">Centralized billing, receipts and Korean tax invoices under the company account. The owner manages seats and members.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ FAQ ════════════ -->
+<section class="section alt">
+  <div class="container narrow">
+    <div class="section-head center reveal">
+      <span class="eyebrow" style="align-self:center" data-i18n="prc.faqEyebrow">Pricing FAQ</span>
+      <h2 class="section-title" data-i18n="prc.faqTitle">Questions about plans &amp; billing</h2>
+    </div>
+    <div class="accordion reveal">
+      <div class="acc-item">
+        <button class="acc-q"><span data-i18n="prc.q1">What exactly is a "seat"?</span><span class="chev">▾</span></button>
+        <div class="acc-a"><div data-i18n="prc.a1">A seat is one concurrent user. If you buy 3 seats, up to 3 people can run DCR at the same time. You can register many more members than seats — they simply can't all be active simultaneously.</div></div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-q"><span data-i18n="prc.q2">How does the 30-day free trial work?</span><span class="chev">▾</span></button>
+        <div class="acc-a"><div data-i18n="prc.a2">The trial starts when you first run the app, not when you sign up — so you get a full 30 days of real use. No credit card required.</div></div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-q"><span data-i18n="prc.q3">What is the Pioneer price?</span><span class="chev">▾</span></button>
+        <div class="acc-a"><div data-i18n="prc.a3">Pioneer is a founding-customer offer: $900 per seat for your first year. It renews at the fixed Annual price ($1,800 per seat) afterward.</div></div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-q"><span data-i18n="prc.q4">Can I get a Korean tax invoice?</span><span class="chev">▾</span></button>
+        <div class="acc-a"><div data-i18n="prc.a4">Yes. Korean electronic tax invoices (세금계산서) are issued under your company account. Global VAT/GST handling is added as we expand internationally.</div></div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-q"><span data-i18n="prc.q5">Can I cancel or change seats later?</span><span class="chev">▾</span></button>
+        <div class="acc-a"><div data-i18n="prc.a5">Yes. Manage seats, members and cancellation any time from your account page. Cancellation stops the next renewal; you keep access until the current period ends.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ CTA ════════════ -->
+<section class="section">
+  <div class="container narrow" style="text-align:center">
+    <h2 class="section-title" data-i18n="prc.ctaTitle">Start free, upgrade when ready</h2>
+    <p class="section-lead" style="text-align:center;margin-inline:auto;margin-top:var(--sp-3)" data-i18n="prc.ctaLead">Download DCR and use it free for 30 days. Subscribe from your account when your team is ready.</p>
+    <div style="display:flex;gap:var(--sp-3);justify-content:center;flex-wrap:wrap;margin-top:var(--sp-6)">
+      <a href="index.html#download" class="btn btn-primary btn-lg" data-i18n="hero.cta1">Download for Windows</a>
+      <a href="account.html" class="btn btn-ghost btn-lg" data-i18n="prc.ctaAccount">Manage your account →</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<div id="site-footer"></div>
+<div id="site-modals"></div>
+
+<script src="js/i18n.js"></script>
+<script src="js/layout.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/board.js"></script>
+<script src="js/billing.js"></script>
+<script src="js/site.js"></script>
+</body>
+</html>

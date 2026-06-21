@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI — DCR</title>
+  <meta name="description" content="DCR's AI builds models from natural language, explains KDS provisions in-app and reviews your structure before you run — with your own Anthropic API key and your data kept local." />
+  <meta property="og:title" content="DCR — AI-assisted engineering" />
+  <meta property="og:description" content="Natural-language modeling · in-app KDS chatbot · pre-analysis review. BYOK, local-first." />
+  <meta property="og:type" content="website" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/modals.css" />
+  <style>
+    /* ── Page hero (shared pattern) ── */
+    .page-hero { padding-top: calc(64px + var(--sp-9)); padding-bottom: var(--sp-7); position: relative; overflow: hidden; }
+    .page-hero::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background-image: linear-gradient(rgba(197,134,192,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(197,134,192,0.05) 1px, transparent 1px);
+      background-size: 64px 64px; mask-image: radial-gradient(120% 90% at 50% 0%, #000 30%, transparent 76%);
+    }
+    .page-hero .container { position: relative; z-index: 1; }
+    .page-hero h1 { font-size: var(--fs-h1); font-weight: var(--fw-bold); color: #fff; line-height: var(--lh-tight); letter-spacing: -0.01em; margin: var(--sp-3) 0 var(--sp-4); }
+    .page-hero h1 em { color: var(--violet); font-style: normal; }
+
+    /* ── Capability deep-dive rows (shared with product.html pattern) ── */
+    .module { padding-block: var(--section-y); border-top: 1px solid var(--border); }
+    .module.alt { background: var(--surface-1); }
+    .module .container { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-8); align-items: center; }
+    .module.reverse .mod-media { order: -1; }
+    .mod-cat {
+      display: inline-block; font-family: var(--font-mono); font-size: 10.5px; font-weight: var(--fw-bold);
+      letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 9px; border-radius: var(--r-pill);
+      margin-bottom: var(--sp-3); color: var(--violet); border: 1px solid rgba(197,134,192,0.4); background: rgba(197,134,192,0.1);
+    }
+    .mod-text h2 { font-size: var(--fs-h2); font-weight: var(--fw-bold); color: #fff; line-height: var(--lh-tight); letter-spacing: -0.01em; margin-bottom: var(--sp-3); }
+    .mod-text > p { color: var(--text-soft); font-size: var(--fs-lead); line-height: var(--lh-snug); }
+    .mod-list { list-style: none; display: flex; flex-direction: column; gap: 11px; margin-top: var(--sp-5); }
+    .mod-list li { display: flex; gap: 11px; align-items: flex-start; font-size: var(--fs-sm); color: var(--text-soft); }
+    .mod-list li::before { content: '▸'; color: var(--violet); flex-shrink: 0; margin-top: 1px; }
+
+    /* ── Model cards ── */
+    .model-id { font-family: var(--font-mono); font-size: var(--fs-cap); color: var(--violet); margin-bottom: var(--sp-2); }
+    .model-card .pill { display: inline-block; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim); border: 1px solid var(--border); border-radius: var(--r-pill); padding: 2px 9px; margin-bottom: var(--sp-3); }
+
+    @media (max-width: 980px) {
+      .module .container { grid-template-columns: 1fr; }
+      .module.reverse .mod-media { order: 0; }
+    }
+  </style>
+</head>
+<body data-page="ai">
+
+<div id="site-nav"></div>
+
+<main id="top">
+
+<!-- ════════════ PAGE HERO ════════════ -->
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow" style="color:var(--violet)" data-i18n="aip.eyebrow">AI</span>
+    <h1 data-i18n-html="aip.title">AI that speaks<br><em>structural engineering.</em></h1>
+    <p class="section-lead" data-i18n="aip.lead">DCR's AI doesn't just autocomplete text — it builds models, explains code provisions and reviews your structure, all with your own API key and your data kept on your machine.</p>
+    <div style="display:flex;gap:var(--sp-3);flex-wrap:wrap;margin-top:var(--sp-5)">
+      <span class="badge badge-accent" style="color:var(--violet);border-color:rgba(197,134,192,0.4);background:rgba(197,134,192,0.1)"><span class="dot"></span><span data-i18n="aip.badgeByok">Bring your own Anthropic key</span></span>
+      <span class="badge badge-verified"><span class="dot"></span><span data-i18n="aip.badgeLocal">Local-first — your data stays on your machine</span></span>
+    </div>
+    <div style="display:flex;gap:var(--sp-3);flex-wrap:wrap;margin-top:var(--sp-6)">
+      <a href="index.html#download" class="btn btn-primary btn-lg" data-i18n="hero.cta1">Download for Windows</a>
+      <a href="product.html" class="btn btn-ghost btn-lg" data-i18n="aip.ctaProduct">See all features →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ CAPABILITY 1 — NL MODELING ════════════ -->
+<section class="module">
+  <div class="container">
+    <div class="mod-text reveal">
+      <span class="mod-cat" data-i18n="aip.c1cat">Modeling</span>
+      <h2 data-i18n="aip.c1t">Model from a sentence</h2>
+      <p data-i18n="aip.c1d">Describe the structure in plain language and DCR drafts nodes, members and loads for you — turning a paragraph of intent into an editable 3D model.</p>
+      <ul class="mod-list">
+        <li data-i18n="aip.c1b1">"5-story RC frame, 6 m column spacing" generates the frame</li>
+        <li data-i18n="aip.c1b2">Add, move and load members by command — no menu hunting</li>
+        <li data-i18n="aip.c1b3">Every AI edit is a normal, editable model change you can undo</li>
+        <li data-i18n="aip.c1b4">Auto model routing: a fast model for simple edits, an accurate one for complex ones</li>
+      </ul>
+    </div>
+    <div class="mod-media reveal d1">
+      <div class="media-frame ratio-16x9" data-image-key="ai-nl-modeling" data-label="AI — Natural-language modeling">
+        <div class="win-chrome"><i></i><i></i><i></i></div>
+        <div class="ph"><span class="ico">🤖</span><span data-i18n="live.ph">Screenshot / GIF slot — replaced via admin upload</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ CAPABILITY 2 — KDS CHATBOT ════════════ -->
+<section class="module alt reverse">
+  <div class="container">
+    <div class="mod-text reveal">
+      <span class="mod-cat" data-i18n="aip.c2cat">Chatbot</span>
+      <h2 data-i18n="aip.c2t">KDS answers, in context</h2>
+      <p data-i18n="aip.c2d">A built-in chatbot explains KDS structural design provisions in real time, so the basis for a decision is one question away — without leaving the app.</p>
+      <ul class="mod-list">
+        <li data-i18n="aip.c2b1">Ask about KDS / KBC / KCI provisions and get clear explanations</li>
+        <li data-i18n="aip.c2b2">Stay in your model — no switching to a browser or PDF</li>
+        <li data-i18n="aip.c2b3">Pairs with Result DNA: understand both the number and the clause</li>
+        <li data-i18n="aip.c2b4">Answers reflect the standards DCR actually designs to</li>
+      </ul>
+    </div>
+    <div class="mod-media reveal d1">
+      <div class="media-frame ratio-16x9" data-image-key="ai-chatbot" data-label="AI — KDS chatbot">
+        <div class="win-chrome"><i></i><i></i><i></i></div>
+        <div class="ph"><span class="ico">💬</span><span data-i18n="live.ph">Screenshot / GIF slot — replaced via admin upload</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ CAPABILITY 3 — PRE-ANALYSIS REVIEW ════════════ -->
+<section class="module">
+  <div class="container">
+    <div class="mod-text reveal">
+      <span class="mod-cat" data-i18n="aip.c3cat">Review</span>
+      <h2 data-i18n="aip.c3t">A second pair of eyes, before you run</h2>
+      <p data-i18n="aip.c3d">Before analysis, the AI structural advisor inspects the model for modeling errors and weak points and suggests how to fix them — catching problems while they are still cheap.</p>
+      <ul class="mod-list">
+        <li data-i18n="aip.c3b1">Flags modeling errors and anomalous configurations pre-run</li>
+        <li data-i18n="aip.c3b2">Highlights vulnerable members and weak points</li>
+        <li data-i18n="aip.c3b3">Suggests concrete fixes, not just warnings</li>
+        <li data-i18n="aip.c3b4">Runs on demand — review whenever you want a sanity check</li>
+      </ul>
+    </div>
+    <div class="mod-media reveal d1">
+      <div class="media-frame ratio-16x9" data-image-key="ai-review" data-label="AI — Pre-analysis review">
+        <div class="win-chrome"><i></i><i></i><i></i></div>
+        <div class="ph"><span class="ico">🔬</span><span data-i18n="live.ph">Screenshot / GIF slot — replaced via admin upload</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ PRIVACY & CONTROL ════════════ -->
+<section class="section alt">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow" style="color:var(--violet)" data-i18n="aip.privEyebrow">Privacy &amp; control</span>
+      <h2 class="section-title" data-i18n="aip.privTitle">Your key. Your data. Your machine.</h2>
+      <p class="section-lead" style="text-align:center" data-i18n="aip.privLead">AI is opt-in and transparent — you bring the key, you see the cost, and your project is never uploaded to us.</p>
+    </div>
+    <div class="grid grid-3">
+      <article class="card feature-card reveal"><div class="card-ico">🔑</div><h3 data-i18n="aip.p1t">Bring your own key</h3><p data-i18n="aip.p1d">Use your own Anthropic API key. You control access and spend — no DCR markup, no lock-in.</p></article>
+      <article class="card feature-card reveal d1"><div class="card-ico">🔒</div><h3 data-i18n="aip.p2t">Local-first</h3><p data-i18n="aip.p2d">The AI reads your model on your machine and talks directly to the provider. Your project files are never sent to DCR servers.</p></article>
+      <article class="card feature-card reveal d2"><div class="card-ico">✅</div><h3 data-i18n="aip.p3t">Opt-in, always</h3><p data-i18n="aip.p3d">AI features stay off until you add a key. Nothing runs, and nothing is sent, unless you turn it on.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ MODELS (transparency) ════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow" style="color:var(--violet)" data-i18n="aip.mdlEyebrow">Models</span>
+      <h2 class="section-title" data-i18n="aip.mdlTitle">The right model for each task</h2>
+      <p class="section-lead" style="text-align:center" data-i18n="aip.mdlLead">DCR uses Anthropic's Claude models and can route automatically — fast and economical for simple edits, accurate for complex modeling and analysis.</p>
+    </div>
+    <div class="grid grid-3">
+      <article class="card model-card reveal">
+        <div class="model-id">claude-haiku-4-5</div>
+        <h3 data-i18n="aip.mHaiku">Claude Haiku 4.5</h3>
+        <p data-i18n="aip.mHaikuD">Fast · low cost — simple commands: copy, move, load input.</p>
+      </article>
+      <article class="card model-card reveal d1">
+        <div class="model-id">claude-sonnet-4-6</div>
+        <h3 data-i18n="aip.mSonnet">Claude Sonnet 4.6</h3>
+        <p data-i18n="aip.mSonnetD">Accurate · high performance — complex commands and structural modeling.</p>
+      </article>
+      <article class="card model-card reveal d2">
+        <span class="pill" data-i18n="aip.mAutoTag">Recommended</span>
+        <h3 data-i18n="aip.mAuto">Auto</h3>
+        <p data-i18n="aip.mAutoD">Routes simple commands to Haiku for speed and complex modeling to Sonnet for accuracy.</p>
+      </article>
+    </div>
+    <p class="dim" style="font-size:var(--fs-cap);margin-top:var(--sp-4)" data-i18n="aip.mdlNote">Model availability follows your Anthropic account. DCR connects with the key you provide.</p>
+  </div>
+</section>
+
+<!-- ════════════ CTA ════════════ -->
+<section class="section alt">
+  <div class="container narrow" style="text-align:center">
+    <h2 class="section-title" data-i18n="cta.title">Start building with DCR today</h2>
+    <div style="display:flex;gap:var(--sp-3);justify-content:center;flex-wrap:wrap;margin-top:var(--sp-6)">
+      <a href="index.html#download" class="btn btn-primary btn-lg" data-i18n="hero.cta1">Download for Windows</a>
+      <a href="verification.html" class="btn btn-ghost btn-lg" data-i18n="ver.cta">See full verification →</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<div id="site-footer"></div>
+<div id="site-modals"></div>
+
+<script src="js/i18n.js"></script>
+<script src="js/layout.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/board.js"></script>
+<script src="js/site.js"></script>
+</body>
+</html>

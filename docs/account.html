@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Account — DCR</title>
+  <meta name="description" content="Manage your DCR company account — subscription, floating seats, members, billing history and profile." />
+  <meta name="robots" content="noindex" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/modals.css" />
+  <style>
+    .page-hero { padding-top: calc(64px + var(--sp-8)); padding-bottom: var(--sp-5); position: relative; overflow: hidden; }
+    .page-hero::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background-image: linear-gradient(rgba(78,201,176,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(78,201,176,0.05) 1px, transparent 1px);
+      background-size: 64px 64px; mask-image: radial-gradient(120% 90% at 50% 0%, #000 30%, transparent 76%);
+    }
+    .page-hero .container { position: relative; z-index: 1; }
+    .page-hero h1 { font-size: var(--fs-h1); font-weight: var(--fw-bold); color: #fff; line-height: var(--lh-tight); margin: var(--sp-2) 0; }
+    .page-hero h1 em { color: var(--accent); font-style: normal; }
+
+    .acct-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-5); align-items: start; }
+    .acct-grid .span-2 { grid-column: 1 / -1; }
+    @media (max-width: 860px) { .acct-grid { grid-template-columns: 1fr; } }
+
+    .panel { background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--r-lg); padding: var(--sp-6); }
+    .panel.accent { border-color: var(--border-accent); box-shadow: var(--shadow-accent); }
+    .panel-head { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-3); margin-bottom: var(--sp-4); }
+    .panel-head h3 { font-size: var(--fs-h3); font-weight: var(--fw-sb); color: #fff; }
+    .panel-sub { color: var(--text-dim); font-size: var(--fs-cap); }
+
+    .kv { display: flex; justify-content: space-between; gap: var(--sp-4); padding: 9px 0; border-bottom: 1px solid var(--border); font-size: var(--fs-sm); }
+    .kv:last-child { border-bottom: none; }
+    .kv .k { color: var(--text-dim); }
+    .kv .v { color: var(--text); font-family: var(--font-mono); text-align: right; }
+    .kv .v.strong { color: #fff; font-weight: var(--fw-sb); }
+
+    /* seat usage meter */
+    .meter { height: 10px; border-radius: var(--r-pill); background: var(--surface-1); border: 1px solid var(--border); overflow: hidden; margin-top: var(--sp-2); }
+    .meter > i { display: block; height: 100%; background: var(--accent); }
+
+    /* member rows */
+    .mrow { display: flex; align-items: center; gap: var(--sp-3); padding: 10px 0; border-bottom: 1px solid var(--border); font-size: var(--fs-sm); }
+    .mrow:last-child { border-bottom: none; }
+    .mrow .mavatar { width: 30px; height: 30px; border-radius: 50%; background: var(--surface-3); color: var(--accent); display: flex; align-items: center; justify-content: center; font-weight: var(--fw-bold); font-size: var(--fs-cap); flex-shrink: 0; }
+    .mrow .mname { color: #fff; }
+    .mrow .memail { color: var(--text-dim); font-size: var(--fs-cap); }
+    .mrow .mrole { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-dim); border: 1px solid var(--border); border-radius: var(--r-pill); padding: 2px 8px; }
+    .mrow .mrole.owner { color: var(--accent); border-color: var(--border-accent); }
+    .mrow .mrm { margin-left: auto; background: none; border: 1px solid var(--border); color: var(--text-dim); border-radius: var(--r-sm); padding: 4px 9px; font-size: var(--fs-cap); cursor: pointer; font-family: var(--font-ui); }
+    .mrow .mrm:hover { color: var(--danger); border-color: var(--danger); }
+
+    .inline-form { display: flex; gap: var(--sp-2); margin-top: var(--sp-4); flex-wrap: wrap; }
+    .inline-form input, .field input { background: var(--surface-1); border: 1px solid var(--border-strong); border-radius: var(--r-sm); color: #fff; font-family: var(--font-ui); font-size: var(--fs-sm); padding: 9px 12px; }
+    .inline-form input { flex: 1; min-width: 180px; }
+    .field { display: flex; flex-direction: column; gap: 5px; margin-bottom: var(--sp-3); }
+    .field label { font-size: var(--fs-cap); color: var(--text-dim); }
+    .field input { width: 100%; }
+
+    table.bill { width: 100%; border-collapse: collapse; font-size: var(--fs-sm); }
+    table.bill th, table.bill td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+    table.bill thead th { color: var(--text-dim); font-size: var(--fs-cap); text-transform: uppercase; letter-spacing: 0.05em; }
+    table.bill td.num { font-family: var(--font-mono); text-align: right; }
+
+    .empty-line { color: var(--text-dim); font-size: var(--fs-sm); padding: var(--sp-4) 0; text-align: center; }
+    .msg { font-size: var(--fs-cap); margin-top: var(--sp-2); min-height: 1em; }
+    .msg.err { color: var(--danger); }
+    .msg.ok  { color: var(--ok); }
+  </style>
+</head>
+<body data-page="account">
+
+<div id="site-nav"></div>
+
+<main id="top">
+
+<!-- ════════════ PAGE HERO ════════════ -->
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow" data-i18n="acct.eyebrow">Account</span>
+    <h1><span data-i18n="acct.title">Your</span> <em id="acctOrgName" data-i18n="acct.titleOrg">company</em></h1>
+    <p class="section-lead" id="acctHello" data-i18n="acct.lead">Manage your subscription, seats, members and billing.</p>
+  </div>
+</section>
+
+<!-- ════════════ LOGIN GATE (logged-out) ════════════ -->
+<section class="section" id="acctLoginGate" style="display:none">
+  <div class="container narrow" style="text-align:center">
+    <div class="panel">
+      <div class="card-ico" style="margin-inline:auto">🔒</div>
+      <h3 style="color:#fff;margin:var(--sp-3) 0" data-i18n="acct.gateTitle">Please log in</h3>
+      <p class="dim" style="margin-bottom:var(--sp-5)" data-i18n="acct.gateLead">Log in to your DCR account to manage your subscription and company.</p>
+      <div style="display:flex;gap:var(--sp-3);justify-content:center;flex-wrap:wrap">
+        <button class="btn btn-primary" onclick="openModal('login')" data-i18n="auth.login">Log in</button>
+        <button class="btn btn-ghost" onclick="openModal('signup')" data-i18n="auth.signup">Sign up</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ DASHBOARD (logged-in) ════════════ -->
+<section class="section" id="acctDash" style="display:none;padding-top:var(--sp-6)">
+  <div class="container">
+    <div class="acct-grid">
+
+      <!-- Subscription -->
+      <div class="panel accent span-2" id="subPanel">
+        <div class="panel-head">
+          <h3 data-i18n="acct.subTitle">Subscription</h3>
+          <span class="badge" id="subBadge" style="display:none"><span class="dot"></span><span id="subBadgeText">—</span></span>
+        </div>
+        <div id="subBody">
+          <div class="empty-line" data-i18n="acct.loading">Loading…</div>
+        </div>
+      </div>
+
+      <!-- Company / seats -->
+      <div class="panel" id="companyPanel">
+        <div class="panel-head"><h3 data-i18n="acct.coTitle">Company &amp; seats</h3></div>
+        <div class="kv"><span class="k" data-i18n="acct.coName">Company</span><span class="v strong" id="coName">—</span></div>
+        <div class="kv"><span class="k" data-i18n="acct.coOwner">Owner</span><span class="v" id="coOwner">—</span></div>
+        <div class="kv"><span class="k" data-i18n="acct.coSeats">Seats (concurrent)</span><span class="v strong" id="coSeats">—</span></div>
+        <div class="kv"><span class="k" data-i18n="acct.coInUse">In use now</span><span class="v" id="coInUse">—</span></div>
+        <div class="meter"><i id="seatMeter" style="width:0%"></i></div>
+        <p class="panel-sub" style="margin-top:var(--sp-3)" data-i18n="acct.coHint">Seats cap how many members can run DCR at the same time. Add seats from the Pricing page.</p>
+      </div>
+
+      <!-- Join a company by code (join-code onboarding) -->
+      <div class="panel" id="joinPanel">
+        <div class="panel-head"><h3 data-i18n="acct.joinTitle">Join your company</h3></div>
+        <p class="panel-sub" style="margin-bottom:var(--sp-3)" data-i18n="acct.joinLead">Got a company join code from your administrator? Enter it to join the seat pool — you keep your own login.</p>
+        <div class="inline-form">
+          <input id="joinCodeInput" type="text" maxlength="8" autocomplete="off" style="text-transform:uppercase;letter-spacing:1px" data-i18n-ph="acct.joinPh" placeholder="ABCD2345" />
+          <button class="btn btn-secondary" id="joinBtn" data-i18n="acct.joinBtn">Join</button>
+        </div>
+        <div class="msg" id="joinMsg"></div>
+      </div>
+
+      <!-- Members -->
+      <div class="panel" id="membersPanel">
+        <div class="panel-head">
+          <h3 data-i18n="acct.memTitle">Members</h3>
+          <span class="panel-sub" id="memCount">—</span>
+        </div>
+        <div id="orgMembersList"><div class="empty-line" data-i18n="acct.loading">Loading…</div></div>
+
+        <!-- Owner/admin: company join code to share with employees -->
+        <div id="joinCodeRow" style="display:none;margin-top:var(--sp-4);padding-top:var(--sp-4);border-top:1px solid var(--line,rgba(255,255,255,.08))">
+          <div class="kv"><span class="k" data-i18n="acct.shareCode">Company join code</span>
+            <span class="v strong" id="joinCodeValue" style="font-family:var(--mono,monospace);letter-spacing:2px">—</span></div>
+          <div style="display:flex;gap:var(--sp-2);margin:var(--sp-3) 0">
+            <button class="btn btn-ghost" id="copyCodeBtn" data-i18n="acct.copyCode">Copy</button>
+            <button class="btn btn-ghost" id="regenCodeBtn" data-i18n="acct.regenCode">Regenerate</button>
+          </div>
+          <p class="panel-sub" data-i18n="acct.shareHint">Share this code with employees — they sign up, enter it on this page, and join automatically. Regenerate to revoke a leaked code (old code stops working).</p>
+          <div class="msg" id="codeMsg"></div>
+        </div>
+
+        <div id="inviteRow" style="display:none">
+          <div class="inline-form">
+            <input id="inviteEmail" type="email" data-i18n-ph="acct.invitePh" placeholder="colleague@company.com" />
+            <button class="btn btn-secondary" id="inviteBtn" data-i18n="acct.inviteBtn">Add member</button>
+          </div>
+          <div class="msg" id="inviteMsg"></div>
+          <p class="panel-sub" style="margin-top:var(--sp-2)" data-i18n="acct.inviteHint">Optional fallback to the join code: add by email (the person must already have a DCR account). They keep their own login and share the seat pool.</p>
+        </div>
+      </div>
+
+      <!-- Company AI keys (company-paid AI) — owner/admin only -->
+      <div class="panel span-2" id="aiKeyPanel" style="display:none">
+        <div class="panel-head"><h3 data-i18n="acct.aiTitle">Company AI keys</h3></div>
+        <p class="panel-sub" style="margin-bottom:var(--sp-3)" data-i18n="acct.aiLead">Set one company API key and every member's app uses it automatically — so the company pays for all AI and members never need their own key.</p>
+        <div class="acct-grid">
+          <div class="field">
+            <label data-i18n="acct.aiAnthropic">Anthropic API key (Claude)</label>
+            <input id="orgAiKey" type="password" autocomplete="new-password" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="sk-ant-..." />
+            <span class="panel-sub" id="orgAiKeyState"></span>
+          </div>
+          <div class="field">
+            <label data-i18n="acct.aiOpenai">OpenAI API key (voice input, optional)</label>
+            <input id="orgSttKey" type="password" autocomplete="new-password" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="sk-..." />
+            <span class="panel-sub" id="orgSttKeyState"></span>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:var(--sp-4)">
+          <button class="btn btn-secondary" id="orgAiSaveBtn" data-i18n="acct.aiSave">Save keys</button>
+          <span class="msg" id="orgAiMsg"></span>
+        </div>
+        <p class="panel-sub" style="margin-top:var(--sp-2)" data-i18n="acct.aiNote">Enter a key to set or replace it; leave a field blank to keep the current key. Keys are delivered only to your members' apps.</p>
+      </div>
+
+      <!-- Billing history -->
+      <div class="panel span-2" id="paymentsPanel">
+        <div class="panel-head"><h3 data-i18n="acct.billTitle">Billing history</h3></div>
+        <table class="bill">
+          <thead><tr>
+            <th data-i18n="acct.billDate">Date</th>
+            <th data-i18n="acct.billDesc">Description</th>
+            <th class="num" data-i18n="acct.billAmount">Amount</th>
+            <th data-i18n="acct.billStatus">Status</th>
+            <th data-i18n="acct.billReceipt">Receipt</th>
+          </tr></thead>
+          <tbody id="paymentsBody">
+            <tr><td colspan="5" class="empty-line" data-i18n="acct.loading">Loading…</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Profile -->
+      <div class="panel span-2" id="profilePanel">
+        <div class="panel-head"><h3 data-i18n="acct.profTitle">Profile</h3></div>
+        <div class="acct-grid">
+          <div class="field"><label data-i18n="auth.name">Name</label><input id="pf_name" type="text" /></div>
+          <div class="field"><label data-i18n="auth.affiliation">Affiliation</label><input id="pf_affiliation" type="text" /></div>
+          <div class="field"><label data-i18n="auth.phone">Phone Number</label><input id="pf_phone" type="tel" /></div>
+          <div class="field"><label data-i18n="auth.email">Email</label><input id="pf_email" type="email" disabled /></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:var(--sp-4)">
+          <button class="btn btn-secondary" id="profileSaveBtn" data-i18n="acct.profSave">Save changes</button>
+          <span class="msg" id="profileMsg"></span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<div id="site-footer"></div>
+<div id="site-modals"></div>
+
+<script src="js/i18n.js"></script>
+<script src="js/layout.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/board.js"></script>
+<script src="js/billing.js"></script>
+<script src="js/site.js"></script>
+</body>
+</html>
