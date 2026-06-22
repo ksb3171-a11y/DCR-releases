@@ -141,20 +141,20 @@
       return n;
     }
     function recompute() {
+      // Pre-launch: prices are not finalized — show "to be announced" instead of
+      // concrete amounts. Seat count still reflects the chosen concurrency (payment
+      // direction stays: company → seat pool → members). Re-enable money rendering
+      // here when the final price list is set.
       var n = seats();
-      var currency = currentCurrency();
+      var tba = t('prc.tba', 'To be announced');
       document.querySelectorAll('[data-plan-price]').forEach(function (node) {
-        node.textContent = money(unitPrice(node.getAttribute('data-plan-price'), currency), currency);
+        node.textContent = tba;
       });
       document.querySelectorAll('[data-total-plan]').forEach(function (node) {
-        var plan = node.getAttribute('data-total-plan');
-        var unit = unitPrice(plan, currency);
-        var per = plan === 'monthly' ? t('prc.totalMonth', '/mo total') : t('prc.totalYear', '/yr total');
-        node.textContent = money(unit * n, currency) + ' ' + per + ' · ' + n + ' ' + (n === 1 ? t('prc.seatOne', 'seat') : t('prc.seatMany', 'seats'));
+        node.textContent = n + ' ' + (n === 1 ? t('prc.seatOne', 'seat') : t('prc.seatMany', 'seats'));
       });
       var renew = document.querySelector('[data-i18n="prc.pioneerRenew"]');
-      if (renew) renew.textContent = t('prc.pioneerRenew', 'Renews at {amount} / seat / year')
-        .replace('{amount}', money(unitPrice('annual', currency), currency));
+      if (renew) renew.textContent = t('prc.pioneerRenew', 'Renewal price announced at launch');
     }
     el('seatMinus') && el('seatMinus').addEventListener('click', function () { input.value = Math.max(1, seats() - 1); recompute(); });
     el('seatPlus') && el('seatPlus').addEventListener('click', function () { input.value = Math.min(999, seats() + 1); recompute(); });
