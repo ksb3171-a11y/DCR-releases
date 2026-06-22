@@ -48,6 +48,37 @@
     return d.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
   }
 
+  // ── styled notice modal (replaces the native alert) ─────────────
+  function notify(message, opts) {
+    opts = opts || {};
+    var ov = document.createElement('div');
+    ov.style.cssText = 'position:fixed;inset:0;z-index:100000;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(6,8,12,.6);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);opacity:0;transition:opacity .16s ease;';
+    var card = document.createElement('div');
+    card.style.cssText = 'max-width:440px;width:100%;background:var(--surface-2,#14161d);border:1px solid var(--border,rgba(255,255,255,.1));border-radius:16px;padding:26px 26px 20px;box-shadow:0 24px 64px rgba(0,0,0,.55);transform:translateY(10px) scale(.98);transition:transform .18s cubic-bezier(.2,.8,.2,1);';
+    var ui = 'font-family:var(--font-ui,system-ui,-apple-system,sans-serif)';
+    var icon  = opts.icon  ? '<div style="font-size:30px;line-height:1;margin-bottom:12px">' + opts.icon + '</div>' : '';
+    var title = opts.title ? '<div style="font-size:17px;font-weight:700;color:#fff;margin-bottom:8px;' + ui + '">' + escapeHtml(opts.title) + '</div>' : '';
+    card.innerHTML = icon + title +
+      '<div style="font-size:14px;line-height:1.6;color:var(--text-soft,#c7ccd6);' + ui + '">' + escapeHtml(message) + '</div>' +
+      '<div style="display:flex;justify-content:flex-end;margin-top:22px">' +
+        '<button type="button" style="background:var(--accent,#5fd0a8);color:var(--accent-ink,#06281c);border:none;border-radius:10px;padding:10px 24px;font-size:14px;font-weight:700;cursor:pointer;' + ui + '">' +
+          (opts.okText || 'Got it') + '</button></div>';
+    ov.appendChild(card);
+    document.body.appendChild(ov);
+    requestAnimationFrame(function () { ov.style.opacity = '1'; card.style.transform = 'translateY(0) scale(1)'; });
+    function close() {
+      ov.style.opacity = '0';
+      setTimeout(function () { if (ov.parentNode) ov.parentNode.removeChild(ov); }, 170);
+      document.removeEventListener('keydown', onKey);
+      if (opts.onClose) opts.onClose();
+    }
+    function onKey(e) { if (e.key === 'Escape' || e.key === 'Enter') close(); }
+    card.querySelector('button').addEventListener('click', close);
+    ov.addEventListener('mousedown', function (e) { if (e.target === ov) close(); });
+    document.addEventListener('keydown', onKey);
+    return ov;
+  }
+
   // ── Edge Function call (graceful) ───────────────────────────────
   // returns { ok, data, error, notReady }
   async function callFn(name, body) {
@@ -161,7 +192,10 @@
     // (Without PortOne configured the SDK would fail with "storeId required".)
     await loadConfig();
     if (!_cfg.billing_enabled) {
-      alert(t('prc.betaFree', 'DCR is currently in beta and 100% free to use — no payment needed. Paid subscriptions open at the official launch.'));
+      notify(
+        t('prc.betaFree', 'DCR is currently in beta and 100% free to use — no payment needed. Paid subscriptions open at the official launch.'),
+        { icon: '🎉', title: t('prc.betaTitle', 'Free during the beta'), okText: t('prc.betaOk', 'Got it') }
+      );
       return;
     }
 
@@ -173,14 +207,14 @@
     var start = await callFn('create-checkout', { action: 'start', plan: plan, seats: seatCount, currency: currency });
     if (!start.ok) {
       done();
-      alert(t('prc.backendPending', 'Checkout backend is not connected yet. This will be live in PortOne test mode once Edge Functions are deployed.'));
+      notify(t('prc.backendPending', 'Checkout backend is not connected yet. This will be live in PortOne test mode once Edge Functions are deployed.'));
       return;
     }
     var p = start.data || {};
     // 2) browser billing-key issuance via PortOne
     var PortOne;
     try { PortOne = await loadPortOne(); }
-    catch (e) { done(); alert(t('prc.sdkFail', 'Could not load the payment module. Check your connection and retry.')); return; }
+    catch (e) { done(); notify(t('prc.sdkFail', 'Could not load the payment module. Check your connection and retry.')); return; }
 
     var issue;
     try {
@@ -192,11 +226,11 @@
         issueName: p.issueName || ('DCR ' + plan),
         customer: p.customer || {}
       });
-    } catch (e) { done(); alert((e && e.message) || 'Payment cancelled.'); return; }
+    } catch (e) { done(); notify((e && e.message) || 'Payment cancelled.'); return; }
 
     if (!issue || issue.code !== undefined) {
       done();
-      alert((issue && issue.message) || t('prc.payCancelled', 'Payment was cancelled.'));
+      notify((issue && issue.message) || t('prc.payCancelled', 'Payment was cancelled.'));
       return;
     }
 
@@ -208,7 +242,7 @@
     });
     done();
     if (!confirm.ok) {
-      alert(t('prc.confirmFail', 'The billing key was issued but activation failed. Please contact support — you have not been charged twice.'));
+      notify(t('prc.confirmFail', 'The billing key was issued but activation failed. Please contact support — you have not been charged twice.'));
       return;
     }
     // success → go to account
@@ -545,14 +579,14 @@
     if (!window.confirm(t('acct.removeConfirm', 'Remove this member from the company?'))) return;
     var r = await callFn('org-member', { action: 'remove', orgId: _org.id, userId: userId });
     if (r.ok) renderMembers();
-    else alert(t('prc.backendPending', 'Backend not connected yet.'));
+    else notify(t('prc.backendPending', 'Backend not connected yet.'));
   }
 
   async function revokeInvite(inviteId) {
     if (!window.confirm(t('acct.revokeConfirm', 'Revoke this pending invitation?'))) return;
     var r = await callFn('org-member', { action: 'revoke', orgId: _org.id, inviteId: inviteId });
     if (r.ok) renderMembers();
-    else alert(t('prc.backendPending', 'Backend not connected yet.'));
+    else notify(t('prc.backendPending', 'Backend not connected yet.'));
   }
 
   async function renderPayments() {
