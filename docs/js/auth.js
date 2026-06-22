@@ -316,8 +316,17 @@ document.addEventListener('click', () => {
 
 // ── MODAL OVERLAY: close on backdrop click ──
 ;['loginModal','signupModal'].forEach(id => {
-  document.getElementById(id)?.addEventListener('click', function (e) {
-    if (e.target === this) closeModal(id)
+  const overlay = document.getElementById(id)
+  if (!overlay) return
+  // Close only when the press AND release both land on the backdrop itself.
+  // A plain 'click' fires on the common ancestor of mousedown/mouseup, so selecting
+  // text in a field (release outside the card) or dismissing the browser password
+  // popup could close the modal mid-typing. Tracking mousedown prevents that.
+  let downOnBackdrop = false
+  overlay.addEventListener('mousedown', e => { downOnBackdrop = (e.target === overlay) })
+  overlay.addEventListener('click', e => {
+    if (e.target === overlay && downOnBackdrop) closeModal(id)
+    downOnBackdrop = false
   })
 })
 

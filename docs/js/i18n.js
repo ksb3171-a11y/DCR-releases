@@ -2554,7 +2554,7 @@
     document.querySelectorAll('.lang-option').forEach(opt => {
       opt.classList.toggle('active', opt.dataset.lang === lang);
     });
-    try { localStorage.setItem('dcr-lang', lang); } catch (e) {}
+    try { localStorage.setItem('dcr-lang-v2', lang); } catch (e) {}
 
     // Allow auth.js (or others) to re-render language-dependent dynamic text.
     if (typeof global.onLangApplied === 'function') {

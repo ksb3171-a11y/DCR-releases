@@ -35,10 +35,13 @@
       });
     }
 
-    /* ── Initial language (saved or default English) ── */
+    /* ── Initial language (saved or default English) ──
+       Uses a versioned key ('dcr-lang-v2') so any pre-existing 'dcr-lang' from an
+       earlier visit is ignored once — English becomes the default for everyone now,
+       while an explicit pick is still remembered under the new key. */
     if (window.DCR_I18N) {
       let saved = null;
-      try { saved = localStorage.getItem('dcr-lang'); } catch (e) {}
+      try { saved = localStorage.getItem('dcr-lang-v2'); } catch (e) {}
       window.DCR_I18N.apply(saved && window.DCR_I18N.T[saved] ? saved : 'en');
     }
 

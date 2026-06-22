@@ -156,6 +156,15 @@
 
   async function startCheckout(plan, seatCount, currency, btn) {
     if (!window._user) { if (window.openModal) openModal('login'); return; }
+
+    // Beta: billing is not enabled yet → DCR is free, do NOT open a real checkout.
+    // (Without PortOne configured the SDK would fail with "storeId required".)
+    await loadConfig();
+    if (!_cfg.billing_enabled) {
+      alert(t('prc.betaFree', 'DCR is currently in beta and 100% free to use — no payment needed. Paid subscriptions open at the official launch.'));
+      return;
+    }
+
     var orig = btn ? btn.textContent : '';
     if (btn) { btn.disabled = true; btn.textContent = t('prc.processing', 'Processing…'); }
     function done() { if (btn) { btn.disabled = false; btn.textContent = orig; } }
