@@ -1,5 +1,5 @@
 /* ============================================================================
-   DCR site — Modals & overlays (auth, members, feature board, admin)
+   STRIX site — Modals & overlays (auth, members, feature board, admin)
    Requires tokens.css (uses legacy aliases --dim/--card/--radius/--accent2/3).
    Ported from the original index.html; IDs/classes preserved so auth.js / board.js
    work unchanged.

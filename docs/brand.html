@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brand — STRIX</title>
+  <meta name="description" content="The STRIX brand: Structural Technology for Robust Infrastructure & eXcellence. The name, the X-brace mark, color, type and the product family." />
+  <meta property="og:title" content="STRIX — Brand" />
+  <meta property="og:description" content="STR for Structure, X for the cross-brace that holds it up — Structural Technology for Robust Infrastructure & eXcellence." />
+  <meta property="og:type" content="website" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/modals.css" />
+  <style>
+    /* brace accents (brand-specific identity colors) */
+    :root { --brace-teal:#4ec9b0; --brace-blue:#3a9bdc; }
+
+    /* ── Hero ── */
+    .brand-hero { padding-top: calc(64px + var(--sp-9)); padding-bottom: var(--sp-8); position: relative; overflow: hidden; text-align: center; }
+    .brand-hero::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background-image: linear-gradient(rgba(78,201,176,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(78,201,176,0.05) 1px, transparent 1px);
+      background-size: 64px 64px; mask-image: radial-gradient(120% 90% at 50% 0%, #000 30%, transparent 76%);
+    }
+    .brand-hero .container { position: relative; z-index: 1; }
+    .hero-lockup { display: inline-flex; align-items: center; gap: 6px; justify-content: center; }
+    .hero-word { font-size: clamp(56px, 11vw, 132px); font-weight: 900; letter-spacing: -0.02em; line-height: 1; color: #fff; }
+    .hero-tag { margin-top: var(--sp-5); font-size: clamp(11px, 2vw, 15px); letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-soft); }
+    .hero-tag b { color: #fff; font-weight: var(--fw-bold); }
+
+    /* brace svg draw-in */
+    .brace .frame { stroke: rgba(255,255,255,0.16); }
+    .brace .d1 { stroke: var(--brace-teal); } .brace .d2 { stroke: var(--brace-blue); }
+    .brace .node { fill: #fff; }
+    .draw { stroke-dasharray: 120; stroke-dashoffset: 120; animation: braceDraw 1.1s ease forwards; }
+    .draw.d2 { animation-delay: .25s; }
+    @keyframes braceDraw { to { stroke-dashoffset: 0; } }
+    .brace .node { opacity: 0; animation: braceNode .4s ease forwards .9s; }
+    @keyframes braceNode { from { opacity: 0; transform: scale(0); } to { opacity: 1; transform: scale(1); } }
+
+    /* ── Name / story rows ── */
+    .srow { display: grid; grid-template-columns: 110px 1fr; gap: var(--sp-6); align-items: center;
+      background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--r-lg); padding: var(--sp-5) var(--sp-6); }
+    .srow + .srow { margin-top: var(--sp-3); }
+    .srow .big { font-size: 48px; font-weight: 900; letter-spacing: -0.02em; text-align: center; }
+    .srow .big.teal { color: var(--brace-teal); } .srow .big.blue { color: var(--brace-blue); }
+    .srow .stext { color: var(--text-soft); font-size: var(--fs-sm); }
+    .srow .stext b { color: #fff; font-weight: var(--fw-bold); }
+    .acro-card { margin-top: var(--sp-5); background: var(--surface-2); border: 1px solid var(--border);
+      border-radius: var(--r-lg); padding: var(--sp-6); text-align: center; }
+    .acro-card .full { font-size: clamp(15px, 2.6vw, 23px); font-weight: var(--fw-bold); color: #fff; line-height: 1.4; }
+    .acro-card .full span { color: var(--brace-teal); }
+    .acro-card .sub { margin-top: var(--sp-2); font-family: var(--font-mono); font-size: var(--fs-cap); color: var(--text-dim); letter-spacing: 0.3em; }
+
+    /* ── stages (logo/icon previews) ── */
+    .stage { min-height: 150px; display: flex; align-items: center; justify-content: center; gap: var(--sp-4);
+      background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--r-lg); padding: var(--sp-5); }
+    .stage.light { background: #f1f1f5; }
+    .wordmark { font-weight: 900; letter-spacing: 0.01em; font-size: 40px; color: #fff; }
+    .wordmark .x { color: var(--brace-teal); }
+    .lockup { display: flex; flex-direction: column; align-items: center; gap: var(--sp-2); }
+    .lockup .cap { font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-soft); }
+    .cardlabel { margin-top: var(--sp-3); }
+    .cardlabel .k { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--brace-teal); }
+    .cardlabel .d { color: var(--text-dim); font-size: var(--fs-cap); margin-top: 2px; }
+
+    /* ── color swatches ── */
+    .swatch { border: 1px solid var(--border); border-radius: var(--r-md, 10px); overflow: hidden; }
+    .swatch .chip { height: 84px; }
+    .swatch .info { padding: var(--sp-3) var(--sp-4); background: var(--surface-2); }
+    .swatch .info .n { color: #fff; font-size: var(--fs-sm); font-weight: var(--fw-bold); }
+    .swatch .info .h { color: var(--text-dim); font-family: var(--font-mono); font-size: 11px; margin-top: 2px; }
+
+    /* ── product family ── */
+    .fam { background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--r-lg); padding: var(--sp-6); text-align: center;
+      transition: transform var(--dur), border-color var(--dur); }
+    .fam:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.18); }
+    .fam .fname { margin-top: var(--sp-3); font-weight: 900; font-size: 18px; color: #fff; letter-spacing: 0.01em; }
+    .fam .fname .suf { font-weight: var(--fw-med, 500); color: var(--text-soft); }
+    .fam .frole { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-dim); margin-top: 4px; }
+
+    @media (max-width: 640px) { .srow { grid-template-columns: 72px 1fr; gap: var(--sp-4); } .srow .big { font-size: 36px; } }
+  </style>
+</head>
+<body data-page="brand">
+
+<div id="site-nav"></div>
+
+<main id="top">
+
+<!-- ════════════ HERO ════════════ -->
+<section class="brand-hero">
+  <div class="container">
+    <span class="eyebrow" style="align-self:center">Brand Identity</span>
+    <div class="hero-lockup" style="margin-top:var(--sp-4)">
+      <span class="hero-word">STRI</span>
+      <svg width="116" height="116" viewBox="0 0 60 60" class="brace" aria-label="STRIX X-brace">
+        <rect class="frame" x="8" y="8" width="44" height="44" fill="none" stroke-width="1.4"/>
+        <line class="d1 draw" x1="8" y1="8" x2="52" y2="52" stroke-width="7" stroke-linecap="round"/>
+        <line class="d2 draw" x1="52" y1="8" x2="8" y2="52" stroke-width="7" stroke-linecap="round"/>
+        <circle class="node" cx="8" cy="8" r="4"/><circle class="node" cx="52" cy="8" r="4"/>
+        <circle class="node" cx="8" cy="52" r="4"/><circle class="node" cx="52" cy="52" r="4"/>
+      </svg>
+    </div>
+    <div class="hero-tag"><b>Structural Technology</b> for <b>Robust Infrastructure</b> &amp; e<b>X</b>cellence</div>
+  </div>
+</section>
+
+<!-- ════════════ THE NAME ════════════ -->
+<section class="section alt">
+  <div class="container narrow">
+    <div class="section-head reveal">
+      <span class="eyebrow">The Name</span>
+      <h2 class="section-title">Two ideas, five letters.</h2>
+      <p class="section-lead">STRIX isn't a random word — it's the product, written in shorthand. The name carries both what we build and the engineering that holds it together.</p>
+    </div>
+    <div class="reveal">
+      <div class="srow">
+        <div class="big teal">STR</div>
+        <div class="stext"><b>Structure.</b> The foundation of everything we analyze — beams, columns, walls, slabs, the whole system.</div>
+      </div>
+      <div class="srow">
+        <div class="big blue">X</div>
+        <div class="stext"><b>The cross-brace.</b> The X-brace that resists lateral force and keeps a structure standing. Our mark <em>is</em> that brace, with a node at every joint.</div>
+      </div>
+      <div class="acro-card">
+        <div class="full"><span>S</span>tructural <span>T</span>echnology for <span>R</span>obust <span>I</span>nfrastructure &amp; e<span>X</span>cellence</div>
+        <div class="sub">S · T · R · I · X</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ LOGO SYSTEM ════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Logo System</span>
+      <h2 class="section-title">One mark, every surface</h2>
+      <p class="section-lead">A geometric wordmark, a tagline lockup, and a standalone brace icon that stays legible from billboard to favicon.</p>
+    </div>
+    <div class="grid grid-3">
+      <div class="card reveal">
+        <div class="stage"><div class="wordmark">STRI<span class="x">X</span></div></div>
+        <div class="cardlabel"><div class="k">Primary Wordmark</div><div class="d">Dark theme · default usage</div></div>
+      </div>
+      <div class="card reveal d1">
+        <div class="stage">
+          <div class="lockup">
+            <div class="wordmark" style="font-size:32px">STRI<span class="x">X</span></div>
+            <div class="cap">Structural Technology · Robust Infrastructure · eXcellence</div>
+          </div>
+        </div>
+        <div class="cardlabel"><div class="k">Tagline Lockup</div><div class="d">Wordmark + backronym caption</div></div>
+      </div>
+      <div class="card reveal d2">
+        <div class="stage">
+          <svg width="88" height="88" viewBox="0 0 64 64">
+            <rect x="2" y="2" width="60" height="60" rx="14" fill="#23233a"/>
+            <line x1="18" y1="18" x2="46" y2="46" stroke="#4ec9b0" stroke-width="6" stroke-linecap="round"/>
+            <line x1="46" y1="18" x2="18" y2="46" stroke="#3a9bdc" stroke-width="6" stroke-linecap="round"/>
+            <circle cx="18" cy="18" r="4" fill="#fff"/><circle cx="46" cy="18" r="4" fill="#fff"/>
+            <circle cx="18" cy="46" r="4" fill="#fff"/><circle cx="46" cy="46" r="4" fill="#fff"/>
+          </svg>
+        </div>
+        <div class="cardlabel"><div class="k">App Icon</div><div class="d">Brace mark only · launcher & taskbar</div></div>
+      </div>
+      <div class="card reveal">
+        <div class="stage light"><div class="wordmark" style="color:#1a1a24">STRI<span style="color:#0f8f78">X</span></div></div>
+        <div class="cardlabel"><div class="k">Light Variant</div><div class="d">Print · light backgrounds</div></div>
+      </div>
+      <div class="card reveal d1">
+        <div class="stage"><div class="wordmark" style="color:#cfcfd9">STRI<span style="color:#cfcfd9">X</span></div></div>
+        <div class="cardlabel"><div class="k">Monochrome</div><div class="d">Single-color · embossing</div></div>
+      </div>
+      <div class="card reveal d2">
+        <div class="stage">
+          <svg width="44" height="44" viewBox="0 0 64 64"><rect x="2" y="2" width="60" height="60" rx="14" fill="#23233a"/>
+            <line x1="18" y1="18" x2="46" y2="46" stroke="#4ec9b0" stroke-width="6" stroke-linecap="round"/>
+            <line x1="46" y1="18" x2="18" y2="46" stroke="#3a9bdc" stroke-width="6" stroke-linecap="round"/></svg>
+          <svg width="28" height="28" viewBox="0 0 64 64"><rect x="2" y="2" width="60" height="60" rx="14" fill="#23233a"/>
+            <line x1="18" y1="18" x2="46" y2="46" stroke="#4ec9b0" stroke-width="7" stroke-linecap="round"/>
+            <line x1="46" y1="18" x2="18" y2="46" stroke="#3a9bdc" stroke-width="7" stroke-linecap="round"/></svg>
+          <svg width="16" height="16" viewBox="0 0 64 64"><rect x="2" y="2" width="60" height="60" rx="14" fill="#23233a"/>
+            <line x1="16" y1="16" x2="48" y2="48" stroke="#4ec9b0" stroke-width="9" stroke-linecap="round"/>
+            <line x1="48" y1="16" x2="16" y2="48" stroke="#3a9bdc" stroke-width="9" stroke-linecap="round"/></svg>
+        </div>
+        <div class="cardlabel"><div class="k">Scalability</div><div class="d">44 → 28 → 16px · favicon-ready</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ COLOR ════════════ -->
+<section class="section alt">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Color</span>
+      <h2 class="section-title">Engineered, not decorated</h2>
+      <p class="section-lead">A dark technical base with two structural accents — teal and blue trace the two diagonals of the brace.</p>
+    </div>
+    <div class="grid grid-4 reveal">
+      <div class="swatch"><div class="chip" style="background:#13131c"></div><div class="info"><div class="n">Base</div><div class="h">#13131C</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#1e1e2e"></div><div class="info"><div class="n">Panel</div><div class="h">#1E1E2E</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#4ec9b0"></div><div class="info"><div class="n">Brace Teal</div><div class="h">#4EC9B0</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#3a9bdc"></div><div class="info"><div class="n">Brace Blue</div><div class="h">#3A9BDC</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ PRODUCT FAMILY ════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Product Family</span>
+      <h2 class="section-title">One brace. A whole platform.</h2>
+      <p class="section-lead">STRIX is a masterbrand. The same brace mark carries across disciplines — only the accent color changes.</p>
+    </div>
+    <div class="grid grid-4">
+      <div class="fam reveal">
+        <svg width="60" height="60" viewBox="0 0 64 64"><rect x="2" y="2" width="60" height="60" rx="14" fill="#23233a"/>
+          <line x1="18" y1="18" x2="46" y2="46" stroke="#4ec9b0" stroke-width="6" stroke-linecap="round"/>
+          <line x1="46" y1="18" x2="18" y2="46" stroke="#2f8f78" stroke-width="6" stroke-linecap="round"/>
+          <circle cx="18" cy="18" r="4" fill="#fff"/><circle cx="46" cy="18" r="4" fill="#fff"/><circle cx="18" cy="46" r="4" fill="#fff"/><circle cx="46" cy="46" r="4" fill="#fff"/></svg>
+        <div class="fname">STRIX <span class="suf">Build</span></div><div class="frole">Buildings</div>
+      </div>
+      <div class="fam reveal d1">
+        <svg width="60" height="60" viewBox="0 0 64 64"><rect x="2" y="2" width="60" height="60" rx="14" fill="#23233a"/>
+          <line x1="18" y1="18" x2="46" y2="46" stroke="#e0a23e" stroke-width="6" stroke-linecap="round"/>
+          <line x1="46" y1="18" x2="18" y2="46" stroke="#c8762e" stroke-width="6" stroke-linecap="round"/>
+          <circle cx="18" cy="18" r="4" fill="#fff"/><circle cx="46" cy="18" r="4" fill="#fff"/><circle cx="18" cy="46" r="4" fill="#fff"/><circle cx="46" cy="46" r="4" fill="#fff"/></svg>
+        <div class="fname">STRIX <span class="suf">Civil</span></div><div class="frole">Infrastructure</div>
+      </div>
+      <div class="fam reveal d2">
+        <svg width="60" height="60" viewBox="0 0 64 64"><rect x="2" y="2" width="60" height="60" rx="14" fill="#23233a"/>
+          <line x1="18" y1="18" x2="46" y2="46" stroke="#9a6cff" stroke-width="6" stroke-linecap="round"/>
+          <line x1="46" y1="18" x2="18" y2="46" stroke="#6a4ad0" stroke-width="6" stroke-linecap="round"/>
+          <circle cx="18" cy="18" r="4" fill="#fff"/><circle cx="46" cy="18" r="4" fill="#fff"/><circle cx="18" cy="46" r="4" fill="#fff"/><circle cx="46" cy="46" r="4" fill="#fff"/></svg>
+        <div class="fname">STRIX <span class="suf">Bridge</span></div><div class="frole">Bridges</div>
+      </div>
+      <div class="fam reveal d3">
+        <svg width="60" height="60" viewBox="0 0 64 64"><rect x="2" y="2" width="60" height="60" rx="14" fill="#23233a"/>
+          <line x1="18" y1="18" x2="46" y2="46" stroke="#3a9bdc" stroke-width="6" stroke-linecap="round"/>
+          <line x1="46" y1="18" x2="18" y2="46" stroke="#2a6fa8" stroke-width="6" stroke-linecap="round"/>
+          <circle cx="18" cy="18" r="4" fill="#fff"/><circle cx="46" cy="18" r="4" fill="#fff"/><circle cx="18" cy="46" r="4" fill="#fff"/><circle cx="46" cy="46" r="4" fill="#fff"/></svg>
+        <div class="fname">STRIX <span class="suf">Mechanical</span></div><div class="frole">FEA / Machinery</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ CTA ════════════ -->
+<section class="section alt">
+  <div class="container narrow" style="text-align:center">
+    <h2 class="section-title">Structural Technology for Robust Infrastructure &amp; eXcellence</h2>
+    <div style="display:flex;gap:var(--sp-3);justify-content:center;flex-wrap:wrap;margin-top:var(--sp-6)">
+      <a href="index.html#download" class="btn btn-primary btn-lg" data-i18n="hero.cta1">Download for Windows</a>
+      <a href="product.html" class="btn btn-ghost btn-lg" data-i18n="aip.ctaProduct">See all features →</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<div id="site-footer"></div>
+<div id="site-modals"></div>
+
+<script src="js/i18n.js"></script>
+<script src="js/layout.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/board.js"></script>
+<script src="js/site.js"></script>
+</body>
+</html>

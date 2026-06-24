@@ -1,5 +1,5 @@
 /* ============================================================================
-   DCR Design System — Components (single source)
+   STRIX Design System — Components (single source)
    Requires tokens.css. Reusable across all site pages.
    ============================================================================ */
 
@@ -120,7 +120,7 @@ img, svg, video { display: block; max-width: 100%; }
 .trust-item strong { color: #fff; font-weight: var(--fw-sb); }
 .trust-sep { width: 1px; height: 18px; background: var(--border-strong); }
 
-/* ── Verification table (DCR signature, not competitor copy) ── */
+/* ── Verification table (STRIX signature, not competitor copy) ── */
 .dtable { width: 100%; border-collapse: collapse; font-size: var(--fs-sm); }
 .dtable th, .dtable td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border); }
 .dtable thead th { color: var(--text-dim); font-weight: var(--fw-sb); font-size: var(--fs-cap); letter-spacing: 0.06em; text-transform: uppercase; background: var(--surface-1); }
@@ -204,8 +204,9 @@ img, svg, video { display: block; max-width: 100%; }
 }
 .nav.scrolled { box-shadow: var(--shadow-2); }
 .nav .container { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-5); }
-.nav-logo { font-family: var(--font-mono); font-size: 19px; font-weight: var(--fw-bold); color: var(--accent); letter-spacing: 2px; }
-.nav-logo span { color: var(--text-mute); font-size: 10px; font-weight: var(--fw-reg); margin-left: 8px; letter-spacing: 0; }
+.nav-logo { font-family: var(--font-mono); font-size: 19px; font-weight: var(--fw-bold); color: var(--accent); letter-spacing: 2px; display: inline-flex; align-items: center; }
+.nav-logo .logo-svg { height: 1.2em; width: auto; display: block; overflow: visible; }
+.nav-logo .logo-sub { color: var(--text-mute); font-size: 10px; font-weight: var(--fw-reg); margin-left: 10px; letter-spacing: 0; }
 .nav-links { display: flex; gap: var(--sp-6); list-style: none; }
 .nav-links a { color: var(--text-dim); font-size: var(--fs-sm); transition: color var(--dur-fast); position: relative; }
 .nav-links a::after { content: ''; position: absolute; left: 0; bottom: -6px; height: 2px; width: 0; background: var(--accent); transition: width var(--dur) var(--ease); }

@@ -1,5 +1,5 @@
 /* ============================================================================
-   DCR site — shared layout chrome (single source): nav + footer + modals.
+   STRIX site — shared layout chrome (single source): nav + footer + modals.
    Classic script. Injects markup into placeholders so every page shares one
    source for navigation, footer and the auth/board/admin modals.
 
@@ -22,10 +22,24 @@
   // otherwise jump to index.html#hash.
   function home(hash) { return isHome ? ('#' + hash) : ('index.html#' + hash); }
 
+  // STRIX wordmark: inline SVG. The X (diagonals + corner nodes) is the priority —
+  // it matches the letter height (72 units). The frame square sits INSIDE the X (6~66).
+  var LOGOMARK = '' +
+    '<svg class="logo-svg" viewBox="0 0 332 96" fill="none" role="img" aria-label="STRIX">' +
+      '<text x="0" y="84" textLength="238" lengthAdjust="spacingAndGlyphs" font-family="\'Arial Black\',\'Arial\',sans-serif" font-weight="900" font-size="100" letter-spacing="-1" fill="#ffffff">STRI</text>' +
+      '<g transform="translate(252,12)">' +
+        '<rect x="6" y="6" width="60" height="60" fill="none" stroke="#ffffff" stroke-opacity="0.25" stroke-width="3"/>' +
+        '<line x1="0" y1="0" x2="72" y2="72" stroke="#4ec9b0" stroke-width="13" stroke-linecap="round"/>' +
+        '<line x1="72" y1="0" x2="0" y2="72" stroke="#3a9bdc" stroke-width="13" stroke-linecap="round"/>' +
+        '<circle cx="0" cy="0" r="7" fill="#ffffff"/><circle cx="72" cy="0" r="7" fill="#ffffff"/>' +
+        '<circle cx="0" cy="72" r="7" fill="#ffffff"/><circle cx="72" cy="72" r="7" fill="#ffffff"/>' +
+      '</g>' +
+    '</svg>';
+
   var NAV = '' +
     '<header class="nav" id="nav"><div class="container">' +
-      '<a href="' + (isHome ? '#top' : 'index.html') + '" class="nav-logo">DCR ' +
-        '<span data-i18n="nav.sub">Displacement Control &amp; Reduction</span></a>' +
+      '<a href="' + (isHome ? '#top' : 'index.html') + '" class="nav-logo">' + LOGOMARK +
+        '<span class="logo-sub" data-i18n="nav.sub">Structural Technology</span></a>' +
       '<ul class="nav-links" id="navLinks">' +
         '<li><a href="product.html" data-nav="product" data-i18n="nav.product">Product</a></li>' +
         '<li><a href="verification.html" data-nav="verification" data-i18n="nav.verification">Verification</a></li>' +
@@ -33,6 +47,7 @@
         '<li><a href="pricing.html" data-nav="pricing" data-i18n="nav.pricing">Pricing</a></li>' +
         '<li><a href="resources.html" data-nav="resources" data-i18n="nav.resources">Resources</a></li>' +
         '<li><a href="community.html" data-nav="community" data-i18n="nav.community">Community</a></li>' +
+        '<li><a href="brand.html" data-nav="brand" data-i18n="nav.brand">Brand</a></li>' +
         '<li><a href="' + home('download') + '" data-nav="download" data-i18n="nav.download">Download</a></li>' +
       '</ul>' +
       '<div class="nav-right">' +
@@ -73,7 +88,7 @@
 
   var FOOTER = '' +
     '<footer class="footer"><div class="container">' +
-      '<div class="footer-brand"><div class="nav-logo">DCR</div>' +
+      '<div class="footer-brand"><div class="nav-logo">' + LOGOMARK + '</div>' +
         '<p data-i18n="foot.tagline">Independent commercial structural analysis &amp; design — built to exceed, not imitate.</p>' +
       '</div>' +
       '<div class="footer-col"><h4 data-i18n="foot.product">Product</h4>' +
@@ -92,7 +107,7 @@
       '</div>' +
     '</div>' +
     '<div class="container footer-bottom">' +
-      '<span data-i18n="foot.copyright">© 2026 DCR. All rights reserved.</span>' +
+      '<span data-i18n="foot.copyright">© 2026 STRIX. All rights reserved.</span>' +
       '<span class="mono" style="color:var(--text-mute)">Built with OpenSees · React · Electron</span>' +
     '</div></footer>';
 
@@ -101,7 +116,7 @@
     '<div class="modal-overlay" id="loginModal"><div class="auth-modal">' +
       '<button class="auth-close" onclick="closeModal(\'loginModal\')">×</button>' +
       '<div class="auth-modal-title" data-i18n="auth.login_title">Log In</div>' +
-      '<div class="auth-modal-sub" data-i18n="auth.login_sub">Welcome back to DCR</div>' +
+      '<div class="auth-modal-sub" data-i18n="auth.login_sub">Welcome back to STRIX</div>' +
       '<div class="auth-msg error" id="loginError"></div>' +
       '<form id="loginForm" onsubmit="handleLogin(event)">' +
         '<div class="auth-field"><label data-i18n="auth.email">Email</label>' +

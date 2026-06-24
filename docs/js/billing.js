@@ -1,5 +1,5 @@
 /* ============================================================================
-   DCR site — billing client (pricing + account pages)
+   STRIX site — billing client (pricing + account pages)
    Classic script (NOT a module). Requires: i18n.js (window.T/currentLang),
    auth.js (global _sb Supabase client, openModal). Loaded AFTER auth.js.
 
@@ -188,12 +188,12 @@
   async function startCheckout(plan, seatCount, currency, btn) {
     if (!window._user) { if (window.openModal) openModal('login'); return; }
 
-    // Beta: billing is not enabled yet → DCR is free, do NOT open a real checkout.
+    // Beta: billing is not enabled yet → STRIX is free, do NOT open a real checkout.
     // (Without PortOne configured the SDK would fail with "storeId required".)
     await loadConfig();
     if (!_cfg.billing_enabled) {
       notify(
-        t('prc.betaFree', 'DCR is currently in beta and 100% free to use — no payment needed. Paid subscriptions open at the official launch.'),
+        t('prc.betaFree', 'STRIX is currently in beta and 100% free to use — no payment needed. Paid subscriptions open at the official launch.'),
         { icon: '🎉', title: t('prc.betaTitle', 'Free during the beta'), okText: t('prc.betaOk', 'Got it') }
       );
       return;
@@ -223,7 +223,7 @@
         channelKey: p.channelKey,
         billingKeyMethod: p.billingKeyMethod || 'CARD',
         issueId: p.issueId,
-        issueName: p.issueName || ('DCR ' + plan),
+        issueName: p.issueName || ('STRIX ' + plan),
         customer: p.customer || {}
       });
     } catch (e) { done(); notify((e && e.message) || 'Payment cancelled.'); return; }

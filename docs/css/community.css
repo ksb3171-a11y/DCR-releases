@@ -1,6 +1,6 @@
 /* ============================================================================
-   DCR Community boards — page styles (community.html / community.js)
-   Uses tokens.css variables. DCR-original layout; no competitor UI reproduced.
+   STRIX Community boards — page styles (community.html / community.js)
+   Uses tokens.css variables. STRIX-original layout; no competitor UI reproduced.
    ============================================================================ */
 
 .cm-app { min-height: 60vh; font-family: var(--font-ui); color: var(--text); }

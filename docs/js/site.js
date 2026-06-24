@@ -1,6 +1,6 @@
 /* ============================================================================
-   DCR site — shared UI interactions (single source)
-   Requires i18n.js (window.DCR_I18N). Handles: language selector, scroll reveal,
+   STRIX site — shared UI interactions (single source)
+   Requires i18n.js (window.STRIX_I18N). Handles: language selector, scroll reveal,
    nav scroll state, mobile nav toggle, tabs, accordion.
    Auth (Supabase) is wired separately on pages that need it.
    ============================================================================ */
@@ -28,7 +28,7 @@
       });
       document.querySelectorAll('.lang-option').forEach(opt => {
         opt.addEventListener('click', () => {
-          window.DCR_I18N && window.DCR_I18N.apply(opt.dataset.lang);
+          window.STRIX_I18N && window.STRIX_I18N.apply(opt.dataset.lang);
           langDrop.classList.remove('open');
           langBtn.classList.remove('open');
         });
@@ -39,10 +39,10 @@
        Uses a versioned key ('dcr-lang-v2') so any pre-existing 'dcr-lang' from an
        earlier visit is ignored once — English becomes the default for everyone now,
        while an explicit pick is still remembered under the new key. */
-    if (window.DCR_I18N) {
+    if (window.STRIX_I18N) {
       let saved = null;
       try { saved = localStorage.getItem('dcr-lang-v2'); } catch (e) {}
-      window.DCR_I18N.apply(saved && window.DCR_I18N.T[saved] ? saved : 'en');
+      window.STRIX_I18N.apply(saved && window.STRIX_I18N.T[saved] ? saved : 'en');
     }
 
     /* ── Nav: scroll shadow ── */

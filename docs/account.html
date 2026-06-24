@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Account — DCR</title>
-  <meta name="description" content="Manage your DCR company account — subscription, floating seats, members, billing history and profile." />
+  <title>Account — STRIX</title>
+  <meta name="description" content="Manage your STRIX company account — subscription, floating seats, members, billing history and profile." />
   <meta name="robots" content="noindex" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -92,7 +92,7 @@
     <div class="panel">
       <div class="card-ico" style="margin-inline:auto">🔒</div>
       <h3 style="color:#fff;margin:var(--sp-3) 0" data-i18n="acct.gateTitle">Please log in</h3>
-      <p class="dim" style="margin-bottom:var(--sp-5)" data-i18n="acct.gateLead">Log in to your DCR account to manage your subscription and company.</p>
+      <p class="dim" style="margin-bottom:var(--sp-5)" data-i18n="acct.gateLead">Log in to your STRIX account to manage your subscription and company.</p>
       <div style="display:flex;gap:var(--sp-3);justify-content:center;flex-wrap:wrap">
         <button class="btn btn-primary" onclick="openModal('login')" data-i18n="auth.login">Log in</button>
         <button class="btn btn-ghost" onclick="openModal('signup')" data-i18n="auth.signup">Sign up</button>
@@ -125,7 +125,7 @@
         <div class="kv"><span class="k" data-i18n="acct.coSeats">Seats (concurrent)</span><span class="v strong" id="coSeats">—</span></div>
         <div class="kv"><span class="k" data-i18n="acct.coInUse">In use now</span><span class="v" id="coInUse">—</span></div>
         <div class="meter"><i id="seatMeter" style="width:0%"></i></div>
-        <p class="panel-sub" style="margin-top:var(--sp-3)" data-i18n="acct.coHint">Seats cap how many members can run DCR at the same time. Add seats from the Pricing page.</p>
+        <p class="panel-sub" style="margin-top:var(--sp-3)" data-i18n="acct.coHint">Seats cap how many members can run STRIX at the same time. Add seats from the Pricing page.</p>
       </div>
 
       <!-- Join a company by code (join-code onboarding) -->
@@ -165,7 +165,7 @@
             <button class="btn btn-secondary" id="inviteBtn" data-i18n="acct.inviteBtn">Add member</button>
           </div>
           <div class="msg" id="inviteMsg"></div>
-          <p class="panel-sub" style="margin-top:var(--sp-2)" data-i18n="acct.inviteHint">Optional fallback to the join code: add by email (the person must already have a DCR account). They keep their own login and share the seat pool.</p>
+          <p class="panel-sub" style="margin-top:var(--sp-2)" data-i18n="acct.inviteHint">Optional fallback to the join code: add by email (the person must already have a STRIX account). They keep their own login and share the seat pool.</p>
         </div>
       </div>
 

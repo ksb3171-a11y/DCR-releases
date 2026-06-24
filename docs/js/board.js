@@ -1,5 +1,5 @@
 /* ============================================================================
-   DCR site — Feature Request board (Supabase feature_requests / feature_votes)
+   STRIX site — Feature Request board (Supabase feature_requests / feature_votes)
    Classic script. Depends on globals from auth.js (_sb, _user, openModal) and
    i18n.js (currentLang). Functions are global for inline onclick handlers.
    ============================================================================ */

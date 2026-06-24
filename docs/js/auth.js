@@ -1,5 +1,5 @@
 /* ============================================================================
-   DCR site — auth, profile, members, admin image upload (Supabase + Cloudinary)
+   STRIX site — auth, profile, members, admin image upload (Supabase + Cloudinary)
    Classic script (NOT a module): functions are global so inline onclick handlers
    and board.js can call them. Requires i18n.js (window.T / window.currentLang).
    ============================================================================ */
