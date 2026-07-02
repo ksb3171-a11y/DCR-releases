@@ -165,9 +165,9 @@
       '<div class="modal-header"><h3>👥 Member List</h3>' +
         '<button class="modal-close" onclick="closeMembersModal()">×</button></div>' +
       '<div class="modal-body"><table><thead><tr>' +
-        '<th>#</th><th>Name</th><th>Email</th><th>Expires</th><th>Status</th><th>Blocked</th><th>Joined</th>' +
+        '<th>#</th><th>Name</th><th>Company</th><th>Email</th><th>Expires</th><th>Status</th><th>Blocked</th><th>Joined</th>' +
       '</tr></thead><tbody id="membersTableBody">' +
-        '<tr><td colspan="7" style="text-align:center;color:#555;padding:32px">Loading...</td></tr>' +
+        '<tr><td colspan="8" style="text-align:center;color:#555;padding:32px">Loading...</td></tr>' +
       '</tbody></table></div>' +
       '<div class="modal-footer" id="membersFooter">–</div>' +
     '</div></div>' +

@@ -109,15 +109,15 @@ async function openMembersModal() {
   document.getElementById('membersModal').classList.add('open')
   const tbody = document.getElementById('membersTableBody')
   const footer = document.getElementById('membersFooter')
-  tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:#555;padding:32px">Loading...</td></tr>'
+  tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;color:#555;padding:32px">Loading...</td></tr>'
 
   const { data: profiles, error } = await _sb
     .from('profiles')
-    .select('id, name, expires_at, is_blocked, created_at')
+    .select('id, name, affiliation, expires_at, is_blocked, created_at')
     .order('created_at', { ascending: false })
 
   if (error || !profiles) {
-    tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:#f48771;padding:32px">Failed to load: ' + (error?.message || 'unknown') + '</td></tr>'
+    tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;color:#f48771;padding:32px">Failed to load: ' + (error?.message || 'unknown') + '</td></tr>'
     return
   }
 
@@ -139,6 +139,7 @@ async function openMembersModal() {
     return `<tr>
       <td>${i + 1}</td>
       <td>${p.name || '–'}</td>
+      <td>${p.affiliation || '–'}</td>
       <td>${email}</td>
       <td>${expText}</td>
       <td>${status}</td>
