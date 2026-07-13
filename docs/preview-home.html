@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STRIX — Structural Analysis & Design Platform</title>
+  <meta name="description" content="STRIX is an independent commercial structural analysis & design platform — OpenSees-based, KDS/KBC/KCI/FEMA compliant, cross-verified within ±3%." />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <style>
+    /* ── Page-specific (home only) ── */
+    .hero {
+      position: relative; padding-top: 64px;
+      min-height: 92vh; display: flex; align-items: center;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(78,201,176,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(78,201,176,0.04) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(120% 90% at 50% 10%, #000 35%, transparent 78%);
+    }
+    .hero::after {
+      content: ''; position: absolute; top: -20%; left: 50%; transform: translateX(-50%);
+      width: 900px; height: 900px; border-radius: 50%; pointer-events: none;
+      background: radial-gradient(circle, rgba(78,201,176,0.12), transparent 62%);
+      filter: blur(20px);
+    }
+    .hero .container { position: relative; z-index: 1; display: grid; grid-template-columns: 1.05fr 0.95fr; gap: var(--sp-8); align-items: center; }
+    .hero-badge { align-self: flex-start; }
+    .hero h1 { font-size: var(--fs-display); font-weight: var(--fw-bold); line-height: var(--lh-tight); letter-spacing: -0.02em; color: #fff; margin: var(--sp-4) 0 var(--sp-5); }
+    .hero h1 em { color: var(--accent); font-style: normal; }
+    .hero-sub { font-size: var(--fs-lead); color: var(--text-soft); max-width: 56ch; line-height: var(--lh-snug); }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: var(--sp-3); margin-top: var(--sp-6); }
+    .hero-note { margin-top: var(--sp-4); font-size: var(--fs-cap); color: var(--text-mute); font-family: var(--font-mono); }
+    .hero-visual .media-frame { box-shadow: var(--shadow-2); }
+
+    .prob-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-5); margin-top: var(--sp-6); }
+    .prob-card { background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--r-lg); padding: var(--sp-6); }
+    .prob-card .tag { font-size: var(--fs-cap); font-weight: var(--fw-sb); letter-spacing: 0.06em; text-transform: uppercase; }
+    .prob-card .before { color: var(--danger); }
+    .prob-card .after { color: var(--ok); }
+    .prob-card h3 { color: #fff; font-size: var(--fs-h3); margin: var(--sp-3) 0; }
+    .prob-card .x { color: var(--text-dim); font-size: var(--fs-sm); padding: var(--sp-3) 0; border-top: 1px dashed var(--border); }
+    .prob-card .arrow { color: var(--accent); font-family: var(--font-mono); }
+
+    .workflow-rail { display: flex; gap: var(--sp-4); flex-wrap: wrap; counter-reset: step; }
+    .wf-step { flex: 1 1 160px; position: relative; padding: var(--sp-5); background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--r-md); }
+    .wf-step .n { counter-increment: step; font-family: var(--font-mono); font-size: 26px; font-weight: var(--fw-bold); color: var(--accent); opacity: 0.5; }
+    .wf-step .n::before { content: counter(step, decimal-leading-zero); }
+    .wf-step h4 { color: #fff; font-size: var(--fs-body); margin: var(--sp-2) 0; }
+    .wf-step p { color: var(--text-dim); font-size: var(--fs-sm); }
+
+    .ccat { display: inline-block; font-family: var(--font-mono); font-size: 10.5px; font-weight: var(--fw-bold); letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 9px; border-radius: var(--r-pill); margin-bottom: var(--sp-3); border: 1px solid; }
+    .ccat.ai       { color: var(--violet); border-color: rgba(197,134,192,0.4); background: rgba(197,134,192,0.1); }
+    .ccat.design   { color: var(--blue);   border-color: rgba(86,156,214,0.4);  background: rgba(86,156,214,0.1); }
+    .ccat.analysis { color: var(--gold);   border-color: rgba(220,220,170,0.4); background: rgba(220,220,170,0.08); }
+
+    .verify-wrap { border: 1px solid var(--border); border-radius: var(--r-lg); overflow: hidden; background: var(--surface-2); }
+    .price-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-5); }
+    .price-card { position: relative; }
+    .price-ribbon { position: absolute; top: -1px; right: var(--sp-5); background: var(--accent); color: var(--accent-ink); font-size: var(--fs-cap); font-weight: var(--fw-bold); padding: 4px 12px; border-radius: 0 0 var(--r-sm) var(--r-sm); }
+
+    .final-cta { text-align: center; }
+    .final-cta .panel { background: radial-gradient(120% 140% at 50% 0%, rgba(78,201,176,0.1), transparent 60%), var(--surface-2); border: 1px solid var(--border-accent); border-radius: var(--r-xl); padding: var(--sp-9) var(--gutter); }
+    .final-cta h2 { font-size: var(--fs-h1); color: #fff; font-weight: var(--fw-bold); }
+    .final-cta .actions { display: flex; gap: var(--sp-3); justify-content: center; flex-wrap: wrap; margin-top: var(--sp-6); }
+
+    .preview-banner { position: fixed; bottom: 14px; left: 14px; z-index: 300; background: var(--surface-3); border: 1px solid var(--border-accent); color: var(--accent); font-family: var(--font-mono); font-size: var(--fs-cap); padding: 8px 14px; border-radius: var(--r-pill); box-shadow: var(--shadow-2); }
+
+    @media (max-width: 980px) {
+      .hero .container { grid-template-columns: 1fr; }
+      .hero-visual { order: -1; }
+      .prob-cols, .price-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════ NAV ════════════ -->
+<header class="nav" id="nav">
+  <div class="container">
+    <a href="#top" class="nav-logo">STRIX <span data-i18n="nav.sub">Structural Technology</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#value"        data-i18n="nav.product">Product</a></li>
+      <li><a href="#verification" data-i18n="nav.verification">Verification</a></li>
+      <li><a href="#ai"           data-i18n="nav.ai">AI</a></li>
+      <li><a href="#pricing"      data-i18n="nav.pricing">Pricing</a></li>
+      <li><a href="#"             data-i18n="nav.resources">Resources</a></li>
+      <li><a href="#download"     data-i18n="nav.download">Download</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="btn btn-ghost" style="padding:8px 16px" data-i18n="auth.login">Log in</button>
+      <a href="#download" class="btn btn-primary" style="padding:9px 18px" data-i18n="nav.cta">Download for Windows</a>
+      <div class="lang-selector" id="langSelector">
+        <button class="lang-btn" id="langBtn">
+          <span id="langFlag">🇺🇸</span><span id="langLabel">English</span><span class="arrow">▾</span>
+        </button>
+        <div class="lang-dropdown" id="langDropdown">
+          <div class="lang-option active" data-lang="en"><span class="flag">🇺🇸</span> English</div>
+          <div class="lang-option"        data-lang="ko"><span class="flag">🇰🇷</span> 한국어</div>
+          <div class="lang-option"        data-lang="ja"><span class="flag">🇯🇵</span> 日本語</div>
+          <div class="lang-option"        data-lang="zh"><span class="flag">🇨🇳</span> 中文 (简体)</div>
+        </div>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ════════════ 1. HERO ════════════ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-copy">
+      <span class="badge badge-accent hero-badge" data-i18n="hero.badge">OpenSees-based · KDS / KBC / KCI / FEMA · AI-assisted</span>
+      <h1 data-i18n-html="hero.title">Structural analysis and design,<br><em>verified to the millimeter.</em></h1>
+      <p class="hero-sub" data-i18n="hero.sub">A desktop platform that takes you from 3D modeling through nonlinear analysis to code-compliant RC design — built on the OpenSees solver and cross-verified against industry references within ±3%.</p>
+      <div class="hero-actions">
+        <a href="#download" class="btn btn-primary btn-lg" data-i18n="hero.cta1">Download for Windows</a>
+        <a href="#live" class="btn btn-ghost btn-lg" data-i18n="hero.cta2">▶ Watch the demo</a>
+      </div>
+      <p class="hero-note" data-i18n="hero.note">Free during beta · Windows 10/11 · No credit card</p>
+    </div>
+    <div class="hero-visual reveal">
+      <div class="media-frame ratio-16x9">
+        <div class="win-chrome"><i></i><i></i><i></i></div>
+        <div class="ph"><span class="ico">🧊</span><span data-i18n="live.ph">Screenshot / GIF slot — replaced via admin upload</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ 2. TRUST STRIP ════════════ -->
+<div class="trust-strip">
+  <span class="trust-item"><span data-i18n="trust.solver">Powered by</span> <strong data-i18n="trust.solverName">OpenSees (UC Berkeley)</strong></span>
+  <span class="trust-sep"></span>
+  <span class="trust-item"><span data-i18n="trust.codes">Standards</span> <strong data-i18n="trust.codesName">KDS · KBC · KCI · FEMA</strong></span>
+  <span class="trust-sep"></span>
+  <span class="trust-item"><span class="badge badge-verified"><span class="dot"></span><span data-i18n="trust.verified">Verified</span></span> <strong data-i18n="trust.verifiedName">Within ±3% of industry references</strong></span>
+</div>
+
+<!-- ════════════ 3. PROBLEM → SOLUTION ════════════ -->
+<section class="section alt" id="why">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-i18n="prob.eyebrow">Why STRIX</span>
+      <h2 class="section-title" data-i18n-html="prob.title">One model. One source of truth.<br><em>No tool-switching.</em></h2>
+      <p class="section-lead" data-i18n="prob.lead">Conventional workflows scatter modeling, analysis, design and reporting across disconnected tools — re-keying data, reconciling sign conventions, and trusting black-box results. STRIX closes the loop.</p>
+    </div>
+    <div class="prob-cols">
+      <div class="prob-card reveal">
+        <h3 data-i18n="prob.p1t">Disconnected tools</h3>
+        <div class="x"><span class="tag before" data-i18n="prob.before">Conventional</span><br><span data-i18n="prob.p1d">Model in one app, analyze in another, design in a third. Every hand-off risks transcription error.</span></div>
+        <div class="x"><span class="tag after" data-i18n="prob.after">With STRIX</span> <span class="arrow">→</span><br><span data-i18n="prob.p1s">Single integrated platform — modeling → analysis → design → report in one window.</span></div>
+      </div>
+      <div class="prob-card reveal d1">
+        <h3 data-i18n="prob.p2t">Black-box results</h3>
+        <div class="x"><span class="tag before" data-i18n="prob.before">Conventional</span><br><span data-i18n="prob.p2d">Numbers without provenance. You cannot see which combination governed or why a member passed.</span></div>
+        <div class="x"><span class="tag after" data-i18n="prob.after">With STRIX</span> <span class="arrow">→</span><br><span data-i18n="prob.p2s">Result DNA traces every design value back to its governing combination and code clause.</span></div>
+      </div>
+      <div class="prob-card reveal d2">
+        <h3 data-i18n="prob.p3t">Unverified accuracy</h3>
+        <div class="x"><span class="tag before" data-i18n="prob.before">Conventional</span><br><span data-i18n="prob.p3d">Trusting a solver without independent confirmation against a known reference.</span></div>
+        <div class="x"><span class="tag after" data-i18n="prob.after">With STRIX</span> <span class="arrow">→</span><br><span data-i18n="prob.p3s">Cross-verified against MIDAS / ETABS on modal periods, member forces and design results.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ 4. CORE VALUE ════════════ -->
+<section class="section" id="value">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow" data-i18n="value.eyebrow">Core capabilities</span>
+      <h2 class="section-title" data-i18n-html="value.title">Everything an engineer needs,<br><em>in a single window.</em></h2>
+      <p class="section-lead" style="text-align:center" data-i18n="value.lead">Modeling, multi-type analysis, code design and submission-ready reports — engineered to agree with the standards, not to approximate them.</p>
+    </div>
+    <div class="grid grid-3">
+      <article class="card feature-card reveal"><span class="ccat ai" data-i18n="cat.ai">AI</span><div class="card-ico">🤖</div><h3 data-i18n="d1.t">Model in one sentence</h3><p data-i18n="d1.d">Generate and edit structural models from natural language — "5-story RC frame, 6 m column spacing" builds the model for you.</p></article>
+      <article class="card feature-card reveal d1"><span class="ccat ai" data-i18n="cat.ai">AI</span><div class="card-ico">💬</div><h3 data-i18n="d2.t">KDS answers, in-app</h3><p data-i18n="d2.d">A built-in AI chatbot explains KDS design provisions in real time, so the basis for every decision is one question away.</p></article>
+      <article class="card feature-card reveal d2"><span class="ccat ai" data-i18n="cat.ai">AI</span><div class="card-ico">🔬</div><h3 data-i18n="d3.t">Catch errors before you run</h3><p data-i18n="d3.d">Before analysis, AI inspects the model for modeling errors and weak points and suggests how to fix them.</p></article>
+      <article class="card feature-card reveal"><span class="ccat design" data-i18n="cat.design">Design</span><div class="card-ico">📐</div><h3 data-i18n="d4.t">Governing-member targeting</h3><p data-i18n="d4.d">Auto-identify governing members and change sections in bulk — collapse repetitive design iterations into seconds.</p></article>
+      <article class="card feature-card reveal d1"><span class="ccat design" data-i18n="cat.design">Design</span><div class="card-ico">🔧</div><h3 data-i18n="d5.t">Standalone member designers</h3><p data-i18n="d5.d">Dedicated design tools for beams, columns, basement walls, shear walls and footings — detailed per-member checks on demand.</p></article>
+      <article class="card feature-card reveal d2"><span class="ccat design" data-i18n="cat.design">Design</span><div class="card-ico">🏢</div><h3 data-i18n="d6.t">Wall buildings, automatically</h3><p data-i18n="d6.d">Auto-apply wall-structure loads and verify them with precise plate analysis — no manual load distribution.</p></article>
+      <article class="card feature-card reveal"><span class="ccat analysis" data-i18n="cat.analysis">Analysis</span><div class="card-ico">📈</div><h3 data-i18n="d7.t">Seismic performance, precisely</h3><p data-i18n="d7.d">Integrated ATC-40 Pushover and nonlinear time-history analysis for rigorous seismic performance assessment.</p></article>
+      <article class="card feature-card reveal d1"><span class="ccat analysis" data-i18n="cat.analysis">Analysis</span><div class="card-ico">📄</div><h3 data-i18n="d8.t">From DXF to 3D model</h3><p data-i18n="d8.d">Import CAD DXF drawings and auto-generate the 3D structural model — analyze immediately, no re-drawing.</p></article>
+      <article class="card feature-card reveal d2"><span class="ccat analysis" data-i18n="cat.analysis">Analysis</span><div class="card-ico">💡</div><h3 data-i18n="d9.t">Built on engineer feedback</h3><p data-i18n="d9.d">A fast update cycle that turns practicing engineers’ requests into shipped features — what the field needs, quickly.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ 5. LIVE PRODUCT ════════════ -->
+<section class="section alt" id="live">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow" data-i18n="live.eyebrow">Live product</span>
+      <h2 class="section-title" data-i18n="live.title">See the real thing in motion</h2>
+      <p class="section-lead" style="text-align:center" data-i18n="live.lead">A clean, engineer-first interface — from the 3D viewport to deformed shapes, force diagrams and design dialogs. These are real captures from the application.</p>
+    </div>
+    <div class="tabs reveal" style="justify-content:center;margin-bottom:var(--sp-5)" data-tab-group="#liveTabs">
+      <button class="tab-btn active" data-tab="t1" data-i18n="live.tab1">3D Viewport</button>
+      <button class="tab-btn" data-tab="t2" data-i18n="live.tab2">Analysis Results</button>
+      <button class="tab-btn" data-tab="t3" data-i18n="live.tab3">Pushover</button>
+      <button class="tab-btn" data-tab="t4" data-i18n="live.tab4">RC Design</button>
+      <button class="tab-btn" data-tab="t5" data-i18n="live.tab5">Seismic Wizard</button>
+      <button class="tab-btn" data-tab="t6" data-i18n="live.tab6">Result Tables</button>
+    </div>
+    <div id="liveTabs" class="reveal">
+      <div data-panel="t1"><div class="media-frame ratio-16x9"><div class="win-chrome"><i></i><i></i><i></i></div><div class="ph"><span class="ico">🖥️</span><span data-i18n="live.ph">Screenshot / GIF slot — replaced via admin upload</span></div></div></div>
+      <div data-panel="t2" style="display:none"><div class="media-frame ratio-16x9"><div class="win-chrome"><i></i><i></i><i></i></div><div class="ph"><span class="ico">📈</span><span data-i18n="live.ph">Screenshot / GIF slot — replaced via admin upload</span></div></div></div>
+      <div data-panel="t3" style="display:none"><div class="media-frame ratio-16x9"><div class="win-chrome"><i></i><i></i><i></i></div><div class="ph"><span class="ico">📉</span><span data-i18n="live.ph">Screenshot / GIF slot — replaced via admin upload</span></div></div></div>
+      <div data-panel="t4" style="display:none"><div class="media-frame ratio-16x9"><div class="win-chrome"><i></i><i></i><i></i></div><div class="ph"><span class="ico">📐</span><span data-i18n="live.ph">Screenshot / GIF slot — replaced via admin upload</span></div></div></div>
+      <div data-panel="t5" style="display:none"><div class="media-frame ratio-16x9"><div class="win-chrome"><i></i><i></i><i></i></div><div class="ph"><span class="ico">🌐</span><span data-i18n="live.ph">Screenshot / GIF slot — replaced via admin upload</span></div></div></div>
+      <div data-panel="t6" style="display:none"><div class="media-frame ratio-16x9"><div class="win-chrome"><i></i><i></i><i></i></div><div class="ph"><span class="ico">🔢</span><span data-i18n="live.ph">Screenshot / GIF slot — replaced via admin upload</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ 6. VERIFICATION HIGHLIGHT ════════════ -->
+<section class="section" id="verification">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-i18n="ver.eyebrow">Verification</span>
+      <h2 class="section-title" data-i18n-html="ver.title">We earn trust with data,<br><em>not logos.</em></h2>
+      <p class="section-lead" data-i18n="ver.lead">STRIX is cross-verified against established industry references. Below is a representative summary — the full methodology and case-by-case results live on the Verification page.</p>
+    </div>
+    <div class="verify-wrap reveal">
+      <table class="dtable">
+        <thead>
+          <tr>
+            <th data-i18n="ver.cThead">Quantity</th>
+            <th class="num" data-i18n="ver.cSTRIX">STRIX</th>
+            <th class="num" data-i18n="ver.cRef">Reference</th>
+            <th class="num" data-i18n="ver.cDelta">Δ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td data-i18n="ver.r1">1st mode period (X)</td><td class="num">3.01 s</td><td class="num">3.14 s</td><td class="num"><span class="delta good">−4.1%</span></td></tr>
+          <tr><td data-i18n="ver.r2">Wall base moment</td><td class="num">9,947 kN·m</td><td class="num">9,606 kN·m</td><td class="num"><span class="delta good">+3.5%</span></td></tr>
+          <tr><td data-i18n="ver.r3">Column design STRIX</td><td class="num">1.77</td><td class="num">1.74</td><td class="num"><span class="delta good">+1.7%</span></td></tr>
+          <tr><td data-i18n="ver.r4">Base shear (RSA)</td><td class="num">502 kN</td><td class="num">524 kN</td><td class="num"><span class="delta good">−4.2%</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="dim" style="font-size:var(--fs-cap);margin-top:var(--sp-3)" data-i18n="ver.disclaimer">Representative figures. References used for verification only — no competitor UI, table layout or content is reproduced.</p>
+    <div style="margin-top:var(--sp-5)"><a href="#" class="btn btn-secondary" data-i18n="ver.cta">See full verification →</a></div>
+  </div>
+</section>
+
+<!-- ════════════ 7. AI ════════════ -->
+<section class="section alt" id="ai">
+  <div class="container split">
+    <div class="reveal">
+      <span class="eyebrow" data-i18n="ai.eyebrow">AI-assisted engineering</span>
+      <h2 class="section-title" style="margin:var(--sp-3) 0" data-i18n="ai.title">Model with natural language</h2>
+      <p class="section-lead" data-i18n="ai.lead">Describe the structure in plain language — "5-story RC frame, 6 m column spacing" — and STRIX drafts the model for you. Bring your own API key; your project data stays local.</p>
+      <div class="grid" style="margin-top:var(--sp-6);gap:var(--sp-4)">
+        <div class="card"><h3 style="font-size:var(--fs-body)" data-i18n="ai.f1t">Natural-language modeling</h3><p data-i18n="ai.f1d">Generate nodes, members and loads from text. Cut repetitive input dramatically.</p></div>
+        <div class="card"><h3 style="font-size:var(--fs-body)" data-i18n="ai.f2t">AI structural review</h3><p data-i18n="ai.f2d">Automated sanity checks flag anomalous behavior and vulnerable members.</p></div>
+        <div class="card"><h3 style="font-size:var(--fs-body)" data-i18n="ai.f3t">BYOK &amp; local-first</h3><p data-i18n="ai.f3d">Use your own Anthropic API key. Models run on your data locally — nothing is uploaded to us.</p></div>
+      </div>
+    </div>
+    <div class="reveal d1">
+      <div class="media-frame ratio-4x3"><div class="ph"><span class="ico">🤖</span><span data-i18n="ai.ph">AI modeling demo video slot</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ 8. WORKFLOW ════════════ -->
+<section class="section" id="workflow">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow" data-i18n="wf.eyebrow">Workflow</span>
+      <h2 class="section-title" data-i18n="wf.title">Five steps, modeling to report</h2>
+    </div>
+    <div class="workflow-rail reveal">
+      <div class="wf-step"><div class="n"></div><h4 data-i18n="wf.s1t">Model</h4><p data-i18n="wf.s1d">Nodes, members, walls, sections &amp; materials</p></div>
+      <div class="wf-step"><div class="n"></div><h4 data-i18n="wf.s2t">Load</h4><p data-i18n="wf.s2d">Self-weight, live, wind &amp; seismic auto-calc</p></div>
+      <div class="wf-step"><div class="n"></div><h4 data-i18n="wf.s3t">Analyze</h4><p data-i18n="wf.s3d">Linear, modal, RSA, Pushover, time-history</p></div>
+      <div class="wf-step"><div class="n"></div><h4 data-i18n="wf.s4t">Design</h4><p data-i18n="wf.s4d">Auto rebar design &amp; STRIX checks</p></div>
+      <div class="wf-step"><div class="n"></div><h4 data-i18n="wf.s5t">Report</h4><p data-i18n="wf.s5d">Editable PDF &amp; Excel export</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ 9. USE CASES ════════════ -->
+<section class="section alt" id="usecases">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow" data-i18n="use.eyebrow">Who it is for</span>
+      <h2 class="section-title" data-i18n="use.title">Built for working structural teams</h2>
+    </div>
+    <div class="grid grid-3">
+      <article class="card reveal"><div class="card-ico">🏢</div><h3 data-i18n="use.u1t">Design offices</h3><p data-i18n="use.u1d">Take projects from model to stamped report without leaving one environment — faster turnarounds, fewer hand-off errors.</p></article>
+      <article class="card reveal d1"><div class="card-ico">🔬</div><h3 data-i18n="use.u2t">Research &amp; academia</h3><p data-i18n="use.u2d">Full OpenSees power with nonlinear and Pushover analysis, without writing TCL scripts.</p></article>
+      <article class="card reveal d2"><div class="card-ico">✅</div><h3 data-i18n="use.u3t">Plan review &amp; QA</h3><p data-i18n="use.u3d">Result DNA exposes the governing combination and code clause behind every number — auditable by design.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ 10. PRICING SUMMARY ════════════ -->
+<section class="section" id="pricing">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow" data-i18n="price.eyebrow">Pricing</span>
+      <h2 class="section-title" data-i18n="price.title">Transparent, self-serve pricing</h2>
+      <p class="section-lead" style="text-align:center" data-i18n="price.lead">No "request a quote." Clear plans, instant subscription — see exactly what you pay before you commit.</p>
+    </div>
+    <div class="price-grid">
+      <div class="card price-card reveal">
+        <span class="plan-name" data-i18n="price.beta">Beta</span>
+        <div class="price"><span data-i18n="price.betaPrice">Free</span> <small data-i18n="price.betaNote">during beta</small></div>
+        <ul class="price-list">
+          <li data-i18n="price.b1">Full modeling &amp; analysis</li>
+          <li data-i18n="price.b2">RC design &amp; reports</li>
+          <li data-i18n="price.b3">Community support</li>
+        </ul>
+        <a href="#download" class="btn btn-secondary btn-block" data-i18n="hero.cta1">Download for Windows</a>
+      </div>
+      <div class="card price-card featured reveal d1">
+        <span class="price-ribbon" data-i18n="price.ribbon">Most popular</span>
+        <span class="plan-name" data-i18n="price.pro">Professional</span>
+        <div class="price"><span data-i18n="price.proPrice">Coming soon</span> <small data-i18n="price.proNote">self-serve subscription</small></div>
+        <ul class="price-list">
+          <li data-i18n="price.p1">Everything in Beta</li>
+          <li data-i18n="price.p2">Priority updates &amp; support</li>
+          <li data-i18n="price.p3">Commercial use license</li>
+        </ul>
+        <a href="#pricing" class="btn btn-primary btn-block" data-i18n="price.cta">See full pricing</a>
+      </div>
+      <div class="card price-card reveal d2">
+        <span class="plan-name" data-i18n="price.team">Team / Company</span>
+        <div class="price"><span data-i18n="price.teamPrice">Coming soon</span> <small data-i18n="price.teamNote">seat pool &amp; members</small></div>
+        <ul class="price-list">
+          <li data-i18n="price.t1">Shared seat pool</li>
+          <li data-i18n="price.t2">Member &amp; role management</li>
+          <li data-i18n="price.t3">Centralized billing</li>
+        </ul>
+        <a href="#pricing" class="btn btn-secondary btn-block" data-i18n="price.cta">See full pricing</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ 11. FINAL CTA ════════════ -->
+<section class="section final-cta" id="download">
+  <div class="container narrow">
+    <div class="panel reveal">
+      <h2 data-i18n="cta.title">Start building with STRIX today</h2>
+      <p class="section-lead" style="margin:var(--sp-4) auto 0;text-align:center" data-i18n="cta.lead">Download the Windows app and run a verified analysis in minutes. Free during beta.</p>
+      <div class="actions">
+        <a href="https://github.com/ksb3171-a11y/DCR-releases/releases/latest/download/DCR-Setup.exe" class="btn btn-primary btn-lg" data-i18n="cta.btn1">Download for Windows</a>
+        <a href="#verification" class="btn btn-ghost btn-lg" data-i18n="cta.btn2">Explore verification</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ════════════ FOOTER ════════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-brand">
+      <div class="nav-logo">STRIX</div>
+      <p data-i18n="foot.tagline">Independent commercial structural analysis &amp; design — built to exceed, not imitate.</p>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="foot.product">Product</h4>
+      <a href="#value" data-i18n="nav.product">Product</a>
+      <a href="#verification" data-i18n="nav.verification">Verification</a>
+      <a href="#ai" data-i18n="nav.ai">AI</a>
+      <a href="#pricing" data-i18n="nav.pricing">Pricing</a>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="foot.resources">Resources</h4>
+      <a href="#" data-i18n="nav.resources">Resources</a>
+      <a href="#download" data-i18n="nav.download">Download</a>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="foot.company">Company</h4>
+      <a href="mailto:ksb3171@gmail.com">Contact</a>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span data-i18n="foot.copyright">© 2026 STRIX. All rights reserved.</span>
+    <span data-i18n="foot.preview">Preview build — design-system proof (W1/W2).</span>
+  </div>
+</footer>
+
+<div class="preview-banner">PREVIEW · W1/W2 design-system proof</div>
+
+<script src="js/i18n.js"></script>
+<script src="js/site.js"></script>
+</body>
+</html>
