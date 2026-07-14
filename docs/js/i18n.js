@@ -196,6 +196,7 @@
       'ver.r2': 'Wall base moment',
       'ver.r3': 'Column design STRIX',
       'ver.r4': 'Base shear (RSA)',
+      'ver.disclaimerReal': 'Real results from the 21-benchmark closed-form verification suite — click a row to open its report.',
       'ver.disclaimer': 'Representative figures. References used for verification only — no competitor UI, table layout or content is reproduced.',
       'ver.cta': 'See full verification',
 
@@ -835,6 +836,7 @@
       'ver.r2': '벽체 하부 모멘트',
       'ver.r3': '기둥 설계 STRIX',
       'ver.r4': '베이스 전단 (RSA)',
+      'ver.disclaimerReal': '21개 국제 벤치마크 폐형해 검증 스위트의 실제 결과입니다 — 행을 클릭하면 해당 리포트가 열립니다.',
       'ver.disclaimer': '대표 수치. 기준은 검증 목적으로만 사용 — 경쟁사 UI·표 레이아웃·콘텐츠를 복제하지 않습니다.',
       'ver.cta': '전체 검증 보기',
 
@@ -1474,6 +1476,7 @@
       'ver.r2': '壁脚モーメント',
       'ver.r3': '柱設計STRIX',
       'ver.r4': 'ベースシア (RSA)',
+      'ver.disclaimerReal': '21件の国際ベンチマーク閉形式解検証スイートの実際の結果です — 行をクリックするとそのレポートが開きます。',
       'ver.disclaimer': '代表値です。リファレンスは検証目的のみに使用 — 競合製品のUI・表レイアウト・コンテンツは一切再現していません。',
       'ver.cta': '検証の全体を見る',
 
@@ -2106,6 +2109,7 @@
       'ver.r2': '墙体底部弯矩',
       'ver.r3': '柱设计 STRIX',
       'ver.r4': '基底剪力 (RSA)',
+      'ver.disclaimerReal': '来自 21 项国际基准闭合解验证套件的真实结果 —— 点击某一行即可打开对应报告。',
       'ver.disclaimer': '代表性数值。基准仅用于验证 —— 不复制任何竞品的 UI、表格布局或内容。',
       'ver.cta': '查看完整验证',
       'vp.title': '我们如何验证 STRIX',

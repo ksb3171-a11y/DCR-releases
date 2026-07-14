@@ -269,3 +269,40 @@ img, svg, video { display: block; max-width: 100%; }
   .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
   .footer .container { grid-template-columns: 1fr; }
 }
+
+/* ============================================================================
+   Per-benchmark PDF preview (row → lightbox) — shared by any page that loads
+   js/pdfPreview.js (verification.html, index.html homepage teaser, …).
+   Single source: markup is injected by the script; only styling lives here.
+   ============================================================================ */
+.dtable tbody tr.pdf-row { cursor: pointer; }
+.dtable tbody tr.pdf-row:hover, .dtable tbody tr.pdf-row:focus-visible { background: rgba(255,255,255,0.04); }
+.dtable tbody tr.pdf-row td:first-child::after {
+  content: '↗'; display: inline-block; margin-left: 8px; opacity: 0.35; font-size: 0.9em;
+}
+.dtable tbody tr.pdf-row:hover td:first-child::after, .dtable tbody tr.pdf-row:focus-visible td:first-child::after { opacity: 0.9; color: var(--accent); }
+/* position:fixed frees the box from the overlay's flex-centering — flex items only
+   reliably resize along one axis in most browsers (a manually-resized dimension gets
+   re-asserted by the flex sizing algorithm on layout). Fixed positioning + JS-managed
+   left/top/width/height (see pdfPreview.js) makes both resize directions and free dragging work. */
+#pdfPreviewModal .pdf-modal-box {
+  position: fixed;
+  background: var(--surface-3); border: 1px solid var(--border-accent); border-radius: 14px;
+  display: flex; flex-direction: column;
+  overflow: hidden; box-shadow: var(--shadow-2); transform: translateY(8px); transition: transform .2s;
+  /* Native resize handle (bottom-right corner) — no JS lib needed for a static site. */
+  resize: both; min-width: 420px; min-height: 320px; max-width: 96vw; max-height: 94vh;
+}
+#pdfPreviewModal.open .pdf-modal-box { transform: translateY(0); }
+.pdf-modal-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 18px; border-bottom: 1px solid var(--border); background: var(--surface-1); flex-shrink: 0;
+  cursor: move; user-select: none;
+}
+.pdf-modal-head span { font-family: var(--font-mono); font-size: var(--fs-cap); color: var(--accent); }
+.pdf-modal-actions { display: flex; align-items: center; gap: 4px; }
+.pdf-modal-pop, .pdf-modal-close { background: none; border: none; color: var(--dim); cursor: pointer; line-height: 1; padding: 0 4px; }
+.pdf-modal-pop { font-size: 15px; }
+.pdf-modal-close { font-size: 22px; }
+.pdf-modal-pop:hover, .pdf-modal-close:hover { color: #fff; }
+#pdfPreviewFrame { flex: 1; border: 0; width: 100%; background: #fff; }

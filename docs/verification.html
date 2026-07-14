@@ -25,39 +25,8 @@
     .vtable-card .vt-head .pill { font-family: var(--font-mono); font-size: var(--fs-cap); color: var(--accent); border: 1px solid var(--border-accent); background: var(--accent-soft); padding: 2px 10px; border-radius: var(--r-pill); }
     .methodology { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--sp-5); }
     @media (max-width: 760px) { .methodology { grid-template-columns: 1fr; } }
-
-    /* ── Per-benchmark PDF preview (row → lightbox) ── */
-    .dtable tbody tr.pdf-row { cursor: pointer; }
-    .dtable tbody tr.pdf-row:hover, .dtable tbody tr.pdf-row:focus-visible { background: rgba(255,255,255,0.04); }
-    .dtable tbody tr.pdf-row td:first-child::after {
-      content: '↗'; display: inline-block; margin-left: 8px; opacity: 0.35; font-size: 0.9em;
-    }
-    .dtable tbody tr.pdf-row:hover td:first-child::after, .dtable tbody tr.pdf-row:focus-visible td:first-child::after { opacity: 0.9; color: var(--accent); }
-    /* position:fixed frees the box from the overlay's flex-centering — flex items only
-       reliably resize along one axis in most browsers (a manually-resized dimension gets
-       re-asserted by the flex sizing algorithm on layout). Fixed positioning + JS-managed
-       left/top/width/height (see script) makes both resize directions and free dragging work. */
-    #pdfPreviewModal .pdf-modal-box {
-      position: fixed;
-      background: var(--surface-3); border: 1px solid var(--border-accent); border-radius: 14px;
-      display: flex; flex-direction: column;
-      overflow: hidden; box-shadow: var(--shadow-2); transform: translateY(8px); transition: transform .2s;
-      /* Native resize handle (bottom-right corner) — no JS lib needed for a static site. */
-      resize: both; min-width: 420px; min-height: 320px; max-width: 96vw; max-height: 94vh;
-    }
-    #pdfPreviewModal.open .pdf-modal-box { transform: translateY(0); }
-    .pdf-modal-head {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 12px 18px; border-bottom: 1px solid var(--border); background: var(--surface-1); flex-shrink: 0;
-      cursor: move; user-select: none;
-    }
-    .pdf-modal-head span { font-family: var(--font-mono); font-size: var(--fs-cap); color: var(--accent); }
-    .pdf-modal-actions { display: flex; align-items: center; gap: 4px; }
-    .pdf-modal-pop, .pdf-modal-close { background: none; border: none; color: var(--dim); cursor: pointer; line-height: 1; padding: 0 4px; }
-    .pdf-modal-pop { font-size: 15px; }
-    .pdf-modal-close { font-size: 22px; }
-    .pdf-modal-pop:hover, .pdf-modal-close:hover { color: #fff; }
-    #pdfPreviewFrame { flex: 1; border: 0; width: 100%; background: #fff; }
+    /* Per-benchmark PDF preview lightbox styling lives in css/components.css (shared with
+       index.html's homepage teaser) — js/pdfPreview.js builds the modal markup itself. */
   </style>
 </head>
 <body data-page="verification">
@@ -252,20 +221,6 @@
 
 </main>
 
-<!-- Per-benchmark PDF preview lightbox — opened by rows with data-pdf (see script below) -->
-<div id="pdfPreviewModal" class="modal-overlay">
-  <div class="pdf-modal-box">
-    <div class="pdf-modal-head">
-      <span id="pdfPreviewTitle"></span>
-      <div class="pdf-modal-actions">
-        <button type="button" class="pdf-modal-pop" title="Open in a new window (drag that window to another monitor)">⤢</button>
-        <button type="button" class="pdf-modal-close" aria-label="Close preview">&times;</button>
-      </div>
-    </div>
-    <iframe id="pdfPreviewFrame" src="" title="Benchmark report preview"></iframe>
-  </div>
-</div>
-
 <div id="site-footer"></div>
 <div id="site-modals"></div>
 
@@ -274,76 +229,6 @@
 <script src="js/auth.js"></script>
 <script src="js/board.js"></script>
 <script src="js/site.js"></script>
-<script>
-(function () {
-  var modal = document.getElementById('pdfPreviewModal');
-  var box   = modal ? modal.querySelector('.pdf-modal-box') : null;
-  var head  = modal ? modal.querySelector('.pdf-modal-head') : null;
-  var frame = document.getElementById('pdfPreviewFrame');
-  var title = document.getElementById('pdfPreviewTitle');
-  var popBtn = modal ? modal.querySelector('.pdf-modal-pop') : null;
-  if (!modal || !box || !head || !frame) return;
-
-  // Centered only on the very first open — box.dataset.positioned then sticks so a later
-  // drag/resize (native CSS `resize`, both write inline style) survives across opens/rows.
-  function centerBoxOnce() {
-    if (box.dataset.positioned) return;
-    var w = Math.min(920, window.innerWidth * 0.92);
-    var h = window.innerHeight * 0.88;
-    box.style.width  = w + 'px';
-    box.style.height = h + 'px';
-    box.style.left = Math.round((window.innerWidth - w) / 2) + 'px';
-    box.style.top  = Math.round((window.innerHeight - h) / 2) + 'px';
-    box.dataset.positioned = '1';
-  }
-
-  function open(tr) {
-    centerBoxOnce();
-    var pdf = tr.getAttribute('data-pdf');
-    frame.src = pdf;
-    title.textContent = tr.getAttribute('data-title') || '';
-    if (popBtn) popBtn.dataset.pdf = pdf || '';
-    modal.classList.add('open');
-  }
-  function close() {
-    modal.classList.remove('open');
-    frame.src = ''; // stop the embedded PDF viewer while hidden
-  }
-
-  document.addEventListener('click', function (e) {
-    var row = e.target.closest && e.target.closest('tr[data-pdf]');
-    if (row) { open(row); return; }
-    // Pop-out — a real OS window (not a page element), so it can be freely dragged to any
-    // monitor via the browser's own window chrome, which a DOM modal can never do (it can't
-    // render outside its host browser window's own screen bounds).
-    if (e.target.closest && e.target.closest('.pdf-modal-pop')) {
-      var url = popBtn && popBtn.dataset.pdf;
-      if (url) window.open(url, '_blank', 'width=900,height=1040,menubar=no,toolbar=no');
-      return;
-    }
-    if (e.target === modal || (e.target.closest && e.target.closest('.pdf-modal-close'))) close();
-  });
-  document.addEventListener('keydown', function (e) {
-    var row = e.target.closest && e.target.closest('tr[data-pdf]');
-    if (row && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); open(row); return; }
-    if (e.key === 'Escape') close();
-  });
-
-  // Drag-to-move by the title bar, mirroring the app's DraggableModal pattern.
-  var drag = null;
-  head.addEventListener('mousedown', function (e) {
-    if (e.target.closest && e.target.closest('button')) return; // let toolbar buttons work
-    var rect = box.getBoundingClientRect();
-    drag = { dx: e.clientX - rect.left, dy: e.clientY - rect.top };
-    e.preventDefault();
-  });
-  document.addEventListener('mousemove', function (e) {
-    if (!drag) return;
-    box.style.left = (e.clientX - drag.dx) + 'px';
-    box.style.top  = (e.clientY - drag.dy) + 'px';
-  });
-  document.addEventListener('mouseup', function () { drag = null; });
-})();
-</script>
+<script src="js/pdfPreview.js"></script>
 </body>
 </html>
