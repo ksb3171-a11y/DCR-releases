@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>발표덱</title>
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     이 파일은 "로더"입니다. 여기를 고칠 일은 거의 없습니다.
+
+       발표 내용   →  data/deck.js        (편집기로 화면에서 고칩니다)
+       검증 수치   →  data/verification.js (자동 생성 — 손대지 마세요)
+       화면·기능   →  engine/*            (다음 발표에도 그대로 재사용)
+
+     새 발표를 만들려면 이 폴더를 통째로 복사한 뒤 data/deck.js 만 갈아끼우면 됩니다.
+     ══════════════════════════════════════════════════════════════════ -->
+
+<link rel="stylesheet" href="engine/deck.css">
+<link rel="stylesheet" href="engine/editor.css">
+
+<!-- 검증 수치(자동 생성). 없어도 덱은 정상 동작합니다(표가 자리표시로 대체). -->
+<script src="data/verification.js" onerror="window.__DECK_DATA__=null"></script>
+<!-- 발표 내용 -->
+<script src="data/deck.js" onerror="window.__DECK__=null"></script>
+</head>
+<body>
+
+<div id="stage"></div>
+
+<div id="bar"><div class="fill"></div></div>
+<div id="pg"></div>
+<div id="hint">← → · Enter · PageDown &nbsp;|&nbsp; O 개요 &nbsp;|&nbsp; F 전체화면 &nbsp;|&nbsp; B 암전 &nbsp;|&nbsp; P 인쇄</div>
+<div id="black"></div>
+<div id="ov"><h3>개요 — 클릭하면 해당 장으로 이동합니다</h3><div class="ovgrid"></div></div>
+<div id="fatal"><div class="box"></div></div>
+
+<script src="engine/deck.js"></script>
+<!-- 편집기. file:// 로 열었을 때(또는 ?edit=1)만 켜집니다 — 홈페이지 게시본에서는 동작하지 않습니다. -->
+<script src="engine/editor.js"></script>
+<script>Deck.boot();</script>
+</body>
+</html>

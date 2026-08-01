@@ -1,0 +1,1841 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>STRIX — 한국건축구조기술사회 발표자료</title>
+
+<!-- ★ 표지·발표자·연락처 수정은 data/config.js 파일에서 하세요 (이 파일 아님) -->
+<script src="data/config.js"></script>
+<!-- 검증 수치 — build 로 생성됩니다. 없어도 덱은 정상 동작합니다(자리표시로 대체). -->
+<script src="data/verification.js" onerror="window.__DECK_DATA__=null"></script>
+
+<style>
+/* ══════════════════════════════════════════════════════════════════════════
+   STRIX 발표 덱 — 화면(다크) / 인쇄(라이트) 이중 테마
+   슬라이드 1장 = 화면 1장. 스크롤 없음. 키/리모컨으로 넘김.
+   ════════════════════════════════════════════════════════════════════════ */
+
+/* --u = 레이아웃 기본 단위. 16:9 기준 화면폭의 1%.
+   화면이 어떤 크기든 슬라이드가 통째로 비율 유지하며 확대/축소된다(PPT와 동일). */
+:root{
+  --u: min(1vw, 1.7778vh);
+
+  --bg:      #16181c;
+  --panel:   #1e2126;
+  --panel2:  #23272d;
+  --line:    #2f353d;
+  --text:    #d8dce2;
+  --dim:     #949aa4;
+  --faint:   #6b727c;
+  --accent:  #4ea1ff;
+  --accent-d:#2b6fc4;
+  --pass:    #35c08b;
+  --warn:    #e8b84b;
+  --mono: 'Consolas','D2Coding','Menlo',monospace;
+  --sans: 'Pretendard','Pretendard Variable',-apple-system,'Segoe UI','Malgun Gothic',
+          'Apple SD Gothic Neo',sans-serif;
+}
+
+*{ box-sizing:border-box; margin:0; padding:0; }
+html,body{ height:100%; }
+body{
+  background:var(--bg); color:var(--text);
+  font-family:var(--sans); font-size:calc(var(--u)*1.55); line-height:1.62;
+  overflow:hidden;                       /* 화면 모드 = 스크롤 없음 */
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ── 슬라이드 ─────────────────────────────────────────────────────────── */
+.slide{
+  position:absolute; inset:0;
+  display:none; grid-template-rows:auto 1fr auto;
+  padding: calc(var(--u)*4.6) calc(var(--u)*7) calc(var(--u)*3.6);
+  opacity:0; transition:opacity .15s ease;
+}
+.slide.on{ display:grid; opacity:1; }
+
+.kicker{
+  font-size:calc(var(--u)*1.25); letter-spacing:.14em; text-transform:uppercase;
+  color:var(--accent); font-weight:700; margin-bottom:calc(var(--u)*.9);
+}
+h2.title{
+  font-size:calc(var(--u)*3.5); font-weight:800; line-height:1.2;
+  letter-spacing:-.01em; color:#fff;
+}
+.lead{
+  margin-top:calc(var(--u)*1.2); font-size:calc(var(--u)*1.75);
+  color:var(--dim); max-width:78ch;
+}
+/* ★ align-self:center 로 두면 내용이 넘칠 때 "위로도" 흘러 제목을 덮는다.
+   stretch + 내부 flex 중앙정렬이면 넘침이 항상 아래로만 생겨 검사에 잡힌다. */
+.body{
+  align-self:stretch; min-height:0;
+  display:flex; flex-direction:column;
+  justify-content:center;
+  justify-content:safe center;   /* 넘칠 때 위로 밀지 않는다 (제목 침범 방지) */
+  padding:calc(var(--u)*1.8) 0;
+}
+.foot{
+  display:flex; justify-content:space-between; align-items:flex-end;
+  font-size:calc(var(--u)*1.1); color:var(--faint);
+}
+.foot .fnote{ max-width:70%; }
+/* 화면에서는 우하단 고정 표시(#pg)가 쪽수를 담당 — 슬라이드 안 쪽수는 인쇄 전용 */
+.foot .pgnum{ visibility:hidden; }
+@media print{ .foot .pgnum{ visibility:visible; } }
+
+/* ── 공통 요소 ────────────────────────────────────────────────────────── */
+.grid{ display:grid; gap:calc(var(--u)*1.8); }
+.g2{ grid-template-columns:repeat(2,1fr); }
+.g3{ grid-template-columns:repeat(3,1fr); }
+.g4{ grid-template-columns:repeat(4,1fr); }
+.g5{ grid-template-columns:repeat(5,1fr); }
+.g-2-3{ grid-template-columns:2fr 3fr; }
+.g-3-2{ grid-template-columns:3fr 2fr; }
+
+.card{
+  background:var(--panel); border:1px solid var(--line); border-radius:calc(var(--u)*.6);
+  padding:calc(var(--u)*1.8) calc(var(--u)*1.9);
+}
+.card h3{
+  font-size:calc(var(--u)*1.8); color:#fff; font-weight:700;
+  margin-bottom:calc(var(--u)*.7);
+}
+.card p{ color:var(--dim); font-size:calc(var(--u)*1.4); }
+.card .num{
+  font-size:calc(var(--u)*3.6); font-weight:800; color:var(--accent);
+  font-variant-numeric:tabular-nums; line-height:1;
+}
+.card.accent{ border-color:var(--accent-d); background:linear-gradient(180deg,#1d2530,#1a1d23); }
+
+ul.bul{ list-style:none; }
+ul.bul li{
+  position:relative; padding-left:calc(var(--u)*2); margin-bottom:calc(var(--u)*.95);
+  font-size:calc(var(--u)*1.6);
+}
+ul.bul li::before{
+  content:''; position:absolute; left:0; top:calc(var(--u)*.75);
+  width:calc(var(--u)*.7); height:calc(var(--u)*.7); border-radius:50%;
+  background:var(--accent);
+}
+ul.bul li b{ color:#fff; font-weight:700; }
+ul.bul li .sub{ display:block; color:var(--faint); font-size:calc(var(--u)*1.3); }
+ul.bul[style*="--li"] li{ margin-bottom:calc(var(--u)*.7); }
+
+/* 앱 메뉴명 표기 — 영문 그대로, 코드톤 */
+.mi{
+  font-family:var(--mono); font-size:.9em; color:#cfe4ff;
+  background:#1a2432; border:1px solid #27364a; border-radius:3px;
+  padding:.08em .42em; white-space:nowrap;
+}
+.mi.path{ color:#a9c6e6; }
+
+.tag{
+  display:inline-block; font-size:calc(var(--u)*1.1); font-weight:700;
+  padding:.15em .7em; border-radius:calc(var(--u)*.35);
+  background:#1f2a36; color:var(--accent); border:1px solid #2b3a4c;
+}
+.tag.pass{ background:#16302a; color:var(--pass); border-color:#215044; }
+.tag.warn{ background:#31291a; color:var(--warn); border-color:#4d3f24; }
+
+/* ── 표 ───────────────────────────────────────────────────────────────── */
+table{ width:100%; border-collapse:collapse; font-size:calc(var(--u)*1.28); }
+thead th{
+  background:var(--panel2); color:#fff; font-weight:700; text-align:center;
+  padding:calc(var(--u)*.75) calc(var(--u)*.8); border-bottom:1px solid var(--line);
+  white-space:nowrap;
+}
+tbody td{
+  text-align:center;                    /* ★ 값은 중앙정렬 (앱 전역 규칙) */
+  padding:calc(var(--u)*.62) calc(var(--u)*.8);
+  border-bottom:1px solid #262b32; font-variant-numeric:tabular-nums;
+}
+tbody td.l{ text-align:left; }          /* 항목명만 좌정렬 */
+tbody tr:nth-child(even){ background:#1a1d22; }
+td .id{ font-family:var(--mono); color:var(--accent); font-weight:700; }
+td .src{ color:var(--faint); font-size:.92em; }
+.num-ok{ color:var(--pass); font-weight:700; }
+
+.tbl-wrap{ overflow:hidden; }
+
+/* ── 이미지 슬롯 ──────────────────────────────────────────────────────── */
+/* ⚠ height:100% 를 주면 .body 의 flex 자식일 때 본문 전체 높이를 먹어 하단을 뚫는다.
+   flex 로 남는 공간만 채우게 한다. */
+figure.slot{ margin:0; display:flex; flex-direction:column; min-height:0; }
+figure.slot img{
+  flex:1 1 auto; min-height:0; width:100%; height:100%;
+  object-fit:contain; object-position:center;
+  border:1px solid var(--line); border-radius:calc(var(--u)*.5); background:#0f1114;
+}
+figure.slot figcaption{
+  margin-top:calc(var(--u)*.8); font-size:calc(var(--u)*1.15); color:var(--faint);
+  text-align:center;
+}
+.ph{
+  flex:1 1 auto; min-height:calc(var(--u)*14);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:calc(var(--u)*.5); text-align:center;
+  border:2px dashed #3a424c; border-radius:calc(var(--u)*.5); background:#191c21;
+  color:var(--faint); padding:calc(var(--u)*1.5);
+}
+.ph .ph-id{ font-family:var(--mono); font-size:calc(var(--u)*1.5); color:var(--accent); font-weight:700; }
+.ph .ph-k{ font-size:calc(var(--u)*1.15); }
+.ph .ph-how{ font-size:calc(var(--u)*1.1); color:#5b626b; }
+/* 낮은 띠 모양 슬롯(로고 나열·QR 등) — 늘어나지 않고 고정 높이 */
+figure.slot[data-slim]{ flex:0 0 auto; }
+figure.slot[data-slim] img{ flex:0 0 auto; height:calc(var(--u)*7); }
+figure.slot[data-slim] .ph{ flex:0 0 auto; min-height:calc(var(--u)*5.5); padding:calc(var(--u)*.6); }
+figure.slot[data-slim] .ph .ph-id{ font-size:calc(var(--u)*1.2); }
+figure.slot[data-slim] .ph .ph-k,
+figure.slot[data-slim] .ph .ph-how{ font-size:calc(var(--u)*1); }
+
+/* ── 도형(다이어그램) ────────────────────────────────────────────────── */
+.flow{ display:flex; align-items:stretch; gap:calc(var(--u)*1); }
+.flow .step{
+  flex:1; background:var(--panel); border:1px solid var(--line);
+  border-radius:calc(var(--u)*.6); padding:calc(var(--u)*1.4);
+  display:flex; flex-direction:column; justify-content:center; text-align:center;
+}
+.flow .step .t{ color:#fff; font-weight:700; font-size:calc(var(--u)*1.5); }
+.flow .step .d{ color:var(--faint); font-size:calc(var(--u)*1.15); margin-top:.3em; }
+.flow .arr{ display:flex; align-items:center; color:var(--accent); font-size:calc(var(--u)*2); }
+.flow .step.hi{ border-color:var(--accent-d); background:#1b2532; }
+
+.steps4{ display:grid; grid-template-columns:repeat(4,1fr); gap:calc(var(--u)*1.4); }
+.steps4 .st{
+  background:var(--panel); border:1px solid var(--line); border-radius:calc(var(--u)*.6);
+  padding:calc(var(--u)*1.6); position:relative; overflow:hidden;
+}
+.steps4 .st .n{
+  font-family:var(--mono); font-size:calc(var(--u)*1.2); font-weight:700;
+  color:var(--accent); letter-spacing:.08em;
+}
+.steps4 .st h4{ font-size:calc(var(--u)*1.7); color:#fff; margin:.3em 0 .35em; }
+.steps4 .st p{ font-size:calc(var(--u)*1.25); color:var(--dim); }
+.steps4 .st.now{ border-color:var(--pass); }
+.steps4 .st.now .n{ color:var(--pass); }
+
+.split-note{
+  margin-top:calc(var(--u)*1.6); padding:calc(var(--u)*1.2) calc(var(--u)*1.5);
+  border-left:3px solid var(--accent); background:#1a1f27;
+  font-size:calc(var(--u)*1.35); color:var(--dim);
+}
+.split-note b{ color:#fff; }
+
+/* ── 표지 ─────────────────────────────────────────────────────────────── */
+.cover{ grid-template-rows:1fr auto; align-items:center; }
+.cover .ctitle{
+  font-size:calc(var(--u)*11); font-weight:900; letter-spacing:.02em; color:#fff; line-height:1;
+}
+.cover .csub{ font-size:calc(var(--u)*2.5); color:var(--accent); margin-top:calc(var(--u)*1.6); }
+.cover .ctag{ font-size:calc(var(--u)*1.5); color:var(--faint); letter-spacing:.2em; margin-bottom:calc(var(--u)*1.4); }
+.cover .cmeta{ display:flex; justify-content:space-between; align-items:flex-end; }
+.cover .cmeta .who{ font-size:calc(var(--u)*1.6); color:var(--dim); }
+.cover .cmeta .who .ev{ color:#fff; font-weight:700; font-size:calc(var(--u)*1.9); }
+.cover .cmeta .ver{ font-family:var(--mono); font-size:calc(var(--u)*1.2); color:var(--faint); }
+
+/* ── 부록 구분 ───────────────────────────────────────────────────────── */
+.slide[data-apx] .kicker{ color:var(--warn); }
+.apx-cover{ align-content:center; text-align:center; }
+.apx-cover h2{ font-size:calc(var(--u)*5); }
+.apx-cover p{ color:var(--dim); font-size:calc(var(--u)*1.8); margin-top:calc(var(--u)*1.5); }
+
+/* ── UI 크롬(진행바·개요·암전) ───────────────────────────────────────── */
+#bar{
+  position:fixed; left:0; right:0; bottom:0; height:calc(var(--u)*.35);
+  background:#22262c; z-index:50;
+}
+#bar .fill{ height:100%; background:var(--accent); transition:width .15s ease; }
+#bar .apxmark{
+  position:absolute; top:0; bottom:0; width:2px; background:var(--warn); opacity:.85;
+}
+#pg{
+  position:fixed; right:calc(var(--u)*1.6); bottom:calc(var(--u)*1.2);
+  font-family:var(--mono); font-size:calc(var(--u)*1.15); color:var(--faint); z-index:51;
+  font-variant-numeric:tabular-nums;
+}
+#hint{
+  position:fixed; left:calc(var(--u)*1.6); bottom:calc(var(--u)*1.2);
+  font-size:calc(var(--u)*1.05); color:#4b515a; z-index:51;
+  transition:opacity .4s;
+}
+#black{
+  position:fixed; inset:0; background:#000; z-index:200; display:none;
+}
+#black.on{ display:block; }
+
+#ov{
+  position:fixed; inset:0; background:#101216; z-index:100; display:none;
+  overflow-y:auto; padding:calc(var(--u)*4) calc(var(--u)*5);
+}
+#ov.on{ display:block; }
+#ov h3{ color:#fff; font-size:calc(var(--u)*2.2); margin-bottom:calc(var(--u)*2); }
+#ov .ovgrid{ display:grid; grid-template-columns:repeat(5,1fr); gap:calc(var(--u)*1.2); }
+#ov .ovc{
+  background:var(--panel); border:1px solid var(--line); border-radius:calc(var(--u)*.5);
+  padding:calc(var(--u)*1.1); cursor:pointer; min-height:calc(var(--u)*7);
+}
+#ov .ovc:hover{ border-color:var(--accent); background:#1e2732; }
+#ov .ovc .n{ font-family:var(--mono); color:var(--accent); font-size:calc(var(--u)*1.1); }
+#ov .ovc .t{ color:var(--text); font-size:calc(var(--u)*1.25); margin-top:.25em; line-height:1.35; }
+#ov .ovc.cur{ border-color:var(--accent); box-shadow:0 0 0 1px var(--accent) inset; }
+#ov .ovsep{
+  grid-column:1/-1; border-top:1px solid #333a44; margin-top:calc(var(--u)*1.5);
+  padding-top:calc(var(--u)*1); color:var(--warn); font-size:calc(var(--u)*1.2); font-weight:700;
+}
+#ov .ovc.apx{ opacity:.75; }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   인쇄(책자) — 라이트 테마 · A4 세로 · 슬라이드당 1장
+   ════════════════════════════════════════════════════════════════════════ */
+@page{ size:A4 portrait; margin:14mm 13mm 16mm; }
+
+@media print{
+  :root{
+    --u: 1.55mm;
+    --bg:#fff; --panel:#f7f8fa; --panel2:#eceff3; --line:#d3d8de;
+    --text:#1a1d22; --dim:#3f454d; --faint:#6d747d;
+    --accent:#1857b8; --accent-d:#1857b8; --pass:#0f7a52;
+  }
+  html,body{ height:auto; overflow:visible; background:#fff; color:#000; }
+  body{ font-size:calc(var(--u)*1.55); }
+  .slide{
+    position:static; display:grid !important; opacity:1 !important;
+    height:auto; min-height:245mm; page-break-after:always; break-after:page;
+    padding:0 0 8mm;
+  }
+  .slide:last-child{ page-break-after:auto; }
+  h2.title{ color:#000; }
+  .card h3, .card .num, .steps4 .st h4, .flow .step .t{ color:#000; }
+  .card.accent{ background:#eef4fd; }
+  .mi{ background:#eef3f9; color:#12447e; border-color:#c3d3e6; }
+  tbody tr:nth-child(even){ background:#f4f6f8; }
+  .ph{ background:#f4f5f7; border-color:#c4cad2; }
+  .cover .ctitle{ font-size:calc(var(--u)*9); color:#000; }
+  #bar,#pg,#hint,#ov,#black{ display:none !important; }
+  .print-foot{ display:block; }
+  * { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+}
+.print-foot{
+  display:none; position:running(f);
+  font-size:calc(var(--u)*1); color:var(--faint);
+}
+
+/* 인쇄 시 각 슬라이드 하단에 각주+쪽번호 */
+@media print{
+  .slide .foot{ border-top:1px solid var(--line); padding-top:2mm; }
+  .slide .foot::after{ content:attr(data-pfoot); color:var(--faint); }
+}
+</style>
+</head>
+<body>
+
+<div id="deck">
+
+<!-- ═══════════════════════ S01 · 표지 ═══════════════════════ -->
+<section class="slide cover" id="s01" data-title="표지">
+  <div>
+    <div class="ctag" data-cfg="tagline"></div>
+    <div class="ctitle" data-cfg="title"></div>
+    <div class="csub" data-cfg="subtitle"></div>
+  </div>
+  <div class="cmeta">
+    <div class="who">
+      <div class="ev" data-cfg="event"></div>
+      <div data-cfg="date"></div>
+      <div data-cfg-join="presenter,role"></div>
+      <div data-cfg="org"></div>
+    </div>
+    <div class="ver" data-cfg="version"></div>
+  </div>
+</section>
+<!-- ═══════════════════════ /S01 ═══════════════════════ -->
+
+
+<!-- ═══════════════════════ S02 · 3분 요약 ═══════════════════════ -->
+<section class="slide" id="s02" data-title="3분 요약">
+  <header>
+    <div class="kicker">Executive Summary</div>
+    <h2 class="title">한 장으로 말하면</h2>
+  </header>
+  <div class="body">
+    <div class="grid g3">
+      <div class="card accent">
+        <div class="num"><span data-bind="_.total">—</span><span style="font-size:.45em">건</span></div>
+        <h3>국제 벤치마크 전건 통과</h3>
+        <p>CSI SAP2000 공식 검증예제 · NAFEMS · 고전 이론해와 대조.
+           개별 검증항목 <b data-bind="_.quantities">—</b>개 전부 PASS.</p>
+      </div>
+      <div class="card">
+        <div class="num">OpenSees</div>
+        <h3>세계 표준 연구용 솔버</h3>
+        <p>미국 PEER 주도로 개발된 오픈소스 유한요소 프레임워크.
+           비선형·지진해석 분야의 사실상 표준.</p>
+      </div>
+      <div class="card">
+        <div class="num">17</div>
+        <h3>실무 전 과정을 한 앱에</h3>
+        <p>모델링 · 해석 · 설계 · 내진성능평가 · 성능기반설계 ·
+           계산서 · 도면 · 물량까지 리본 17개 탭.</p>
+      </div>
+    </div>
+    <div class="split-note">
+      <b>STRIX는 "새로운 해석 엔진을 만들었다"고 말하지 않습니다.</b>
+      전 세계 연구자가 30년간 검증해 온 OpenSees를 엔진으로 쓰고,
+      그 위에 <b>실무가 쓸 수 있는 전·후처리와 설계 자동화</b>를 얹었습니다.
+      그리고 그 결과가 맞는지를 <b>공개된 국제 검증예제로 스스로 증명</b>합니다.
+    </div>
+  </div>
+  <div class="foot"><span class="fnote"></span><span class="pgnum"></span></div>
+</section>
+<!-- ═══════════════════════ /S02 ═══════════════════════ -->
+
+
+<!-- ═══════════════════════ S03 · 왜 만들었나 ═══════════════════════ -->
+<section class="slide" id="s03" data-title="왜 만들었나">
+  <header>
+    <div class="kicker">Motivation</div>
+    <h2 class="title">왜 만들었나</h2>
+    <p class="lead">구조설계 실무자가 늘 안고 있던 세 가지 불편에서 출발했습니다.</p>
+  </header>
+  <div class="body">
+    <div class="grid g3">
+      <div class="card">
+        <h3>① 비용</h3>
+        <p>상용 해석 프로그램의 라이선스는 고가입니다.
+           신생 사무소·소규모 사무소일수록 진입 문턱이 높고,
+           기능별 모듈을 따로 사야 하는 구조입니다.</p>
+      </div>
+      <div class="card">
+        <h3>② 검증</h3>
+        <p>해석 결과가 왜 그렇게 나왔는지 확인할 방법이 제한적입니다.
+           내부 계산 과정은 공개되지 않고, 사용자는 결과를 믿는 것 외에
+           선택지가 없습니다.</p>
+      </div>
+      <div class="card">
+        <h3>③ 종속</h3>
+        <p>필요한 기능이 없으면 기다리는 수밖에 없습니다.
+           새로운 재료모델·요소·해석기법을 실무에 적용하려면
+           공급사의 개발 계획에 의존해야 합니다.</p>
+      </div>
+    </div>
+    <div class="split-note">
+      세 문제의 뿌리는 하나입니다 — <b>해석 엔진이 닫혀 있다는 것.</b>
+      그래서 STRIX는 <b>열려 있는 엔진</b>에서 시작했습니다.
+    </div>
+  </div>
+  <div class="foot"><span class="fnote"></span><span class="pgnum"></span></div>
+</section>
+<!-- ═══════════════════════ /S03 ═══════════════════════ -->
+
+
+<!-- ═══════════════════════ S04 · 핵심 Keyword ═══════════════════════ -->
+<section class="slide" id="s04" data-title="핵심 Keyword">
+  <header>
+    <div class="kicker">Core Keywords</div>
+    <h2 class="title">STRIX를 이루는 다섯 가지</h2>
+  </header>
+  <div class="body">
+    <div class="grid g5">
+      <div class="card">
+        <h3>Open-Source<br>Solver</h3>
+        <p>해석 엔진은 <b>OpenSees</b>.
+           전 세계가 검증해 온 오픈소스 코드를 그대로 씁니다.</p>
+      </div>
+      <div class="card accent">
+        <h3>Accuracy</h3>
+        <p>공개된 국제 검증예제로 <b>스스로 증명</b>합니다.
+           숫자와 증거를 함께 공개합니다.</p>
+      </div>
+      <div class="card">
+        <h3>User-friendly<br>UI</h3>
+        <p>익숙한 리본 체계.
+           <b>새로 배우지 않아도</b> 쓸 수 있는 화면을 목표로 했습니다.</p>
+      </div>
+      <div class="card">
+        <h3>AI Prompt</h3>
+        <p>입력과 출력 양쪽에 AI.
+           모델을 만들고, 결과를 읽어 줍니다.</p>
+      </div>
+      <div class="card">
+        <h3>Low-Cost</h3>
+        <p>오픈소스 엔진 기반이므로
+           라이선스 구조가 가볍습니다.</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="fnote"></span><span class="pgnum"></span></div>
+</section>
+<!-- ═══════════════════════ /S04 ═══════════════════════ -->
+
+
+<!-- ═══════════════════════ S05 · 비교 ═══════════════════════ -->
+<section class="slide" id="s05" data-title="상용 · OpenSees · STRIX 비교">
+  <header>
+    <div class="kicker">Positioning</div>
+    <h2 class="title">STRIX는 어디에 서 있나</h2>
+  </header>
+  <div class="body">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:15%">구분</th>
+          <th style="width:28%">일반 상용 구조해석 프로그램</th>
+          <th style="width:28%">OpenSees (원형)</th>
+          <th style="width:29%">STRIX</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="l"><b>해석 엔진</b></td>
+          <td>자체 개발 · 비공개</td>
+          <td>오픈소스 · 공개</td>
+          <td>OpenSees <span class="src">(공개 엔진 그대로)</span></td>
+        </tr>
+        <tr>
+          <td class="l"><b>인터페이스</b></td>
+          <td>그래픽 기반 GUI</td>
+          <td>텍스트 · 코드 (Tcl / Python)</td>
+          <td>그래픽 기반 GUI <span class="src">+ AI 입력</span></td>
+        </tr>
+        <tr>
+          <td class="l"><b>주 사용처</b></td>
+          <td>실무 설계 · 안전진단</td>
+          <td>연구 · 고난도 비선형/지진해석</td>
+          <td><b>연구용 엔진을 실무 설계에</b></td>
+        </tr>
+        <tr>
+          <td class="l"><b>기능 확장</b></td>
+          <td>제공되는 기능 범위 내</td>
+          <td>새 이론·재료를 직접 구현 가능</td>
+          <td>엔진 확장 가능 <span class="src">(자체 요소·힌지 구현 사례 보유)</span></td>
+        </tr>
+        <tr>
+          <td class="l"><b>결과 검증</b></td>
+          <td>공급사 검증서에 의존</td>
+          <td>사용자가 직접 수행</td>
+          <td><b>검증 결과·원시 증거 공개</b></td>
+        </tr>
+        <tr>
+          <td class="l"><b>비용</b></td>
+          <td>고가 라이선스</td>
+          <td>무료 <span class="src">(단, 사용 난도 높음)</span></td>
+          <td>저비용</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="split-note">
+      STRIX의 자리는 <b>OpenSees와 상용 프로그램 사이</b>입니다.
+      연구용 엔진의 정확도와 확장성은 그대로 두고, 실무가 요구하는 입력·검토·설계·산출물을 채웠습니다.
+    </div>
+  </div>
+  <div class="foot"><span class="fnote">※ 비교 항목은 각 제품이 공개한 사실에 한정했습니다.</span><span class="pgnum"></span></div>
+</section>
+<!-- ═══════════════════════ /S05 ═══════════════════════ -->
+
+
+<!-- ═══════════════════════ S06 · OpenSees란 ═══════════════════════ -->
+<section class="slide" id="s06" data-title="OpenSees란">
+  <header>
+    <div class="kicker">Solver</div>
+    <h2 class="title">OpenSees</h2>
+    <p class="lead">Open System for Earthquake Engineering Simulation</p>
+  </header>
+  <div class="body">
+    <div class="grid g-3-2" style="height:100%">
+      <div>
+        <ul class="bul">
+          <li><b>지진공학·구조공학 시뮬레이션을 위한 오픈소스 유한요소 프레임워크</b>
+            <span class="sub">구조물과 지반의 지진 응답을 모사하기 위해 개발되었습니다.</span></li>
+          <li><b>미국 PEER(태평양지진공학연구센터) 주도</b>
+            <span class="sub">UC 버클리를 비롯한 미국 주요 대학이 참여해 개발했습니다.</span></li>
+          <li><b>전 세계 지진·구조 연구자의 표준 도구</b>
+            <span class="sub">비선형 해석 논문에서 가장 널리 쓰이는 연구용 코드 중 하나입니다.</span></li>
+          <li><b>C++ 객체지향 구조</b>
+            <span class="sub">재료·요소·알고리즘을 코드로 추가할 수 있게 설계되었습니다.</span></li>
+        </ul>
+        <div class="split-note">
+          연구 영역에서 30년 가까이 <b>수많은 연구자가 사용하고 검증해 온 코드</b>입니다.
+          STRIX는 이 검증의 축적 위에 서 있습니다.
+        </div>
+      </div>
+      <figure class="slot" data-slot="s06_opensees" data-kind="user" data-w="1200" data-h="900">
+        <img src="assets/user/s06_opensees.png" alt="">
+        <figcaption>OpenSees / PEER</figcaption>
+      </figure>
+    </div>
+  </div>
+  <div class="foot"><span class="fnote"></span><span class="pgnum"></span></div>
+</section>
+<!-- ═══════════════════════ /S06 ═══════════════════════ -->
+
+
+<!-- ═══════════════════════ S07 · OpenSees 강점 ═══════════════════════ -->
+<section class="slide" id="s07" data-title="OpenSees 강점">
+  <header>
+    <div class="kicker">Why OpenSees</div>
+    <h2 class="title">왜 이 엔진인가</h2>
+  </header>
+  <div class="body">
+    <div class="grid g3">
+      <div class="card">
+        <h3>강력한 비선형 해석</h3>
+        <p>구조물이 강한 지진하중을 받아 손상·붕괴에 이르는 과정과 같은
+           복잡한 <b>비선형 동적해석</b>에서 탁월한 성능을 보입니다.
+           성능기반설계가 요구하는 영역입니다.</p>
+      </div>
+      <div class="card">
+        <h3>오픈소스 · 확장성</h3>
+        <p>C++ 객체지향 구조로 설계되어 새로운 <b>재료모델 · 요소 · 알고리즘</b>을
+           직접 구현해 추가할 수 있습니다. 필요한 기능을 기다리지 않아도 됩니다.</p>
+      </div>
+      <div class="card">
+        <h3>지반-구조물 상호작용</h3>
+        <p>구조물뿐 아니라 <b>지반의 거동까지 함께 모델링</b>할 수 있어,
+           지반과 구조물이 서로 미치는 영향을 통합적으로 다룰 수 있습니다.</p>
+      </div>
+    </div>
+    <div class="split-note">
+      확장성은 문서상의 장점이 아닙니다 — STRIX는 실제로 이 프레임워크 위에
+      <b>자체 요소와 자체 힌지 모델을 구현해</b> 쓰고 있으며, 그 요소들도 검증 대상에 포함했습니다.
+    </div>
+  </div>
+  <div class="foot"><span class="fnote"></span><span class="pgnum"></span></div>
+</section>
+<!-- ═══════════════════════ /S07 ═══════════════════════ -->
+
+
+<!-- ═══════════════════════ S08 · GUI 부재 ═══════════════════════ -->
+<section class="slide" id="s08" data-title="OpenSees의 약점 = STRIX의 출발점">
+  <header>
+    <div class="kicker">The Gap</div>
+    <h2 class="title">그런데 왜 실무에서 안 쓰였나</h2>
+  </header>
+  <div class="body">
+    <div class="grid g2" style="align-items:start">
+      <div class="card" style="border-color:#4a3a3a;background:#241d1d">
+        <h3>OpenSees의 약점 — GUI가 없다</h3>
+        <p style="margin-bottom:.8em">상용 프로그램처럼 마우스로 그리는 그래픽 인터페이스가
+           <b>기본적으로 존재하지 않습니다.</b> 사용자가 직접 텍스트 파일로
+           절점 · 요소 · 재료 · 하중을 정의하는 <b>명령어 스크립트를 작성</b>해야 합니다.</p>
+        <p>결과 확인도 마찬가지입니다. 그래서 별도의 전·후처리 도구를 함께 쓰는 것이
+           일반적이었고, 이 진입장벽이 <b>연구실과 실무 사이의 벽</b>이었습니다.</p>
+      </div>
+      <div class="card accent">
+        <h3>STRIX가 채우는 자리</h3>
+        <p style="margin-bottom:.8em">사용자는 익숙한 화면에서 모델을 그립니다.
+           <b>OpenSees 입력 스크립트는 STRIX가 자동으로 생성</b>합니다.
+           해석이 끝나면 결과를 파싱해 표·그래프·컨투어·계산서로 되돌려 줍니다.</p>
+        <p>사용자는 OpenSees 문법을 몰라도 되고,
+           원하면 <span class="mi">Analysis ▸ TCL Preview</span>로
+           <b>생성된 입력을 직접 확인</b>할 수도 있습니다.</p>
+      </div>
+    </div>
+    <div class="flow" style="margin-top:calc(var(--u)*2)">
+      <div class="step"><div class="t">모델링</div><div class="d">GUI · AI</div></div>
+      <div class="arr">▶</div>
+      <div class="step hi"><div class="t">입력 자동 생성</div><div class="d">STRIX → OpenSees 스크립트</div></div>
+      <div class="arr">▶</div>
+      <div class="step"><div class="t">해석</div><div class="d">OpenSees 엔진</div></div>
+      <div class="arr">▶</div>
+      <div class="step hi"><div class="t">결과 해석</div><div class="d">파싱 · 시각화 · 설계</div></div>
+    </div>
+  </div>
+  <div class="foot"><span class="fnote"></span><span class="pgnum"></span></div>
+</section>
+<!-- ═══════════════════════ /S08 ═══════════════════════ -->
+
+
+<!-- ═══════════════════════ S09 · 아키텍처 ═══════════════════════ -->
+<section class="slide" id="s09" data-title="아키텍처">
+  <header>
+    <div class="kicker">Architecture</div>
+    <h2 class="title">STRIX는 이렇게 동작합니다</h2>
+  </header>
+  <div class="body">
+    <div class="grid g4">
+      <div class="card">
+        <div class="num" style="font-size:calc(var(--u)*1.6);color:var(--faint)">01</div>
+        <h3>입력</h3>
+        <p>리본 UI · 3D 뷰포트 · 좌측 트리<br>
+           <span class="mi">AI Modeling</span> <span class="mi">AI Prompt</span><br>
+           <span class="mi">Import Midas</span> DXF 임포트</p>
+      </div>
+      <div class="card accent">
+        <div class="num" style="font-size:calc(var(--u)*1.6)">02</div>
+        <h3>입력 생성</h3>
+        <p>모델을 OpenSees가 이해하는 스크립트로 변환.
+           절점·요소·재료·경계·하중·해석제어 전부 자동 생성.</p>
+      </div>
+      <div class="card">
+        <div class="num" style="font-size:calc(var(--u)*1.6);color:var(--faint)">03</div>
+        <h3>해석</h3>
+        <p>OpenSees 엔진 실행<br>
+           정적 · 고유치 · 응답스펙트럼 · P-Delta ·
+           Pushover · 시간이력(THA)</p>
+      </div>
+      <div class="card">
+        <div class="num" style="font-size:calc(var(--u)*1.6);color:var(--faint)">04</div>
+        <h3>후처리</h3>
+        <p>결과 파싱 → 부재력·변위·응력<br>
+           → RC/강구조 설계 · 성능평가<br>
+           → 계산서 · 도면 · 물량</p>
+      </div>
+    </div>
+    <div class="split-note">
+      중요한 것은 <b>②와 ④가 우리 코드라는 점</b>입니다.
+      해석의 정확도는 OpenSees가 책임지지만, <b>모델을 올바른 입력으로 옮겼는지</b>,
+      <b>결과를 올바르게 읽었는지</b>는 STRIX의 책임입니다.
+      그래서 검증도 <b>이 전 구간을 통째로</b> 돌려서 합니다. (다음 장)
+    </div>
+  </div>
+  <div class="foot"><span class="fnote"></span><span class="pgnum"></span></div>
+</section>
+<!-- ═══════════════════════ /S09 ═══════════════════════ -->
+
+
+<!-- ═══════════════════════ S10 · UI ═══════════════════════ -->
+<section class="slide" id="s10" data-title="UI">
+  <header>
+    <div class="kicker">User Interface</div>
+    <h2 class="title">새로 배우지 않아도 되는 화면</h2>
+  </header>
+  <div class="body">
+    <div class="grid g-3-2" style="height:100%">
+      <figure class="slot" data-slot="s10_app_full" data-kind="user" data-w="1920" data-h="1080">
+        <img src="assets/user/s10_app_full.png" alt="">
+        <figcaption>STRIX 작업 화면</figcaption>
+      </figure>
+      <div>
+        <ul class="bul">
+          <li><b>리본 기반 상단 메뉴 17개 탭</b>
+            <span class="sub">국내 실무자에게 익숙한 구성을 따랐습니다. 메뉴 제목만 보고도 기능을 찾을 수 있는 것을 목표로 했습니다.</span></li>
+          <li><b>좌측 모델 트리 · 중앙 3D 뷰포트</b>
+            <span class="sub">확대·축소·회전·이동, 시점 프리셋(<span class="mi">ISO</span> <span class="mi">Top</span> <span class="mi">Front</span>)을 우상단에서 즉시 전환합니다.</span></li>
+          <li><b>모든 입력에 확정 버튼</b>
+            <span class="sub">값을 넣고 <span class="mi">Apply</span>를 누르는 시점이 곧 "내가 결정했다"는 시점입니다. 반영 여부를 화면에서 확인할 수 있게 했습니다.</span></li>
+          <li><b>따라하기식 도움말 내장</b>
+            <span class="sub">메뉴별 안내 문서를 앱 안에 두었습니다.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="fnote"></span><span class="pgnum"></span></div>
+</section>
+<!-- ═══════════════════════ /S10 ═══════════════════════ -->
+
+
+<!-- ═══════════════════════ S11 · 검증 체계 ═══════════════════════ -->
+<section class="slide" id="s11" data-title="Accuracy — 4단계 검증 체계">
+  <header>
+    <div class="kicker">Accuracy</div>
+    <h2 class="title">정확도를 어떻게 증명할 것인가</h2>
+    <p class="lead">네 단계로 나누어 접근합니다. 아래로 갈수록 실무에 가까워집니다.</p>
+  </header>
+  <div class="body">
+    <div class="steps4">
+      <div class="st now">
+        <div class="n">STEP 1 — 완료</div>
+        <h4>FEM 단위요소 검증</h4>
+        <p>보 · 셸 · 판 · 트러스 · 링크 등 <b>요소 단위</b>로
+           국제 벤치마크 및 고전 이론해와 대조.
+           <span class="tag pass" style="margin-top:.5em"><span data-bind="_.total">—</span>건 전건 PASS</span></p>
+      </div>
+      <div class="st">
+        <div class="n">STEP 2 — 진행 예정</div>
+        <h4>구조형식별 예제 검증</h4>
+        <p><b>한국건축구조기술사회</b>와 함께
+           실제 구조형식별 건물 모델로 검증.
+           1차 · 2차 연구로 구분.</p>
+      </div>
+      <div class="st">
+        <div class="n">STEP 3</div>
+        <h4>AI Prompt 검증</h4>
+        <p>AI가 만든 모델·읽은 결과가
+           <b>맞는지</b>를 별도로 검증.
+           AI 출력도 검증 대상입니다.</p>
+      </div>
+      <div class="st">
+        <div class="n">STEP 4</div>
+        <h4>보고서 자동화 검토</h4>
+        <p>자동 생성되는 구조계산서의
+           내용·서식이 실무 기준에 맞는지
+           검토합니다.</p>
+      </div>
+    </div>
+    <div class="split-note">
+      <b>순서에 뜻이 있습니다.</b> 요소가 맞지 않으면 건물도 맞지 않습니다.
+      그래서 요소 단위부터 숫자로 끝내고, 그 위에서 구조형식별 검증으로 올라갑니다.
+    </div>
+  </div>
+  <div class="foot"><span class="fnote"></span><span class="pgnum"></span></div>
+</section>
+<!-- ═══════════════════════ /S11 ═══════════════════════ -->
+
+
+<!-- ═══════════════════════ S12 · 검증 하네스 ═══════════════════════ -->
+<section class="slide" id="s12" data-title="검증 하네스">
+  <header>
+    <div class="kicker">Step 1 · How</div>
+    <h2 class="title">무엇을, 어떻게 검증했나</h2>
+  </header>
+  <div class="body">
+    <div class="flow" style="margin-bottom:calc(var(--u)*2.2)">
+      <div class="step"><div class="t">벤치마크 모델</div><div class="d">국제 검증예제를 코드로 구성</div></div>
+      <div class="arr">▶</div>
+      <div class="step hi"><div class="t">실제 앱 코드경로</div><div class="d">입력 생성 → 엔진 → 결과 파싱</div></div>
+      <div class="arr">▶</div>
+      <div class="step"><div class="t">참조해와 대조</div><div class="d">항목별 오차 · 허용치 판정</div></div>
+      <div class="arr">▶</div>
+      <div class="step hi"><div class="t">검증 기록</div><div class="d">단일 원천 · 회귀 감시</div></div>
+    </div>
+    <div class="grid g3">
+      <div class="card">
+        <h3>실제 코드로 돌립니다</h3>
+        <p>검증용 별도 계산기를 만들지 않았습니다.
+           <b>사용자가 쓰는 바로 그 경로</b>(입력 생성 → OpenSees → 결과 파싱)를
+           화면만 떼고 그대로 실행합니다.</p>
+      </div>
+      <div class="card">
+        <h3>숫자는 한 곳에만 있습니다</h3>
+        <p>검증 결과는 기록 파일 하나에 저장되고,
+           보고서 · 웹페이지 · 이 발표자료의 표가 <b>모두 거기서 파생</b>됩니다.
+           같은 숫자를 두 번 적는 곳이 없습니다.</p>
+      </div>
+      <div class="card">
+        <h3>한 번이 아니라 계속</h3>
+        <p>코드를 고칠 때마다 다시 돌립니다.
+           허용 오차를 벗어나면 <b>빌드가 실패</b>합니다.
+           "예전엔 맞았다"가 성립하지 않는 구조입니다.</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="fnote"></span><span class="pgnum"></span></div>
+</section>
+<!-- ═══════════════════════ /S12 ═══════════════════════ -->
+
+
+<!-- ═══════════════════════ S13 · 검증결과 ① ═══════════════════════ -->
+<section class="slide" id="s13" data-title="검증결과 ① 정적 · 요소">
+  <header>
+    <div class="kicker">Step 1 · Results ①</div>
+    <h2 class="title">정적 · 요소 계열 검증</h2>
+  </header>
+  <div class="body">
+    <div class="tbl-wrap" data-vtable="static"></div>
+  </div>
+  <div class="foot"><span class="fnote">※ 오차 = (STRIX − 참조해) / 참조해. 허용치는 벤치마크별로 사전에 정한 값입니다.</span><span class="pgnum"></span></div>
+</section>
+<!-- ═══════════════════════ /S13 ═══════════════════════ -->
+
+
+<!-- ═══════════════════════ S14 · 검증결과 ② ═══════════════════════ -->
+<section class="slide" id="s14" data-title="검증결과 ② 동적 · 비선형">
+  <header>
+    <div class="kicker">Step 1 · Results ②</div>
+    <h2 class="title">동적 · 비선형 계열 검증</h2>
+  </header>
+  <div class="body">
+    <div class="tbl-wrap" data-vtable="dynamic"></div>
+  </div>
+  <div class="foot"><span class="fnote">※ 고유치 · 응답스펙트럼 · Pushover · 시간이력 · 자체 개발 요소까지 포함합니다.</span><span class="pgnum"></span></div>
+</section>
+<!-- ═══════════════════════ /S14 ═══════════════════════ -->
+
+
+<!-- ═══════════════════════ S15 · NAFEMS LE1 ═══════════════════════ -->
+<section class="slide" id="s15" data-title="대표예제 — NAFEMS LE1">
+  <header>
+    <div class="kicker">Case Study ①</div>
+    <h2 class="title">NAFEMS LE1 — 타원 막판</h2>
+    <p class="lead">국제 유한요소 벤치마크 협회(NAFEMS)의 표준 선형탄성 예제입니다.</p>
+  </header>
+  <div class="body">
+    <div class="grid g-2-3" style="height:100%">
+      <figure class="slot" data-slot="s15_nafems_geom" data-kind="user" data-w="1000" data-h="800">
+        <img src="assets/user/s15_nafems_geom.png" alt="">
+        <figcaption>NAFEMS LE1 형상 및 하중</figcaption>
+      </figure>
+      <div>
+        <ul class="bul">
+          <li><b>무엇을 보는가</b>
+            <span class="sub">타원형 구멍이 뚫린 판의 특정 위치에서 <b>접선방향 응력</b>을 참조값과 대조합니다. 응력은 변위보다 수렴이 까다로워, 요소의 품질이 그대로 드러납니다.</span></li>
+          <li><b>왜 어려운가</b>
+            <span class="sub">곡선 경계를 유한요소로 근사해야 하므로, 메쉬를 조밀하게 할수록 정답에 다가가는 <b>수렴 거동</b> 자체가 평가 대상입니다.</span></li>
+          <li><b>결과</b>
+            <span class="sub">메쉬를 단계적으로 세분하며 참조값에 <b>단조 접근</b>함을 확인했고, 가장 조밀한 메쉬에서 오차
+              <b class="num-ok" data-bind="SB2.errorPct">—</b>
+              (허용 <b data-bind="SB2.tolerancePct">—</b>) 로 통과했습니다.</span></li>
+        </ul>
+        <div class="split-note">
+          한 번의 계산으로 "맞았다"고 하지 않고, <b>메쉬를 바꿔가며 수렴하는지</b>를 봅니다.
+          우연히 맞는 것과 제대로 맞는 것은 다릅니다.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="fnote"></span><span class="pgnum"></span></div>
+</section>
+<!-- ═══════════════════════ /S15 ═══════════════════════ -->
+
+
+<!-- ═══════════════════════ S16 · CSI 1-024 ═══════════════════════ -->
+<section class="slide" id="s16" data-title="대표예제 — 3D 편심 응답스펙트럼">
+  <header>
+    <div class="kicker">Case Study ②</div>
+    <h2 class="title">3차원 편심 건물의 응답스펙트럼 해석</h2>
+    <p class="lead">상용 프로그램이 자사 정확도를 증명할 때 쓰는 <b>공개 검증예제</b>와 동일한 문제를 풀었습니다.</p>
+  </header>
+  <div class="body">
+    <div class="tbl-wrap" data-vtable="one" data-id="SR2"></div>
+    <div class="split-note">
+      질량중심과 강성중심이 어긋난 <b>비틀림 거동</b>을 포함하고,
+      모드 조합법(CQC · SRSS · ABS 등)까지 각각 대조합니다.
+      실무에서 가장 자주 쓰는 해석이면서, 조합 규칙 하나만 달라도 답이 벌어지는 영역입니다.
+    </div>
+  </div>
+  <div class="foot"><span class="fnote"></span><span class="pgnum"></span></div>
+</section>
+<!-- ═══════════════════════ /S16 ═══════════════════════ -->
+
+
+<!-- ═══════════════════════ S17 · 재현성 ═══════════════════════ -->
+<section class="slide" id="s17" data-title="검증의 재현성">
+  <header>
+    <div class="kicker">Reproducibility</div>
+    <h2 class="title">"믿어 주십시오"가 아니라 "돌려 보십시오"</h2>
+  </header>
+  <div class="body">
+    <div class="grid g4">
+      <div class="card">
+        <h3>모델 정의</h3>
+        <p>벤치마크 모델이 코드로 남아 있습니다.
+           치수·재료·하중·경계조건이 그대로 보입니다.</p>
+      </div>
+      <div class="card">
+        <h3>참조해 출처</h3>
+        <p>각 예제마다 <b>어느 문헌의 몇 번 예제</b>인지,
+           참조값이 어떤 식에서 나왔는지 함께 기록했습니다.</p>
+      </div>
+      <div class="card">
+        <h3>원시 해석 파일</h3>
+        <p>엔진에 실제로 들어간 입력 파일과
+           엔진이 뱉은 출력 파일을 <b>그대로 보관·배포</b>합니다.</p>
+      </div>
+      <div class="card accent">
+        <h3>무결성 확인</h3>
+        <p>증거 묶음에 <b>해시값</b>을 함께 공개해,
+           받은 파일이 우리가 낸 그 파일인지 확인할 수 있습니다.</p>
+      </div>
+    </div>
+    <div class="split-note">
+      검증서는 결과 숫자만 적어 두면 <b>확인할 방법이 없습니다.</b>
+      STRIX는 입력 · 출력 · 참조해 · 판정 기준을 모두 공개합니다.
+      제3자가 같은 조건으로 다시 돌려 같은 값을 얻을 수 있어야 검증입니다.
+    </div>
+  </div>
+  <div class="foot"><span class="fnote"></span><span class="pgnum"></span></div>
+</section>
+<!-- ═══════════════════════ /S17 ═══════════════════════ -->
+
+
+<!-- ═══════════════════════ S18 · Step2 ═══════════════════════ -->
+<section class="slide" id="s18" data-title="Step 2 — 구조형식별 검증">
+  <header>
+    <div class="kicker">Step 2</div>
+    <h2 class="title">구조형식별 예제 검증 — 공동연구 제안</h2>
+    <p class="lead">요소 단위 검증이 끝났으니, 다음은 <b>실제 건물</b>입니다. 한국건축구조기술사회와 함께하고자 합니다.</p>
+  </header>
+  <div class="body">
+    <div class="grid g2">
+      <div class="card">
+        <h3>1차 연구 — 구조형식별 실건물</h3>
+        <ul class="bul" style="margin-top:.6em;--li:1">
+          <li><b>내력벽식 공동주택</b><span class="sub">전이층 포함 · 파일기초 / 온통기초 &nbsp;— 한울구조</span></li>
+          <li><b>건물골조 (학교 건축물)</b><span class="sub">독립기초 &nbsp;— 동양구조</span></li>
+          <li><b>강구조 공장</b><span class="sub">— 한구조</span></li>
+          <li><b>소형 건축물</b><span class="sub">— 정담구조</span></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>2차 연구 — 성능 영역</h3>
+        <ul class="bul" style="margin-top:.6em;--li:1">
+          <li><b>기존 건축물 내진성능평가 (학교)</b><span class="sub">— TI</span></li>
+          <li><b>성능기반설계</b><span class="sub">— 한울구조</span></li>
+        </ul>
+        <p style="margin-top:calc(var(--u)*1.2);color:var(--dim);font-size:calc(var(--u)*1.3)">
+          1차가 <b style="color:#fff">일반 구조설계</b>의 정합성을 본다면,
+          2차는 <b style="color:#fff">비선형 · 성능 영역</b>을 봅니다.
+        </p>
+      </div>
+    </div>
+    <figure class="slot" data-slim data-slot="s18_partners" data-kind="user" data-w="1600" data-h="240"
+            style="margin-top:calc(var(--u)*1.2);flex:none">
+      <img src="assets/user/s18_partners.png" alt=""
+           style="height:calc(var(--u)*4.5);object-fit:contain">
+    </figure>
+  </div>
+  <div class="foot"><span class="fnote">※ 2차 연구는 STRIX가 가장 자신 있는 영역이자, 가장 엄밀한 확인이 필요한 영역입니다.</span><span class="pgnum"></span></div>
+</section>
+<!-- ═══════════════════════ /S18 ═══════════════════════ -->
+
+
+<!-- ═══════════════════════ S19 · Step3·4 ═══════════════════════ -->
+<section class="slide" id="s19" data-title="Step 3 · 4">
+  <header>
+    <div class="kicker">Step 3 · 4</div>
+    <h2 class="title">AI와 보고서도 검증 대상입니다</h2>
+  </header>
+  <div class="body">
+    <div class="grid g-2-3" style="height:100%">
+      <figure class="slot" data-slot="s19_ai_prompt" data-kind="auto" data-w="1200" data-h="900">
+        <img src="assets/auto/s19_ai_prompt.png" alt="">
+        <figcaption><span class="mi">Node/Element ▸ AI Prompt</span></figcaption>
+      </figure>
+      <div>
+        <ul class="bul">
+          <li><b>Step 3 — AI Prompt 검증</b>
+            <span class="sub">AI는 편리하지만, 틀릴 수 있습니다. 그래서 AI가 만든 모델과 AI가 읽은 결과를
+              <b>사람이 만든 기준 답</b>과 대조하는 절차를 따로 둡니다.
+              편리함을 이유로 검증을 건너뛰지 않는다는 원칙입니다.</span></li>
+          <li><b>Step 4 — 보고서 자동화 내용 검토</b>
+            <span class="sub">자동 생성되는 구조계산서가 <b>기준 조항을 올바르게 인용하는지</b>,
+              중간 계산 과정이 검토자가 따라갈 수 있게 제시되는지를 확인합니다.
+              계산서는 결과만 맞으면 되는 문서가 아니라 <b>남이 검토할 수 있어야 하는 문서</b>이기 때문입니다.</span></li>
+        </ul>
+        <div class="split-note">
+          AI는 <b>입력을 빠르게 만들고 결과를 먼저 읽어 주는 역할</b>입니다.
+          최종 판단과 책임은 구조기술자에게 있고, 그 판단을 도우려면
+          AI의 출력 역시 확인 가능해야 합니다.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="fnote"></span><span class="pgnum"></span></div>
+</section>
+<!-- ═══════════════════════ /S19 ═══════════════════════ -->
+
+
+<!-- ═══════════════════════ S20 · 기능① 모델링 ═══════════════════════ -->
+<section class="slide" id="s20" data-title="기능 ① 모델링 생산성">
+  <header>
+    <div class="kicker">Features ①</div>
+    <h2 class="title">모델링 — 손이 덜 가게</h2>
+  </header>
+  <div class="body">
+    <div class="grid g-3-2" style="height:100%">
+      <div>
+        <ul class="bul">
+          <li><span class="mi">AI Modeling</span> <span class="mi">AI Prompt</span>
+            <span class="sub">자연어로 구조 형상·부재를 지시하면 모델을 생성하거나 수정합니다.</span></li>
+          <li><span class="mi">APT auto</span>
+            <span class="sub">공동주택 평면의 반복 구조를 자동으로 전개합니다.</span></li>
+          <li><span class="mi">Import Midas</span>
+            <span class="sub">기존 자산을 버리지 않습니다. 사용하던 모델을 가져옵니다.</span></li>
+          <li><span class="mi">Wall-Type Slab</span> <span class="mi">Slab to Wall</span>
+            <span class="sub">벽식 구조에서 슬래브와 벽의 하중 전달을 실무 방식대로 처리합니다.</span></li>
+          <li><span class="mi">Story Copy</span> <span class="mi">Towers</span> <span class="mi">Tower Zones</span>
+            <span class="sub">층 반복 생성, 그리고 <b>멀티타워 단지</b>를 한 모델에서 다룹니다.</span></li>
+          <li><span class="mi">Find Duplicates</span> <span class="mi">Find Orphans</span> <span class="mi">Purge Nodes</span>
+            <span class="sub">중복·고아 절점을 찾아 정리합니다. 해석 전에 모델을 깨끗하게 만듭니다.</span></li>
+        </ul>
+      </div>
+      <div style="display:grid;gap:calc(var(--u)*1.4);grid-template-rows:1fr 1fr">
+        <figure class="slot" data-slot="s20_ai_modeling" data-kind="auto" data-w="1100" data-h="750">
+          <img src="assets/auto/s20_ai_modeling.png" alt="">
+          <figcaption><span class="mi">AI Modeling</span></figcaption>
+        </figure>
+        <figure class="slot" data-slot="s20_apt_auto" data-kind="auto" data-w="1100" data-h="750">
+          <img src="assets/auto/s20_apt_auto.png" alt="">
+          <figcaption><span class="mi">APT auto</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="fnote"></span><span class="pgnum"></span></div>
+</section>
+<!-- ═══════════════════════ /S20 ═══════════════════════ -->
+
+
+<!-- ═══════════════════════ S21 · 기능② 해석·결과 ═══════════════════════ -->
+<section class="slide" id="s21" data-title="기능 ② 해석 · 결과 검토">
+  <header>
+    <div class="kicker">Features ②</div>
+    <h2 class="title">해석 — 돌리기 전에 확인하고, 돌린 뒤에 검토하게</h2>
+  </header>
+  <div class="body">
+    <div class="grid g-3-2" style="height:100%">
+      <div>
+        <ul class="bul">
+          <li><span class="mi">Model Check</span>
+            <span class="sub">해석 전에 모델의 결함을 먼저 찾습니다. 잘못된 모델로 돌린 결과만큼 위험한 것이 없습니다.</span></li>
+          <li><span class="mi">Analysis Ctrl</span> <span class="mi">Eigenvalue</span> <span class="mi">P-Delta</span>
+            <span class="sub">해석 제어, 고유치 해석, 2차 효과. 주축(<span class="mi">Principal Axis</span>)이 회전한 건물도 다룹니다.</span></li>
+          <li><span class="mi">Plate Results</span>
+            <span class="sub">슬래브·매트 판요소 결과를 컨투어로 검토합니다.</span></li>
+          <li><span class="mi">Scaleup Fac.</span> <span class="mi">Lateral Force Check</span>
+            <span class="sub">밑면전단 보정계수, 그리고 <b>풍하중과 지진하중 중 무엇이 지배하는지</b>를 한 화면에서 판정합니다.</span></li>
+          <li><span class="mi">AI Stable Chk</span>
+            <span class="sub">해석 결과의 이상 징후(비정상 변위·반력·모드)를 AI가 먼저 짚어 줍니다.</span></li>
+          <li><span class="mi">Tower Results</span> <span class="mi">Result Tables</span>
+            <span class="sub">타워별 결과 분리, 표 형태의 전체 결과 조회.</span></li>
+        </ul>
+      </div>
+      <div style="display:grid;gap:calc(var(--u)*1.4);grid-template-rows:1fr 1fr">
+        <figure class="slot" data-slot="s21_model_check" data-kind="auto" data-w="1100" data-h="750">
+          <img src="assets/auto/s21_model_check.png" alt="">
+          <figcaption><span class="mi">Analysis ▸ Model Check</span></figcaption>
+        </figure>
+        <figure class="slot" data-slot="s21_results" data-kind="user" data-w="1100" data-h="750">
+          <img src="assets/user/s21_results.png" alt="">
+          <figcaption>결과 검토 화면</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="fnote"></span><span class="pgnum"></span></div>
+</section>
+<!-- ═══════════════════════ /S21 ═══════════════════════ -->
+
+
+<!-- ═══════════════════════ S22 · 기능③ 설계 ═══════════════════════ -->
+<section class="slide" id="s22" data-title="기능 ③ 설계 자동화">
+  <header>
+    <div class="kicker">Features ③</div>
+    <h2 class="title">설계 — 해석에서 배근까지 끊기지 않게</h2>
+  </header>
+  <div class="body">
+    <div class="grid g-3-2" style="height:100%">
+      <div>
+        <ul class="bul">
+          <li><span class="mi">Concrete</span> <span class="mi">Steel</span>
+            <span class="sub">RC · 강구조 부재 설계와 검토. 단면 최적화(Section Optimization)까지 이어집니다.</span></li>
+          <li><span class="mi">Wall Mark</span>
+            <span class="sub">벽체를 부호 단위로 관리해 설계·배근·일람표를 일관되게 만듭니다.</span></li>
+          <li><span class="mi">Slab Design</span>
+            <span class="sub">슬래브 설계와 부호 관리.</span></li>
+          <li><span class="mi">Footing Design ▸ Isolated Footing</span> <span class="mi">Mat Foundation</span> <span class="mi">Pile Foundation</span>
+            <span class="sub">독립기초 · 매트기초 · 파일기초를 각각 다룹니다.</span></li>
+          <li><span class="mi">Safety Review</span>
+            <span class="sub">설계 마지막 단계. 부재별 <b>안전율(DCR)을 모델 전체에 색으로 표시</b>해
+              어디가 위험한지를 한눈에 봅니다.</span></li>
+        </ul>
+      </div>
+      <div style="display:grid;gap:calc(var(--u)*1.4);grid-template-rows:1fr 1fr">
+        <figure class="slot" data-slot="s22_wall_mark" data-kind="auto" data-w="1100" data-h="750">
+          <img src="assets/auto/s22_wall_mark.png" alt="">
+          <figcaption><span class="mi">Design ▸ Wall Mark</span></figcaption>
+        </figure>
+        <figure class="slot" data-slot="s22_safety_review" data-kind="user" data-w="1100" data-h="750">
+          <img src="assets/user/s22_safety_review.png" alt="">
+          <figcaption><span class="mi">Safety Review</span> — DCR 컨투어</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="fnote"></span><span class="pgnum"></span></div>
+</section>
+<!-- ═══════════════════════ /S22 ═══════════════════════ -->
+
+
+<!-- ═══════════════════════ S23 · 기능④ 내진·PBD ═══════════════════════ -->
+<section class="slide" id="s23" data-title="기능 ④ 내진성능평가 · 성능기반설계">
+  <header>
+    <div class="kicker">Features ④</div>
+    <h2 class="title">내진성능평가와 성능기반설계</h2>
+    <p class="lead">OpenSees를 엔진으로 선택한 이유가 가장 잘 드러나는 영역입니다.</p>
+  </header>
+  <div class="body">
+    <div class="grid g-3-2" style="height:100%">
+      <div>
+        <ul class="bul" style="--li:1">
+          <li><b>기존 건축물 내진성능평가</b>
+            <span class="sub"><span class="mi">Run Pre. Eval.</span> 예비평가 →
+              <span class="mi">Run m-Factor</span> 선형 m계수 평가 →
+              <span class="mi">Run Pushover</span> 비선형 정적해석.
+              <span class="mi">Performance Status</span> <span class="mi">Hinge Status</span>로 힌지 상태를 3D로 확인합니다.</span></li>
+          <li><b>성능기반설계 — 비선형 시간이력해석</b>
+            <span class="sub"><span class="mi">Load Cases &amp; Scaling</span>에서 지진파를 기준에 맞게 스케일링·스펙트럼 매칭하고,
+              <span class="mi">Run THA</span>로 해석합니다.</span></li>
+          <li><b>결과를 기준으로 판정</b>
+            <span class="sub">층간변위 · 층전단 · 힌지 이력곡선 · <b>전단벽 압축변형률·전단력 검토</b>까지 제공합니다.</span></li>
+          <li><span class="mi">Energy Balance</span>
+            <span class="sub">에너지 오차로 해석 신뢰도를 확인합니다. 비선형 해석은 <b>수렴했다고 맞는 것이 아니기</b> 때문입니다.</span></li>
+        </ul>
+      </div>
+      <div style="display:grid;gap:calc(var(--u)*1.4);grid-template-rows:1fr 1fr">
+        <figure class="slot" data-slot="s23_pushover" data-kind="auto" data-w="1100" data-h="750">
+          <img src="assets/auto/s23_pushover.png" alt="">
+          <figcaption><span class="mi">Pushover Curve</span></figcaption>
+        </figure>
+        <figure class="slot" data-slot="s23_tha_result" data-kind="user" data-w="1100" data-h="750">
+          <img src="assets/user/s23_tha_result.png" alt="">
+          <figcaption>THA 결과 화면</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="fnote"></span><span class="pgnum"></span></div>
+</section>
+<!-- ═══════════════════════ /S23 ═══════════════════════ -->
+
+
+<!-- ═══════════════════════ S24 · 기능⑤ 산출물 ═══════════════════════ -->
+<section class="slide" id="s24" data-title="기능 ⑤ 산출물 자동화">
+  <header>
+    <div class="kicker">Features ⑤</div>
+    <h2 class="title">해석이 끝이 아닙니다 — 내야 할 것까지</h2>
+  </header>
+  <div class="body">
+    <div class="grid g4" style="margin-bottom:calc(var(--u)*2)">
+      <div class="card">
+        <h3>구조계산서</h3>
+        <p><span class="mi">Structural Design Calculations</span><br>
+          해석·설계 결과를 계산서 형태로 자동 생성합니다.</p>
+      </div>
+      <div class="card">
+        <h3>부재 계산서</h3>
+        <p><span class="mi">DesignPad</span><br>
+          RC · 강구조 · PC/PSC 부재를 개별 계산하고,
+          모델에서 부재력을 가져와 일괄 검토합니다.</p>
+      </div>
+      <div class="card">
+        <h3>구조도면</h3>
+        <p><span class="mi">Structural Drawings</span><br>
+          구조평면도 · 배근도 · 일람표를 DXF로 반출합니다.</p>
+      </div>
+      <div class="card">
+        <h3>물량 산출</h3>
+        <p><span class="mi">Quantity Takeoff</span><br>
+          콘크리트 · 철근 · 거푸집 물량을 모델에서 직접 집계합니다.</p>
+      </div>
+    </div>
+    <div class="grid g-2-3" style="align-items:stretch">
+      <figure class="slot" data-slot="s24_designpad" data-kind="auto" data-w="1100" data-h="700">
+        <img src="assets/auto/s24_designpad.png" alt="">
+        <figcaption><span class="mi">DesignPad</span></figcaption>
+      </figure>
+      <figure class="slot" data-slot="s24_output" data-kind="user" data-w="1400" data-h="700">
+        <img src="assets/user/s24_output.png" alt="">
+        <figcaption>계산서 · 도면 · 물량 출력물</figcaption>
+      </figure>
+    </div>
+  </div>
+  <div class="foot"><span class="fnote"></span><span class="pgnum"></span></div>
+</section>
+<!-- ═══════════════════════ /S24 ═══════════════════════ -->
+
+
+<!-- ═══════════════════════ S25 · 맺음 ═══════════════════════ -->
+<section class="slide" id="s25" data-title="맺음 · 제안">
+  <header>
+    <div class="kicker">Closing</div>
+    <h2 class="title">제안드립니다</h2>
+  </header>
+  <div class="body">
+    <div class="grid g3" style="margin-bottom:calc(var(--u)*2.5)">
+      <div class="card">
+        <h3>지금까지</h3>
+        <p>요소 단위 검증을 <b>국제 벤치마크로 전건 통과</b>했습니다.
+           숫자와 원시 증거를 함께 공개합니다.</p>
+      </div>
+      <div class="card accent">
+        <h3>다음 단계</h3>
+        <p><b>구조형식별 예제 검증</b>을
+           한국건축구조기술사회와 함께 수행하고자 합니다.
+           1차 · 2차 연구로 나누어 제안드립니다.</p>
+      </div>
+      <div class="card">
+        <h3>그 이후</h3>
+        <p>AI 출력 검증과 보고서 자동화 검토까지 마쳐,
+           <b>실무에서 그대로 쓸 수 있는 도구</b>로 완성하겠습니다.</p>
+      </div>
+    </div>
+    <div style="text-align:center">
+      <div style="font-size:calc(var(--u)*2.6);color:#fff;font-weight:700;margin-bottom:calc(var(--u)*1.2)">
+        감사합니다
+      </div>
+      <div style="color:var(--dim);font-size:calc(var(--u)*1.5)" data-cfg="org"></div>
+      <div style="color:var(--accent);font-size:calc(var(--u)*1.5);margin-top:.3em" data-cfg-contact="1"></div>
+    </div>
+    <figure class="slot" data-slim data-slot="s25_contact" data-kind="user" data-w="600" data-h="600"
+            style="margin-top:calc(var(--u)*1.2);flex:none;align-items:center">
+      <img src="assets/user/s25_contact.png" alt=""
+           style="height:calc(var(--u)*7);width:auto;object-fit:contain">
+      <figcaption></figcaption>
+    </figure>
+  </div>
+  <div class="foot"><span class="fnote"></span><span class="pgnum"></span></div>
+</section>
+<!-- ═══════════════════════ /S25 ═══════════════════════ -->
+
+
+<!-- ═══════════════════════ 부록 표지 ═══════════════════════ -->
+<section class="slide apx-cover" id="apx" data-apx="1" data-title="부록 표지">
+  <header>
+    <div class="kicker">Appendix</div>
+  </header>
+  <div class="body" style="display:flex;flex-direction:column;justify-content:center;align-items:center">
+    <h2 class="title" style="text-align:center">부록 — 참고자료</h2>
+    <p style="color:var(--dim);font-size:calc(var(--u)*1.8);margin-top:calc(var(--u)*1.5);text-align:center">
+      검증 결과 전체 상세 · 전체 기능 목록<br>
+      <span style="color:var(--faint);font-size:.85em">발표 시에는 넘겨 주시고, 배포본에서 확인해 주십시오.</span>
+    </p>
+  </div>
+  <div class="foot"><span class="fnote"></span><span class="pgnum"></span></div>
+</section>
+<!-- ═══════════════════════ /부록 표지 ═══════════════════════ -->
+
+<!-- 부록 A(검증 상세)는 data/verification.js 에서 자동 생성되어 여기에 삽입됩니다 -->
+<div id="apxA-anchor"></div>
+
+<!-- ═══════════════════════ 부록 B · 메뉴 지도 ═══════════════════════ -->
+<section class="slide" id="apxB" data-apx="1" data-title="부록 B — 전체 메뉴 지도">
+  <header>
+    <div class="kicker">Appendix B · 1 / 3</div>
+    <h2 class="title">전체 메뉴 지도 — 모델링</h2>
+    <p class="lead">상단 리본 17개 탭 구성입니다. 명칭은 앱 화면 그대로입니다.</p>
+  </header>
+  <div class="body">
+    <div class="grid g3" style="gap:calc(var(--u)*1);font-size:calc(var(--u)*1.02)">
+      <div class="card" style="padding:calc(var(--u)*1)">
+        <h3 style="font-size:calc(var(--u)*1.25)">File</h3>
+        <p>New · Open · Save · Save As · Import DXF · <b>Import Midas</b> · Export · Settings</p>
+      </div>
+      <div class="card" style="padding:calc(var(--u)*1)">
+        <h3 style="font-size:calc(var(--u)*1.25)">View</h3>
+        <p>View Preset(ISO/Top/Front/Left/Right/Back) · Zoom All · Zoom Window · Model Only · Labels · Snap · Render Mode</p>
+      </div>
+      <div class="card" style="padding:calc(var(--u)*1)">
+        <h3 style="font-size:calc(var(--u)*1.25)">Structure</h3>
+        <p>Material · Section · Thickness · Sec. Stiff · Wall Stiff · Story · Diaphragm · Bldg. Control · Tower Zones · Towers · <b>APT auto</b> · Story Copy</p>
+      </div>
+      <div class="card" style="padding:calc(var(--u)*1)">
+        <h3 style="font-size:calc(var(--u)*1.25)">Node/Element</h3>
+        <p><b>AI Modeling</b> · <b>AI Prompt</b> · Add Node/Beam/Truss/Wall/Plate · Wall-Type Slab · Move/Copy · Extrude · Mirror · Rotate · Scale · Merge · Divide · Change Para. · Auto Wall ID · Find Duplicates · Find Orphans · Purge Nodes</p>
+      </div>
+      <div class="card" style="padding:calc(var(--u)*1)">
+        <h3 style="font-size:calc(var(--u)*1.25)">Boundary</h3>
+        <p>Support · Point Spring · Beam End Release · Rigid Link · Constraint · Elastic Link · Panel Zone · Diaphragm · Diaphragm Disconnect</p>
+      </div>
+      <div class="card" style="padding:calc(var(--u)*1)">
+        <h3 style="font-size:calc(var(--u)*1.25)">Load</h3>
+        <p>Load Case · Self Wt · Slab Load · Beam Load · Point Load · Loads to Masses · Body Force · <b>Wind Load</b> · Equiv. Static · Response Spectrum · RS Functions · RS Load Cases · Slab to Wall · Slab Pressure</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="fnote"></span><span class="pgnum"></span></div>
+</section>
+
+<section class="slide" id="apxB2" data-apx="1" data-title="부록 B — 전체 메뉴 지도 (2/3)">
+  <header>
+    <div class="kicker">Appendix B · 2 / 3</div>
+    <h2 class="title">전체 메뉴 지도 — 해석 · 설계</h2>
+  </header>
+  <div class="body">
+    <div class="grid g3" style="gap:calc(var(--u)*.85);font-size:calc(var(--u)*.9)">
+      <div class="card" style="padding:calc(var(--u)*1)">
+        <h3 style="font-size:calc(var(--u)*1.25)">Analysis</h3>
+        <p>Analysis Ctrl · P-Delta · Eigenvalue · <b>Model Check</b> · Run · Stop · TCL Preview</p>
+      </div>
+      <div class="card" style="padding:calc(var(--u)*1)">
+        <h3 style="font-size:calc(var(--u)*1.25)">Results</h3>
+        <p>Load Combo · <b>Scaleup Fac.</b> · Deformed · Reactions · Bending M · Shear V · Axial N · <b>Plate Results</b> · Result Tables · Eigenvalue Results · Mode Shape · <b>Lateral Force Check</b> · <b>Tower Results</b> · <b>AI Stable Chk</b> · <b>Structural Design Calculations</b></p>
+      </div>
+      <div class="card" style="padding:calc(var(--u)*1)">
+        <h3 style="font-size:calc(var(--u)*1.25)">Design</h3>
+        <p>Parameters · Concrete · Steel · SRC · <b>Wall Mark</b> · <b>Slab Design</b> · <b>Footing Design</b>(Isolated Footing / Mat Foundation / Pile Foundation)</p>
+      </div>
+      <div class="card" style="padding:calc(var(--u)*1)">
+        <h3 style="font-size:calc(var(--u)*1.25)">DesignPad</h3>
+        <p>RC · Steel · PC/PSC · Misc</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="fnote"></span><span class="pgnum"></span></div>
+</section>
+
+<section class="slide" id="apxB3" data-apx="1" data-title="부록 B — 전체 메뉴 지도 (3/3)">
+  <header>
+    <div class="kicker">Appendix B · 3 / 3</div>
+    <h2 class="title">전체 메뉴 지도 — 성능 · 산출물 · 도구</h2>
+  </header>
+  <div class="body">
+    <div class="grid g3" style="gap:calc(var(--u)*1);font-size:calc(var(--u)*1.02)">
+      <div class="card" style="padding:calc(var(--u)*1)">
+        <h3 style="font-size:calc(var(--u)*1.25)">Seismic / PBD</h3>
+        <p>Global Options · Material · Inelastic Hinge · Infill Define/Assign · Site &amp; Hazard · Member Classify · Irregularity Check · <b>Run Pre. Eval.</b> · Story Performance · <b>Run m-Factor</b> · Performance Status · Push. Load Case · <b>Run Pushover</b> · Pushover Curve · Hinge Status · <b>Load Cases &amp; Scaling</b> · <b>Run THA</b> · Energy Balance · Result Table</p>
+      </div>
+      <div class="card" style="padding:calc(var(--u)*1)">
+        <h3 style="font-size:calc(var(--u)*1.25)">Structural Drawings</h3>
+        <p>Structural Drawings(DXF) · <b>Quantity Takeoff</b></p>
+      </div>
+      <div class="card" style="padding:calc(var(--u)*1)">
+        <h3 style="font-size:calc(var(--u)*1.25)">Query</h3>
+        <p>Node Info · Elem Info · Distance · Angle</p>
+      </div>
+      <div class="card" style="padding:calc(var(--u)*1)">
+        <h3 style="font-size:calc(var(--u)*1.25)">Tools</h3>
+        <p>Capture · HotKey · Options · Script Runner</p>
+      </div>
+      <div class="card" style="padding:calc(var(--u)*1)">
+        <h3 style="font-size:calc(var(--u)*1.25)">Windows / Help</h3>
+        <p>Tree Menu · History / Help · About STRIX · Account</p>
+      </div>
+      <div class="card" style="padding:calc(var(--u)*1)">
+        <h3 style="font-size:calc(var(--u)*1.25)">Plugins</h3>
+        <p>Plugin Development · Plugin Install · Installed Plugins · Browse Marketplace · Plugin Settings</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span class="fnote"></span><span class="pgnum"></span></div>
+</section>
+<!-- ═══════════════════════ /부록 B ═══════════════════════ -->
+
+</div><!-- /#deck -->
+
+<!-- ── UI 크롬 ───────────────────────────────────────────────────────── -->
+<div id="bar"><div class="fill"></div></div>
+<div id="pg"></div>
+<div id="hint">← → · Enter · PageDown &nbsp;|&nbsp; O 개요 &nbsp;|&nbsp; F 전체화면 &nbsp;|&nbsp; B 암전</div>
+<div id="black"></div>
+<div id="ov"><h3>개요 — 클릭하면 해당 장으로 이동합니다</h3><div class="ovgrid"></div></div>
+
+<script>
+(function(){
+'use strict';
+
+var CFG  = window.__DECK_CONFIG__ || {};
+var DATA = window.__DECK_DATA__   || null;
+
+/* ══════════════════════════════════════════════════════════════════════
+   1. config.js 값을 화면에 채운다 (빈 값이면 그 줄을 제거)
+   ════════════════════════════════════════════════════════════════════ */
+function fillConfig(){
+  document.querySelectorAll('[data-cfg]').forEach(function(el){
+    var v = CFG[el.getAttribute('data-cfg')];
+    if(v === undefined || v === null || v === ''){ el.remove(); return; }
+    el.textContent = v;
+  });
+  document.querySelectorAll('[data-cfg-join]').forEach(function(el){
+    var parts = el.getAttribute('data-cfg-join').split(',')
+      .map(function(k){ return (CFG[k.trim()] || '').toString().trim(); })
+      .filter(Boolean);
+    if(!parts.length){ el.remove(); return; }
+    el.textContent = parts.join(' · ');
+  });
+  document.querySelectorAll('[data-cfg-contact]').forEach(function(el){
+    var c = CFG.contact || {};
+    var parts = [c.web, c.email, c.phone].filter(Boolean);
+    if(!parts.length){ el.remove(); return; }
+    el.textContent = parts.join('  ·  ');
+  });
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   2. 검증 데이터 주입 — 숫자는 절대 HTML 에 타이핑하지 않는다.
+      data/verification.js 가 없으면 자리표시로 대체하고 덱은 그대로 동작.
+   ════════════════════════════════════════════════════════════════════ */
+var STATIC_IDS  = ['SB1','SB2','SB3','SB5','SB6','SB7','SB8','SB9','SB10','SB12','PD1'];
+var DYNAMIC_IDS = ['SM5','SM5b','SM6','SR1','SR2','SR2b','SP1','SH1','TH1','P3S2'];
+
+function pct(v){
+  if(v === undefined || v === null || isNaN(v)) return '—';
+  var a = Math.abs(v);
+  if(a === 0)      return '0 %';
+  if(a < 0.001)    return '< 0.001 %';
+  if(a < 0.01)     return v.toFixed(4).replace(/0+$/,'').replace(/\.$/,'') + ' %';
+  if(a < 1)        return v.toFixed(3).replace(/0+$/,'').replace(/\.$/,'') + ' %';
+  return v.toFixed(2) + ' %';
+}
+function esc(s){
+  return String(s === undefined || s === null ? '' : s)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+function noData(msg){
+  return '<div class="ph" style="min-height:calc(var(--u)*24)">'
+       + '<div class="ph-id">검증 데이터 미주입</div>'
+       + '<div class="ph-k">' + esc(msg) + '</div>'
+       + '<div class="ph-how">frontend 에서 <code>npm run deck:build</code> 실행 시 자동 생성됩니다</div>'
+       + '</div>';
+}
+
+function summaryTable(ids){
+  var rows = ids.map(function(id){ return DATA.records[id]; }).filter(Boolean);
+  if(!rows.length) return noData('해당 구간 기록 없음');
+  var h = '<table><thead><tr>'
+        + '<th style="width:7%">ID</th>'
+        + '<th style="width:37%">검증 내용</th>'
+        + '<th style="width:26%">참조해 출처</th>'
+        + '<th style="width:10%">대조 항목</th>'
+        + '<th style="width:10%">최대 오차</th>'
+        + '<th style="width:10%">판정</th>'
+        + '</tr></thead><tbody>';
+  rows.forEach(function(r){
+    h += '<tr>'
+      +  '<td><span class="id">' + esc(r.id) + '</span></td>'
+      +  '<td class="l">' + esc(r.title) + '</td>'
+      +  '<td class="l"><span class="src">' + esc(r.sourceShort || '') + '</span></td>'
+      +  '<td>' + (r.count || 0) + '</td>'
+      +  '<td class="num-ok">' + pct(r.errorPct) + '</td>'
+      +  '<td><span class="tag pass">' + esc(r.verdict) + '</span></td>'
+      +  '</tr>';
+  });
+  h += '</tbody></table>';
+  return h;
+}
+
+function detailTable(id){
+  var r = DATA.records[id];
+  if(!r || !r.computed) return noData(id + ' 기록 없음');
+  var h = '<table><thead><tr>'
+        + '<th style="width:40%">대조 항목</th>'
+        + '<th style="width:18%">STRIX</th>'
+        + '<th style="width:18%">참조해</th>'
+        + '<th style="width:12%">오차</th>'
+        + '<th style="width:12%">판정</th>'
+        + '</tr></thead><tbody>';
+  r.computed.forEach(function(c){
+    h += '<tr>'
+      +  '<td class="l">' + esc(c.quantity) + (c.unit ? ' <span class="src">[' + esc(c.unit) + ']</span>' : '') + '</td>'
+      +  '<td>' + esc(c.strix) + '</td>'
+      +  '<td>' + esc(c.ref) + '</td>'
+      +  '<td class="num-ok">' + pct(c.diffPct) + '</td>'
+      +  '<td><span class="tag pass">' + esc(c.verdict) + '</span></td>'
+      +  '</tr>';
+  });
+  h += '</tbody></table>';
+  return h;
+}
+
+function fillData(){
+  /* 본문 인라인 숫자 바인딩 — data-bind="ID.field" 또는 "_.total" */
+  document.querySelectorAll('[data-bind]').forEach(function(el){
+    if(!DATA){ el.textContent = '—'; return; }
+    var p = el.getAttribute('data-bind').split('.');
+    var v;
+    if(p[0] === '_'){ v = DATA.summary ? DATA.summary[p[1]] : undefined; }
+    else{
+      var r = DATA.records[p[0]];
+      v = r ? r[p[1]] : undefined;
+      if(p[1] === 'errorPct' || p[1] === 'tolerancePct') v = pct(v);
+    }
+    el.textContent = (v === undefined || v === null) ? '—' : v;
+  });
+
+  /* 표 */
+  document.querySelectorAll('[data-vtable]').forEach(function(el){
+    if(!DATA){ el.innerHTML = noData('검증 기록 파일이 아직 생성되지 않았습니다'); return; }
+    var kind = el.getAttribute('data-vtable');
+    if(kind === 'static')       el.innerHTML = summaryTable(STATIC_IDS);
+    else if(kind === 'dynamic') el.innerHTML = summaryTable(DYNAMIC_IDS);
+    else if(kind === 'one')     el.innerHTML = detailTable(el.getAttribute('data-id'));
+  });
+
+  buildAppendixA();
+}
+
+/* 부록 A — record 전체 상세를 여러 장으로 자동 분할 */
+function buildAppendixA(){
+  var anchor = document.getElementById('apxA-anchor');
+  if(!anchor) return;
+  if(!DATA){
+    anchor.insertAdjacentHTML('beforebegin',
+      '<section class="slide" data-apx="1" data-title="부록 A — 검증 상세">'
+      + '<header><div class="kicker">Appendix A</div>'
+      + '<h2 class="title">검증 결과 전체 상세</h2></header>'
+      + '<div class="body">' + noData('검증 기록 파일이 아직 생성되지 않았습니다') + '</div>'
+      + '<div class="foot"><span class="fnote"></span><span class="pgnum"></span></div></section>');
+    return;
+  }
+
+  var ROWS_PER_PAGE = 22;
+  var order = STATIC_IDS.concat(DYNAMIC_IDS);
+  var pages = [], cur = [], curRows = 0;
+
+  order.forEach(function(id){
+    var r = DATA.records[id];
+    if(!r || !r.computed) return;
+    var need = r.computed.length + 1;             // 제목행 1 + 항목행
+    if(curRows + need > ROWS_PER_PAGE && cur.length){ pages.push(cur); cur = []; curRows = 0; }
+    cur.push(r); curRows += need;
+  });
+  if(cur.length) pages.push(cur);
+
+  pages.forEach(function(group, i){
+    var h = '<section class="slide" data-apx="1" data-title="부록 A — 검증 상세 ('
+          + (i+1) + '/' + pages.length + ')">'
+          + '<header><div class="kicker">Appendix A · ' + (i+1) + ' / ' + pages.length + '</div>'
+          + '<h2 class="title">검증 결과 전체 상세</h2></header>'
+          + '<div class="body">';
+    group.forEach(function(r){
+      h += '<div style="margin-bottom:calc(var(--u)*1.6)">'
+        +  '<div style="display:flex;align-items:baseline;gap:.8em;margin-bottom:.4em">'
+        +  '<span class="id" style="font-size:calc(var(--u)*1.5)">' + esc(r.id) + '</span>'
+        +  '<span style="color:#fff;font-size:calc(var(--u)*1.35)">' + esc(r.title) + '</span>'
+        +  '<span class="src" style="margin-left:auto">' + esc(r.sourceShort || '') + '</span>'
+        +  '</div>'
+        +  '<table style="font-size:calc(var(--u)*1.05)"><thead><tr>'
+        +  '<th style="width:40%">대조 항목</th><th style="width:18%">STRIX</th>'
+        +  '<th style="width:18%">참조해</th><th style="width:12%">오차</th><th style="width:12%">판정</th>'
+        +  '</tr></thead><tbody>';
+      r.computed.forEach(function(c){
+        h += '<tr><td class="l">' + esc(c.quantity)
+          +  (c.unit ? ' <span class="src">[' + esc(c.unit) + ']</span>' : '') + '</td>'
+          +  '<td>' + esc(c.strix) + '</td><td>' + esc(c.ref) + '</td>'
+          +  '<td class="num-ok">' + pct(c.diffPct) + '</td>'
+          +  '<td><span class="tag pass">' + esc(c.verdict) + '</span></td></tr>';
+      });
+      h += '</tbody></table></div>';
+    });
+    h += '</div><div class="foot"><span class="fnote"></span><span class="pgnum"></span></div></section>';
+    anchor.insertAdjacentHTML('beforebegin', h);
+  });
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   3. 이미지 슬롯 — 파일이 없으면 "여기에 넣으세요" 안내로 대체
+   ════════════════════════════════════════════════════════════════════ */
+function initSlots(){
+  document.querySelectorAll('figure.slot').forEach(function(fig){
+    var img  = fig.querySelector('img');
+    var id   = fig.getAttribute('data-slot') || '';
+    var kind = fig.getAttribute('data-kind') || 'user';
+    var w    = fig.getAttribute('data-w') || '1600';
+    var h    = fig.getAttribute('data-h') || '900';
+    if(!img) return;
+    img.addEventListener('error', function(){
+      var dir = (kind === 'auto') ? 'assets/auto/' : 'assets/user/';
+      var ph  = document.createElement('div');
+      ph.className = 'ph';
+      ph.innerHTML =
+          '<div class="ph-id">' + esc(id) + '.png</div>'
+        + '<div class="ph-k">' + (kind === 'auto' ? '자동 생성 이미지' : '직접 넣는 이미지')
+        + ' · 권장 ' + esc(w) + '×' + esc(h) + '</div>'
+        + '<div class="ph-how">' + esc(dir) + ' 폴더에 위 이름으로 저장하면 여기에 나타납니다</div>';
+      img.replaceWith(ph);
+    });
+    if(img.complete && img.naturalWidth === 0) img.dispatchEvent(new Event('error'));
+  });
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   3.5 자동 맞춤 — 내용이 한 장을 넘치면 그 장만 살짝 축소해 맞춘다.
+        (문구를 고치거나 이미지·표가 들어와 높이가 변해도 잘리지 않게 하는 안전장치)
+   ════════════════════════════════════════════════════════════════════ */
+var MIN_FIT = 0.72;   /* 이보다 작아져야 한다면 내용을 줄여야 한다는 뜻 */
+var CAN_ZOOM = (typeof CSS !== 'undefined' && CSS.supports && CSS.supports('zoom','0.9'));
+
+/* 내부 요소가 부모를 넘치는 경우까지 잡으려면 모든 자손의 상·하단을 봐야 한다 */
+function contentSpan(bd){
+  var top = Infinity, bot = -Infinity;
+  bd.querySelectorAll('*').forEach(function(e){
+    var r = e.getBoundingClientRect();
+    if(r.height > 4){ if(r.top < top) top = r.top; if(r.bottom > bot) bot = r.bottom; }
+  });
+  return (bot > top) ? (bot - top) : 0;
+}
+
+function fit(s){
+  var bd = s.querySelector('.body');
+  if(!bd) return;
+  if(CAN_ZOOM) bd.style.zoom = ''; else { bd.style.transform = ''; bd.style.transformOrigin = ''; }
+
+  /* ⚠ 반드시 zoom 을 뗀 상태에서 한 번에 계산한다.
+     zoom 을 걸고 다시 재면 clientHeight(요소 CSS px)와 rect(화면 px)의 기준이 어긋나
+     수렴하지 않는다. zoom 은 선형이므로 한 번 계산으로 충분하다.
+     ★ 패딩을 포함해서 비교해야 한다 — 자손 span 만 재면 패딩만큼 넘침을 과소평가한다. */
+  var cs   = getComputedStyle(bd);
+  var padT = parseFloat(cs.paddingTop)  || 0;
+  var padB = parseFloat(cs.paddingBottom) || 0;
+  var box  = bd.clientHeight;                       /* 본문 행 높이 */
+  var need = contentSpan(bd) + padT + padB;         /* 실제 필요한 높이 */
+  if(!box || !need || need <= box - 1) return;
+
+  var k = Math.max(MIN_FIT, (box - 1) / need);
+  if(CAN_ZOOM){ bd.style.zoom = k; }
+  else { bd.style.transform = 'scale(' + k + ')'; bd.style.transformOrigin = 'top center'; }
+}
+
+/* ⚠ 복원은 "원래 켜져 있던 장"을 그대로 되돌린다.
+   내부 인덱스(cur)를 기준으로 삼으면 DOM 과 어긋났을 때 두 장이 겹쳐 남는다. */
+function fitAll(){
+  var had = slides.map(function(s){ return s.classList.contains('on'); });
+  slides.forEach(function(s, i){ if(!had[i]) s.classList.add('on'); fit(s); });
+  slides.forEach(function(s, i){ if(!had[i]) s.classList.remove('on'); });
+}
+window.__deckFitAll = fitAll;   /* 검수 스크립트에서 호출 */
+window.__deckGo     = function(i){ go(i); };
+
+/* ══════════════════════════════════════════════════════════════════════
+   4. 슬라이드 넘김 — PPT 와 동일. 리모컨(PageUp/PageDown) 지원.
+   ════════════════════════════════════════════════════════════════════ */
+var slides = [], cur = 0, firstApx = -1;
+
+function indexSlides(){
+  slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  slides.forEach(function(s, i){
+    if(!s.id) s.id = 's_' + (i+1);
+    if(firstApx < 0 && s.hasAttribute('data-apx')) firstApx = i;
+    var foot = s.querySelector('.foot');
+    if(foot){
+      var right = foot.lastElementChild;
+      if(right) right.textContent = (i+1) + ' / ' + slides.length;
+      foot.setAttribute('data-pfoot', CFG.footer || '');
+    }
+  });
+}
+
+function go(i, push){
+  if(i < 0) i = 0;
+  if(i > slides.length - 1) i = slides.length - 1;
+  slides[cur].classList.remove('on');
+  cur = i;
+  slides[cur].classList.add('on');
+  slides[cur].scrollTop = 0;
+  fit(slides[cur]);
+
+  var frac = slides.length > 1 ? (cur / (slides.length - 1)) : 1;
+  document.querySelector('#bar .fill').style.width = (frac * 100) + '%';
+  document.getElementById('pg').textContent = (cur+1) + ' / ' + slides.length;
+  if(push !== false && slides[cur].id) history.replaceState(null, '', '#' + slides[cur].id);
+  updateOverviewCurrent();
+}
+function next(){ go(cur + 1); }
+function prev(){ go(cur - 1); }
+
+/* 진행바에 본편/부록 경계 표시 */
+function markAppendix(){
+  if(firstApx < 0 || slides.length < 2) return;
+  var m = document.createElement('div');
+  m.className = 'apxmark';
+  m.style.left = ((firstApx / (slides.length - 1)) * 100) + '%';
+  document.getElementById('bar').appendChild(m);
+}
+
+/* ── 개요(목차) ── */
+function buildOverview(){
+  var g = document.querySelector('#ov .ovgrid');
+  g.innerHTML = '';
+  var sepDone = false;
+  slides.forEach(function(s, i){
+    if(s.hasAttribute('data-apx') && !sepDone){
+      sepDone = true;
+      var sep = document.createElement('div');
+      sep.className = 'ovsep';
+      sep.textContent = '부록 — 참고자료';
+      g.appendChild(sep);
+    }
+    var c = document.createElement('div');
+    c.className = 'ovc' + (s.hasAttribute('data-apx') ? ' apx' : '');
+    c.setAttribute('data-i', i);
+    c.innerHTML = '<div class="n">' + (i+1) + '</div>'
+                + '<div class="t">' + esc(s.getAttribute('data-title') || s.id) + '</div>';
+    c.addEventListener('click', function(){
+      go(parseInt(c.getAttribute('data-i'), 10));
+      toggleOverview(false);
+    });
+    g.appendChild(c);
+  });
+}
+function updateOverviewCurrent(){
+  document.querySelectorAll('#ov .ovc').forEach(function(c){
+    c.classList.toggle('cur', parseInt(c.getAttribute('data-i'), 10) === cur);
+  });
+}
+function toggleOverview(on){
+  var ov = document.getElementById('ov');
+  if(on === undefined) on = !ov.classList.contains('on');
+  ov.classList.toggle('on', on);
+  if(on) updateOverviewCurrent();
+}
+
+/* ── 암전 ── */
+function toggleBlack(on){
+  var b = document.getElementById('black');
+  if(on === undefined) on = !b.classList.contains('on');
+  b.classList.toggle('on', on);
+}
+
+/* ── 키 · 클릭 ── */
+function initNav(){
+  document.addEventListener('keydown', function(e){
+    if(e.ctrlKey || e.altKey || e.metaKey) return;
+    var k = e.key;
+    var black = document.getElementById('black').classList.contains('on');
+    if(black){ toggleBlack(false); e.preventDefault(); return; }
+
+    if(k === 'ArrowRight' || k === 'ArrowDown' || k === ' ' || k === 'Enter' ||
+       k === 'PageDown'   || k === 'Spacebar'){ next(); e.preventDefault(); }
+    else if(k === 'ArrowLeft' || k === 'ArrowUp' || k === 'PageUp' ||
+            k === 'Backspace'){ prev(); e.preventDefault(); }
+    else if(k === 'Home'){ go(0); e.preventDefault(); }
+    else if(k === 'End'){ go(slides.length - 1); e.preventDefault(); }
+    else if(k === 'o' || k === 'O' || k === 'ㅐ'){ toggleOverview(); e.preventDefault(); }
+    else if(k === 'Escape'){ toggleOverview(); e.preventDefault(); }
+    else if(k === 'b' || k === 'B' || k === 'ㅠ'){ toggleBlack(); e.preventDefault(); }
+    else if(k === 'f' || k === 'F' || k === 'ㄹ'){
+      if(document.fullscreenElement) document.exitFullscreen();
+      else document.documentElement.requestFullscreen();
+      e.preventDefault();
+    }
+    else if(k === 'p' || k === 'P' || k === 'ㅔ'){ window.print(); e.preventDefault(); }
+  });
+
+  /* 화면 좌/우 절반 클릭으로 넘김 (개요·암전 중에는 제외) */
+  document.getElementById('deck').addEventListener('click', function(e){
+    if(document.getElementById('ov').classList.contains('on')) return;
+    if(e.target.closest('a,button,input,select,textarea')) return;
+    if(e.clientX < window.innerWidth * 0.35) prev(); else next();
+  });
+
+  /* 터치 스와이프 */
+  var tx = null;
+  document.addEventListener('touchstart', function(e){ tx = e.touches[0].clientX; }, {passive:true});
+  document.addEventListener('touchend', function(e){
+    if(tx === null) return;
+    var dx = e.changedTouches[0].clientX - tx; tx = null;
+    if(Math.abs(dx) > 60){ dx < 0 ? next() : prev(); }
+  }, {passive:true});
+
+  /* 창 크기가 바뀌면 현재 장을 다시 맞춘다 */
+  var rt = null;
+  window.addEventListener('resize', function(){
+    clearTimeout(rt);
+    rt = setTimeout(function(){ fit(slides[cur]); }, 150);
+  });
+
+  /* 인쇄는 모든 장이 동시에 보이므로 전부 미리 맞춰 둔다 */
+  window.addEventListener('beforeprint', fitAll);
+
+  /* 안내문은 8초 뒤 사라진다 */
+  setTimeout(function(){
+    var h = document.getElementById('hint');
+    if(h) h.style.opacity = '0';
+  }, 8000);
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   5. 시작
+   ════════════════════════════════════════════════════════════════════ */
+fillConfig();
+fillData();          /* 부록 A 슬라이드를 만들어 넣은 뒤에 */
+indexSlides();       /* 인덱싱해야 장수가 맞는다 */
+markAppendix();
+buildOverview();
+initSlots();
+initNav();
+
+var start = 0;
+if(location.hash){
+  var idx = slides.findIndex(function(s){ return '#' + s.id === location.hash; });
+  if(idx >= 0) start = idx;
+}
+slides[0].classList.add('on');   /* go() 가 이전 장을 지우므로 초기 1장 필요 */
+go(start, false);
+
+})();
+</script>
+</body>
+</html>
