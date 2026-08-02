@@ -80,7 +80,7 @@ window.__DECK__ = {
      "y": 228.1,
      "w": 1376,
      "h": 38.9,
-     "html": "<div class=\"ctag\">연구급 정확도를 실무의 손에</div>"
+     "html": "<div class=\"ctag\">구조엔지니어의 기술독립을 위해 만들었습니다.</div>"
     },
     {
      "id": "e2",
@@ -130,6 +130,76 @@ window.__DECK__ = {
    ]
   },
   {
+   "id": "s03",
+   "name": "왜 만들었나",
+   "els": [
+    {
+     "id": "e1",
+     "type": "text",
+     "x": 112,
+     "y": 73.6,
+     "w": 1376,
+     "h": 32.4,
+     "html": "<div class=\"kicker\">Motivation</div>"
+    },
+    {
+     "id": "e2",
+     "type": "text",
+     "x": 112,
+     "y": 120.4,
+     "w": 1376,
+     "h": 67.2,
+     "html": "<h2 class=\"title\">왜 만들었나?</h2>"
+    },
+    {
+     "id": "e3",
+     "type": "text",
+     "x": 112,
+     "y": 206,
+     "w": 1301,
+     "h": 45.4,
+     "html": "<p class=\"lead\">더이상 상용 구조해석 프로그램의 시장독점과 횡포에 휘둘리지 않고, 구조엔지니어에게 진정으로 필요한 기능이 원활히 구현되는 실무 구조엔지니어가 직접 만드는 프로그램을 만들고 싶었습니다.</p>"
+    },
+    {
+     "id": "e4",
+     "type": "text",
+     "x": 112,
+     "y": 352,
+     "w": 439.5,
+     "h": 262.6,
+     "html": "<div class=\"card\">\n        <h3>① 고가의 비용</h3>\n        <p>타사 해석 프로그램의 라이선스 초기 구입비와 고가의 유지관리 비용이 부담스럽고, 이를 우리가 통제할수 없습니다.</p>\n      </div>"
+    },
+    {
+     "id": "e5",
+     "type": "text",
+     "x": 580.3,
+     "y": 352.2,
+     "w": 439.5,
+     "h": 262.6,
+     "html": "<div class=\"card\">\n        <h3>② 시장횡포</h3>\n        <p>새로운 기능 추가시 별도의 모듈로 추가비용을 부담해야 하고, 유지관리 비용을 내지 않을 경우 업데이트 지원을 받을수 없는 부당함이 있었습니다.</p>\n      </div>"
+    },
+    {
+     "id": "e6",
+     "type": "text",
+     "x": 1048.5,
+     "y": 352.2,
+     "w": 439.5,
+     "h": 262.6,
+     "html": "<div class=\"card\">\n        <h3>③ 업데이트</h3>\n        <p>필요한 기능 요청시 기다리는 수밖에 없습니다.\n           새로운 재료모델·요소·해석기법을 실무에 적용하려면\n           공급사의 개발 계획에 의존해야 합니다.</p>\n      </div>"
+    },
+    {
+     "id": "e7",
+     "type": "text",
+     "x": 112,
+     "y": 640.4,
+     "w": 1376,
+     "h": 73.3,
+     "html": "<div class=\"split-note\">\n      세 문제의 뿌리는 하나입니다 — 실무경험이 있는&nbsp;<b>구조엔지니어가 직접 만드는 프로그램.</b>\n      그래서 STRIX는 <b>열려 있는 엔진</b>에서 시작했습니다.\n    </div>"
+    }
+   ],
+   "ch": "c1"
+  },
+  {
    "id": "s02",
    "name": "3분 요약",
    "els": [
@@ -149,7 +219,7 @@ window.__DECK__ = {
      "y": 120.4,
      "w": 1376,
      "h": 67.2,
-     "html": "<h2 class=\"title\">한 장으로 말하면</h2>"
+     "html": "<h2 class=\"title\">&nbsp;STRIX 개요</h2>"
     },
     {
      "id": "e3",
@@ -176,7 +246,7 @@ window.__DECK__ = {
      "y": 291.8,
      "w": 439.5,
      "h": 283.9,
-     "html": "<div class=\"card\">\n        <div class=\"num\">17</div>\n        <h3>실무 전 과정을 한 앱에</h3>\n        <p>모델링 · 해석 · 설계 · 내진성능평가 · 성능기반설계 ·\n           계산서 · 도면 · 물량까지 리본 17개 탭.</p>\n      </div>"
+     "html": "<div class=\"card\">\n        <div class=\"num\">All In One</div>\n        <h3>실무 전 과정을 한 앱에</h3>\n        <p>모델링 · 해석 · 설계 · 내진성능평가 · 성능기반설계 ·\n           계산서 · 도면 · 물량까지 All In One Solution</p>\n      </div>"
     },
     {
      "id": "e6",
@@ -185,77 +255,7 @@ window.__DECK__ = {
      "y": 601.3,
      "w": 1376,
      "h": 108.3,
-     "html": "<div class=\"split-note\">\n      <b>STRIX는 \"새로운 해석 엔진을 만들었다\"고 말하지 않습니다.</b>\n      전 세계 연구자가 30년간 검증해 온 OpenSees를 엔진으로 쓰고,\n      그 위에 <b>실무가 쓸 수 있는 전·후처리와 설계 자동화</b>를 얹었습니다.\n      그리고 그 결과가 맞는지를 <b>공개된 국제 검증예제로 스스로 증명</b>합니다.\n    </div>"
-    }
-   ],
-   "ch": "c1"
-  },
-  {
-   "id": "s03",
-   "name": "왜 만들었나",
-   "els": [
-    {
-     "id": "e1",
-     "type": "text",
-     "x": 112,
-     "y": 73.6,
-     "w": 1376,
-     "h": 32.4,
-     "html": "<div class=\"kicker\">Motivation</div>"
-    },
-    {
-     "id": "e2",
-     "type": "text",
-     "x": 112,
-     "y": 120.4,
-     "w": 1376,
-     "h": 67.2,
-     "html": "<h2 class=\"title\">왜 만들었나</h2>"
-    },
-    {
-     "id": "e3",
-     "type": "text",
-     "x": 112,
-     "y": 206.8,
-     "w": 1301,
-     "h": 45.4,
-     "html": "<p class=\"lead\">구조설계 실무자가 늘 안고 있던 세 가지 불편에서 출발했습니다.</p>"
-    },
-    {
-     "id": "e4",
-     "type": "text",
-     "x": 112,
-     "y": 352.2,
-     "w": 439.5,
-     "h": 262.6,
-     "html": "<div class=\"card\">\n        <h3>① 비용</h3>\n        <p>상용 해석 프로그램의 라이선스는 고가입니다.\n           신생 사무소·소규모 사무소일수록 진입 문턱이 높고,\n           기능별 모듈을 따로 사야 하는 구조입니다.</p>\n      </div>"
-    },
-    {
-     "id": "e5",
-     "type": "text",
-     "x": 580.3,
-     "y": 352.2,
-     "w": 439.5,
-     "h": 262.6,
-     "html": "<div class=\"card\">\n        <h3>② 검증</h3>\n        <p>해석 결과가 왜 그렇게 나왔는지 확인할 방법이 제한적입니다.\n           내부 계산 과정은 공개되지 않고, 사용자는 결과를 믿는 것 외에\n           선택지가 없습니다.</p>\n      </div>"
-    },
-    {
-     "id": "e6",
-     "type": "text",
-     "x": 1048.5,
-     "y": 352.2,
-     "w": 439.5,
-     "h": 262.6,
-     "html": "<div class=\"card\">\n        <h3>③ 종속</h3>\n        <p>필요한 기능이 없으면 기다리는 수밖에 없습니다.\n           새로운 재료모델·요소·해석기법을 실무에 적용하려면\n           공급사의 개발 계획에 의존해야 합니다.</p>\n      </div>"
-    },
-    {
-     "id": "e7",
-     "type": "text",
-     "x": 112,
-     "y": 640.4,
-     "w": 1376,
-     "h": 73.3,
-     "html": "<div class=\"split-note\">\n      세 문제의 뿌리는 하나입니다 — <b>해석 엔진이 닫혀 있다는 것.</b>\n      그래서 STRIX는 <b>열려 있는 엔진</b>에서 시작했습니다.\n    </div>"
+     "html": "<div class=\"split-note\">\n      <b>STRIX는 </b>전 세계 연구자가 30년간 검증해 온 <b style=\"background-color: rgb(22, 24, 28); font-size: 21.6px;\">OpenSees </b><span style=\"font-size: 21.6px;\">엔진을 사용하고,\n      그 위에 </span><b style=\"font-size: 21.6px;\">실무자의 전·후처리 입력과 설계 자동화</b><span style=\"font-size: 21.6px;\">를 구현했습니다.\n      그리고 그 결과가 맞는지를 </span><b style=\"font-size: 21.6px;\">공개된 국제 검증예제로 스스로 증명</b><span style=\"font-size: 21.6px;\">합니다.</span><b style=\"background-color: rgb(22, 24, 28); font-size: 21.6px;\"><br></b></div>"
     }
    ],
    "ch": "c1"
@@ -289,7 +289,7 @@ window.__DECK__ = {
      "y": 328,
      "w": 252.2,
      "h": 345.5,
-     "html": "<div class=\"card\">\n        <h3>Open-Source<br>Solver</h3>\n        <p>해석 엔진은 <b>OpenSees</b>.\n           전 세계가 검증해 온 오픈소스 코드를 그대로 씁니다.</p>\n      </div>"
+     "html": "<div class=\"card\">\n        <h3>Open-Source<br>Solver</h3>\n        <p>해석 엔진은 <b>OpenSees</b>.\n           전 세계가 검증해 온 오픈소스 코드를 사용합니다.</p>\n      </div>"
     },
     {
      "id": "e4",
@@ -316,7 +316,7 @@ window.__DECK__ = {
      "y": 328,
      "w": 252.2,
      "h": 345.5,
-     "html": "<div class=\"card\">\n        <h3>AI Prompt</h3>\n        <p>입력과 출력 양쪽에 AI.\n           모델을 만들고, 결과를 읽어 줍니다.</p>\n      </div>"
+     "html": "<div class=\"card\">\n        <h3>AI Prompt</h3>\n        <p>전처리와 후처리 양쪽에 AI를 활용해 모델을 만들고, 편집하고, 결과를 읽어 줍니다.</p>\n      </div>"
     },
     {
      "id": "e7",
@@ -329,51 +329,6 @@ window.__DECK__ = {
     }
    ],
    "ch": "c1"
-  },
-  {
-   "id": "s05",
-   "name": "상용 · OpenSees · STRIX 비교",
-   "els": [
-    {
-     "id": "e1",
-     "type": "text",
-     "x": 112,
-     "y": 73.6,
-     "w": 1376,
-     "h": 32.4,
-     "html": "<div class=\"kicker\">Positioning</div>"
-    },
-    {
-     "id": "e2",
-     "type": "text",
-     "x": 112,
-     "y": 120.4,
-     "w": 1376,
-     "h": 67.2,
-     "html": "<h2 class=\"title\">STRIX는 어디에 서 있나</h2>"
-    },
-    {
-     "id": "e3",
-     "type": "text",
-     "x": 112,
-     "y": 242.7,
-     "w": 1376,
-     "h": 382.1,
-     "html": "<table>\n      <thead>\n        <tr>\n          <th style=\"width:15%\">구분</th>\n          <th style=\"width:28%\">일반 상용 구조해석 프로그램</th>\n          <th style=\"width:28%\">OpenSees (원형)</th>\n          <th style=\"width:29%\">STRIX</th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr>\n          <td class=\"l\"><b>해석 엔진</b></td>\n          <td>자체 개발 · 비공개</td>\n          <td>오픈소스 · 공개</td>\n          <td>OpenSees <span class=\"src\">(공개 엔진 그대로)</span></td>\n        </tr>\n        <tr>\n          <td class=\"l\"><b>인터페이스</b></td>\n          <td>그래픽 기반 GUI</td>\n          <td>텍스트 · 코드 (Tcl / Python)</td>\n          <td>그래픽 기반 GUI <span class=\"src\">+ AI 입력</span></td>\n        </tr>\n        <tr>\n          <td class=\"l\"><b>주 사용처</b></td>\n          <td>실무 설계 · 안전진단</td>\n          <td>연구 · 고난도 비선형/지진해석</td>\n          <td><b>연구용 엔진을 실무 설계에</b></td>\n        </tr>\n        <tr>\n          <td class=\"l\"><b>기능 확장</b></td>\n          <td>제공되는 기능 범위 내</td>\n          <td>새 이론·재료를 직접 구현 가능</td>\n          <td>엔진 확장 가능 <span class=\"src\">(자체 요소·힌지 구현 사례 보유)</span></td>\n        </tr>\n        <tr>\n          <td class=\"l\"><b>결과 검증</b></td>\n          <td>공급사 검증서에 의존</td>\n          <td>사용자가 직접 수행</td>\n          <td><b>검증 결과·원시 증거 공개</b></td>\n        </tr>\n        <tr>\n          <td class=\"l\"><b>비용</b></td>\n          <td>고가 라이선스</td>\n          <td>무료 <span class=\"src\">(단, 사용 난도 높음)</span></td>\n          <td>저비용</td>\n        </tr>\n      </tbody>\n    </table>"
-    },
-    {
-     "id": "e4",
-     "type": "text",
-     "x": 112,
-     "y": 650.4,
-     "w": 1376,
-     "h": 108.3,
-     "html": "<div class=\"split-note\">\n      STRIX의 자리는 <b>OpenSees와 상용 프로그램 사이</b>입니다.\n      연구용 엔진의 정확도와 확장성은 그대로 두고, 실무가 요구하는 입력·검토·설계·산출물을 채웠습니다.\n    </div>"
-    }
-   ],
-   "note": "※ 비교 항목은 각 제품이 공개한 사실에 한정했습니다.",
-   "ch": "c1",
-   "toc": "상용 · OpenSees · STRIX 비교"
   },
   {
    "id": "s06",
@@ -458,7 +413,7 @@ window.__DECK__ = {
      "y": 120.4,
      "w": 1376,
      "h": 67.2,
-     "html": "<h2 class=\"title\">왜 이 엔진인가</h2>"
+     "html": "<h2 class=\"title\">왜 이 엔진인가?</h2>"
     },
     {
      "id": "e3",
@@ -498,120 +453,6 @@ window.__DECK__ = {
     }
    ],
    "ch": "c2"
-  },
-  {
-   "id": "s08",
-   "name": "OpenSees의 약점 = STRIX의 출발점",
-   "els": [
-    {
-     "id": "e1",
-     "type": "text",
-     "x": 112,
-     "y": 73.6,
-     "w": 1376,
-     "h": 32.4,
-     "html": "<div class=\"kicker\">The Gap</div>"
-    },
-    {
-     "id": "e2",
-     "type": "text",
-     "x": 112,
-     "y": 120.4,
-     "w": 1376,
-     "h": 67.2,
-     "html": "<h2 class=\"title\">그런데 왜 실무에서 안 쓰였나</h2>"
-    },
-    {
-     "id": "e3",
-     "type": "text",
-     "x": 112,
-     "y": 247.7,
-     "w": 673.6,
-     "h": 353.1,
-     "html": "<div class=\"card\" style=\"border-color:#4a3a3a;background:#241d1d\">\n        <h3>OpenSees의 약점 — GUI가 없다</h3>\n        <p>상용 프로그램처럼 마우스로 그리는 그래픽 인터페이스가\n           <b>기본적으로 존재하지 않습니다.</b> 사용자가 직접 텍스트 파일로\n           절점 · 요소 · 재료 · 하중을 정의하는 <b>명령어 스크립트를 작성</b>해야 합니다.</p>\n        <p>결과 확인도 마찬가지입니다. 그래서 별도의 전·후처리 도구를 함께 쓰는 것이\n           일반적이었고, 이 진입장벽이 <b>연구실과 실무 사이의 벽</b>이었습니다.</p>\n      </div>"
-    },
-    {
-     "id": "e4",
-     "type": "text",
-     "x": 814.4,
-     "y": 247.7,
-     "w": 673.6,
-     "h": 353.1,
-     "html": "<div class=\"card accent\">\n        <h3>STRIX가 채우는 자리</h3>\n        <p>사용자는 익숙한 화면에서 모델을 그립니다.\n           <b>OpenSees 입력 스크립트는 STRIX가 자동으로 생성</b>합니다.\n           해석이 끝나면 결과를 파싱해 표·그래프·컨투어·계산서로 되돌려 줍니다.</p>\n        <p>사용자는 OpenSees 문법을 몰라도 되고,\n           원하면 <span class=\"mi\">Analysis ▸ TCL Preview</span>로\n           <b>생성된 입력을 직접 확인</b>할 수도 있습니다.</p>\n      </div>"
-    },
-    {
-     "id": "e5",
-     "type": "text",
-     "x": 112,
-     "y": 632.8,
-     "w": 299,
-     "h": 121,
-     "html": "<div class=\"step\"><div class=\"t\">모델링</div><div class=\"d\">GUI · AI</div></div>",
-     "v": "mid"
-    },
-    {
-     "id": "e6",
-     "type": "text",
-     "x": 427,
-     "y": 632.8,
-     "w": 28,
-     "h": 121,
-     "html": "<div class=\"arr\">▶</div>",
-     "v": "mid"
-    },
-    {
-     "id": "e7",
-     "type": "text",
-     "x": 471,
-     "y": 632.8,
-     "w": 299,
-     "h": 121,
-     "html": "<div class=\"step hi\"><div class=\"t\">입력 자동 생성</div><div class=\"d\">STRIX → OpenSees 스크립트</div></div>",
-     "v": "mid"
-    },
-    {
-     "id": "e8",
-     "type": "text",
-     "x": 786,
-     "y": 632.8,
-     "w": 28,
-     "h": 121,
-     "html": "<div class=\"arr\">▶</div>",
-     "v": "mid"
-    },
-    {
-     "id": "e9",
-     "type": "text",
-     "x": 830,
-     "y": 632.8,
-     "w": 299,
-     "h": 121,
-     "html": "<div class=\"step\"><div class=\"t\">해석</div><div class=\"d\">OpenSees 엔진</div></div>",
-     "v": "mid"
-    },
-    {
-     "id": "e10",
-     "type": "text",
-     "x": 1145,
-     "y": 632.8,
-     "w": 28,
-     "h": 121,
-     "html": "<div class=\"arr\">▶</div>",
-     "v": "mid"
-    },
-    {
-     "id": "e11",
-     "type": "text",
-     "x": 1189,
-     "y": 632.8,
-     "w": 299,
-     "h": 121,
-     "html": "<div class=\"step hi\"><div class=\"t\">결과 해석</div><div class=\"d\">파싱 · 시각화 · 설계</div></div>",
-     "v": "mid"
-    }
-   ],
-   "ch": "c2",
-   "toc": "OpenSees 의 약점 = STRIX 의 출발점"
   },
   {
    "id": "s09",
@@ -709,9 +550,9 @@ window.__DECK__ = {
      "id": "e3",
      "type": "image",
      "x": 112,
-     "y": 216.3,
-     "w": 808.4,
-     "h": 568.9,
+     "y": 207,
+     "w": 809,
+     "h": 527,
      "slot": "s10_app_full",
      "kind": "user",
      "src": "",
@@ -754,7 +595,7 @@ window.__DECK__ = {
      "y": 120.4,
      "w": 1376,
      "h": 67.2,
-     "html": "<h2 class=\"title\">정확도를 어떻게 증명할 것인가</h2>"
+     "html": "<h2 class=\"title\">정확도를 어떻게 증명할 것인가?</h2>"
     },
     {
      "id": "e3",
@@ -772,7 +613,7 @@ window.__DECK__ = {
      "y": 355.9,
      "w": 327.2,
      "h": 255.3,
-     "html": "<div class=\"st now\">\n        <div class=\"n\">STEP 1 <span class=\"ko\">— 완료</span></div>\n        <h4>FEM 단위요소 검증</h4>\n        <p>보 · 셸 · 판 · 트러스 · 링크 등 <b>요소 단위</b>로\n           국제 벤치마크 및 고전 이론해와 대조.\n           <span class=\"tag pass\"><span data-bind=\"_.total\">21</span>건 전건 PASS</span></p>\n      </div>"
+     "html": "<div class=\"st now\">\n        <div class=\"n\">STEP 1 <span class=\"ko\">— 완료</span></div>\n        <h4>FEM 단위요소 검증</h4>\n        <p>보 · 셸 · 판 · 트러스 · 링크 등 <b>요소 단위</b>로\n           국제 벤치마크 및 고전 이론해와 대조.\n           <span class=\"tag pass\"><span data-bind=\"_.total\">21</span>건 전체 PASS</span></p>\n      </div>"
     },
     {
      "id": "e5",
@@ -1246,7 +1087,7 @@ window.__DECK__ = {
      "y": 277.3,
      "w": 675.9,
      "h": 393.8,
-     "html": "<div class=\"card\">\n        <h3>1차 연구 — 구조형식별 실건물</h3>\n        <ul class=\"bul\" style=\"--li: 1;\">\n          <li><b>내력벽식 공동주택</b><span class=\"sub\">전이층 포함 · 파일기초 / 온통기초 &nbsp;— 한울구조</span></li>\n          <li><b>건물골조 (학교 건축물)</b><span class=\"sub\">독립기초 &nbsp;— 동양구조</span></li>\n          <li><b>강구조 공장</b><span class=\"sub\">— 한구조</span></li>\n          <li><b>소형 건축물</b><span class=\"sub\">— 정담구조</span></li>\n        </ul>\n      </div>",
+     "html": "<div class=\"card\">\n        <h3>1차 연구 — 구조형식별 실건물</h3>\n        <ul class=\"bul\" style=\"--li: 1;\">\n          <li><b>내력벽식 공동주택</b><span class=\"sub\">전이층 포함 · 파일기초 / 온통기초</span></li>\n          <li><b>건물골조 (학교 건축물)</b><span class=\"sub\"><br></span></li>\n          <li><b>강구조 공장</b><span class=\"sub\"><br></span></li>\n          <li><b>소형 건축물</b><span class=\"sub\"><br></span></li>\n        </ul>\n      </div>",
      "k": 0.8432
     },
     {
@@ -1256,23 +1097,17 @@ window.__DECK__ = {
      "y": 277.3,
      "w": 675.9,
      "h": 393.8,
-     "html": "<div class=\"card\">\n        <h3>2차 연구 — 성능 영역</h3>\n        <ul class=\"bul\" style=\"--li: 1;\">\n          <li><b>기존 건축물 내진성능평가 (학교)</b><span class=\"sub\">— TI</span></li>\n          <li><b>성능기반설계</b><span class=\"sub\">— 한울구조</span></li>\n        </ul>\n        <p style=\"color: var(--dim); font-size: calc(var(--u)*1.3);\">\n          1차가 <b style=\"color:#fff\">일반 구조설계</b>의 정합성을 본다면,\n          2차는 <b style=\"color:#fff\">비선형 · 성능 영역</b>을 봅니다.\n        </p>\n      </div>",
+     "html": "<div class=\"card\">\n        <h3>2차 연구 — 성능 영역</h3>\n        <ul class=\"bul\" style=\"--li: 1;\">\n          <li><b>기존 건축물 내진성능평가 (학교)</b><span class=\"sub\"><br></span></li>\n          <li><b>성능기반설계</b><span class=\"sub\"><br></span></li>\n        </ul>\n        <p style=\"color: var(--dim); font-size: calc(var(--u)*1.3);\">\n          1차가 <b style=\"color:#fff\">일반 탄성해석</b>의 정합성을 본다면,\n          2차는 <b style=\"color:#fff\">비탄성해석의 영역</b>을 봅니다.\n        </p>\n      </div>",
      "k": 0.8432
     },
     {
      "id": "e6",
-     "type": "image",
+     "type": "text",
      "x": 112,
      "y": 687.2,
      "w": 1376,
      "h": 101.6,
-     "slot": "s18_partners",
-     "kind": "user",
-     "src": "",
-     "caption": "",
-     "fit": "contain",
-     "recW": "1600",
-     "recH": "240",
+     "html": "<div class=\"split-note\" style=\"display:flex;align-items:center;gap:calc(var(--u)*1.6);padding-top:0;padding-bottom:0\">\n        <span style=\"color:var(--accent);font-size:calc(var(--u)*1.05);font-weight:700;letter-spacing:.08em;white-space:nowrap\">공동 검증 파트너</span>\n        <span style=\"width:1px;height:42%;background:var(--line);flex:none\"></span>\n        <span style=\"display:flex;align-items:center;justify-content:space-between;flex:1;color:#fff;font-size:calc(var(--u)*1.55);font-weight:700;white-space:nowrap\">\n          <span>서울대학교</span><span style=\"color:var(--accent);font-size:.8em\">●</span><span>단국대학교</span><span style=\"color:var(--accent);font-size:.8em\">●</span><span>한국건축구조기술사회</span><span style=\"color:var(--accent);font-size:.8em\">●</span><span>LPK SOFT</span>\n        </span>\n      </div>",
      "k": 0.8432
     }
    ],
@@ -1306,9 +1141,9 @@ window.__DECK__ = {
      "id": "e3",
      "type": "image",
      "x": 112,
-     "y": 216.3,
-     "w": 538.9,
-     "h": 568.9,
+     "y": 106,
+     "w": 584,
+     "h": 716,
      "slot": "s19_ai_prompt",
      "kind": "auto",
      "src": "",
@@ -1321,7 +1156,7 @@ window.__DECK__ = {
     {
      "id": "e4",
      "type": "text",
-     "x": 679.6,
+     "x": 719.6,
      "y": 216.3,
      "w": 808.4,
      "h": 266,
@@ -1331,7 +1166,7 @@ window.__DECK__ = {
     {
      "id": "e5",
      "type": "text",
-     "x": 679.6,
+     "x": 719.6,
      "y": 507.8,
      "w": 808.4,
      "h": 108.1,
@@ -1377,10 +1212,10 @@ window.__DECK__ = {
     {
      "id": "e4",
      "type": "image",
-     "x": 949.1,
-     "y": 216.3,
-     "w": 538.9,
-     "h": 273.3,
+     "x": 1057,
+     "y": 216,
+     "w": 323,
+     "h": 274,
      "slot": "s20_ai_modeling",
      "kind": "auto",
      "src": "",

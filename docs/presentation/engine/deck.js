@@ -172,6 +172,9 @@ function vtableHtml(e) {
  *    반대로 하면 교체할 때마다 data/deck.js 의 src 를 손으로 고쳐야 하고, 그러다 빠뜨린다. */
 function imgSources(e) {
   var out = [];
+  /* 편집기에서 방금 고른 파일은 디스크 쓰기·브라우저 캐시와 무관하게 즉시 보여 준다.
+     _ 로 시작하는 필드는 저장 시 제거되므로 deck.js 에 blob URL 이 남지 않는다. */
+  if (e._previewSrc) out.push(e._previewSrc);
   if (e.slot) { out.push('assets/user/' + e.slot + '.png');
                 out.push('assets/user/' + e.slot + '.jpg'); }
   if (e.src)    out.push(e.src);

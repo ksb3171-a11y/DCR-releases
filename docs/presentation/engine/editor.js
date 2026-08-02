@@ -37,7 +37,8 @@ var ENABLED = (location.protocol === 'file:')
 var ED = {
   on: false, sel: [], text: null,
   undo: [], redo: [], dirty: false,
-  fileHandle: null, dirHandle: null,
+  fileHandle: null, fileHandleLoaded: false, saving: false,
+  dirHandle: null, dirHandleLoaded: false,
   drag: null,
 };
 
@@ -634,20 +635,74 @@ async function pickImage() {
       types: [{ description: '이미지', accept: { 'image/*': ['.png', '.jpg', '.jpeg'] } }],
     });
     var file = await picked[0].getFile();
-    if (!ED.dirHandle) {
-      toast('assets/user 폴더를 한 번만 지정해 주세요');
-      ED.dirHandle = await global.showDirectoryPicker({ mode: 'readwrite' });
-    }
-    var ext = /\.jpe?g$/i.test(file.name) ? 'jpg' : 'png';
-    var name = n._def.slot + '.' + ext;
-    var fh = await ED.dirHandle.getFileHandle(name, { create: true });
-    var w = await fh.createWritable();
-    await w.write(file); await w.close();
-    rerender([n.dataset.id]);
-    toast('저장했습니다 — assets/user/' + name);
+    await applyPickedImage(file, true);
   } catch (err) {
     if (err && err.name === 'AbortError') return;
     toast('넣지 못했습니다: ' + (err && err.message ? err.message : err));
+  }
+}
+
+/** 선택한 이미지를 먼저 화면에 반영하고, 그 다음 assets/user 에 영구 저장한다.
+ *  디스크 쓰기보다 미리보기를 먼저 하는 이유:
+ *    · 폴더 선택 창이 떠 있는 동안에도 사용자가 고른 그림을 바로 확인할 수 있다.
+ *    · 같은 URL의 과거 404/이미지가 캐시돼도 새 그림이 가려지지 않는다.
+ *  _previewSrc 는 dump()가 제거하므로 blob URL이 deck.js에 저장되지 않는다. */
+async function applyPickedImage(file, persist) {
+  var n = ED.sel[0];
+  if (!n || n._def.type !== 'image') { toast('이미지 요소를 선택하세요'); return false; }
+  var validType = file && /^image\/(png|jpe?g)$/i.test(file.type || '');
+  var validName = file && /\.(png|jpe?g)$/i.test(file.name || '');
+  if (!validType && !validName) {
+    toast('PNG 또는 JPG 이미지를 선택하세요'); return false;
+  }
+  var e = n._def, id = n.dataset.id;
+  if (!e.slot) { toast('먼저 이미지 슬롯 이름을 입력하세요'); return false; }
+
+  if (e._previewSrc) URL.revokeObjectURL(e._previewSrc);
+  e._previewSrc = URL.createObjectURL(file);
+  rerender([id]);
+  toast('이미지를 바로 반영했습니다');
+
+  if (persist === false) return true;                 /* 자동검수용: 파일 시스템은 건드리지 않는다 */
+  if (!global.showDirectoryPicker) {
+    toast('화면에는 반영했습니다 — 유지하려면 assets/user 폴더에 직접 저장하세요');
+    return true;
+  }
+  try {
+    var dir = await storedDirHandle();
+    if (!dir || !await directoryWritable(dir)) {
+      toast('최초 한 번만 assets/user 폴더를 선택하세요');
+      dir = await global.showDirectoryPicker({ mode: 'readwrite' });
+      if (dir && dir.name && dir.name.toLowerCase() !== 'user') {
+        toast('docs/presentation/assets/user 폴더를 선택해야 합니다');
+        return true;
+      }
+      if (!await directoryWritable(dir)) throw new Error('directory-write-permission-denied');
+      ED.dirHandle = dir;
+      ED.dirHandleLoaded = true;
+      await rememberDirHandle(dir);
+    }
+    var ext = /\.jpe?g$/i.test(file.name) ? 'jpg' : 'png';
+    var name = e.slot + '.' + ext;
+    var fh = await dir.getFileHandle(name, { create: true });
+    var w = await fh.createWritable();
+    await w.write(file); await w.close();
+    /* PNG가 JPG보다 먼저 탐색되므로 반대 확장자가 남으면 새 JPG를 가린다. */
+    var stale = e.slot + (ext === 'png' ? '.jpg' : '.png');
+    try {
+      if (dir.removeEntry) await dir.removeEntry(stale);
+    } catch (removeErr) {
+      if (!removeErr || removeErr.name !== 'NotFoundError') throw removeErr;
+    }
+    toast('바로 반영하고 저장했습니다 — assets/user/' + name);
+    return true;
+  } catch (err) {
+    if (err && err.name === 'AbortError') {
+      toast('화면에는 반영했습니다 — 폴더 저장은 취소했습니다');
+      return true;
+    }
+    toast('화면에는 반영했습니다 — 저장 실패: ' + (err && err.message ? err.message : err));
+    return true;
   }
 }
 
@@ -669,22 +724,136 @@ var HEADER =
 
 function fileText() { return HEADER + 'window.__DECK__ = ' + dump() + '\n'; }
 
+/* 브라우저는 로컬 파일을 페이지가 임의로 덮어쓰지 못하게 한다.
+   사용자가 최초 한 번 고른 deck.js 핸들을 IndexedDB에 보관하면, 다음 실행부터는
+   그 핸들의 쓰기 권한만 확인하고 같은 파일에 바로 저장할 수 있다. */
+var HANDLE_DB = 'strixdeck.files.v1';
+var HANDLE_STORE = 'handles';
+/* 발표 폴더를 복사해 새 덱을 만들었을 때 이전 폴더의 deck.js를 덮어쓰지 않도록
+   현재 index.html 경로별로 파일 핸들을 따로 기억한다. */
+var HANDLE_SCOPE = location.protocol + '//' + location.host + location.pathname;
+var HANDLE_KEY = 'deck.js|' + HANDLE_SCOPE;
+var DIR_HANDLE_KEY = 'assets/user|' + HANDLE_SCOPE;
+
+function handleDb() {
+  return new Promise(function (resolve, reject) {
+    if (!global.indexedDB) { reject(new Error('no-indexeddb')); return; }
+    var req = global.indexedDB.open(HANDLE_DB, 1);
+    req.onupgradeneeded = function () {
+      if (!req.result.objectStoreNames.contains(HANDLE_STORE)) req.result.createObjectStore(HANDLE_STORE);
+    };
+    req.onsuccess = function () { resolve(req.result); };
+    req.onerror = function () { reject(req.error || new Error('indexeddb-open')); };
+  });
+}
+
+async function storedFileHandle() {
+  if (ED.fileHandleLoaded) return ED.fileHandle;
+  ED.fileHandleLoaded = true;
+  try {
+    var db = await handleDb();
+    ED.fileHandle = await new Promise(function (resolve, reject) {
+      var req = db.transaction(HANDLE_STORE, 'readonly').objectStore(HANDLE_STORE).get(HANDLE_KEY);
+      req.onsuccess = function () { resolve(req.result || null); };
+      req.onerror = function () { reject(req.error); };
+    });
+    db.close();
+  } catch (err) { ED.fileHandle = null; }              /* IndexedDB 불가 환경은 세션 안에서만 기억 */
+  return ED.fileHandle;
+}
+
+async function storedDirHandle() {
+  if (ED.dirHandleLoaded) return ED.dirHandle;
+  ED.dirHandleLoaded = true;
+  try {
+    var db = await handleDb();
+    ED.dirHandle = await new Promise(function (resolve, reject) {
+      var req = db.transaction(HANDLE_STORE, 'readonly').objectStore(HANDLE_STORE).get(DIR_HANDLE_KEY);
+      req.onsuccess = function () { resolve(req.result || null); };
+      req.onerror = function () { reject(req.error); };
+    });
+    db.close();
+  } catch (err) { ED.dirHandle = null; }
+  return ED.dirHandle;
+}
+
+async function rememberFileHandle(handle) {
+  try {
+    var db = await handleDb();
+    await new Promise(function (resolve, reject) {
+      var req = db.transaction(HANDLE_STORE, 'readwrite').objectStore(HANDLE_STORE).put(handle, HANDLE_KEY);
+      req.onsuccess = function () { resolve(); };
+      req.onerror = function () { reject(req.error); };
+    });
+    db.close();
+  } catch (err) { /* 핸들 구조화 복제가 안 되는 환경에서도 현재 세션 저장은 계속한다 */ }
+}
+
+async function rememberDirHandle(handle) {
+  try {
+    var db = await handleDb();
+    await new Promise(function (resolve, reject) {
+      var req = db.transaction(HANDLE_STORE, 'readwrite').objectStore(HANDLE_STORE).put(handle, DIR_HANDLE_KEY);
+      req.onsuccess = function () { resolve(); };
+      req.onerror = function () { reject(req.error); };
+    });
+    db.close();
+  } catch (err) { /* 현재 세션에서는 ED.dirHandle 로 계속 사용한다 */ }
+}
+
+async function writePermission(handle) {
+  if (!handle) return false;
+  if (!handle.queryPermission) return true;
+  var opt = { mode: 'readwrite' };
+  if (await handle.queryPermission(opt) === 'granted') return true;
+  return !!handle.requestPermission && await handle.requestPermission(opt) === 'granted';
+}
+
+async function writable(handle) {
+  return !!handle && !!handle.createWritable && await writePermission(handle);
+}
+
+async function directoryWritable(handle) {
+  return !!handle && !!handle.getFileHandle && await writePermission(handle);
+}
+
+async function chooseDeckFile() {
+  toast('처음 한 번만 기존 data/deck.js를 선택하세요');
+  var types = [{ description: '발표 내용', accept: { 'text/javascript': ['.js'] } }];
+  var handle;
+  if (global.showOpenFilePicker) {
+    var picked = await global.showOpenFilePicker({ multiple: false, types: types });
+    handle = picked[0];
+  } else if (global.showSaveFilePicker) {
+    handle = await global.showSaveFilePicker({ suggestedName: 'deck.js', types: types });
+  } else throw new Error('no-picker');
+  if (handle && handle.name && handle.name.toLowerCase() !== 'deck.js') {
+    toast('data/deck.js 파일을 선택해야 합니다');
+    return null;
+  }
+  return handle;
+}
+
 async function save() {
+  if (ED.saving) { toast('저장 중입니다'); return; }
+  ED.saving = true;
   exitText();                    /* 고치던 글을 먼저 데이터에 반영하고 나서 쓴다 */
   var text = fileText();
   try {
-    if (!ED.fileHandle) {
-      if (!global.showSaveFilePicker) throw new Error('no-picker');
-      ED.fileHandle = await global.showSaveFilePicker({
-        suggestedName: 'deck.js',
-        types: [{ description: '발표 내용', accept: { 'text/javascript': ['.js'] } }],
-      });
+    var handle = await storedFileHandle();
+    if (!handle || !await writable(handle)) {
+      handle = await chooseDeckFile();
+      if (!handle) return;
+      if (!await writable(handle)) throw new Error('write-permission-denied');
+      ED.fileHandle = handle;
+      ED.fileHandleLoaded = true;
+      await rememberFileHandle(handle);
     }
-    var w = await ED.fileHandle.createWritable();
+    var w = await handle.createWritable();
     await w.write(text); await w.close();
     ED.dirty = false; localStorage.removeItem(DRAFT_KEY);
     setDirty(false);
-    toast('저장했습니다 — data/deck.js');
+    toast('기존 data/deck.js에 덮어썼습니다');
   } catch (err) {
     if (err && err.name === 'AbortError') return;
     var a = el('a');                                    /* 폴백 — 내려받아 직접 덮어쓰기 */
@@ -692,7 +861,7 @@ async function save() {
     a.download = 'deck.js'; a.click();
     setTimeout(function () { URL.revokeObjectURL(a.href); }, 4000);
     toast('내려받았습니다 — data/deck.js 에 덮어쓰세요');
-  }
+  } finally { ED.saving = false; }
 }
 
 /* ══════════════════════════════════════════════════════════════════════

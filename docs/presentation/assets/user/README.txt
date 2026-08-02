@@ -13,7 +13,6 @@
 │ s06_opensees.png      │ 6장 · OpenSees란       │ 1200 × 900  │ OpenSees / PEER 관련 이미지     │
 │ s10_app_full.png      │ 10장 · UI              │ 1920 × 1080 │ 앱 전체 화면 (덱의 대표 이미지) │
 │ s15_nafems_geom.png   │ 15장 · NAFEMS LE1      │ 1000 × 800  │ 벤치마크 형상·하중 그림         │
-│ s18_partners.png      │ 18장 · 공동연구        │ 1600 × 240  │ 참여 기관 로고 (가로로 나열)     │
 │ s21_results.png       │ 21장 · 해석·결과 검토   │ 1100 × 750  │ 결과 검토 화면                  │
 │ s22_safety_review.png │ 22장 · 설계 자동화      │ 1100 × 750  │ Safety Review — DCR 컨투어      │
 │ s23_tha_result.png    │ 23장 · 내진·성능기반    │ 1100 × 750  │ THA 결과 화면                   │
