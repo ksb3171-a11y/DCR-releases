@@ -544,23 +544,24 @@ window.__DECK__ = {
      "y": 120.4,
      "w": 1376,
      "h": 67.2,
-     "html": "<h2 class=\"title\">새로 배우지 않아도 되는 화면</h2>"
+     "html": "<h2 class=\"title\">사용자를 배려한 UI / 편리한 조작감</h2>"
     },
     {
      "id": "e3",
      "type": "image",
      "x": 112,
-     "y": 207,
+     "y": 216,
      "w": 809,
-     "h": 527,
+     "h": 585,
      "slot": "s10_app_full",
      "kind": "user",
      "src": "",
      "caption": "STRIX 작업 화면",
-     "fit": "contain",
+     "fit": "fill",
      "recW": "1920",
      "recH": "1080",
-     "k": 0.9978
+     "k": 0.9978,
+     "frame": "fixed"
     },
     {
      "id": "e4",
@@ -1114,68 +1115,6 @@ window.__DECK__ = {
    "note": "※ 2차 연구는 STRIX가 가장 자신 있는 영역이자, 가장 엄밀한 확인이 필요한 영역입니다.",
    "ch": "c3",
    "toc": "Step 2 — 구조형식별 검증"
-  },
-  {
-   "id": "s19",
-   "name": "Step 3 · 4",
-   "els": [
-    {
-     "id": "e1",
-     "type": "text",
-     "x": 112,
-     "y": 73.6,
-     "w": 1376,
-     "h": 32.4,
-     "html": "<div class=\"kicker\">Step 3 · 4</div>"
-    },
-    {
-     "id": "e2",
-     "type": "text",
-     "x": 112,
-     "y": 120.4,
-     "w": 1376,
-     "h": 67.2,
-     "html": "<h2 class=\"title\">AI와 보고서도 검증 대상입니다</h2>"
-    },
-    {
-     "id": "e3",
-     "type": "image",
-     "x": 112,
-     "y": 106,
-     "w": 584,
-     "h": 716,
-     "slot": "s19_ai_prompt",
-     "kind": "auto",
-     "src": "",
-     "caption": "<span class=\"mi\">Node/Element ▸ AI Prompt</span>",
-     "fit": "contain",
-     "recW": "1200",
-     "recH": "900",
-     "k": 0.9978
-    },
-    {
-     "id": "e4",
-     "type": "text",
-     "x": 719.6,
-     "y": 216.3,
-     "w": 808.4,
-     "h": 266,
-     "html": "<ul class=\"bul\">\n          <li><b>Step 3 — AI Prompt 검증</b>\n            <span class=\"sub\">AI는 편리하지만, 틀릴 수 있습니다. 그래서 AI가 만든 모델과 AI가 읽은 결과를\n              <b>사람이 만든 기준 답</b>과 대조하는 절차를 따로 둡니다.\n              편리함을 이유로 검증을 건너뛰지 않는다는 원칙입니다.</span></li>\n          <li><b>Step 4 — 보고서 자동화 내용 검토</b>\n            <span class=\"sub\">자동 생성되는 구조계산서가 <b>기준 조항을 올바르게 인용하는지</b>,\n              중간 계산 과정이 검토자가 따라갈 수 있게 제시되는지를 확인합니다.\n              계산서는 결과만 맞으면 되는 문서가 아니라 <b>남이 검토할 수 있어야 하는 문서</b>이기 때문입니다.</span></li>\n        </ul>",
-     "k": 0.9978
-    },
-    {
-     "id": "e5",
-     "type": "text",
-     "x": 719.6,
-     "y": 507.8,
-     "w": 808.4,
-     "h": 108.1,
-     "html": "<div class=\"split-note\">\n          AI는 <b>입력을 빠르게 만들고 결과를 먼저 읽어 주는 역할</b>입니다.\n          최종 판단과 책임은 구조기술자에게 있고, 그 판단을 도우려면\n          AI의 출력 역시 확인 가능해야 합니다.\n        </div>",
-     "k": 0.9978
-    }
-   ],
-   "ch": "c3",
-   "toc": "Step 3 · 4"
   },
   {
    "id": "s20",

@@ -343,7 +343,16 @@ function beginResize(ev, dir) {
   var n = ED.sel[0]; if (!n) return;
   var e = n._def;
   var start = toCanvas(ev);
-  var o = { x: e.x, y: e.y, w: e.w, h: e.h };
+  /* contain 이미지는 선언 영역(e.x/y/w/h) 안에서 실제 프레임이 더 작게 보일 수 있다.
+     사용자가 잡은 핸들과 계산 기준을 일치시키기 위해 화면에 보이는 프레임을 시작값으로 쓴다. */
+  function styleNum(prop, fallback) {
+    var v = parseFloat(n.style[prop]);
+    return isNaN(v) ? fallback : v;                       /* 0도 유효한 캔버스 좌표다 */
+  }
+  var o = (e.type === 'image') ? {
+    x: styleNum('left', e.x), y: styleNum('top', e.y),
+    w: styleNum('width', e.w), h: styleNum('height', e.h),
+  } : { x: e.x, y: e.y, w: e.w, h: e.h };
   var ratio = o.w / o.h;
   var tg = snapTargets([n]);
   var did = false;
@@ -352,7 +361,14 @@ function beginResize(ev, dir) {
       var p = toCanvas(e2);
       var dx = p.x - start.x, dy = p.y - start.y;
       if (!did && Math.abs(dx) + Math.abs(dy) < 1.5) return;
-      if (!did) { snap(); did = true; }
+      if (!did) {
+        snap();
+        if (e.type === 'image') {
+          e.x = o.x; e.y = o.y; e.w = o.w; e.h = o.h;
+          e.frame = 'fixed';                /* 이후 변 중앙 핸들의 자유 변형도 그대로 보존 */
+        }
+        did = true;
+      }
       var x = o.x, y = o.y, w = o.w, h = o.h, gx = [], gy = [];
 
       if (dir.indexOf('e') >= 0) w = o.w + dx;
@@ -366,13 +382,29 @@ function beginResize(ev, dir) {
         if (dir.indexOf('s') >= 0) { var s3 = nearest([y + h], tg.ys); if (s3) { h += s3.d; gy.push(s3.line); } }
         if (dir.indexOf('n') >= 0) { var s4 = nearest([y], tg.ys);     if (s4) { y += s4.d; h -= s4.d; gy.push(s4.line); } }
       }
-      if (e2.shiftKey && dir.length === 2) {               /* 모서리 + Shift = 비율 고정 */
-        if (Math.abs(w / ratio) > Math.abs(h)) h = w / ratio; else w = h * ratio;
+      /* 이미지는 모서리만 항상 현재 프레임 비율을 유지한다.
+         상하좌우 중앙 핸들은 폭·높이를 독립적으로 바꾸고,
+         이미지가 아닌 요소는 기존처럼 Shift+모서리일 때만 비율을 고정한다. */
+      var lockAspect = dir.length === 2 && (e.type === 'image' || e2.shiftKey);
+      if (lockAspect) {
+        var dw = Math.abs((w - o.w) / o.w), dh = Math.abs((h - o.h) / o.h);
+        if (dw >= dh) { h = w / ratio; gy = []; }
+        else          { w = h * ratio; gx = []; }
         if (dir.indexOf('w') >= 0) x = o.x + o.w - w;
         if (dir.indexOf('n') >= 0) y = o.y + o.h - h;
       }
-      if (w < MIN_SIZE) { if (dir.indexOf('w') >= 0) x -= (MIN_SIZE - w); w = MIN_SIZE; }
-      if (h < MIN_SIZE) { if (dir.indexOf('n') >= 0) y -= (MIN_SIZE - h); h = MIN_SIZE; }
+      if (lockAspect) {
+        /* 최소 크기에서도 비율이 깨지지 않게 두 축을 함께 제한한다. */
+        var minW = Math.max(MIN_SIZE, MIN_SIZE * ratio);
+        if (w < minW || h < MIN_SIZE) {
+          w = minW; h = w / ratio;
+          if (dir.indexOf('w') >= 0) x = o.x + o.w - w;
+          if (dir.indexOf('n') >= 0) y = o.y + o.h - h;
+        }
+      } else {
+        if (w < MIN_SIZE) { if (dir.indexOf('w') >= 0) x -= (MIN_SIZE - w); w = MIN_SIZE; }
+        if (h < MIN_SIZE) { if (dir.indexOf('n') >= 0) y -= (MIN_SIZE - h); h = MIN_SIZE; }
+      }
 
       e.x = Math.round(x); e.y = Math.round(y);
       e.w = Math.round(w); e.h = Math.round(h);
@@ -571,17 +603,14 @@ function alignSel(how) {
   ED.sel.forEach(function (n) { applyGeom(n, n._def); });
   refresh();
 }
-/** 이미지의 선언 상자를 화면에 보이는(그림에 맞춰진) 상자와 일치시킨다 */
-function bakeFrame() {
+/** 선언된 프레임은 그대로 두고, 그림을 프레임의 가로·세로에 정확히 맞춘다. */
+function fitImageToFrame() {
   var n = ED.sel[0]; if (!n || n._def.type !== 'image') { toast('이미지를 선택하세요'); return; }
   snap();
-  var e = n._def;
-  e.x = parseFloat(n.style.left) || e.x;
-  e.y = parseFloat(n.style.top) || e.y;
-  e.w = parseFloat(n.style.width) || e.w;
-  e.h = parseFloat(n.style.height) || e.h;
-  applyGeom(n, e); refresh();
-  toast('프레임을 그림에 맞췄습니다');
+  n._def.frame = 'fixed';
+  n._def.fit = 'fill';
+  rerender([n.dataset.id]);              /* data-fit과 고정 프레임을 함께 다시 그린다 */
+  toast('그림을 프레임에 맞췄습니다');
 }
 
 function slideOp(op) {
@@ -1144,7 +1173,7 @@ function renderInspector() {
         e.fit || 'contain', function (v) { commit(function () { e.fit = v; }); rerender(); }));
       var ir = el('div', 'btnrow');
       ir.appendChild(btn('그림 파일 넣기', 'assets/user 에 저장', pickImage));
-      ir.appendChild(btn('프레임을 그림에 맞춤', '선언 상자를 보이는 크기와 일치', bakeFrame));
+      ir.appendChild(btn('그림을 프레임에 맞춤', '현재 W×H 프레임 전체에 그림을 늘려 맞춤', fitImageToFrame));
       si.appendChild(ir);
       insp.appendChild(si);
     }
