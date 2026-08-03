@@ -161,7 +161,7 @@ window.__DECK__ = {
      "x": 112,
      "y": 206,
      "w": 1301,
-     "h": 96,
+     "h": 45.4,
      "html": "<p class=\"lead\">더이상 상용 구조해석 프로그램의 시장독점과 횡포에 휘둘리지 않고, 구조엔지니어에게 진정으로 필요한 기능이 원활히 구현되는 실무 구조엔지니어가 직접 만드는 프로그램을 만들고 싶었습니다.</p>"
     },
     {
@@ -454,76 +454,6 @@ window.__DECK__ = {
      "w": 1376,
      "h": 108.3,
      "html": "<div class=\"split-note\">\n      확장성은 문서상의 장점이 아닙니다 — STRIX는 실제로 이 프레임워크 위에\n      <b>자체 요소와 자체 힌지 모델을 구현해</b> 쓰고 있으며, 그 요소들도 검증 대상에 포함했습니다.\n    </div>"
-    }
-   ],
-   "ch": "c2"
-  },
-  {
-   "id": "s09",
-   "name": "아키텍처",
-   "els": [
-    {
-     "id": "e1",
-     "type": "text",
-     "x": 112,
-     "y": 73.6,
-     "w": 1376,
-     "h": 32.4,
-     "html": "<div class=\"kicker\">Architecture</div>"
-    },
-    {
-     "id": "e2",
-     "type": "text",
-     "x": 112,
-     "y": 120.4,
-     "w": 1376,
-     "h": 67.2,
-     "html": "<h2 class=\"title\">STRIX는 이렇게 동작합니다</h2>"
-    },
-    {
-     "id": "e3",
-     "type": "text",
-     "x": 112,
-     "y": 253.4,
-     "w": 322.4,
-     "h": 360.8,
-     "html": "<div class=\"card\">\n        <div class=\"num\" style=\"font-size:calc(var(--u)*1.6);color:var(--faint)\">01</div>\n        <h3>입력</h3>\n        <p>리본 UI · 3D 뷰포트 · 좌측 트리<br>\n           <span class=\"mi\">AI Modeling</span> <span class=\"mi\">AI Prompt</span><br>\n           <span class=\"mi\">Import Midas</span> DXF 임포트</p>\n      </div>"
-    },
-    {
-     "id": "e4",
-     "type": "text",
-     "x": 463.2,
-     "y": 253.4,
-     "w": 322.4,
-     "h": 360.8,
-     "html": "<div class=\"card accent\">\n        <div class=\"num\" style=\"font-size:calc(var(--u)*1.6)\">02</div>\n        <h3>입력 생성</h3>\n        <p>모델을 OpenSees가 이해하는 스크립트로 변환.\n           절점·요소·재료·경계·하중·해석제어 전부 자동 생성.</p>\n      </div>"
-    },
-    {
-     "id": "e5",
-     "type": "text",
-     "x": 814.4,
-     "y": 253.4,
-     "w": 322.4,
-     "h": 360.8,
-     "html": "<div class=\"card\">\n        <div class=\"num\" style=\"font-size:calc(var(--u)*1.6);color:var(--faint)\">03</div>\n        <h3>해석</h3>\n        <p>OpenSees 엔진 실행<br>\n           정적 · 고유치 · 응답스펙트럼 · P-Delta ·\n           Pushover · 시간이력(THA)</p>\n      </div>"
-    },
-    {
-     "id": "e6",
-     "type": "text",
-     "x": 1165.6,
-     "y": 253.4,
-     "w": 322.4,
-     "h": 360.8,
-     "html": "<div class=\"card\">\n        <div class=\"num\" style=\"font-size:calc(var(--u)*1.6);color:var(--faint)\">04</div>\n        <h3>후처리</h3>\n        <p>결과 파싱 → 부재력·변위·응력<br>\n           → RC/강구조 설계 · 성능평가<br>\n           → 계산서 · 도면 · 물량</p>\n      </div>"
-    },
-    {
-     "id": "e7",
-     "type": "text",
-     "x": 112,
-     "y": 639.8,
-     "w": 1376,
-     "h": 108.3,
-     "html": "<div class=\"split-note\">\n      중요한 것은 <b>②와 ④가 우리 코드라는 점</b>입니다.\n      해석의 정확도는 OpenSees가 책임지지만, <b>모델을 올바른 입력으로 옮겼는지</b>,\n      <b>결과를 올바르게 읽었는지</b>는 STRIX의 책임입니다.\n      그래서 검증도 <b>이 전 구간을 통째로</b> 돌려서 합니다. (다음 장)\n    </div>"
     }
    ],
    "ch": "c2"
@@ -1166,17 +1096,18 @@ window.__DECK__ = {
     {
      "id": "e5",
      "type": "image",
-     "x": 892,
+     "x": 894,
      "y": 272,
-     "w": 596,
-     "h": 508,
+     "w": 667,
+     "h": 396,
      "slot": "s41_01",
      "kind": "user",
      "src": "",
      "caption": "",
-     "fit": "contain",
+     "fit": "fill",
      "recW": "1400",
-     "recH": "1000"
+     "recH": "1000",
+     "frame": "fixed"
     }
    ]
   },
@@ -1226,17 +1157,18 @@ window.__DECK__ = {
     {
      "id": "e5",
      "type": "image",
-     "x": 892,
+     "x": 856,
      "y": 272,
-     "w": 596,
-     "h": 508,
+     "w": 718,
+     "h": 357,
      "slot": "s41_02",
      "kind": "user",
      "src": "",
      "caption": "",
-     "fit": "contain",
+     "fit": "fill",
      "recW": "1400",
-     "recH": "1000"
+     "recH": "1000",
+     "frame": "fixed"
     }
    ]
   },
@@ -1286,17 +1218,32 @@ window.__DECK__ = {
     {
      "id": "e5",
      "type": "image",
-     "x": 892,
-     "y": 272,
-     "w": 596,
-     "h": 508,
+     "x": 867,
+     "y": 258,
+     "w": 487,
+     "h": 313,
      "slot": "s41_03",
      "kind": "user",
      "src": "",
      "caption": "",
      "fit": "contain",
      "recW": "1400",
-     "recH": "1000"
+     "recH": "1000",
+     "frame": "fixed"
+    },
+    {
+     "id": "e6",
+     "x": 1120,
+     "y": 439,
+     "w": 406,
+     "h": 354,
+     "type": "image",
+     "kind": "user",
+     "src": "",
+     "fit": "fill",
+     "caption": "",
+     "slot": "s41_03_1",
+     "frame": "fixed"
     }
    ]
   },
@@ -1323,7 +1270,7 @@ window.__DECK__ = {
      "y": 120.4,
      "w": 1376,
      "h": 67.2,
-     "html": "<h2 class=\"title\">축력과 횡변위가 만드는 2차 효과까지</h2>"
+     "html": "<h2 class=\"title\">P-Delta 해석</h2>"
     },
     {
      "id": "e3",
@@ -1361,186 +1308,6 @@ window.__DECK__ = {
    ]
   },
   {
-   "id": "s41_05",
-   "name": "좌굴해석",
-   "toc": "좌굴해석",
-   "ch": "c4",
-   "grp": "g1",
-   "els": [
-    {
-     "id": "e1",
-     "type": "text",
-     "x": 112,
-     "y": 73.6,
-     "w": 1376,
-     "h": 32.4,
-     "html": "<div class=\"kicker\">주요 차별화 기능</div>"
-    },
-    {
-     "id": "e2",
-     "type": "text",
-     "x": 112,
-     "y": 120.4,
-     "w": 1376,
-     "h": 67.2,
-     "html": "<h2 class=\"title\">고유치 좌굴로 불안정 모드를 찾는다</h2>"
-    },
-    {
-     "id": "e3",
-     "type": "text",
-     "x": 112,
-     "y": 206.8,
-     "w": 1301,
-     "h": 45.4,
-     "html": "<p class=\"lead\">압축력이 지배하는 구조의 임계하중계수와 좌굴모드를 확인하는 기능을 지원할 예정입니다.</p>"
-    },
-    {
-     "id": "e4",
-     "type": "text",
-     "x": 112,
-     "y": 272,
-     "w": 744,
-     "h": 508,
-     "html": "<div class=\"fbody\"><ul class=\"bul\" style=\"--li:1\"><li><b>임계하중계수</b><span class=\"sub\">기준 하중패턴 대비 좌굴에 도달하는 배율을 계산하는 흐름을 제공합니다.</span></li><li><b>좌굴모드 시각화</b><span class=\"sub\">전체 구조 또는 특정 부재군의 불안정 형상을 뷰포트에서 확인하도록 구성합니다.</span></li><li><b>현재 상태</b><span class=\"sub\">본 발표에서는 로드맵 기능으로 구분하며 현재 해석 기능으로 오해되지 않게 표시합니다.</span></li></ul><div class=\"mpath\"><span class=\"lbl\">상태</span><span class=\"mi\">지원 예정</span></div></div>"
-    },
-    {
-     "id": "e5",
-     "type": "image",
-     "x": 892,
-     "y": 272,
-     "w": 596,
-     "h": 508,
-     "slot": "s41_05",
-     "kind": "user",
-     "src": "",
-     "caption": "",
-     "fit": "contain",
-     "recW": "1400",
-     "recH": "1000"
-    }
-   ]
-  },
-  {
-   "id": "s41_06",
-   "name": "시공단계 해석",
-   "toc": "시공단계 해석",
-   "ch": "c4",
-   "grp": "g1",
-   "els": [
-    {
-     "id": "e1",
-     "type": "text",
-     "x": 112,
-     "y": 73.6,
-     "w": 1376,
-     "h": 32.4,
-     "html": "<div class=\"kicker\">주요 차별화 기능</div>"
-    },
-    {
-     "id": "e2",
-     "type": "text",
-     "x": 112,
-     "y": 120.4,
-     "w": 1376,
-     "h": 67.2,
-     "html": "<h2 class=\"title\">완성된 구조가 아닌 만들어지는 과정을 해석</h2>"
-    },
-    {
-     "id": "e3",
-     "type": "text",
-     "x": 112,
-     "y": 206.8,
-     "w": 1301,
-     "h": 45.4,
-     "html": "<p class=\"lead\">부재 활성화, 하중 재하, 경계조건 변화를 단계별로 누적하는 해석 기능을 탑재할 예정입니다.</p>"
-    },
-    {
-     "id": "e4",
-     "type": "text",
-     "x": 112,
-     "y": 272,
-     "w": 744,
-     "h": 508,
-     "html": "<div class=\"fbody\"><ul class=\"bul\" style=\"--li:1\"><li><b>단계별 모델 변화</b><span class=\"sub\">층·부재·가설지지의 생성과 제거를 시공 순서에 맞춰 정의합니다.</span></li><li><b>누적 응답 추적</b><span class=\"sub\">단계별 변위와 부재력을 이어 받아 장기 누적 효과를 검토하는 흐름을 목표로 합니다.</span></li><li><b>현재 상태</b><span class=\"sub\">설계된 기능 범위를 소개하는 로드맵 항목이며 아직 일반 해석 메뉴에는 포함되지 않습니다.</span></li></ul><div class=\"mpath\"><span class=\"lbl\">상태</span><span class=\"mi\">탑재 예정</span></div></div>"
-    },
-    {
-     "id": "e5",
-     "type": "image",
-     "x": 892,
-     "y": 272,
-     "w": 596,
-     "h": 508,
-     "slot": "s41_06",
-     "kind": "user",
-     "src": "",
-     "caption": "",
-     "fit": "contain",
-     "recW": "1400",
-     "recH": "1000"
-    }
-   ]
-  },
-  {
-   "id": "s41_07",
-   "name": "수화열 해석",
-   "toc": "수화열 해석",
-   "ch": "c4",
-   "grp": "g1",
-   "els": [
-    {
-     "id": "e1",
-     "type": "text",
-     "x": 112,
-     "y": 73.6,
-     "w": 1376,
-     "h": 32.4,
-     "html": "<div class=\"kicker\">주요 차별화 기능</div>"
-    },
-    {
-     "id": "e2",
-     "type": "text",
-     "x": 112,
-     "y": 120.4,
-     "w": 1376,
-     "h": 67.2,
-     "html": "<h2 class=\"title\">초기재령 콘크리트의 온도와 균열 위험을 함께</h2>"
-    },
-    {
-     "id": "e3",
-     "type": "text",
-     "x": 112,
-     "y": 206.8,
-     "w": 1301,
-     "h": 45.4,
-     "html": "<p class=\"lead\">대형 매스콘크리트의 발열·방열과 온도응력을 시간에 따라 검토하는 기능을 탑재할 예정입니다.</p>"
-    },
-    {
-     "id": "e4",
-     "type": "text",
-     "x": 112,
-     "y": 272,
-     "w": 744,
-     "h": 508,
-     "html": "<div class=\"fbody\"><ul class=\"bul\" style=\"--li:1\"><li><b>온도장 해석</b><span class=\"sub\">타설 블록, 재료 발열 특성, 외기·양생 조건을 반영한 열전달 해석을 목표로 합니다.</span></li><li><b>구조 응력 연계</b><span class=\"sub\">온도차로 생기는 구속응력과 균열 위험을 구조 응답으로 연결할 계획입니다.</span></li><li><b>현재 상태</b><span class=\"sub\">향후 해석 모듈의 범위를 설명하는 항목으로 현재 지원 기능과 명확히 구분합니다.</span></li></ul><div class=\"mpath\"><span class=\"lbl\">상태</span><span class=\"mi\">탑재 예정</span></div></div>"
-    },
-    {
-     "id": "e5",
-     "type": "image",
-     "x": 892,
-     "y": 272,
-     "w": 596,
-     "h": 508,
-     "slot": "s41_07",
-     "kind": "user",
-     "src": "",
-     "caption": "",
-     "fit": "contain",
-     "recW": "1400",
-     "recH": "1000"
-    }
-   ]
-  },
-  {
    "id": "s41_08",
    "name": "판해석 (Slab · Mat · Pile)",
    "toc": "판해석 (Slab · Mat · Pile)",
@@ -1563,7 +1330,7 @@ window.__DECK__ = {
      "y": 120.4,
      "w": 1376,
      "h": 67.2,
-     "html": "<h2 class=\"title\">상부 슬래브부터 기초까지 판요소로 연결</h2>"
+     "html": "<h2 class=\"title\">판해석 (Slab, Mat, Pile기초)</h2>"
     },
     {
      "id": "e3",
@@ -1587,16 +1354,17 @@ window.__DECK__ = {
      "id": "e5",
      "type": "image",
      "x": 892,
-     "y": 272,
-     "w": 596,
-     "h": 508,
+     "y": 283,
+     "w": 643,
+     "h": 436,
      "slot": "s41_08",
      "kind": "user",
      "src": "",
      "caption": "",
-     "fit": "contain",
+     "fit": "fill",
      "recW": "1400",
-     "recH": "1000"
+     "recH": "1000",
+     "frame": "fixed"
     }
    ]
   },
@@ -1623,7 +1391,7 @@ window.__DECK__ = {
      "y": 120.4,
      "w": 1376,
      "h": 67.2,
-     "html": "<h2 class=\"title\">한 대지의 여러 동을 하나의 모델로</h2>"
+     "html": "<h2 class=\"title\">Multi Tower 해석</h2>"
     },
     {
      "id": "e3",
@@ -1646,17 +1414,18 @@ window.__DECK__ = {
     {
      "id": "e5",
      "type": "image",
-     "x": 892,
+     "x": 865,
      "y": 272,
-     "w": 596,
-     "h": 508,
+     "w": 675,
+     "h": 436,
      "slot": "s41_09",
      "kind": "user",
      "src": "",
      "caption": "",
-     "fit": "contain",
+     "fit": "fill",
      "recW": "1400",
-     "recH": "1000"
+     "recH": "1000",
+     "frame": "fixed"
     }
    ]
   },
@@ -1683,7 +1452,7 @@ window.__DECK__ = {
      "y": 120.4,
      "w": 1376,
      "h": 67.2,
-     "html": "<h2 class=\"title\">Pushover로 강도와 변형능력을 단계별 확인</h2>"
+     "html": "<h2 class=\"title\">Pushover Analysis</h2>"
     },
     {
      "id": "e3",
@@ -1706,17 +1475,18 @@ window.__DECK__ = {
     {
      "id": "e5",
      "type": "image",
-     "x": 892,
+     "x": 837,
      "y": 272,
-     "w": 596,
-     "h": 508,
+     "w": 697,
+     "h": 423,
      "slot": "s41_10",
      "kind": "user",
      "src": "",
      "caption": "",
-     "fit": "contain",
+     "fit": "fill",
      "recW": "1400",
-     "recH": "1000"
+     "recH": "1000",
+     "frame": "fixed"
     }
    ]
   },
@@ -1743,7 +1513,7 @@ window.__DECK__ = {
      "y": 120.4,
      "w": 1376,
      "h": 67.2,
-     "html": "<h2 class=\"title\">실제 지진파에 대한 시간별 비선형 응답</h2>"
+     "html": "<h2 class=\"title\">Time History Analysis</h2>"
     },
     {
      "id": "e3",
@@ -1767,16 +1537,17 @@ window.__DECK__ = {
      "id": "e5",
      "type": "image",
      "x": 892,
-     "y": 272,
-     "w": 596,
-     "h": 508,
+     "y": 284,
+     "w": 664,
+     "h": 443,
      "slot": "s41_11",
      "kind": "user",
      "src": "",
      "caption": "",
-     "fit": "contain",
+     "fit": "fill",
      "recW": "1400",
-     "recH": "1000"
+     "recH": "1000",
+     "frame": "fixed"
     }
    ]
   },
@@ -1803,7 +1574,7 @@ window.__DECK__ = {
      "y": 120.4,
      "w": 1376,
      "h": 67.2,
-     "html": "<h2 class=\"title\">부재 하나의 검토부터 모델 일괄 계산까지</h2>"
+     "html": "<h2 class=\"title\">DesignPad - 단위부재설계</h2>"
     },
     {
      "id": "e3",
@@ -1826,17 +1597,18 @@ window.__DECK__ = {
     {
      "id": "e5",
      "type": "image",
-     "x": 892,
+     "x": 856,
      "y": 272,
-     "w": 596,
-     "h": 508,
+     "w": 691,
+     "h": 448,
      "slot": "s41_12",
      "kind": "user",
      "src": "",
      "caption": "",
-     "fit": "contain",
+     "fit": "fill",
      "recW": "1400",
-     "recH": "1000"
+     "recH": "1000",
+     "frame": "fixed"
     }
    ]
   },
@@ -1863,7 +1635,7 @@ window.__DECK__ = {
      "y": 120.4,
      "w": 1376,
      "h": 67.2,
-     "html": "<h2 class=\"title\">해석 모델을 설명 가능한 건축 장면으로</h2>"
+     "html": "<h2 class=\"title\">건축투시도 / 드론 영상모드</h2>"
     },
     {
      "id": "e3",
@@ -1886,17 +1658,18 @@ window.__DECK__ = {
     {
      "id": "e5",
      "type": "image",
-     "x": 892,
-     "y": 272,
-     "w": 596,
-     "h": 508,
+     "x": 856,
+     "y": 286,
+     "w": 706,
+     "h": 396,
      "slot": "s41_13",
      "kind": "user",
      "src": "",
      "caption": "",
-     "fit": "contain",
+     "fit": "fill",
      "recW": "1400",
-     "recH": "1000"
+     "recH": "1000",
+     "frame": "fixed"
     }
    ]
   },
@@ -1946,17 +1719,18 @@ window.__DECK__ = {
     {
      "id": "e5",
      "type": "image",
-     "x": 892,
+     "x": 864,
      "y": 272,
-     "w": 596,
-     "h": 508,
+     "w": 678,
+     "h": 439,
      "slot": "s42_01",
      "kind": "user",
      "src": "",
      "caption": "",
-     "fit": "contain",
+     "fit": "fill",
      "recW": "1400",
-     "recH": "1000"
+     "recH": "1000",
+     "frame": "fixed"
     }
    ]
   },
@@ -1983,7 +1757,7 @@ window.__DECK__ = {
      "y": 120.4,
      "w": 1376,
      "h": 67.2,
-     "html": "<h2 class=\"title\">우상단에서 원하는 시점을 즉시 선택</h2>"
+     "html": "<h2 class=\"title\">View Widget 지원</h2>"
     },
     {
      "id": "e3",
@@ -2006,17 +1780,18 @@ window.__DECK__ = {
     {
      "id": "e5",
      "type": "image",
-     "x": 892,
+     "x": 840,
      "y": 272,
-     "w": 596,
-     "h": 508,
+     "w": 718,
+     "h": 433,
      "slot": "s42_02",
      "kind": "user",
      "src": "",
      "caption": "",
-     "fit": "contain",
+     "fit": "fill",
      "recW": "1400",
-     "recH": "1000"
+     "recH": "1000",
+     "frame": "fixed"
     }
    ]
   },
@@ -2043,7 +1818,7 @@ window.__DECK__ = {
      "y": 120.4,
      "w": 1376,
      "h": 67.2,
-     "html": "<h2 class=\"title\">자연어 지시를 구조 모델 작업으로</h2>"
+     "html": "<h2 class=\"title\">AI Modeling</h2>"
     },
     {
      "id": "e3",
@@ -2066,17 +1841,18 @@ window.__DECK__ = {
     {
      "id": "e5",
      "type": "image",
-     "x": 892,
+     "x": 828,
      "y": 272,
-     "w": 596,
-     "h": 508,
+     "w": 734,
+     "h": 456,
      "slot": "s42_03",
      "kind": "user",
      "src": "",
      "caption": "",
-     "fit": "contain",
+     "fit": "fill",
      "recW": "1400",
-     "recH": "1000"
+     "recH": "1000",
+     "frame": "fixed"
     }
    ]
   },
@@ -2103,7 +1879,7 @@ window.__DECK__ = {
      "y": 120.4,
      "w": 1376,
      "h": 67.2,
-     "html": "<h2 class=\"title\">해석 전에 모델 오류부터 찾는다</h2>"
+     "html": "<h2 class=\"title\">Model Check - 해석 전에 모델 오류부터 찾는다</h2>"
     },
     {
      "id": "e3",
@@ -2126,17 +1902,18 @@ window.__DECK__ = {
     {
      "id": "e5",
      "type": "image",
-     "x": 892,
-     "y": 272,
-     "w": 596,
-     "h": 508,
+     "x": 856,
+     "y": 263,
+     "w": 713,
+     "h": 443,
      "slot": "s42_04",
      "kind": "user",
      "src": "",
      "caption": "",
-     "fit": "contain",
+     "fit": "fill",
      "recW": "1400",
-     "recH": "1000"
+     "recH": "1000",
+     "frame": "fixed"
     }
    ]
   },
@@ -2163,7 +1940,7 @@ window.__DECK__ = {
      "y": 120.4,
      "w": 1376,
      "h": 67.2,
-     "html": "<h2 class=\"title\">기존 MIDAS 모델을 다시 만들지 않는다</h2>"
+     "html": "<h2 class=\"title\">타 프로그램 Import&nbsp;</h2>"
     },
     {
      "id": "e3",
@@ -2172,7 +1949,7 @@ window.__DECK__ = {
      "y": 206.8,
      "w": 1301,
      "h": 45.4,
-     "html": "<p class=\"lead\">MGT 파일의 주요 모델 데이터를 읽어 STRIX 모델로 변환하고 기존 프로젝트 자산을 이어받습니다.</p>"
+     "html": "<p class=\"lead\">타사 모델링 파일을 Import하여 STRIX 모델로 변환하고 기존 프로젝트 자산을 이어받습니다.</p>"
     },
     {
      "id": "e4",
@@ -2223,7 +2000,7 @@ window.__DECK__ = {
      "y": 120.4,
      "w": 1376,
      "h": 67.2,
-     "html": "<h2 class=\"title\">공동주택 반복 평면을 층 전체로 자동 전개</h2>"
+     "html": "<h2 class=\"title\">APT Auto - 공동주택 자동 모델링</h2>"
     },
     {
      "id": "e3",
@@ -2283,7 +2060,7 @@ window.__DECK__ = {
      "y": 120.4,
      "w": 1376,
      "h": 67.2,
-     "html": "<h2 class=\"title\">슬래브를 해석 가능한 판요소 메쉬로</h2>"
+     "html": "<h2 class=\"title\">Meshed Slab</h2>"
     },
     {
      "id": "e3",
@@ -2308,15 +2085,16 @@ window.__DECK__ = {
      "type": "image",
      "x": 892,
      "y": 272,
-     "w": 596,
-     "h": 508,
+     "w": 665,
+     "h": 438,
      "slot": "s42_07",
      "kind": "user",
      "src": "",
      "caption": "",
-     "fit": "contain",
+     "fit": "fill",
      "recW": "1400",
-     "recH": "1000"
+     "recH": "1000",
+     "frame": "fixed"
     }
    ]
   },
@@ -2343,7 +2121,7 @@ window.__DECK__ = {
      "y": 120.4,
      "w": 1376,
      "h": 67.2,
-     "html": "<h2 class=\"title\">복합 단지를 타워 단위로 조직화</h2>"
+     "html": "<h2 class=\"title\">Multi Tower 모델링 및 후처리 지원</h2>"
     },
     {
      "id": "e3",
@@ -2366,17 +2144,18 @@ window.__DECK__ = {
     {
      "id": "e5",
      "type": "image",
-     "x": 892,
+     "x": 850,
      "y": 272,
-     "w": 596,
-     "h": 508,
+     "w": 725,
+     "h": 450,
      "slot": "s42_08",
      "kind": "user",
      "src": "",
      "caption": "",
-     "fit": "contain",
+     "fit": "fill",
      "recW": "1400",
-     "recH": "1000"
+     "recH": "1000",
+     "frame": "fixed"
     }
    ]
   },
@@ -2403,7 +2182,7 @@ window.__DECK__ = {
      "y": 120.4,
      "w": 1376,
      "h": 67.2,
-     "html": "<h2 class=\"title\">끊어진 모델과 불필요한 절점을 빠르게 정리</h2>"
+     "html": "<h2 class=\"title\">Find Orphans / Purge Nodes</h2>"
     },
     {
      "id": "e3",
@@ -2463,7 +2242,7 @@ window.__DECK__ = {
      "y": 120.4,
      "w": 1376,
      "h": 67.2,
-     "html": "<h2 class=\"title\">슬래브 하중을 지지 벽체로 전달</h2>"
+     "html": "<h2 class=\"title\">Slab to Wall - 벽식구조 바닥하중 절점하중 변환</h2>"
     },
     {
      "id": "e3",
@@ -2486,17 +2265,18 @@ window.__DECK__ = {
     {
      "id": "e5",
      "type": "image",
-     "x": 892,
+     "x": 817,
      "y": 272,
-     "w": 596,
-     "h": 508,
+     "w": 758,
+     "h": 433,
      "slot": "s42_10",
      "kind": "user",
      "src": "",
      "caption": "",
-     "fit": "contain",
+     "fit": "fill",
      "recW": "1400",
-     "recH": "1000"
+     "recH": "1000",
+     "frame": "fixed"
     }
    ]
   },
@@ -2532,7 +2312,7 @@ window.__DECK__ = {
      "y": 206.8,
      "w": 1301,
      "h": 45.4,
-     "html": "<p class=\"lead\">평면 형상과 구조 배치를 이용해 건물의 주축 방향을 찾고 횡하중·응답 검토의 기준축으로 사용합니다.</p>"
+     "html": "<p class=\"lead\">본 해석 전에 고유치해석을 통해 건물의 주축 방향을 찾고 횡하중·응답 검토의 기준축으로 사용합니다.</p>"
     },
     {
      "id": "e4",
@@ -2541,22 +2321,23 @@ window.__DECK__ = {
      "y": 272,
      "w": 744,
      "h": 508,
-     "html": "<div class=\"fbody\"><ul class=\"bul\" style=\"--li:1\"><li><b>형상에서 축 계산</b><span class=\"sub\">절점과 부재 분포의 2차 모멘트를 이용해 지배적인 평면 방향을 산정합니다.</span></li><li><b>각도로 명확히 표시</b><span class=\"sub\">전역축과 주축의 차이를 각도로 보여주어 회전 건물의 방향을 쉽게 확인합니다.</span></li><li><b>해석 설정에 재사용</b><span class=\"sub\">응답스펙트럼 방향과 횡력 검토 등 방향성이 필요한 기능에 같은 축 정보를 사용합니다.</span></li></ul><div class=\"mpath\"><span class=\"lbl\">메뉴</span><span class=\"mi\">Analysis ▸ Analysis Ctrl ▸ Principal Axis</span></div></div>"
+     "html": "<div class=\"fbody\"><ul class=\"bul\" style=\"--li:1\"><li><b>고유치해석을 통한 주축 산정</b><span class=\"sub\">절점과 부재 분포의 2차 모멘트를 이용해 지배적인 평면 방향을 산정합니다.</span></li><li><b>각도로 명확히 표시</b><span class=\"sub\">전역축과 주축의 차이를 각도로 보여주어 회전 건물의 방향을 쉽게 확인합니다.</span></li><li><b>모델을 Rotate하지 않고 지진하중의 입사각을 조정</b><span class=\"sub\">응답스펙트럼 방향과 횡력 검토 등 방향성이 필요한 기능에 같은 축 정보를 사용합니다.</span></li></ul><div class=\"mpath\"><span class=\"lbl\">메뉴</span><span class=\"mi\">Analysis ▸ Analysis Ctrl ▸ Principal Axis</span></div></div>"
     },
     {
      "id": "e5",
      "type": "image",
-     "x": 892,
+     "x": 856,
      "y": 272,
-     "w": 596,
-     "h": 508,
+     "w": 723,
+     "h": 441,
      "slot": "s42_11",
      "kind": "user",
      "src": "",
      "caption": "",
-     "fit": "contain",
+     "fit": "fill",
      "recW": "1400",
-     "recH": "1000"
+     "recH": "1000",
+     "frame": "fixed"
     }
    ]
   },
@@ -2583,7 +2364,7 @@ window.__DECK__ = {
      "y": 120.4,
      "w": 1376,
      "h": 67.2,
-     "html": "<h2 class=\"title\">응답스펙트럼 결과를 기준 최소 밑면전단에 맞춘다</h2>"
+     "html": "<h2 class=\"title\">Scaleup Factor</h2>"
     },
     {
      "id": "e3",
@@ -2608,15 +2389,16 @@ window.__DECK__ = {
      "type": "image",
      "x": 892,
      "y": 272,
-     "w": 596,
-     "h": 508,
+     "w": 663,
+     "h": 479,
      "slot": "s43_01",
      "kind": "user",
      "src": "",
      "caption": "",
-     "fit": "contain",
+     "fit": "fill",
      "recW": "1400",
-     "recH": "1000"
+     "recH": "1000",
+     "frame": "fixed"
     }
    ]
   },
@@ -2643,7 +2425,7 @@ window.__DECK__ = {
      "y": 120.4,
      "w": 1376,
      "h": 67.2,
-     "html": "<h2 class=\"title\">풍과 지진 중 무엇이 지배하는지 한 화면에서</h2>"
+     "html": "<h2 class=\"title\">Lateral Force Check</h2>"
     },
     {
      "id": "e3",
@@ -2652,7 +2434,7 @@ window.__DECK__ = {
      "y": 206.8,
      "w": 1301,
      "h": 45.4,
-     "html": "<p class=\"lead\">방향별 밑면전단과 풍하중 변위를 비교해 횡력 설계의 지배 조건을 빠르게 판단합니다.</p>"
+     "html": "<p class=\"lead\">방향별 지진하중과 풍하중 변위를 비교해 횡력 설계의 지배 조건을 빠르게 판단합니다.</p>"
     },
     {
      "id": "e4",
@@ -2703,7 +2485,7 @@ window.__DECK__ = {
      "y": 120.4,
      "w": 1376,
      "h": 67.2,
-     "html": "<h2 class=\"title\">판요소 결과를 방향·면·성분별 컨투어로</h2>"
+     "html": "<h2 class=\"title\">Plate Result</h2>"
     },
     {
      "id": "e3",
@@ -2726,17 +2508,18 @@ window.__DECK__ = {
     {
      "id": "e5",
      "type": "image",
-     "x": 892,
+     "x": 856,
      "y": 272,
-     "w": 596,
-     "h": 508,
+     "w": 719,
+     "h": 419,
      "slot": "s43_03",
      "kind": "user",
      "src": "",
      "caption": "",
-     "fit": "contain",
+     "fit": "fill",
      "recW": "1400",
-     "recH": "1000"
+     "recH": "1000",
+     "frame": "fixed"
     }
    ]
   },
@@ -2763,7 +2546,7 @@ window.__DECK__ = {
      "y": 120.4,
      "w": 1376,
      "h": 67.2,
-     "html": "<h2 class=\"title\">요구 성능을 만족하는 단면 대안을 자동 탐색</h2>"
+     "html": "<h2 class=\"title\">Beam, Column Section Optimization</h2>"
     },
     {
      "id": "e3",
@@ -2823,7 +2606,7 @@ window.__DECK__ = {
      "y": 120.4,
      "w": 1376,
      "h": 67.2,
-     "html": "<h2 class=\"title\">모델 전체의 설계 여유도를 한눈에</h2>"
+     "html": "<h2 class=\"title\">Safety Review</h2>"
     },
     {
      "id": "e3",
@@ -2846,17 +2629,18 @@ window.__DECK__ = {
     {
      "id": "e5",
      "type": "image",
-     "x": 892,
+     "x": 817,
      "y": 272,
-     "w": 596,
-     "h": 508,
+     "w": 771,
+     "h": 412,
      "slot": "s43_05",
      "kind": "user",
      "src": "",
      "caption": "",
-     "fit": "contain",
+     "fit": "fill",
      "recW": "1400",
-     "recH": "1000"
+     "recH": "1000",
+     "frame": "fixed"
     }
    ]
   },
@@ -2883,7 +2667,7 @@ window.__DECK__ = {
      "y": 120.4,
      "w": 1376,
      "h": 67.2,
-     "html": "<h2 class=\"title\">해석 부재력을 배근 설계로 바로 연결</h2>"
+     "html": "<h2 class=\"title\">RC 보, 기둥 최적 설계</h2>"
     },
     {
      "id": "e3",
@@ -2906,17 +2690,18 @@ window.__DECK__ = {
     {
      "id": "e5",
      "type": "image",
-     "x": 892,
+     "x": 817,
      "y": 272,
-     "w": 596,
-     "h": 508,
+     "w": 748,
+     "h": 420,
      "slot": "s43_06",
      "kind": "user",
      "src": "",
      "caption": "",
-     "fit": "contain",
+     "fit": "fill",
      "recW": "1400",
-     "recH": "1000"
+     "recH": "1000",
+     "frame": "fixed"
     }
    ]
   },
@@ -2943,7 +2728,7 @@ window.__DECK__ = {
      "y": 120.4,
      "w": 1376,
      "h": 67.2,
-     "html": "<h2 class=\"title\">벽체 배근을 안전성과 경제성 기준으로 조정</h2>"
+     "html": "<h2 class=\"title\">전단벽 최적화 설계</h2>"
     },
     {
      "id": "e3",
@@ -2966,17 +2751,18 @@ window.__DECK__ = {
     {
      "id": "e5",
      "type": "image",
-     "x": 892,
-     "y": 272,
-     "w": 596,
-     "h": 508,
+     "x": 823,
+     "y": 261,
+     "w": 734,
+     "h": 490,
      "slot": "s43_07",
      "kind": "user",
      "src": "",
      "caption": "",
-     "fit": "contain",
+     "fit": "fill",
      "recW": "1400",
-     "recH": "1000"
+     "recH": "1000",
+     "frame": "fixed"
     }
    ]
   },
@@ -3003,7 +2789,7 @@ window.__DECK__ = {
      "y": 120.4,
      "w": 1376,
      "h": 67.2,
-     "html": "<h2 class=\"title\">강부재의 축력·휨·전단과 안정성을 검토</h2>"
+     "html": "<h2 class=\"title\">강구조 설계</h2>"
     },
     {
      "id": "e3",
@@ -3063,7 +2849,7 @@ window.__DECK__ = {
      "y": 120.4,
      "w": 1376,
      "h": 67.2,
-     "html": "<h2 class=\"title\">판해석 결과에서 슬래브 배근까지</h2>"
+     "html": "<h2 class=\"title\">Slab Design</h2>"
     },
     {
      "id": "e3",
@@ -3086,17 +2872,18 @@ window.__DECK__ = {
     {
      "id": "e5",
      "type": "image",
-     "x": 892,
-     "y": 272,
-     "w": 596,
-     "h": 508,
+     "x": 884,
+     "y": 264,
+     "w": 691,
+     "h": 495,
      "slot": "s43_09",
      "kind": "user",
      "src": "",
      "caption": "",
-     "fit": "contain",
+     "fit": "fill",
      "recW": "1400",
-     "recH": "1000"
+     "recH": "1000",
+     "frame": "fixed"
     }
    ]
   },
@@ -3123,7 +2910,7 @@ window.__DECK__ = {
      "y": 120.4,
      "w": 1376,
      "h": 67.2,
-     "html": "<h2 class=\"title\">기둥 반력에서 기초 크기와 배근까지</h2>"
+     "html": "<h2 class=\"title\">독립기초 설계</h2>"
     },
     {
      "id": "e3",
@@ -3146,17 +2933,18 @@ window.__DECK__ = {
     {
      "id": "e5",
      "type": "image",
-     "x": 892,
+     "x": 856,
      "y": 272,
-     "w": 596,
-     "h": 508,
+     "w": 715,
+     "h": 486,
      "slot": "s43_10",
      "kind": "user",
      "src": "",
      "caption": "",
-     "fit": "contain",
+     "fit": "fill",
      "recW": "1400",
-     "recH": "1000"
+     "recH": "1000",
+     "frame": "fixed"
     }
    ]
   },
@@ -3183,7 +2971,7 @@ window.__DECK__ = {
      "y": 120.4,
      "w": 1376,
      "h": 67.2,
-     "html": "<h2 class=\"title\">매트 판해석과 지반반력을 하나의 설계 흐름으로</h2>"
+     "html": "<h2 class=\"title\">Mat 기초 설계</h2>"
     },
     {
      "id": "e3",
@@ -3206,17 +2994,18 @@ window.__DECK__ = {
     {
      "id": "e5",
      "type": "image",
-     "x": 892,
+     "x": 817,
      "y": 272,
-     "w": 596,
-     "h": 508,
+     "w": 770,
+     "h": 465,
      "slot": "s43_11",
      "kind": "user",
      "src": "",
      "caption": "",
-     "fit": "contain",
+     "fit": "fill",
      "recW": "1400",
-     "recH": "1000"
+     "recH": "1000",
+     "frame": "fixed"
     }
    ]
   },
@@ -3243,7 +3032,7 @@ window.__DECK__ = {
      "y": 120.4,
      "w": 1376,
      "h": 67.2,
-     "html": "<h2 class=\"title\">말뚝 배치와 파일캡을 상부 반력에 맞춰 검토</h2>"
+     "html": "<h2 class=\"title\">Pile 기초 설계</h2>"
     },
     {
      "id": "e3",
@@ -3266,17 +3055,18 @@ window.__DECK__ = {
     {
      "id": "e5",
      "type": "image",
-     "x": 892,
-     "y": 272,
-     "w": 596,
-     "h": 508,
+     "x": 834,
+     "y": 262,
+     "w": 737,
+     "h": 444,
      "slot": "s43_12",
      "kind": "user",
      "src": "",
      "caption": "",
-     "fit": "contain",
+     "fit": "fill",
      "recW": "1400",
-     "recH": "1000"
+     "recH": "1000",
+     "frame": "fixed"
     }
    ]
   },
@@ -3303,7 +3093,7 @@ window.__DECK__ = {
      "y": 120.4,
      "w": 1376,
      "h": 67.2,
-     "html": "<h2 class=\"title\">기존 건축물 부재의 허용 변형능력을 자동 판정</h2>"
+     "html": "<h2 class=\"title\">m-factor method</h2>"
     },
     {
      "id": "e3",
@@ -3363,7 +3153,7 @@ window.__DECK__ = {
      "y": 120.4,
      "w": 1376,
      "h": 67.2,
-     "html": "<h2 class=\"title\">소성힌지의 발생 순서와 구조 성능점을 추적</h2>"
+     "html": "<h2 class=\"title\">Pushover&nbsp;</h2>"
     },
     {
      "id": "e3",
@@ -3423,7 +3213,7 @@ window.__DECK__ = {
      "y": 120.4,
      "w": 1376,
      "h": 67.2,
-     "html": "<h2 class=\"title\">비선형 모델부터 성능 판정 자료까지 한 흐름으로</h2>"
+     "html": "<h2 class=\"title\">PBSD (Performance Based Seismic Design)</h2>"
     },
     {
      "id": "e3",
@@ -3483,7 +3273,7 @@ window.__DECK__ = {
      "y": 120.4,
      "w": 1376,
      "h": 67.2,
-     "html": "<h2 class=\"title\">여러 지진파를 병렬로 실행하고 한 보드에서 관리</h2>"
+     "html": "<h2 class=\"title\">THA 병렬해석</h2>"
     },
     {
      "id": "e3",
@@ -3543,7 +3333,7 @@ window.__DECK__ = {
      "y": 120.4,
      "w": 1376,
      "h": 67.2,
-     "html": "<h2 class=\"title\">목표스펙트럼에 맞는 지진파 세트를 준비</h2>"
+     "html": "<h2 class=\"title\">목표스펙트럼에 맞는 지진파 스케일링</h2>"
     },
     {
      "id": "e3",
@@ -3603,7 +3393,7 @@ window.__DECK__ = {
      "y": 120.4,
      "w": 1376,
      "h": 67.2,
-     "html": "<h2 class=\"title\">모델 데이터로 구조계산서 목차와 본문을 자동 구성</h2>"
+     "html": "<h2 class=\"title\">구조계산서 자동생성</h2>"
     },
     {
      "id": "e3",
@@ -3663,7 +3453,7 @@ window.__DECK__ = {
      "y": 120.4,
      "w": 1376,
      "h": 67.2,
-     "html": "<h2 class=\"title\">해석 모델과 설계 결과에서 도면을 자동 생성</h2>"
+     "html": "<h2 class=\"title\">구조평면도,배근도 자동지원</h2>"
     },
     {
      "id": "e3",
@@ -3723,7 +3513,7 @@ window.__DECK__ = {
      "y": 120.4,
      "w": 1376,
      "h": 67.2,
-     "html": "<h2 class=\"title\">모델과 설계 데이터에서 물량을 자동 집계</h2>"
+     "html": "<h2 class=\"title\">공사비 자동 산출</h2>"
     },
     {
      "id": "e3",
@@ -3783,7 +3573,7 @@ window.__DECK__ = {
      "y": 120.4,
      "w": 1376,
      "h": 67.2,
-     "html": "<h2 class=\"title\">성능기반설계 심의에 필요한 근거 자료를 자동 정리</h2>"
+     "html": "<h2 class=\"title\">PBSD 보고서 소스제공</h2>"
     },
     {
      "id": "e3",
@@ -3843,7 +3633,7 @@ window.__DECK__ = {
      "y": 120.4,
      "w": 1376,
      "h": 67.2,
-     "html": "<h2 class=\"title\">자연어로 모델·화면·해석 작업을 지시</h2>"
+     "html": "<h2 class=\"title\">AI Prompt</h2>"
     },
     {
      "id": "e3",
@@ -3903,7 +3693,7 @@ window.__DECK__ = {
      "y": 120.4,
      "w": 1376,
      "h": 67.2,
-     "html": "<h2 class=\"title\">계산 기반 진단에 AI 설명을 더한다</h2>"
+     "html": "<h2 class=\"title\">AI Stable Check</h2>"
     },
     {
      "id": "e3",
