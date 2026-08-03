@@ -812,7 +812,7 @@ function initNav() {
       if (gi >= 0) { Deck.go(gi); return; }
     }
     if (e.target.closest('a,button,input,select,textarea')) return;
-    if (e.clientX < window.innerWidth * 0.35) Deck.prev(); else Deck.next();
+    /* 일반 화면 클릭은 장을 넘기지 않는다. 목차[data-go]와 명시적 UI만 클릭 이동을 허용한다. */
   });
 
   var tx = null;

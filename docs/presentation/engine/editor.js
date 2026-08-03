@@ -922,6 +922,12 @@ function buildChrome() {
   var bR = btn('↷', '다시 (Ctrl+Shift+Z)', redo);
   bar.appendChild(group(bU, bR));
   bar.appendChild(sep());
+  var bPrevSlide = btn('◀ 이전 장', '이전 슬라이드 (PageUp)', function () { goSlide(Deck.cur - 1); });
+  var bNextSlide = btn('다음 장 ▶', '다음 슬라이드 (PageDown)', function () { goSlide(Deck.cur + 1); });
+  bPrevSlide.dataset.nav = 'prev-slide';
+  bNextSlide.dataset.nav = 'next-slide';
+  bar.appendChild(group(bPrevSlide, bNextSlide));
+  bar.appendChild(sep());
   bar.appendChild(group(
     btn('＋글', '텍스트 상자 추가', function () { addElement('text'); }),
     btn('＋제목', '제목 추가', function () { addElement('title'); }),
@@ -959,13 +965,15 @@ function buildChrome() {
   var dr = el('div'); dr.id = 'eddraft';
   document.body.appendChild(dr);
 
-  ED.bU = bU; ED.bR = bR;
+  ED.bU = bU; ED.bR = bR; ED.bPrevSlide = bPrevSlide; ED.bNextSlide = bNextSlide;
 }
 
 function renderBarState() {
   if (!ED.bU) return;
   ED.bU.disabled = !ED.undo.length;
   ED.bR.disabled = !ED.redo.length;
+  if (ED.bPrevSlide) ED.bPrevSlide.disabled = Deck.cur <= 0;
+  if (ED.bNextSlide) ED.bNextSlide.disabled = Deck.cur >= Deck.slides.length - 1;
   var s = $('#edstat'); if (!s) return;
   var over = Object.keys(ED.over || {}).length;
   var d = curDef();
@@ -1579,8 +1587,10 @@ function onKey(ev) {
   }
   if (inField) return;
 
-  if (ED.text) {                                    /* 글 쓰는 중에는 Esc 만 가져간다 */
+  if (ED.text) {                                    /* 이동 시 현재 글을 확정하고 편집 모드는 유지한다 */
     if (k === 'Escape') { take(ev); exitText(); }
+    else if (k === 'PageDown') { take(ev); goSlide(Deck.cur + 1); }
+    else if (k === 'PageUp') { take(ev); goSlide(Deck.cur - 1); }
     return;
   }
 
