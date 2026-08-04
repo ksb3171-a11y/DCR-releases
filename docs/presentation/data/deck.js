@@ -259,7 +259,7 @@ window.__DECK__ = {
      "y": 601.3,
      "w": 1376,
      "h": 108.3,
-     "html": "<div class=\"split-note\">\n      <b>STRIX는 </b>전 세계 연구자가 30년간 검증해 온 <b style=\"background-color: rgb(22, 24, 28); font-size: 21.6px;\">OpenSees </b><span style=\"font-size: 21.6px;\">엔진을 사용하고,\n      그 위에 </span><b style=\"font-size: 21.6px;\">실무자의 전·후처리 입력과 설계 자동화</b><span style=\"font-size: 21.6px;\">를 구현했습니다.\n      그리고 그 결과가 맞는지를 </span><b style=\"font-size: 21.6px;\">공개된 국제 검증예제로 스스로 증명</b><span style=\"font-size: 21.6px;\">합니다.</span><b style=\"background-color: rgb(22, 24, 28); font-size: 21.6px;\"><br></b></div>"
+     "html": "<div class=\"split-note\">\n      <b>STRIX는 </b>전 세계 연구자가 30년간 검증해 온 <b style=\"background-color: rgb(22, 24, 28); font-size: 21.6px;\">OpenSees </b><span style=\"font-size: 21.6px;\">엔진의 정확성과 </span><b style=\"font-size: 21.6px;\">구조엔지니어가 설계에 전념하도록 반복되는 전·후처리 입력과 설계 자동화</b><span style=\"font-size: 21.6px;\">를 구현했습니다.\n      그리고 그 결과가 맞는지를 </span><b style=\"font-size: 21.6px;\">공개된 국제 검증예제로 스스로 증명</b><span style=\"font-size: 21.6px;\">합니다.</span><b style=\"background-color: rgb(22, 24, 28); font-size: 21.6px;\"><br></b></div>"
     }
    ],
    "ch": "c1"
@@ -329,7 +329,7 @@ window.__DECK__ = {
      "y": 328,
      "w": 252.2,
      "h": 345.5,
-     "html": "<div class=\"card\">\n        <h3>Low-Cost</h3>\n        <p>오픈소스 엔진 기반이므로\n           라이선스 구조가 가볍습니다.</p>\n      </div>"
+     "html": "<div class=\"card\">\n        <h3>All In One</h3>\n        <p>모델링부터 설계, 최종결과물까지 제공합니다. 탄성,비탄성,판해석,단위부재설계를 모두 지원합니다.</p>\n      </div>"
     }
    ],
    "ch": "c1"
@@ -453,7 +453,7 @@ window.__DECK__ = {
      "y": 590.7,
      "w": 1376,
      "h": 108.3,
-     "html": "<div class=\"split-note\">\n      확장성은 문서상의 장점이 아닙니다 — STRIX는 실제로 이 프레임워크 위에\n      <b>자체 요소와 자체 힌지 모델을 구현해</b> 쓰고 있으며, 그 요소들도 검증 대상에 포함했습니다.\n    </div>"
+     "html": "<div class=\"split-note\">STRIX는 실제로 이 프레임워크 위에\n      <b>자체 요소와 자체 힌지 모델을 구현해</b> 쓰고 있으며, 그 요소들도 검증 대상에 포함했습니다.\n    </div>"
     }
    ],
    "ch": "c2"
@@ -915,76 +915,6 @@ window.__DECK__ = {
    "toc": "대표예제 ② 3D 편심 응답스펙트럼"
   },
   {
-   "id": "s17",
-   "name": "검증의 재현성",
-   "els": [
-    {
-     "id": "e1",
-     "type": "text",
-     "x": 112,
-     "y": 73.6,
-     "w": 1376,
-     "h": 32.4,
-     "html": "<div class=\"kicker\">Reproducibility</div>"
-    },
-    {
-     "id": "e2",
-     "type": "text",
-     "x": 112,
-     "y": 120.4,
-     "w": 1376,
-     "h": 67.2,
-     "html": "<h2 class=\"title\">\"믿어 주십시오\"가 아니라 \"돌려 보십시오\"</h2>"
-    },
-    {
-     "id": "e3",
-     "type": "text",
-     "x": 112,
-     "y": 302.5,
-     "w": 322.4,
-     "h": 262.6,
-     "html": "<div class=\"card\">\n        <h3>모델 정의</h3>\n        <p>벤치마크 모델이 코드로 남아 있습니다.\n           치수·재료·하중·경계조건이 그대로 보입니다.</p>\n      </div>"
-    },
-    {
-     "id": "e4",
-     "type": "text",
-     "x": 463.2,
-     "y": 302.5,
-     "w": 322.4,
-     "h": 262.6,
-     "html": "<div class=\"card\">\n        <h3>참조해 출처</h3>\n        <p>각 예제마다 <b>어느 문헌의 몇 번 예제</b>인지,\n           참조값이 어떤 식에서 나왔는지 함께 기록했습니다.</p>\n      </div>"
-    },
-    {
-     "id": "e5",
-     "type": "text",
-     "x": 814.4,
-     "y": 302.5,
-     "w": 322.4,
-     "h": 262.6,
-     "html": "<div class=\"card\">\n        <h3>원시 해석 파일</h3>\n        <p>엔진에 실제로 들어간 입력 파일과\n           엔진이 뱉은 출력 파일을 <b>그대로 보관·배포</b>합니다.</p>\n      </div>"
-    },
-    {
-     "id": "e6",
-     "type": "text",
-     "x": 1165.6,
-     "y": 302.5,
-     "w": 322.4,
-     "h": 262.6,
-     "html": "<div class=\"card accent\">\n        <h3>무결성 확인</h3>\n        <p>증거 묶음에 <b>해시값</b>을 함께 공개해,\n           받은 파일이 우리가 낸 그 파일인지 확인할 수 있습니다.</p>\n      </div>"
-    },
-    {
-     "id": "e7",
-     "type": "text",
-     "x": 112,
-     "y": 590.7,
-     "w": 1376,
-     "h": 108.3,
-     "html": "<div class=\"split-note\">\n      검증서는 결과 숫자만 적어 두면 <b>확인할 방법이 없습니다.</b>\n      STRIX는 입력 · 출력 · 참조해 · 판정 기준을 모두 공개합니다.\n      제3자가 같은 조건으로 다시 돌려 같은 값을 얻을 수 있어야 검증입니다.\n    </div>"
-    }
-   ],
-   "ch": "c3"
-  },
-  {
    "id": "s18",
    "name": "Step 2 — 구조형식별 검증",
    "els": [
@@ -1096,10 +1026,10 @@ window.__DECK__ = {
     {
      "id": "e5",
      "type": "image",
-     "x": 894,
+     "x": 878,
      "y": 272,
-     "w": 667,
-     "h": 396,
+     "w": 702,
+     "h": 426,
      "slot": "s41_01",
      "kind": "user",
      "src": "",
@@ -1243,6 +1173,67 @@ window.__DECK__ = {
      "fit": "fill",
      "caption": "",
      "slot": "s41_03_1",
+     "frame": "fixed"
+    }
+   ]
+  },
+  {
+   "id": "s41_04_windtunnel",
+   "name": "풍동데이터 입력기능",
+   "toc": "풍동데이터 입력기능",
+   "ch": "c4",
+   "grp": "g1",
+   "els": [
+    {
+     "id": "e1",
+     "type": "text",
+     "x": 112,
+     "y": 73.6,
+     "w": 1376,
+     "h": 32.4,
+     "html": "<div class=\"kicker\">주요 차별화 기능</div>"
+    },
+    {
+     "id": "e2",
+     "type": "text",
+     "x": 112,
+     "y": 120.4,
+     "w": 1376,
+     "h": 67.2,
+     "html": "<h2 class=\"title\">풍동실험 결과를 12개 풍하중으로 자동 입력</h2>"
+    },
+    {
+     "id": "e3",
+     "type": "text",
+     "x": 112,
+     "y": 206.8,
+     "w": 1301,
+     "h": 45.4,
+     "html": "<p class=\"lead\">실험기관 엑셀의 층별 Fx·Fy·Mz 최대값을 읽어 풍하중 케이스로 모델에 자동 적용합니다.</p>"
+    },
+    {
+     "id": "e4",
+     "type": "text",
+     "x": 112,
+     "y": 272,
+     "w": 744,
+     "h": 508,
+     "html": "<div class=\"fbody\"><ul class=\"bul\" style=\"--li:1\"><li><b>풍동실험 엑셀을 그대로 활용</b><span class=\"sub\">실험기관이 제공한 층별 풍하중 데이터를 읽고 건물 정보와 감쇠비, 발행 정보를 함께 확인합니다.</span></li><li><b>12개 풍하중 케이스 자동 생성</b><span class=\"sub\">Fx·Fy·Mz 최대값을 층별 GC 또는 CM 절점에 적용해 반복 입력을 줄입니다.</span></li><li><b>입력 전 교차검증</b><span class=\"sub\">통계식과 층별 합계를 원본 표와 대조해 누락이나 잘못된 입력을 사전에 확인합니다.</span></li></ul><div class=\"mpath\"><span class=\"lbl\">메뉴</span><span class=\"mi\">Load ▸ Wind ▸ Wind Tunnel Loads</span></div></div>"
+    },
+    {
+     "id": "e5",
+     "type": "image",
+     "x": 869,
+     "y": 272,
+     "w": 702,
+     "h": 427,
+     "slot": "s41_04_windtunnel",
+     "kind": "user",
+     "src": "",
+     "caption": "",
+     "fit": "fill",
+     "recW": "1920",
+     "recH": "1080",
      "frame": "fixed"
     }
    ]
@@ -1937,7 +1928,7 @@ window.__DECK__ = {
      "id": "e2",
      "type": "text",
      "x": 112,
-     "y": 120.4,
+     "y": 120,
      "w": 1376,
      "h": 67.2,
      "html": "<h2 class=\"title\">타 프로그램 Import&nbsp;</h2>"
@@ -1963,7 +1954,7 @@ window.__DECK__ = {
     {
      "id": "e5",
      "type": "image",
-     "x": 892,
+     "x": 944,
      "y": 272,
      "w": 596,
      "h": 508,
@@ -2435,7 +2426,7 @@ window.__DECK__ = {
      "y": 206.8,
      "w": 1301,
      "h": 45.4,
-     "html": "<p class=\"lead\">방향별 지진하중과 풍하중 변위를 비교해 횡력 설계의 지배 조건을 빠르게 판단합니다.</p>"
+     "html": "<p class=\"lead\">방향별 지진하중과 풍하중 Base Shear와 최상층 변위를 비교해 횡력 설계의 지배 조건을 빠르게 판단합니다.</p>"
     },
     {
      "id": "e4",
@@ -2813,17 +2804,18 @@ window.__DECK__ = {
     {
      "id": "e5",
      "type": "image",
-     "x": 892,
+     "x": 848,
      "y": 272,
-     "w": 596,
-     "h": 508,
+     "w": 732,
+     "h": 403,
      "slot": "s43_08",
      "kind": "user",
      "src": "",
      "caption": "",
-     "fit": "contain",
+     "fit": "fill",
      "recW": "1400",
-     "recH": "1000"
+     "recH": "1000",
+     "frame": "fixed"
     }
    ]
   },
@@ -3117,17 +3109,18 @@ window.__DECK__ = {
     {
      "id": "e5",
      "type": "image",
-     "x": 892,
+     "x": 840,
      "y": 272,
-     "w": 596,
-     "h": 508,
+     "w": 738,
+     "h": 409,
      "slot": "s44_01",
      "kind": "user",
      "src": "",
      "caption": "",
-     "fit": "contain",
+     "fit": "fill",
      "recW": "1400",
-     "recH": "1000"
+     "recH": "1000",
+     "frame": "fixed"
     }
    ]
   },
@@ -3177,17 +3170,18 @@ window.__DECK__ = {
     {
      "id": "e5",
      "type": "image",
-     "x": 892,
-     "y": 272,
-     "w": 596,
-     "h": 508,
+     "x": 856,
+     "y": 291,
+     "w": 713,
+     "h": 408,
      "slot": "s44_02",
      "kind": "user",
      "src": "",
      "caption": "",
-     "fit": "contain",
+     "fit": "fill",
      "recW": "1400",
-     "recH": "1000"
+     "recH": "1000",
+     "frame": "fixed"
     }
    ]
   },
@@ -3237,17 +3231,18 @@ window.__DECK__ = {
     {
      "id": "e5",
      "type": "image",
-     "x": 892,
+     "x": 879,
      "y": 272,
-     "w": 596,
-     "h": 508,
+     "w": 689,
+     "h": 480,
      "slot": "s44_03",
      "kind": "user",
      "src": "",
      "caption": "",
-     "fit": "contain",
+     "fit": "fill",
      "recW": "1400",
-     "recH": "1000"
+     "recH": "1000",
+     "frame": "fixed"
     }
    ]
   },
@@ -3298,16 +3293,17 @@ window.__DECK__ = {
      "id": "e5",
      "type": "image",
      "x": 892,
-     "y": 272,
-     "w": 596,
-     "h": 508,
+     "y": 294,
+     "w": 664,
+     "h": 472,
      "slot": "s44_04",
      "kind": "user",
      "src": "",
      "caption": "",
      "fit": "contain",
      "recW": "1400",
-     "recH": "1000"
+     "recH": "1000",
+     "frame": "fixed"
     }
    ]
   },
@@ -3357,17 +3353,18 @@ window.__DECK__ = {
     {
      "id": "e5",
      "type": "image",
-     "x": 892,
-     "y": 272,
-     "w": 596,
-     "h": 508,
+     "x": 866,
+     "y": 284,
+     "w": 675,
+     "h": 455,
      "slot": "s44_05",
      "kind": "user",
      "src": "",
      "caption": "",
      "fit": "contain",
      "recW": "1400",
-     "recH": "1000"
+     "recH": "1000",
+     "frame": "fixed"
     }
    ]
   },
@@ -3417,17 +3414,18 @@ window.__DECK__ = {
     {
      "id": "e5",
      "type": "image",
-     "x": 892,
-     "y": 272,
-     "w": 596,
-     "h": 508,
+     "x": 885,
+     "y": 288,
+     "w": 691,
+     "h": 473,
      "slot": "s45_01",
      "kind": "user",
      "src": "",
      "caption": "",
      "fit": "contain",
      "recW": "1400",
-     "recH": "1000"
+     "recH": "1000",
+     "frame": "fixed"
     }
    ]
   },
@@ -3477,17 +3475,18 @@ window.__DECK__ = {
     {
      "id": "e5",
      "type": "image",
-     "x": 892,
-     "y": 272,
-     "w": 596,
-     "h": 508,
+     "x": 843,
+     "y": 281,
+     "w": 693,
+     "h": 449,
      "slot": "s45_02",
      "kind": "user",
      "src": "",
      "caption": "",
      "fit": "contain",
      "recW": "1400",
-     "recH": "1000"
+     "recH": "1000",
+     "frame": "fixed"
     }
    ]
   },
@@ -3537,17 +3536,18 @@ window.__DECK__ = {
     {
      "id": "e5",
      "type": "image",
-     "x": 892,
+     "x": 867,
      "y": 272,
-     "w": 596,
-     "h": 508,
+     "w": 696,
+     "h": 450,
      "slot": "s45_03",
      "kind": "user",
      "src": "",
      "caption": "",
      "fit": "contain",
      "recW": "1400",
-     "recH": "1000"
+     "recH": "1000",
+     "frame": "fixed"
     }
    ]
   },
@@ -3597,17 +3597,18 @@ window.__DECK__ = {
     {
      "id": "e5",
      "type": "image",
-     "x": 892,
+     "x": 887,
      "y": 272,
-     "w": 596,
-     "h": 508,
+     "w": 693,
+     "h": 438,
      "slot": "s45_04",
      "kind": "user",
      "src": "",
      "caption": "",
-     "fit": "contain",
+     "fit": "fill",
      "recW": "1400",
-     "recH": "1000"
+     "recH": "1000",
+     "frame": "fixed"
     }
    ]
   },
@@ -3657,17 +3658,18 @@ window.__DECK__ = {
     {
      "id": "e5",
      "type": "image",
-     "x": 892,
-     "y": 272,
-     "w": 596,
-     "h": 508,
+     "x": 856,
+     "y": 285,
+     "w": 707,
+     "h": 381,
      "slot": "s46_01",
      "kind": "user",
      "src": "",
      "caption": "",
      "fit": "contain",
      "recW": "1400",
-     "recH": "1000"
+     "recH": "1000",
+     "frame": "fixed"
     }
    ]
   },
@@ -3717,17 +3719,18 @@ window.__DECK__ = {
     {
      "id": "e5",
      "type": "image",
-     "x": 892,
-     "y": 272,
-     "w": 596,
-     "h": 508,
+     "x": 865,
+     "y": 290,
+     "w": 722,
+     "h": 389,
      "slot": "s46_02",
      "kind": "user",
      "src": "",
      "caption": "",
      "fit": "contain",
      "recW": "1400",
-     "recH": "1000"
+     "recH": "1000",
+     "frame": "fixed"
     }
    ]
   },
