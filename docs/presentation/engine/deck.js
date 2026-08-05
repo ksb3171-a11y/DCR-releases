@@ -175,6 +175,9 @@ function imgSources(e) {
   /* 편집기에서 방금 고른 파일은 디스크 쓰기·브라우저 캐시와 무관하게 즉시 보여 준다.
      _ 로 시작하는 필드는 저장 시 제거되므로 deck.js 에 blob URL 이 남지 않는다. */
   if (e._previewSrc) out.push(e._previewSrc);
+  /* 단일 HTML은 필요한 이미지를 _previewSrc 로 이미 내장한다. 비어 있는 슬롯 때문에
+     옆 폴더의 assets 를 찾지 않도록 여기서 끝내면 파일 하나만으로 완전히 닫힌다. */
+  if (global.__DECK_STANDALONE__) return out;
   if (e.slot) { out.push('assets/user/' + e.slot + '.png');
                 out.push('assets/user/' + e.slot + '.jpg'); }
   if (e.src)    out.push(e.src);
