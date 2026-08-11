@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760">
+  <defs>
+    <filter id="shadow"><feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="#000" flood-opacity=".42"/></filter>
+    <style>
+      .ui{font-family:'Segoe UI',Arial,sans-serif;font-size:12px;fill:#c8c8c8}.num{font-family:Consolas,'Courier New',monospace;font-size:12px;fill:#e7e7e7}.title{font-family:'Segoe UI',Arial,sans-serif;font-size:14px;font-weight:700;fill:#4ec9b0}.section{font-family:'Segoe UI',Arial,sans-serif;font-size:12px;font-weight:600;fill:#d8d8d8}.muted{fill:#6f7680}.note{font-family:'Segoe UI',Arial,sans-serif;font-size:13px;fill:#9da7b3}
+    </style>
+  </defs>
+  <rect width="1200" height="760" fill="#11141a"/>
+  <text x="54" y="54" font-family="Segoe UI,Arial" font-size="22" font-weight="700" fill="#f2f2f2">Divide Elements — selection-aware concept</text>
+  <text x="54" y="82" class="note">Available local directions are determined automatically by the selected element type.</text>
+
+  <g transform="translate(54 120)" filter="url(#shadow)">
+    <rect width="510" height="570" rx="7" fill="#1e1e2e" stroke="#007acc" stroke-width="1.5"/><rect width="510" height="50" rx="7" fill="#16162a"/><rect y="43" width="510" height="7" fill="#16162a"/>
+    <text x="18" y="31" class="title">Divide Elements</text><text x="474" y="31" class="ui" font-size="18">×</text>
+    <text x="18" y="82" class="section">Selection</text><rect x="18" y="96" width="474" height="54" rx="4" fill="#242634" stroke="#343746"/>
+    <circle cx="38" cy="118" r="6" fill="#007acc"/><circle cx="38" cy="118" r="2.5" fill="#fff"/><text x="52" y="122" class="ui" fill="#fff">Frame</text>
+    <circle cx="126" cy="118" r="6" fill="none" stroke="#7d8490"/><text x="140" y="122" class="ui">Wall</text><text x="38" y="141" class="ui muted">4 frame elements selected</text>
+    <text x="18" y="184" class="section">Equal Division</text>
+    <text x="18" y="220" class="ui">Local X — Length</text><rect x="338" y="198" width="154" height="34" rx="3" fill="#11131a" stroke="#007acc"/><text x="354" y="220" class="num">3</text><path d="M476 207l5 6h-10zM471 218h10l-5 6z" fill="#8a929e"/>
+    <text x="18" y="270" class="ui muted">Local Y — In-plane</text><rect x="338" y="248" width="154" height="34" rx="3" fill="#191b23" stroke="#2b2e37"/><text x="354" y="270" class="num muted">—</text><text x="18" y="294" class="ui muted">Unavailable for line elements</text>
+    <line x1="18" y1="324" x2="492" y2="324" stroke="#353846"/><text x="18" y="356" class="section">Options</text><rect x="18" y="372" width="12" height="12" rx="2" fill="#007acc"/><path d="M21 378l3 3 6-7" fill="none" stroke="#fff" stroke-width="1.5"/><text x="38" y="383" class="ui">Merge duplicate nodes</text>
+    <rect x="18" y="418" width="474" height="67" rx="4" fill="#17241f" stroke="#295c48"/><text x="34" y="443" class="ui" fill="#72d6aa">Preview</text><text x="34" y="468" class="num">4 source elements  →  12 frame elements</text>
+    <rect x="330" y="514" width="78" height="34" rx="4" fill="#007acc"/><text x="354" y="536" class="ui" fill="#fff">Apply</text><rect x="418" y="514" width="74" height="34" rx="4" fill="#2a2d38" stroke="#464a57"/><text x="439" y="536" class="ui">Close</text>
+  </g>
+
+  <g transform="translate(636 120)" filter="url(#shadow)">
+    <rect width="510" height="570" rx="7" fill="#1e1e2e" stroke="#007acc" stroke-width="1.5"/><rect width="510" height="50" rx="7" fill="#16162a"/><rect y="43" width="510" height="7" fill="#16162a"/>
+    <text x="18" y="31" class="title">Divide Elements</text><text x="474" y="31" class="ui" font-size="18">×</text>
+    <text x="18" y="82" class="section">Selection</text><rect x="18" y="96" width="474" height="54" rx="4" fill="#242634" stroke="#343746"/>
+    <circle cx="38" cy="118" r="6" fill="none" stroke="#7d8490"/><text x="52" y="122" class="ui">Frame</text><circle cx="126" cy="118" r="6" fill="#007acc"/><circle cx="126" cy="118" r="2.5" fill="#fff"/><text x="140" y="122" class="ui" fill="#fff">Wall</text><text x="38" y="141" class="ui muted">4 wall elements selected</text>
+    <text x="18" y="184" class="section">Equal Division</text>
+    <text x="18" y="220" class="ui">Local X — Length</text><rect x="338" y="198" width="154" height="34" rx="3" fill="#11131a" stroke="#007acc"/><text x="354" y="220" class="num">2</text><path d="M476 207l5 6h-10zM471 218h10l-5 6z" fill="#8a929e"/>
+    <text x="18" y="270" class="ui">Local Y — Height</text><rect x="338" y="248" width="154" height="34" rx="3" fill="#11131a" stroke="#007acc"/><text x="354" y="270" class="num">3</text><path d="M476 257l5 6h-10zM471 268h10l-5 6z" fill="#8a929e"/><text x="18" y="294" class="ui muted">Both in-plane directions are available</text>
+    <line x1="18" y1="324" x2="492" y2="324" stroke="#353846"/><text x="18" y="356" class="section">Options</text><rect x="18" y="372" width="12" height="12" rx="2" fill="#007acc"/><path d="M21 378l3 3 6-7" fill="none" stroke="#fff" stroke-width="1.5"/><text x="38" y="383" class="ui">Merge duplicate nodes</text>
+    <rect x="18" y="418" width="474" height="67" rx="4" fill="#17241f" stroke="#295c48"/><text x="34" y="443" class="ui" fill="#72d6aa">Preview</text><text x="34" y="468" class="num">4 source walls × (2 × 3)  →  24 wall panels</text>
+    <rect x="330" y="514" width="78" height="34" rx="4" fill="#007acc"/><text x="354" y="536" class="ui" fill="#fff">Apply</text><rect x="418" y="514" width="74" height="34" rx="4" fill="#2a2d38" stroke="#464a57"/><text x="439" y="536" class="ui">Close</text>
+  </g>
+</svg>

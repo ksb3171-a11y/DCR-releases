@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>DCR Divide Elements Mockup</title>
+<style>
+  :root{--bg:#101218;--panel:#1e1e2e;--head:#16162a;--line:#353846;--text:#c8c8c8;--muted:#727987;--blue:#007acc;--green:#4ec9b0;--warn:#e7b34d;--danger:#f07178}
+  *{box-sizing:border-box}html,body{height:100%;margin:0;overflow:hidden;background:var(--bg);color:var(--text);font:12px 'Segoe UI','Segoe UI Variable',Arial,sans-serif}
+  body{display:grid;grid-template-rows:54px 1fr}.top{display:flex;align-items:center;padding:0 22px;border-bottom:1px solid #282b34;background:#171922}.top b{font-size:14px;color:#eee}.top span{margin-left:14px;color:#7f8794}
+  .stage{position:relative;min-height:0;background:radial-gradient(circle at 50% 45%,#202631 0,#11151b 58%,#0c0f14 100%)}
+  .hint{position:absolute;left:24px;top:20px;padding:10px 12px;border:1px solid #303541;border-radius:5px;background:#141821cc;color:#9ba5b3;line-height:1.55}
+  .scene{position:absolute;inset:72px 530px 56px 50px;perspective:700px}.grid{position:absolute;left:3%;right:3%;bottom:7%;height:55%;transform:rotateX(62deg);background-image:linear-gradient(#31506a55 1px,transparent 1px),linear-gradient(90deg,#31506a55 1px,transparent 1px);background-size:42px 42px;border:1px solid #31506a55}
+  .object{position:absolute;cursor:pointer;transition:.15s}.object:hover{filter:brightness(1.35)}
+  .frame{left:12%;top:28%;width:42%;height:8px;background:#aeb8c4;transform:rotate(-14deg);box-shadow:0 0 0 2px #12161b}.frame:before,.frame:after{content:'';position:absolute;top:-5px;width:14px;height:14px;border-radius:50%;background:#d8dee7;box-shadow:0 0 0 2px #14171d}.frame:before{left:-7px}.frame:after{right:-7px}.frame.selected{background:#00a8ff;box-shadow:0 0 12px #007acc}.frame.selected:before,.frame.selected:after{background:#65c8ff}
+  .wall{left:47%;top:20%;width:38%;height:48%;background:linear-gradient(145deg,#637080cc,#333c48cc);border:2px solid #a6b1be;clip-path:polygon(8% 19%,92% 0,92% 81%,8% 100%)}.wall:after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent 49%,#9faab655 50%,transparent 51%),linear-gradient(0deg,transparent 49%,#9faab655 50%,transparent 51%)}.wall.selected{border-color:#00a8ff;background:linear-gradient(145deg,#176390dd,#15364ddd);filter:drop-shadow(0 0 9px #007acc)}
+  .tag{position:absolute;padding:4px 7px;border-radius:3px;background:#0c0f14cc;color:#d4dae2;pointer-events:none}.frameTag{left:28%;top:19%}.wallTag{left:62%;top:12%}
+  .modal{position:absolute;right:28px;top:24px;width:445px;height:515px;border:1.5px solid var(--blue);border-radius:7px;background:var(--panel);box-shadow:0 18px 50px #0009;overflow:hidden}.modalHead{height:48px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;background:var(--head);border-bottom:1px solid #292c38}.modalHead b{font-size:14px;color:var(--green)}.close{font-size:18px;color:#9299a4}
+  .body{padding:18px}.selection{height:58px;padding:10px 12px;border:1px solid #353947;border-radius:4px;background:#242634}.selection strong{display:block;color:#e7e7e7;font-weight:600}.selection span{display:block;margin-top:5px;color:var(--muted)}
+  .sectionTitle{margin:22px 0 12px;font-weight:600;color:#ddd}.row{display:grid;grid-template-columns:1fr 132px;align-items:center;height:48px;border-bottom:1px solid #2c2f3a}.label small{display:block;margin-top:4px;color:#777f8d}.stepper{height:32px;display:grid;grid-template-columns:1fr 28px;border:1px solid #4a4f5c;border-radius:3px;background:#11131a;overflow:hidden}.stepper input{min-width:0;border:0;outline:0;padding:0 10px;background:transparent;color:#eee;font:12px Consolas,'Courier New',monospace}.arrows{display:grid;place-items:center;border-left:1px solid #343843;color:#89919e;font-size:9px;line-height:10px}
+  .message{margin-top:18px;min-height:69px;padding:11px 12px;border-radius:4px;border:1px solid #295c48;background:#17241f;color:#72d6aa}.message.warn{border-color:#6e592d;background:#2a2417;color:var(--warn)}.message.error{border-color:#6d373a;background:#2b1b1e;color:#ff8f96}.message b{display:block;margin-bottom:7px}.message code{font:12px Consolas,'Courier New',monospace;color:inherit}
+  .footer{position:absolute;left:0;right:0;bottom:0;height:62px;display:flex;align-items:center;justify-content:flex-end;gap:8px;padding:0 18px;border-top:1px solid #292c38;background:#181a26}.btn{height:32px;min-width:76px;border:1px solid #4a4f5c;border-radius:4px;background:#2a2d38;color:var(--text);font:12px 'Segoe UI',Arial}.btn.primary{border-color:var(--blue);background:var(--blue);color:#fff}.btn:disabled{border-color:#30333d;background:#23252d;color:#606672}
+  .legend{position:absolute;left:24px;bottom:18px;color:#707987}.legend kbd{padding:2px 6px;border:1px solid #444a56;border-radius:3px;background:#1a1e26;color:#aab2be}
+</style>
+</head>
+<body>
+  <div class="top"><b>DCR UI Concept</b><span>Automatic element-type detection · no Frame/Wall selector inside the dialog</span></div>
+  <main class="stage">
+    <div class="hint"><b>Mock viewport</b><br>Click the frame or wall to select it.<br><kbd>Shift</kbd> + click creates a mixed selection.</div>
+    <div class="scene">
+      <div class="grid"></div>
+      <div id="frame" class="object frame" role="button" aria-label="Frame element"></div><div class="tag frameTag">Frame E120</div>
+      <div id="wall" class="object wall" role="button" aria-label="Wall element"></div><div class="tag wallTag">Wall W18</div>
+    </div>
+    <section class="modal" aria-label="Divide Elements mockup">
+      <div class="modalHead"><b>Divide Elements</b><span class="close">×</span></div>
+      <div class="body">
+        <div class="selection"><strong id="selectionTitle">No elements selected</strong><span id="selectionDetail">Select elements in the viewport.</span></div>
+        <div class="sectionTitle">Equal Division</div>
+        <div id="rows"></div>
+        <div id="message" class="message warn"><b>Selection required</b>Select line or wall elements to continue.</div>
+      </div>
+      <div class="footer"><button class="btn">Close</button><button id="apply" class="btn primary" disabled>Apply</button></div>
+    </section>
+    <div class="legend"><kbd>Click</kbd> replace selection &nbsp; <kbd>Shift + Click</kbd> add/remove</div>
+  </main>
+<script>
+  const selected = new Set();
+  const frame = document.getElementById('frame'), wall = document.getElementById('wall');
+  const rows = document.getElementById('rows'), title = document.getElementById('selectionTitle');
+  const detail = document.getElementById('selectionDetail'), message = document.getElementById('message'), apply = document.getElementById('apply');
+  const values = {x:2,y:2};
+  function inputRow(axis,subtitle){return `<div class="row"><div class="label">Number of Divisions ${axis.toUpperCase()}<small>${subtitle}</small></div><div class="stepper"><input id="${axis}Count" type="number" min="1" step="1" value="${values[axis]}"><div class="arrows">▲<br>▼</div></div></div>`}
+  function bindInputs(){['x','y'].forEach(a=>{const el=document.getElementById(a+'Count');if(el)el.addEventListener('input',()=>{values[a]=Math.max(1,Math.floor(Number(el.value)||1));renderMessage()})})}
+  function renderMessage(){
+    if(selected.size===0){message.className='message warn';message.innerHTML='<b>Selection required</b>Select line or wall elements to continue.';apply.disabled=true;return}
+    if(selected.size===2){message.className='message error';message.innerHTML='<b>Mixed selection is not supported</b>Select elements of the same type.';apply.disabled=true;return}
+    const type=[...selected][0];
+    if(type==='frame'){
+      if(values.x<2){message.className='message warn';message.innerHTML='<b>No division requested</b>Set X to 2 or more.';apply.disabled=true}
+      else{message.className='message';message.innerHTML=`<b>Preview</b><code>1 frame → ${values.x} frame elements</code>`;apply.disabled=false}
+    }else{
+      if(values.x<2&&values.y<2){message.className='message warn';message.innerHTML='<b>No division requested</b>Set X or Y to 2 or more.';apply.disabled=true}
+      else{message.className='message';message.innerHTML=`<b>Preview</b><code>1 wall × (${values.x} × ${values.y}) → ${values.x*values.y} wall panels</code>`;apply.disabled=false}
+    }
+  }
+  function render(){
+    frame.classList.toggle('selected',selected.has('frame'));wall.classList.toggle('selected',selected.has('wall'));
+    if(selected.size===0){title.textContent='No elements selected';detail.textContent='Select elements in the viewport.';rows.innerHTML=''}
+    else if(selected.size===2){title.textContent='Mixed element types selected';detail.textContent='1 frame + 1 wall';rows.innerHTML=''}
+    else if(selected.has('frame')){title.textContent='Frame element detected';detail.textContent='1 line element selected · one local direction available';rows.innerHTML=inputRow('x','Local length direction')}
+    else{title.textContent='Wall element detected';detail.textContent='1 wall element selected · two in-plane directions available';rows.innerHTML=inputRow('x','Local length direction')+inputRow('y','Local height direction')}
+    bindInputs();renderMessage();
+  }
+  function choose(type,e){if(e.shiftKey){selected.has(type)?selected.delete(type):selected.add(type)}else{selected.clear();selected.add(type)}render()}
+  frame.addEventListener('click',e=>choose('frame',e));wall.addEventListener('click',e=>choose('wall',e));render();
+</script>
+</body>
+</html>
