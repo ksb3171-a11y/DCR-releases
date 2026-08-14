@@ -18,9 +18,18 @@
   var page = (document.body && document.body.dataset.page) || 'home';
   var isHome = page === 'home';
 
+  /* Path back to the CURRENT LANGUAGE root, declared by the page itself
+     (scripts/site/). './' at the site root and inside /ko/; '../' from a page one
+     level deeper such as /verification/SB1.html. Prefixing every nav and footer
+     link with it keeps navigation inside the language the reader is browsing:
+     from /ko/product.html, './verification.html' resolves to /ko/verification.html.
+     See site_seo_discoverability_devplan.md §3.3. */
+  var NAV_BASE = document.documentElement.getAttribute('data-nav-base') || './';
+  function nav(file) { return NAV_BASE + file; }
+
   // Anchor that lives on the home page: use in-page hash when already home,
   // otherwise jump to index.html#hash.
-  function home(hash) { return isHome ? ('#' + hash) : ('index.html#' + hash); }
+  function home(hash) { return isHome ? ('#' + hash) : (nav('index.html') + '#' + hash); }
 
   // STRIX wordmark: inline SVG. The X (diagonals + corner nodes) is the priority —
   // it matches the letter height (72 units). The frame square sits INSIDE the X (6~66).
@@ -38,16 +47,16 @@
 
   var NAV = '' +
     '<header class="nav" id="nav"><div class="container">' +
-      '<a href="' + (isHome ? '#top' : 'index.html') + '" class="nav-logo">' + LOGOMARK +
+      '<a href="' + (isHome ? '#top' : nav('index.html')) + '" class="nav-logo">' + LOGOMARK +
         '<span class="logo-sub" data-i18n="nav.sub">Structural Technology</span></a>' +
       '<ul class="nav-links" id="navLinks">' +
-        '<li><a href="product.html" data-nav="product" data-i18n="nav.product">Product</a></li>' +
-        '<li><a href="verification.html" data-nav="verification" data-i18n="nav.verification">Verification</a></li>' +
-        '<li><a href="ai.html" data-nav="ai" data-i18n="nav.ai">AI</a></li>' +
-        '<li><a href="pricing.html" data-nav="pricing" data-i18n="nav.pricing">Pricing</a></li>' +
-        '<li><a href="resources.html" data-nav="resources" data-i18n="nav.resources">Resources</a></li>' +
-        '<li><a href="community.html" data-nav="community" data-i18n="nav.community">Community</a></li>' +
-        '<li><a href="brand.html" data-nav="brand" data-i18n="nav.brand">Brand</a></li>' +
+        '<li><a href="' + nav('product.html') + '" data-nav="product" data-i18n="nav.product">Product</a></li>' +
+        '<li><a href="' + nav('verification.html') + '" data-nav="verification" data-i18n="nav.verification">Verification</a></li>' +
+        '<li><a href="' + nav('ai.html') + '" data-nav="ai" data-i18n="nav.ai">AI</a></li>' +
+        '<li><a href="' + nav('pricing.html') + '" data-nav="pricing" data-i18n="nav.pricing">Pricing</a></li>' +
+        '<li><a href="' + nav('resources.html') + '" data-nav="resources" data-i18n="nav.resources">Resources</a></li>' +
+        '<li><a href="' + nav('community.html') + '" data-nav="community" data-i18n="nav.community">Community</a></li>' +
+        '<li><a href="' + nav('brand.html') + '" data-nav="brand" data-i18n="nav.brand">Brand</a></li>' +
         '<li><a href="' + home('download') + '" data-nav="download" data-i18n="nav.download">Download</a></li>' +
       '</ul>' +
       '<div class="nav-right">' +
@@ -67,7 +76,7 @@
               '<div class="u-email" id="dropEmail">-</div>' +
               '<div class="u-exp"   id="dropExp">-</div>' +
             '</div>' +
-            '<a class="udrop-item" href="account.html">👤 <span data-i18n="nav.account">Account</span></a>' +
+            '<a class="udrop-item" href="' + nav('account.html') + '">👤 <span data-i18n="nav.account">Account</span></a>' +
             '<button class="udrop-item logout" onclick="handleLogout()">🚪 <span data-i18n="auth.logout">Log out</span></button>' +
           '</div>' +
         '</div>' +
@@ -92,14 +101,14 @@
         '<p data-i18n="foot.tagline">Independent commercial structural analysis &amp; design — built to exceed, not imitate.</p>' +
       '</div>' +
       '<div class="footer-col"><h4 data-i18n="foot.product">Product</h4>' +
-        '<a href="product.html" data-i18n="nav.product">Product</a>' +
-        '<a href="verification.html" data-i18n="nav.verification">Verification</a>' +
-        '<a href="ai.html" data-i18n="nav.ai">AI</a>' +
-        '<a href="pricing.html" data-i18n="nav.pricing">Pricing</a>' +
+        '<a href="' + nav('product.html') + '" data-i18n="nav.product">Product</a>' +
+        '<a href="' + nav('verification.html') + '" data-i18n="nav.verification">Verification</a>' +
+        '<a href="' + nav('ai.html') + '" data-i18n="nav.ai">AI</a>' +
+        '<a href="' + nav('pricing.html') + '" data-i18n="nav.pricing">Pricing</a>' +
       '</div>' +
       '<div class="footer-col"><h4 data-i18n="foot.resources">Resources</h4>' +
-        '<a href="resources.html" data-i18n="nav.resources">Resources</a>' +
-        '<a href="community.html" data-i18n="nav.community">Community</a>' +
+        '<a href="' + nav('resources.html') + '" data-i18n="nav.resources">Resources</a>' +
+        '<a href="' + nav('community.html') + '" data-i18n="nav.community">Community</a>' +
         '<a href="' + home('download') + '" data-i18n="nav.download">Download</a>' +
       '</div>' +
       '<div class="footer-col"><h4 data-i18n="foot.company">Company</h4>' +
@@ -173,7 +182,7 @@
     '</div></div>' +
     // quick buttons
     '<div id="quickBtns">' +
-      '<button onclick="location.href=\'community.html\'" title="Community" style="font-size:18px">💡</button>' +
+      '<button onclick="location.href=\'' + nav('community.html') + '\'" title="Community" style="font-size:18px">💡</button>' +
       '<button onclick="window.scrollTo({top:0,behavior:\'smooth\'})" title="Top">' +
         '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg></button>' +
       '<button onclick="window.scrollTo({top:document.body.scrollHeight,behavior:\'smooth\'})" title="Bottom">' +

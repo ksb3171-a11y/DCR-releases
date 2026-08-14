@@ -1,0 +1,14 @@
+# GENERATED FILE — rebuild with: cd frontend && npm run site:build
+# Disallow only hides a path from search results. It does NOT restrict access —
+# everything under docs/ is served publicly. See devplan §8.
+
+User-agent: *
+Allow: /
+Disallow: /account.html
+Disallow: /preview-home.html
+Disallow: /mockups/
+Disallow: /presentation/
+Disallow: /homepage/
+Disallow: /KDS/
+
+Sitemap: https://dcr-st.com/sitemap.xml

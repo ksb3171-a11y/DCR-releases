@@ -225,6 +225,7 @@
       'vp.title': 'How we verify STRIX',
       'vp.lead': 'STRIX is an independent solver built to be correct, then confirmed against known references. This page shows the methodology and representative cross-verification results — the engineering facts are open; the presentation is our own.',
       'vp.pdfCta': 'Download full V&V report (PDF)',
+      'vp.xvnCta': 'Cross-code verification note (PDF)',
       'vp.suiteTitle': '21 international benchmarks, four categories',
       'vp.suiteLead': 'Every case below runs the real production code path (builder → OpenSees engine → parser), headless, against a published reference solution — not an internally-invented target. Element, analysis and nonlinear behavior are each checked against a different independent source.',
       'vp.mEyebrow': 'Methodology',
@@ -887,6 +888,7 @@
       'vp.title': 'STRIX을 어떻게 검증하는가',
       'vp.lead': 'STRIX은 먼저 정확하도록 만들고, 알려진 기준과 대조해 확인하는 독립 솔버입니다. 이 페이지는 검증 방법론과 대표 교차검증 결과를 보여줍니다 — 공학적 사실은 공개하되, 표현은 STRIX 고유의 것입니다.',
       'vp.pdfCta': '전체 V&V 리포트 다운로드 (PDF)',
+      'vp.xvnCta': '코드 간 교차검증 노트 (PDF)',
       'vp.suiteTitle': '국제 벤치마크 21개, 4개 카테고리',
       'vp.suiteLead': '아래 항목은 모두 실제 프로덕션 코드 경로(빌더 → OpenSees 엔진 → 파서)를 헤드리스로 실행해, 자체적으로 만든 목표값이 아니라 공인된 참조해와 대조한 결과입니다. 요소·해석·비선형 거동을 각각 다른 독립 출처로 검증합니다.',
       'vp.mEyebrow': '검증 방법론',
@@ -1549,6 +1551,7 @@
       'vp.title': 'STRIXの検証方法',
       'vp.lead': 'STRIXは、まず正確であるよう構築され、その上で既知のリファレンスと照合された独立ソルバーです。本ページでは手法と代表的な相互検証結果を示します — 工学的事実はオープンであり、その提示方法は当社独自のものです。',
       'vp.pdfCta': 'V&Vレポート全文をダウンロード (PDF)',
+      'vp.xvnCta': 'ソルバー間相互検証ノート (PDF)',
       'vp.suiteTitle': '国際ベンチマーク21件、4カテゴリー',
       'vp.suiteLead': '以下の各ケースは、実運用のコード経路(ビルダー → OpenSeesエンジン → パーサー)をヘッドレスで実行し、社内で作成した目標値ではなく、公表された参照解と照合した結果です。要素・解析・非線形挙動はそれぞれ異なる独立した出典で検証しています。',
       'vp.mEyebrow': '手法',
@@ -2203,6 +2206,7 @@
       'vp.title': '我们如何验证 STRIX',
       'vp.lead': 'STRIX 是一款以正确为目标构建、再与已知基准比对确认的独立求解器。本页展示验证方法论与代表性交叉验证结果 —— 工程事实开放共享，呈现方式则为我们独创。',
       'vp.pdfCta': '下载完整 V&V 报告 (PDF)',
+      'vp.xvnCta': '求解器交叉验证说明 (PDF)',
       'vp.suiteTitle': '21 项国际基准测试，四大类别',
       'vp.suiteLead': '以下每一项都以无界面（headless）方式运行真实的生产代码路径（构建器 → OpenSees 引擎 → 解析器），并与已发表的参考解进行对比 —— 而非内部自行设定的目标值。单元、分析和非线性行为分别对照不同的独立来源进行验证。',
       'vp.mEyebrow': '方法论',
@@ -2646,8 +2650,14 @@
     }
   };
 
-  function apply(lang) {
+  /* `opts.persist === false` applies the language without remembering it. Static
+     language pages (/ko/…, built by scripts/site/build-lang-pages.mjs) use that:
+     on those pages the URL is what decides the language, so writing the choice to
+     localStorage would make a later visit to an English URL render Korean — the
+     URL and the screen would disagree. */
+  function apply(lang, opts) {
     if (!LANGS[lang]) lang = 'en';
+    var persist = !(opts && opts.persist === false);
     // en/ko/ja/zh dicts are all complete; any missing key still falls back to
     // English while the selector keeps reflecting the chosen language.
     const t = T[lang] || T.en;
@@ -2674,7 +2684,7 @@
     document.querySelectorAll('.lang-option').forEach(opt => {
       opt.classList.toggle('active', opt.dataset.lang === lang);
     });
-    try { localStorage.setItem('dcr-lang-v2', lang); } catch (e) {}
+    if (persist) { try { localStorage.setItem('dcr-lang-v2', lang); } catch (e) {} }
 
     // Allow auth.js (or others) to re-render language-dependent dynamic text.
     if (typeof global.onLangApplied === 'function') {

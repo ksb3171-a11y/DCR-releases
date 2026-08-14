@@ -66,6 +66,10 @@
     }
 
     document.addEventListener('click', function (e) {
+      // A real link inside a preview row wins over the row itself — benchmark rows
+      // carry an <a> to the full HTML page (docs/verification/<id>.html) and must
+      // navigate, not open the PDF modal on top of the navigation.
+      if (e.target.closest && e.target.closest('a[href]')) return;
       var row = e.target.closest && e.target.closest('tr[data-pdf]');
       if (row) { open(row); return; }
       // Pop-out — a real OS window (not a page element), so it can be freely dragged to any
