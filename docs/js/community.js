@@ -271,6 +271,9 @@
       _curPost = res.data;
       _curBoard = _curPost.board;
       try { window._sb.rpc('cp_bump_view', { pid: id }); } catch (e) {}
+      // Read state for the desktop app's unread badge (community_badge_devplan.md).
+      // No-op for anonymous visitors (the function returns early on null auth.uid()).
+      try { window._sb.rpc('cp_mark_read', { pid: id }); } catch (e) {}
       if (window._user && BOARD_MAP[_curBoard].vote) {
         window._sb.from('community_votes').select('post_id').eq('user_id', window._user.id).eq('post_id', id)
           .then(function (v) { _myVotes = new Set((v && v.data || []).map(function (x) { return x.post_id; })); loadComments(id); });
