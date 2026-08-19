@@ -139,6 +139,22 @@
     return true;
   }
 
+  /**
+   * Fire-and-forget RPC — the ONLY correct way to call one whose result we ignore.
+   *
+   * 🚨 supabase-js v2 `.rpc()` returns a LAZY thenable: the `fetch` lives inside
+   *    `then()`, so `_sb.rpc(name, args)` on its own **sends nothing at all**.
+   *    `cp_bump_view` and `cp_mark_read` were both written that way and neither
+   *    ever reached the server (every post sat at view_count = 0, and the desktop
+   *    app's unread badge could never go down). Attaching `.then()` is what makes
+   *    the request happen — the empty handlers also swallow rejections, which the
+   *    surrounding `try/catch` never could for an async failure.
+   */
+  function fireRpc(name, args) {
+    if (!window._sb) return;
+    try { window._sb.rpc(name, args).then(function () {}, function () {}); } catch (e) {}
+  }
+
   // ── router ─────────────────────────────────────────────────────────────────
   function route() {
     var h = (location.hash || '#hub').replace(/^#/, '');
@@ -270,10 +286,10 @@
       if (!res || res.error || !res.data) { el.innerHTML = '<div class="cm-empty">' + esc(ct('comm.notFound', 'Post not found.')) + '</div>'; return; }
       _curPost = res.data;
       _curBoard = _curPost.board;
-      try { window._sb.rpc('cp_bump_view', { pid: id }); } catch (e) {}
+      fireRpc('cp_bump_view', { pid: id });
       // Read state for the desktop app's unread badge (community_badge_devplan.md).
       // No-op for anonymous visitors (the function returns early on null auth.uid()).
-      try { window._sb.rpc('cp_mark_read', { pid: id }); } catch (e) {}
+      fireRpc('cp_mark_read', { pid: id });
       if (window._user && BOARD_MAP[_curBoard].vote) {
         window._sb.from('community_votes').select('post_id').eq('user_id', window._user.id).eq('post_id', id)
           .then(function (v) { _myVotes = new Set((v && v.data || []).map(function (x) { return x.post_id; })); loadComments(id); });
