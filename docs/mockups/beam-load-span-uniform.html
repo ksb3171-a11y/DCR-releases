@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>STRIX · Beam Load — a, b Relative / Absolute</title>
+<style>
+  :root {
+    --ui: 'Segoe UI', 'Segoe UI Variable', 'Malgun Gothic', '맑은 고딕', Arial, sans-serif;
+    --num: Consolas, 'Courier New', monospace;
+    --panel: #252526; --head: #1e1e1e; --form: #1a1a1a;
+    --mode: #ffd54f; --gold: #f0a500; --udl: #55cc55;
+    --wx: #ff5555; --wy: #55cc55; --wz: #5599ff;
+    --sel: #007acc; --ok: #4ec9b0;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: #0e0f14; color: #c8c8c8; font: 12px var(--ui); overflow: hidden; }
+  body { display: grid; grid-template-rows: auto 1fr; }
+  .banner { padding: 10px 18px; border-bottom: 1px solid #262833; background: #14151c; }
+  .banner b { color: var(--gold); }
+  .banner span { color: #8a8f9c; margin-left: 10px; }
+  .app { display: grid; grid-template-rows: 34px 1fr; min-height: 0; }
+  .ribbon { display: flex; align-items: center; gap: 12px; padding: 0 12px; background: #2d2d30; border-bottom: 1px solid #3c3c3c; color: #bbb; }
+  .ribbon .on { color: var(--gold); font-weight: 600; }
+  .work { display: flex; min-height: 0; }
+  .left {
+    width: 275px; flex-shrink: 0; background: var(--panel);
+    display: flex; flex-direction: column; overflow: hidden; border-right: 1px solid #111;
+  }
+  .tabs { display: flex; background: var(--head); flex-shrink: 0; }
+  .tabs button { flex: 1; padding: 5px 0; font: 12px var(--ui); color: #888; background: none; border: none; border-bottom: 2px solid transparent; }
+  .tabs button.on { color: #fff; background: var(--panel); border-bottom-color: var(--sel); }
+  .hdr { padding: 8px 10px; border-bottom: 1px solid #2a2a2a; background: var(--head); color: var(--mode); font-weight: 600; flex-shrink: 0; }
+  .block { padding: 8px 10px; border-bottom: 1px solid #333; flex-shrink: 0; }
+  .lab { display: block; font-size: 12px; font-weight: 600; color: #888; text-transform: uppercase; letter-spacing: .8px; margin-bottom: 4px; }
+  .select, select {
+    width: 100%; background: #111; border: 1px solid #333; border-radius: 4px; color: var(--mode);
+    font: 12px var(--ui); padding: 5px 8px; outline: none; color-scheme: dark;
+  }
+  .select { display: flex; justify-content: space-between; }
+  .bltabs { display: flex; border-bottom: 1px solid #2a2a2a; flex-shrink: 0; }
+  .bltabs button { flex: 1; padding: 5px 0; font: 12px var(--ui); background: none; border: none; border-bottom: 2px solid transparent; color: #666; }
+  .bltabs button.on { background: rgba(240,165,0,.1); border-bottom-color: var(--gold); color: var(--gold); font-weight: 600; }
+  .scroll { flex: 1; min-height: 0; overflow: auto; display: flex; flex-direction: column; }
+  .form { padding: 10px 10px 8px; flex-shrink: 0; }
+  .sec { font-size: 12px; color: #888; font-weight: 600; text-transform: uppercase; letter-spacing: .6px; margin-bottom: 8px; }
+  .sec span { color: #555; font-weight: 400; }
+  .axis { display: flex; align-items: center; gap: 5px; margin-bottom: 5px; }
+  .axis .ax { width: 22px; text-align: right; font: 700 12px var(--num); flex-shrink: 0; }
+  .axis input, .dist input {
+    flex: 1; min-width: 0; background: #0d0d1a; border: 1px solid rgba(255,255,255,.1);
+    border-radius: 3px; color: #ccc; font: 12px var(--num); padding: 3px 5px; outline: none;
+    appearance: textfield; -moz-appearance: textfield;
+  }
+  .axis input::-webkit-outer-spin-button, .axis input::-webkit-inner-spin-button,
+  .dist input::-webkit-outer-spin-button, .dist input::-webkit-inner-spin-button { appearance: none; margin: 0; }
+  .axis .unit { width: 48px; font-size: 12px; color: #555; flex-shrink: 0; }
+  .radio { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+  .radio .k { width: 60px; color: #888; flex-shrink: 0; }
+  .radio label { display: flex; align-items: center; gap: 3px; cursor: pointer; user-select: none; }
+  .radio input { accent-color: var(--gold); }
+  .radio span { color: #666; }
+  .radio label.on span { color: var(--gold); }
+  .span-box { margin-top: 8px; padding: 8px; background: rgba(85,204,85,.05); border: 1px solid rgba(85,204,85,.28); border-radius: 4px; }
+  .diag { width: 100%; height: 132px; display: block; overflow: visible; }
+  .dist { display: flex; align-items: center; gap: 5px; margin-bottom: 5px; }
+  .dist .k { width: 16px; font: 700 12px var(--num); color: var(--udl); }
+  .dist input { border-color: rgba(85,204,85,.45); }
+  .dist .unit { width: 28px; color: #555; flex-shrink: 0; }
+  .meta { font: 11px var(--num); color: #7a9a7a; margin: 2px 0 6px; }
+  .meta .dim { color: #555; }
+  .chips { display: flex; gap: 4px; flex-wrap: wrap; }
+  .chip { padding: 2px 7px; font-size: 11px; cursor: pointer; background: rgba(255,255,255,.04); border: 1px solid #3a3a3a; border-radius: 10px; color: #888; }
+  .chip:hover { color: #ccc; border-color: rgba(85,204,85,.45); }
+  .list-head { margin-top: auto; border-top: 1px solid #222; padding: 5px 10px; background: rgba(240,165,0,.05); border-bottom: 1px solid #222; }
+  .list-head .t { font-weight: 600; color: #c8c8c8; text-transform: uppercase; letter-spacing: .5px; }
+  .list-head .s { color: #666; }
+  .row { display: grid; grid-template-columns: 34px 36px 1fr; padding: 4px 10px 4px 8px; border-bottom: 1px solid rgba(255,255,255,.03); border-left: 2px solid transparent; }
+  .row.sel { background: rgba(0,122,204,.78); border-left-color: var(--sel); }
+  .row .ty { font: 600 12px var(--num); color: var(--udl); }
+  .row .el { font: 12px var(--num); color: #dcdcaa; }
+  .row .va { font: 12px var(--num); color: #777; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .row.sel .ty, .row.sel .el, .row.sel .va { color: #fff; }
+  .foot { padding: 8px 10px; border-top: 1px solid #2a2a2a; background: var(--form); flex-shrink: 0; }
+  .foot .st { color: var(--ok); margin-bottom: 6px; }
+  .btns { display: flex; gap: 6px; }
+  .btns button { flex: 1; padding: 5px 0; border-radius: 4px; font: 600 12px var(--ui); }
+  .del { background: rgba(255,255,255,.03); border: 1px solid #2a2a2a; color: #444; }
+  .as { background: rgba(240,165,0,.15); border: 1px solid rgba(240,165,0,.5); color: var(--gold); }
+  .vp {
+    flex: 1; min-width: 0; min-height: 0; position: relative;
+    background:
+      linear-gradient(#1a223055 1px, transparent 1px),
+      linear-gradient(90deg, #1a223055 1px, transparent 1px),
+      radial-gradient(circle at 50% 42%, #1c2230 0%, #10141c 62%, #0b0e13 100%);
+    background-size: 36px 36px, 36px 36px, auto;
+  }
+  .vp .hint {
+    position: absolute; left: 16px; top: 12px; color: #6d7584; line-height: 1.45;
+    padding: 8px 10px; border: 1px solid #2a3140; border-radius: 4px; background: #141821cc;
+  }
+</style>
+</head>
+<body>
+  <header class="banner">
+    <b>수정 목업</b>
+    <span>좌측만 손봄. a·b는 Absolute(m) / Relative(0~1). 뷰포트 하중 표시는 기존 Display Options.</span>
+  </header>
+  <section class="app">
+    <div class="ribbon"><span>File</span><span>Model</span><span class="on">Load · Beam Load</span><span>Analysis</span></div>
+    <div class="work">
+      <aside class="left">
+        <div class="tabs">
+          <button type="button">Data</button>
+          <button class="on" type="button">Menu</button>
+          <button type="button">Result</button>
+          <button type="button">Set</button>
+        </div>
+        <div class="hdr">Load Manager</div>
+        <div class="block"><span class="lab">Load Type</span><div class="select"><span>Beam Load</span><span style="color:#666">▼</span></div></div>
+        <div class="block"><span class="lab">Load Case</span><select><option>DL</option></select></div>
+        <div class="bltabs">
+          <button class="on" type="button">Uniform (3)</button>
+          <button type="button">Trap. (1)</button>
+          <button type="button">Interm. (1)</button>
+        </div>
+        <div class="scroll">
+          <div class="form">
+            <div class="sec">Distributed Load <span>(kN/m)</span></div>
+            <div class="radio">
+              <span class="k">Projection</span>
+              <label><input type="radio" name="proj"><span>Yes</span></label>
+              <label class="on"><input type="radio" name="proj" checked><span>No</span></label>
+            </div>
+            <div class="axis"><span class="ax" style="color:var(--wx)">wx</span><input id="wx" placeholder="0"><span class="unit">kN/m</span></div>
+            <div class="axis"><span class="ax" style="color:var(--wy)">wy</span><input id="wy" placeholder="0"><span class="unit">kN/m</span></div>
+            <div class="axis"><span class="ax" style="color:var(--wz)">wz</span><input id="wz" value="-15"><span class="unit">kN/m</span></div>
+
+            <div class="span-box">
+              <div class="sec" style="margin-bottom:6px">Span from N1</div>
+              <svg class="diag" id="diag" viewBox="0 0 255 132" preserveAspectRatio="xMidYMin meet"></svg>
+              <div class="radio" style="margin-top:4px">
+                <span class="k">Value</span>
+                <label id="labAbs" class="on"><input type="radio" name="rel" id="absOn" checked><span>Absolute</span></label>
+                <label id="labRel"><input type="radio" name="rel" id="relOn"><span>Relative</span></label>
+              </div>
+              <div class="dist"><span class="k">a</span><input id="a" type="text" inputmode="decimal" value="1.6"><span class="unit" id="aUnit">m</span></div>
+              <div class="dist"><span class="k">b</span><input id="b" type="text" inputmode="decimal" value="6.4" placeholder="L"><span class="unit" id="bUnit">m</span></div>
+              <div class="meta" id="meta"></div>
+              <div class="chips">
+                <button class="chip" id="fullBtn" type="button">Full member</button>
+                <button class="chip" id="toN2" type="button">b = end</button>
+              </div>
+            </div>
+          </div>
+          <div class="list-head">
+            <div class="t">Uniform Loads (3)</div>
+            <div class="s">click = values + viewport</div>
+          </div>
+          <div class="row"><span class="ty">UDL</span><span class="el">E220</span><span class="va">wz=-12.5</span></div>
+          <div class="row sel"><span class="ty">UDL</span><span class="el">E401</span><span class="va" id="liveVa"></span></div>
+          <div class="row"><span class="ty">UDL</span><span class="el">E402</span><span class="va">wz=-15 · a=1.60 b=6.40</span></div>
+        </div>
+        <div class="foot">
+          <div class="st">E401 selected · L = 8.00 m</div>
+          <div class="btns"><button class="del" type="button">Delete</button><button class="as" type="button">Assign</button></div>
+        </div>
+      </aside>
+      <div class="vp">
+        <div class="hint">기존 뷰포트 그대로.<br>보 하중 표시는 Display Options · Beam Loads.</div>
+      </div>
+    </div>
+  </section>
+<script>
+  const L = 8.0;
+  const $ = id => document.getElementById(id);
+  const state = { relative: false }; // Absolute first — distance is the usual input
+
+  function emptyBMeansEnd() { return $('b').value === ''; }
+
+  function relAB() {
+    const rawA = $('a').value === '' ? 0 : Number($('a').value);
+    const rawB = emptyBMeansEnd() ? (state.relative ? 1 : L) : Number($('b').value);
+    const aRel = state.relative ? rawA : rawA / L;
+    const bRel = state.relative ? rawB : rawB / L;
+    return {
+      aRel: Math.max(0, Math.min(1, aRel)),
+      bRel: Math.max(0, Math.min(1, bRel)),
+      aShow: rawA,
+      bShow: rawB,
+      wz: Number($('wz').value) || 0,
+    };
+  }
+
+  function dimLine(x1, x2, y, label, color) {
+    const mid = (x1 + x2) / 2;
+    const tick = 5;
+    if (Math.abs(x2 - x1) < 10) {
+      return `<line x1="${x1}" y1="${y-tick}" x2="${x1}" y2="${y+tick}" stroke="${color}"/>
+        <text x="${x1+6}" y="${y+3}" fill="${color}" font-size="10" font-family="Consolas">${label}</text>`;
+    }
+    return `
+      <line x1="${x1}" y1="${y}" x2="${x2}" y2="${y}" stroke="${color}"/>
+      <line x1="${x1}" y1="${y-tick}" x2="${x1}" y2="${y+tick}" stroke="${color}"/>
+      <line x1="${x2}" y1="${y-tick}" x2="${x2}" y2="${y+tick}" stroke="${color}"/>
+      <polygon points="${x1},${y} ${x1+6},${y-3} ${x1+6},${y+3}" fill="${color}"/>
+      <polygon points="${x2},${y} ${x2-6},${y-3} ${x2-6},${y+3}" fill="${color}"/>
+      <text x="${mid}" y="${y-5}" fill="${color}" font-size="10" font-family="Consolas" text-anchor="middle">${label}</text>`;
+  }
+
+  function draw() {
+    const { aRel, bRel, aShow, bShow, wz } = relAB();
+    const a = Math.min(aRel, bRel);
+    const b = Math.max(aRel, bRel);
+    const x1 = 22, x2 = 233, y = 52;
+    const sx = t => x1 + t * (x2 - x1);
+    const sa = sx(a), sb = sx(b);
+    const sign = wz === 0 ? -1 : Math.sign(wz);
+    const tip = y + sign * -28;
+    const n = Math.max(3, Math.round((b - a) * 8));
+    let arrows = `<rect x="${sa}" y="${Math.min(tip,y)}" width="${Math.max(4,sb-sa)}" height="${Math.abs(y-tip)}" fill="rgba(85,204,85,.14)"/>`;
+    for (let i = 0; i < n; i++) {
+      const t = n === 1 ? 0.5 : i / (n - 1);
+      const x = sa + t * (sb - sa);
+      arrows += `<line x1="${x}" y1="${tip}" x2="${x}" y2="${y}" stroke="#55cc55" stroke-width="1"/>
+        <polygon points="${x},${y} ${x-3.5},${y - sign*7} ${x+3.5},${y - sign*7}" fill="#55cc55"/>`;
+    }
+    arrows += `<line x1="${sa}" y1="${tip}" x2="${sb}" y2="${tip}" stroke="#55cc55" stroke-width="1.6"/>
+      <text x="${(sa+sb)/2}" y="${tip-7}" fill="#55cc55" font-size="11" font-family="Consolas" text-anchor="middle">w</text>`;
+
+    const aLbl = state.relative ? `a = ${a.toFixed(2)} L` : `a = ${(a * L).toFixed(2)} m`;
+    const bLbl = state.relative ? `b = ${b.toFixed(2)} L` : `b = ${(b * L).toFixed(2)} m`;
+
+    $('diag').innerHTML = `
+      ${arrows}
+      <line x1="${x1}" y1="${y}" x2="${x2}" y2="${y}" stroke="#c5ccd6" stroke-width="3"/>
+      <circle cx="${x1}" cy="${y}" r="5" fill="#f0a500"/><circle cx="${x2}" cy="${y}" r="5" fill="#f0a500"/>
+      <text x="${x1}" y="${y+14}" fill="#888" font-size="9" text-anchor="middle">N1</text>
+      <text x="${x2}" y="${y+14}" fill="#888" font-size="9" text-anchor="middle">N2</text>
+      <line x1="${sa}" y1="${y-6}" x2="${sa}" y2="${y+22}" stroke="#55cc55" stroke-dasharray="2,2"/>
+      <line x1="${sb}" y1="${y-6}" x2="${sb}" y2="${y+38}" stroke="#55cc55" stroke-dasharray="2,2"/>
+      <text x="${sa}" y="${y-8}" fill="#55cc55" font-size="11" font-family="Consolas" font-weight="700" text-anchor="${a<0.12?'start':'middle'}">a</text>
+      <text x="${sb}" y="${y-8}" fill="#55cc55" font-size="11" font-family="Consolas" font-weight="700" text-anchor="${b>0.88?'end':'middle'}">b</text>
+      ${dimLine(x1, sa, 86, aLbl, '#55cc55')}
+      ${dimLine(x1, sb, 110, bLbl, '#7ab87a')}
+    `;
+
+    const full = a <= 1e-9 && b >= 1 - 1e-9;
+    const loadedM = (b - a) * L;
+    $('meta').innerHTML = state.relative
+      ? `L = ${L.toFixed(2)} m <span class="dim">· ${(b-a).toFixed(2)} L loaded</span>`
+      : `L = ${L.toFixed(2)} m <span class="dim">· ${loadedM.toFixed(2)} m loaded</span>`;
+    $('liveVa').textContent = full
+      ? `wz=${wz}`
+      : state.relative
+        ? `wz=${wz} · a=${a.toFixed(2)} b=${b.toFixed(2)} L`
+        : `wz=${wz} · a=${(a*L).toFixed(2)} b=${(b*L).toFixed(2)} m`;
+  }
+
+  function setMode(relative) {
+    const { aRel, bRel } = relAB();
+    const bWasEmpty = emptyBMeansEnd();
+    state.relative = relative;
+    $('a').value = relative ? aRel.toFixed(2) : (aRel * L).toFixed(2);
+    if (bWasEmpty) $('b').value = '';
+    else $('b').value = relative ? bRel.toFixed(2) : (bRel * L).toFixed(2);
+    $('aUnit').textContent = relative ? 'L' : 'm';
+    $('bUnit').textContent = relative ? 'L' : 'm';
+    $('b').placeholder = relative ? '1' : 'L';
+    $('labAbs').classList.toggle('on', !relative);
+    $('labRel').classList.toggle('on', relative);
+    draw();
+  }
+
+  $('absOn').addEventListener('change', () => setMode(false));
+  $('relOn').addEventListener('change', () => setMode(true));
+  ['a','b','wz'].forEach(id => $(id).addEventListener('input', draw));
+  $('fullBtn').addEventListener('click', () => {
+    $('a').value = state.relative ? '0' : '0';
+    $('b').value = '';
+    draw();
+  });
+  $('toN2').addEventListener('click', () => { $('b').value = ''; draw(); });
+  document.querySelectorAll('input[name=proj]').forEach(el => {
+    el.addEventListener('change', () => {
+      el.closest('.radio').querySelectorAll('label').forEach(l => l.classList.toggle('on', l.querySelector('input').checked));
+    });
+  });
+  draw();
+</script>
+</body>
+</html>
