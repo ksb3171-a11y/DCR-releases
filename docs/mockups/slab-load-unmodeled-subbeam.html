@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>DCR Slab Load — Unmodeled Sub-Beam mockup</title>
+<style>
+  :root{
+    --bg:#101218; --panel:#1e1e1e; --head:#16162a; --modal:#1e1e2e;
+    --line:#2a2a2a; --text:#cccccc; --muted:#888; --dim:#555;
+    --load:#f47070; --load2:#ff6478; --teal:#4ec9b0; --input:#111;
+    --inputBd:#333; --new:#e7b34d;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;background:var(--bg);color:var(--text);
+    font:12px 'Segoe UI','Segoe UI Variable',Arial,sans-serif}
+  body{display:grid;grid-template-rows:52px 1fr 40px}
+  .top{display:flex;align-items:center;gap:16px;padding:0 20px;
+    border-bottom:1px solid #282b34;background:#171922}
+  .top b{font-size:14px;color:#eee}
+  .top span{color:#7f8794}
+  .badge{padding:2px 8px;border-radius:10px;border:1px solid #6e592d;
+    background:#2a2417;color:var(--new);font-weight:600}
+  .tabs{margin-left:auto;display:flex;gap:6px}
+  .tabs button{height:26px;padding:0 10px;border:1px solid #353846;border-radius:4px;
+    background:#1a1e26;color:#9aa3b0;cursor:pointer;font:12px 'Segoe UI',Arial}
+  .tabs button.on{border-color:rgba(244,112,112,.5);background:rgba(244,112,112,.16);color:var(--load)}
+  .stage{position:relative;min-height:0;background:radial-gradient(circle at 46% 42%,#202631 0,#11151b 58%,#0c0f14 100%);
+    overflow:hidden}
+  .leftbar{position:absolute;left:0;top:0;bottom:0;width:318px;background:var(--panel);
+    border-right:1px solid var(--line);display:flex;flex-direction:column}
+  .lmHead{padding:8px 10px;border-bottom:1px solid var(--line);background:#1e1e1e;flex-shrink:0}
+  .lmHead span{font-weight:600;color:#4ec9b0}
+  .form{flex:1;overflow:auto;padding:10px}
+  .lbl{font-size:12px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:.8px;
+    margin-bottom:4px;display:block}
+  .rowFlex{display:flex;gap:6px;align-items:center}
+  .select,.input{width:100%;background:#111;border:1px solid #333;border-radius:4px;color:#ddd;
+    font-size:12px;padding:5px 8px;outline:none;min-height:27px;font-family:inherit}
+  .select{cursor:pointer;color-scheme:dark;appearance:none}
+  .plus{width:24px;height:26px;background:transparent;border:1px solid #555;border-radius:3px;
+    color:#aaa;font-size:15;line-height:1;cursor:pointer;flex-shrink:0}
+  .plus:hover{border-color:#888;color:#fff}
+  .seg{display:flex;gap:6px;margin-bottom:6px}
+  .seg button{flex:1;padding:5px 0;border-radius:4px;font-size:12px;font-weight:600;cursor:pointer;
+    background:rgba(255,255,255,.04);border:1px solid #2a2a2a;color:#888}
+  .seg button.on{background:rgba(244,112,112,.18);border-color:rgba(244,112,112,.5);color:var(--load)}
+  .check{display:flex;align-items:center;gap:8px;margin-top:8px;cursor:pointer;color:#aaa}
+  .check input{accent-color:var(--load);cursor:pointer}
+  .actions{display:flex;gap:6px;margin-top:10px}
+  .btn{flex:1;padding:6px 0;border-radius:4px;font-size:12px;font-weight:600;cursor:pointer;
+    background:rgba(255,255,255,.04);border:1px solid #2a2a2a;color:#444}
+  .btn.pick{background:rgba(244,112,112,.18);border-color:rgba(244,112,112,.5);color:var(--load)}
+  .btn.mod{background:rgba(78,201,176,.14);border-color:rgba(78,201,176,.45);color:var(--teal)}
+  .btn.del{background:rgba(255,80,80,.12);border-color:rgba(255,80,80,.4);color:#ff6b6b}
+  .proposed{margin:12px 0 10px;padding:8px 8px 10px;border:1px dashed rgba(231,179,77,.45);
+    border-radius:4px;background:rgba(231,179,77,.05)}
+  .proposed .tag{display:inline-block;margin-bottom:6px;padding:1px 6px;border-radius:3px;
+    background:#2a2417;border:1px solid #6e592d;color:var(--new);font-size:10px;font-weight:700;
+    letter-spacing:.4px;text-transform:uppercase}
+  .field{margin-top:8px}
+  .fieldRow{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px}
+  .field.dim,.field.dim .lbl,.field.dim .input,.field.dim .seg,.field.dim .angCard,
+  .extras.dim{opacity:.38;pointer-events:none}
+  .hint{margin-top:8px;color:#7a6a3a;line-height:1.45;font-size:11px}
+  .angPair{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:4px}
+  .angCard{padding:6px 4px 4px;border:1px solid #2a2a2a;border-radius:4px;background:#141414;cursor:pointer}
+  .angCard.on{border-color:rgba(231,179,77,.7);background:rgba(231,179,77,.08)}
+  .angCard svg{display:block;width:100%;height:72px}
+  .angCard .cap{text-align:center;margin-top:3px;font-size:11px;color:#888;font-weight:600}
+  .angCard.on .cap{color:var(--new)}
+  .scene{position:absolute;left:346px;right:36px;top:28px;bottom:28px;border:1px solid #2c3340;
+    border-radius:6px;background:linear-gradient(#1a2230,#12161f);overflow:hidden}
+  .scene svg{width:100%;height:100%}
+  .sceneNote{position:absolute;left:12px;top:10px;color:#9ba5b3;line-height:1.5;pointer-events:none}
+  .sceneNote b{color:#e7e7e7}
+  .modal{position:absolute;right:28px;top:22px;width:720px;height:540px;
+    border:1px solid rgba(255,100,120,.3);border-radius:8px;background:var(--modal);
+    box-shadow:0 8px 32px rgba(0,0,0,.7);display:none;flex-direction:column;overflow:hidden;z-index:4}
+  .modal.show{display:flex}
+  .mHead{display:flex;align-items:center;padding:10px 16px;background:var(--head);
+    border-bottom:1px solid rgba(255,255,255,.08);flex-shrink:0}
+  .mHead b{flex:1;color:var(--load2);font-weight:700;font-size:14px}
+  .mHead .x{background:none;border:none;color:#666;cursor:pointer;font-size:16px}
+  .mBody{flex:1;display:grid;grid-template-columns:210px 1fr;min-height:0}
+  .lib{border-right:1px solid rgba(255,255,255,.08);padding:10px;overflow:auto}
+  .lib h4{margin:0 0 7px;color:#888;font-size:12px;font-weight:400}
+  .typeItem{display:grid;grid-template-columns:22px 1fr;gap:5px;align-items:center;
+    padding:7px 6px;margin-bottom:3px;border-radius:3px;cursor:pointer;
+    background:rgba(255,255,255,.025)}
+  .typeItem.on{background:rgba(78,201,176,.10);border:1px solid rgba(78,201,176,.38)}
+  .typeItem .nm{color:#c8c8c8}
+  .typeItem .sm{color:#6f7788;font-family:Consolas,'Courier New',monospace}
+  .edit{padding:12px;display:flex;flex-direction:column;gap:9px;min-width:0;min-height:0}
+  .edit .lbl2{color:#888;margin-bottom:3px}
+  .notice{padding:7px 9px;border-radius:3px;background:rgba(215,189,122,.08);
+    border:1px solid rgba(215,189,122,.25);color:#d7bd7a;line-height:1.4}
+  .gridHead,.gridRow{display:grid;grid-template-columns:28px 1fr 120px 92px 26px;gap:6px;align-items:center}
+  .gridHead{color:#6f7788}
+  .slots{flex:1;min-height:0;overflow:auto;display:flex;flex-direction:column;gap:6px}
+  .colNew{color:var(--new)}
+  .subchk{display:flex;align-items:center;gap:5px;color:#aaa;font-size:12px}
+  .subchk input{accent-color:var(--new);cursor:pointer}
+  .foot{padding:6px 16px;background:var(--head);border-top:1px solid rgba(255,255,255,.06);
+    display:flex;align-items:center;gap:12px;flex-shrink:0}
+  .foot .muted{color:#666}
+  .quiet{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);
+    border-radius:3px;color:#c8c8c8;font:12px 'Segoe UI',Arial;padding:4px 16px;cursor:pointer}
+  .add{width:100%;padding:7px;border-radius:3px;font-weight:600;cursor:pointer;
+    background:rgba(78,201,176,.18);border:1px solid rgba(78,201,176,.45);color:var(--teal)}
+  .legend{display:flex;align-items:center;padding:0 20px;border-top:1px solid #282b34;
+    background:#171922;color:#707987;gap:18px}
+  .legend i{font-style:normal;color:var(--new)}
+  .hidden{display:none !important}
+</style>
+</head>
+<body>
+  <div class="top">
+    <b>DCR UI Concept</b>
+    <span>Slab Load · Unmodeled Sub-Beam — add fields to the existing two screens</span>
+    <span class="badge">proposed</span>
+    <div class="tabs">
+      <button id="tabPanel" class="on" type="button">Assign panel</button>
+      <button id="tabBoth" type="button">Panel + type dialog</button>
+    </div>
+  </div>
+
+  <main class="stage">
+    <aside class="leftbar" aria-label="Load Manager Slab form">
+      <div class="lmHead"><span>Load Manager</span></div>
+      <div class="form">
+        <div style="margin-bottom:12px">
+          <label class="lbl">Floor Load Type</label>
+          <div class="rowFlex">
+            <select class="select" id="typeSel">
+              <option>Classroom</option>
+              <option>Corridor &amp; Hall</option>
+              <option>Office</option>
+            </select>
+            <button class="plus" id="openTypes" title="Define Slab Load Types">+</button>
+          </div>
+        </div>
+
+        <div style="margin-bottom:10px">
+          <label class="lbl">Distribution</label>
+          <select class="select" id="distSel">
+            <option value="two-way">Two Way</option>
+            <option value="one-way">One Way</option>
+          </select>
+        </div>
+
+        <div style="margin-bottom:10px">
+          <label class="lbl">Load Direction</label>
+          <div class="seg" id="frameSeg">
+            <button type="button" class="on" data-v="global">Global</button>
+            <button type="button" data-v="local">Local</button>
+          </div>
+          <div class="seg" id="axisSeg">
+            <button type="button" data-v="X">X</button>
+            <button type="button" data-v="Y">Y</button>
+            <button type="button" class="on" data-v="Z">Z</button>
+          </div>
+          <label class="check"><input type="checkbox" /> Projection</label>
+        </div>
+
+        <div class="proposed">
+          <div class="tag">Proposed</div>
+          <label class="lbl" style="text-transform:none;letter-spacing:0;font-weight:700;color:#c8c8c8">Unmodeled Sub-Beam</label>
+          <div class="fieldRow">
+            <div class="field" style="margin-top:0">
+              <label class="lbl">Count</label>
+              <input class="input" id="nBeams" type="number" min="0" step="1" value="0" />
+            </div>
+            <div class="field" id="wWrap" style="margin-top:0">
+              <label class="lbl">Self Wt (kN/m)</label>
+              <input class="input" id="sbuw" type="number" step="0.01" value="0" />
+            </div>
+          </div>
+          <div class="extras dim" id="angWrap">
+            <label class="lbl" style="margin-top:8px">Sub-Beam Angle</label>
+            <div class="seg" id="angSeg">
+              <button type="button" data-a="0">0°</button>
+              <button type="button" class="on" data-a="90">90°</button>
+            </div>
+            <div class="angPair">
+              <div class="angCard" id="card0" data-a="0">
+                <svg viewBox="0 0 120 78" aria-label="Angle 0: parallel to 1st-2nd">
+                  <rect x="22" y="18" width="76" height="46" fill="rgba(80,110,140,.12)" stroke="#8a93a0" stroke-width="2"/>
+                  <line x1="22" y1="33" x2="98" y2="33" stroke="#e7b34d" stroke-width="1.6" stroke-dasharray="4 3"/>
+                  <line x1="22" y1="49" x2="98" y2="49" stroke="#e7b34d" stroke-width="1.6" stroke-dasharray="4 3"/>
+                  <circle cx="22" cy="64" r="3.2" fill="#f47070"/><circle cx="98" cy="64" r="3.2" fill="#f47070"/>
+                  <circle cx="98" cy="18" r="2.4" fill="#c5cdd6"/><circle cx="22" cy="18" r="2.4" fill="#c5cdd6"/>
+                  <text x="22" y="76" text-anchor="middle" fill="#f47070" font-size="9" font-weight="700">1st</text>
+                  <text x="98" y="76" text-anchor="middle" fill="#f47070" font-size="9" font-weight="700">2nd</text>
+                  <path d="M28 64 H90" stroke="#f47070" stroke-width="1.2" marker-end="url(#ax)"/>
+                </svg>
+                <div class="cap">0° · parallel to 1st edge</div>
+              </div>
+              <div class="angCard on" id="card90" data-a="90">
+                <svg viewBox="0 0 120 78" aria-label="Angle 90: perpendicular to 1st-2nd">
+                  <rect x="22" y="18" width="76" height="46" fill="rgba(80,110,140,.12)" stroke="#8a93a0" stroke-width="2"/>
+                  <line x1="41" y1="18" x2="41" y2="64" stroke="#e7b34d" stroke-width="1.6" stroke-dasharray="4 3"/>
+                  <line x1="60" y1="18" x2="60" y2="64" stroke="#e7b34d" stroke-width="1.6" stroke-dasharray="4 3"/>
+                  <line x1="79" y1="18" x2="79" y2="64" stroke="#e7b34d" stroke-width="1.6" stroke-dasharray="4 3"/>
+                  <circle cx="22" cy="64" r="3.2" fill="#f47070"/><circle cx="98" cy="64" r="3.2" fill="#f47070"/>
+                  <circle cx="98" cy="18" r="2.4" fill="#c5cdd6"/><circle cx="22" cy="18" r="2.4" fill="#c5cdd6"/>
+                  <text x="22" y="76" text-anchor="middle" fill="#f47070" font-size="9" font-weight="700">1st</text>
+                  <text x="98" y="76" text-anchor="middle" fill="#f47070" font-size="9" font-weight="700">2nd</text>
+                  <path d="M28 64 H90" stroke="#f47070" stroke-width="1.2" marker-end="url(#ax)"/>
+                </svg>
+                <div class="cap">90° · perp. to 1st edge</div>
+              </div>
+            </div>
+            <svg width="0" height="0"><defs><marker id="ax" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6" fill="#f47070"/></marker></defs></svg>
+          </div>
+          <div class="hint" id="sbHint">Leave count at 0 unless importing a model that uses fictitious joists.</div>
+        </div>
+
+        <div class="actions">
+          <button class="btn pick" type="button">Pick</button>
+          <button class="btn mod" type="button">Modify</button>
+          <button class="btn del" type="button">Delete</button>
+        </div>
+      </div>
+    </aside>
+
+    <div class="scene" aria-label="Viewport mock">
+      <div class="sceneNote">
+        <b>Viewport</b> — red edge = Pick 1st→2nd (local x)<br>
+        0° is parallel to that edge, 90° is perpendicular to it. Not global X/Y.
+      </div>
+      <svg id="plan" viewBox="0 0 640 420" preserveAspectRatio="xMidYMid meet"></svg>
+    </div>
+
+    <section class="modal" id="typeModal" aria-label="Slab Load Types">
+      <div class="mHead">
+        <b>Slab Load Types</b>
+        <button class="x" id="closeTypes" type="button">×</button>
+      </div>
+      <div class="mBody">
+        <div class="lib">
+          <h4>Load Type Library</h4>
+          <div class="typeItem on">
+            <input type="radio" checked />
+            <div>
+              <div class="nm">Classroom</div>
+              <div class="sm">2 Load Cases</div>
+            </div>
+          </div>
+          <div class="typeItem">
+            <input type="radio" />
+            <div>
+              <div class="nm">Corridor &amp; Hall</div>
+              <div class="sm">2 Load Cases</div>
+            </div>
+          </div>
+          <div class="typeItem">
+            <input type="radio" />
+            <div>
+              <div class="nm">Office</div>
+              <div class="sm">2 Load Cases</div>
+            </div>
+          </div>
+        </div>
+        <div class="edit">
+          <div>
+            <div class="lbl2">Name</div>
+            <input class="input" value="Classroom" style="font-family:'Segoe UI',Arial" />
+          </div>
+          <div class="notice">Do not put slab/frame self-weight here. The checkbox adds unmodeled sub-beam self-weight to this load case only.</div>
+          <div class="rowFlex">
+            <span class="lbl2" style="margin:0">Load Case &amp; Floor Load (8 slots)</span>
+            <span style="flex:1"></span>
+            <button class="quiet" type="button">Define Load Case…</button>
+          </div>
+          <div class="slots">
+            <div class="gridHead">
+              <span></span><span>Load Case</span><span>Floor Load (kN/m²)</span>
+              <span class="colNew">Sub-Beam Wt</span><span></span>
+            </div>
+            <div class="gridRow">
+              <span style="color:#6f7788;font-family:Consolas,monospace">1.</span>
+              <select class="select"><option>D — DL</option></select>
+              <input class="input" value="-4.42" />
+              <label class="subchk"><input type="checkbox" id="bSbuDL" checked /> Yes</label>
+              <button class="quiet" style="padding:0;color:#888">×</button>
+            </div>
+            <div class="gridRow">
+              <span style="color:#6f7788;font-family:Consolas,monospace">2.</span>
+              <select class="select"><option>L — LL</option></select>
+              <input class="input" value="-3.00" />
+              <label class="subchk"><input type="checkbox" id="bSbuLL" /> Yes</label>
+              <button class="quiet" style="padding:0;color:#888">×</button>
+            </div>
+            <div class="gridRow">
+              <span style="color:#6f7788;font-family:Consolas,monospace">3.</span>
+              <select class="select"><option>NONE</option></select>
+              <input class="input" placeholder="0" />
+              <label class="subchk" style="opacity:.35"><input type="checkbox" disabled /> Yes</label>
+              <button class="quiet" style="padding:0;color:#888">×</button>
+            </div>
+          </div>
+          <button class="add" type="button">Apply</button>
+        </div>
+      </div>
+      <div class="foot">
+        <span class="muted">Types: 3</span>
+        <span class="muted">● Viewing</span>
+        <span style="flex:1"></span>
+        <button class="quiet" id="closeTypes2" type="button" style="color:#ff8099;border-color:rgba(255,100,120,.35)">Close</button>
+      </div>
+    </section>
+  </main>
+
+  <div class="legend">
+    <i>Yellow dashed = proposed</i>
+    <span>Angle 0/90 is relative to Pick 1st→2nd, not global XY</span>
+    <span>Type dialog: Sub-Beam Wt per LC = MIDAS bSBU</span>
+    <span>Fictitious joists are not members · stiffness 0</span>
+  </div>
+
+<script>
+  const nEl = document.getElementById('nBeams');
+  const angWrap = document.getElementById('angWrap');
+  const wWrap = document.getElementById('wWrap');
+  const hint = document.getElementById('sbHint');
+  const plan = document.getElementById('plan');
+  const modal = document.getElementById('typeModal');
+  const tabPanel = document.getElementById('tabPanel');
+  const tabBoth = document.getElementById('tabBoth');
+  let angle = 90;
+
+  function nVal(){ return Math.max(0, Math.floor(Number(nEl.value) || 0)); }
+
+  function setAngle(a){
+    angle = a === 0 ? 0 : 90;
+    document.querySelectorAll('#angSeg button').forEach(b => b.classList.toggle('on', Number(b.dataset.a) === angle));
+    document.getElementById('card0').classList.toggle('on', angle === 0);
+    document.getElementById('card90').classList.toggle('on', angle === 90);
+    syncFields();
+  }
+
+  function syncFields(){
+    const n = nVal();
+    const on = n > 0;
+    angWrap.classList.toggle('dim', !on);
+    wWrap.classList.toggle('dim', !on);
+    const w = document.getElementById('sbuw').value;
+    const dl = document.getElementById('bSbuDL').checked;
+    if (!on) hint.textContent = 'N = 0 · no fictitious joists. Angle is measured from Pick 1st→2nd.';
+    else hint.textContent = angle === 0
+      ? `Joists parallel to the first picked edge (1st→2nd) · ${w} kN/m${dl ? ' → DL self-weight' : ''}.`
+      : `Joists perpendicular to the first picked edge (1st→2nd) · ${w} kN/m${dl ? ' → DL self-weight' : ''}.`;
+    draw();
+  }
+
+  function draw(){
+    const n = nVal();
+    const x0=150,y0=88,x1=500,y1=330;
+    let joists = '';
+    if (n > 0){
+      if (angle === 90){
+        for (let i=1;i<=n;i++){
+          const x = x0 + (x1-x0) * i / (n+1);
+          joists += `<line x1="${x}" y1="${y0}" x2="${x}" y2="${y1}" stroke="#e7b34d" stroke-width="2" stroke-dasharray="7 5"/>`;
+          joists += `<circle cx="${x}" cy="${y0}" r="3.5" fill="#e7b34d"/><circle cx="${x}" cy="${y1}" r="3.5" fill="#e7b34d"/>`;
+        }
+      } else {
+        for (let i=1;i<=n;i++){
+          const y = y0 + (y1-y0) * i / (n+1);
+          joists += `<line x1="${x0}" y1="${y}" x2="${x1}" y2="${y}" stroke="#e7b34d" stroke-width="2" stroke-dasharray="7 5"/>`;
+          joists += `<circle cx="${x0}" cy="${y}" r="3.5" fill="#e7b34d"/><circle cx="${x1}" cy="${y}" r="3.5" fill="#e7b34d"/>`;
+        }
+      }
+    }
+    plan.innerHTML = `
+      <defs>
+        <marker id="hx" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+          <path d="M0 0 L8 4 L0 8" fill="#f47070"/>
+        </marker>
+      </defs>
+      <rect x="${x0}" y="${y0}" width="${x1-x0}" height="${y1-y0}" fill="rgba(80,110,140,.08)" stroke="none"/>
+      <line x1="${x0}" y1="${y1}" x2="${x1}" y2="${y1}" stroke="#f47070" stroke-width="5"/>
+      <line x1="${x0}" y1="${y0}" x2="${x1}" y2="${y0}" stroke="#c5cdd6" stroke-width="5"/>
+      <line x1="${x0}" y1="${y0}" x2="${x0}" y2="${y1}" stroke="#c5cdd6" stroke-width="5"/>
+      <line x1="${x1}" y1="${y0}" x2="${x1}" y2="${y1}" stroke="#c5cdd6" stroke-width="5"/>
+      <line x1="${x0+18}" y1="${y1+22}" x2="${x1-18}" y2="${y1+22}" stroke="#f47070" stroke-width="1.4" marker-end="url(#hx)"/>
+      <text x="${(x0+x1)/2}" y="${y1+38}" text-anchor="middle" fill="#f47070" font-size="12">local x = Pick 1st → 2nd</text>
+      ${joists}
+      <circle cx="${x0}" cy="${y1}" r="6" fill="#f47070"/><circle cx="${x1}" cy="${y1}" r="6" fill="#f47070"/>
+      <circle cx="${x1}" cy="${y0}" r="6" fill="#d8dee7"/><circle cx="${x0}" cy="${y0}" r="6" fill="#d8dee7"/>
+      <text x="${x0}" y="${y1+16}" text-anchor="middle" fill="#f47070" font-size="12" font-weight="700">1st</text>
+      <text x="${x1}" y="${y1+16}" text-anchor="middle" fill="#f47070" font-size="12" font-weight="700">2nd</text>
+      <text x="${x1+28}" y="${y0+5}" text-anchor="start" fill="#c5cdd6" font-size="12">3rd</text>
+      <text x="${x0-28}" y="${y0+5}" text-anchor="end" fill="#c5cdd6" font-size="12">4th</text>
+      ${n>0?`<text x="${(x0+x1)/2}" y="${y0-16}" text-anchor="middle" fill="#e7b34d" font-size="12">${angle===90?'90° · perp. to 1st edge':'0° · parallel to 1st edge'}  ·  joists × ${n}</text>`:''}
+    `;
+  }
+
+  function showModal(on){
+    modal.classList.toggle('show', on);
+    tabPanel.classList.toggle('on', !on);
+    tabBoth.classList.toggle('on', on);
+  }
+
+  nEl.addEventListener('input', syncFields);
+  document.getElementById('sbuw').addEventListener('input', syncFields);
+  document.querySelectorAll('#angSeg button, .angCard').forEach(el => {
+    el.addEventListener('click', () => setAngle(Number(el.dataset.a)));
+  });
+  document.getElementById('bSbuDL').addEventListener('change', syncFields);
+  document.getElementById('bSbuLL').addEventListener('change', syncFields);
+  document.getElementById('openTypes').addEventListener('click', () => showModal(true));
+  document.getElementById('closeTypes').addEventListener('click', () => showModal(false));
+  document.getElementById('closeTypes2').addEventListener('click', () => showModal(false));
+  tabPanel.addEventListener('click', () => showModal(false));
+  tabBoth.addEventListener('click', () => showModal(true));
+
+  document.querySelectorAll('#frameSeg button, #axisSeg button').forEach(b => {
+    b.addEventListener('click', () => {
+      b.parentElement.querySelectorAll('button').forEach(x => x.classList.remove('on'));
+      b.classList.add('on');
+    });
+  });
+
+  showModal(false);
+  syncFields();
+</script>
+</body>
+</html>
