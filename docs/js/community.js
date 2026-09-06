@@ -155,8 +155,61 @@
     try { window._sb.rpc(name, args).then(function () {}, function () {}); } catch (e) {}
   }
 
+  // Read writes need acknowledgement; view-count writes can remain fire-and-forget.
+  var _readJob = null;
+  var _readNotice = '';
+  function cancelRead() {
+    if (_readJob) window.clearTimeout(_readJob.timer);
+    _readJob = null;
+    _readNotice = '';
+  }
+  function showReadNotice(message) {
+    _readNotice = message;
+    var el = document.getElementById('cmReadStatus');
+    if (el) { el.textContent = message; el.hidden = !message; }
+  }
+  function markPostRead(id) {
+    if (_readJob && _readJob.id === id) return;
+    cancelRead();
+    var job = { id: id, user: undefined, attempts: 0, timer: null };
+    _readJob = job;
+    function current() { return _readJob === job && location.hash === '#p/' + id; }
+    function failed(status) {
+      if (!current()) return;
+      var transient = !status || status === 408 || status === 429 || status >= 500;
+      if (transient && job.attempts < 3) {
+        showReadNotice('Saving read status. Retrying…');
+        job.timer = window.setTimeout(attempt, job.attempts * 1000);
+      } else {
+        showReadNotice('Read status could not be saved. Reopen this post to try again.');
+      }
+    }
+    function attempt() {
+      if (!current()) return;
+      job.attempts++;
+      Promise.resolve().then(function () { return window._sb.auth.getSession(); }).then(function (res) {
+        if (!current()) return;
+        if (res.error) { failed(res.error.status); return; }
+        var user = res.data && res.data.session && res.data.session.user;
+        if (!user) {
+          showReadNotice('Sign in on this website with the same account as the app to update its unread badge.');
+          return;
+        }
+        if (job.user !== undefined && job.user !== user.id) return;
+        job.user = user.id;
+        return window._sb.rpc('cp_mark_read', { pid: id }).then(function (result) {
+          if (!current()) return;
+          if (result.error) { failed(result.status); return; }
+          showReadNotice('');
+        });
+      }).catch(function (error) { failed(error && error.status); });
+    }
+    attempt();
+  }
+
   // ── router ─────────────────────────────────────────────────────────────────
   function route() {
+    cancelRead();
     var h = (location.hash || '#hub').replace(/^#/, '');
     var parts = h.split('/');
     if (parts[0] === 'b' && BOARD_MAP[parts[1]]) return renderBoard(parts[1]);
@@ -279,6 +332,7 @@
 
   // ── DETAIL ────────────────────────────────────────────────────────────────────
   function renderDetail(id) {
+    cancelRead();
     var el = app(); if (!el) return;
     el.innerHTML = '<div class="cm-empty">' + esc(ct('comm.loading', 'Loading…')) + '</div>';
     if (!window._sb) return;
@@ -287,9 +341,7 @@
       _curPost = res.data;
       _curBoard = _curPost.board;
       fireRpc('cp_bump_view', { pid: id });
-      // Read state for the desktop app's unread badge (community_badge_devplan.md).
-      // No-op for anonymous visitors (the function returns early on null auth.uid()).
-      fireRpc('cp_mark_read', { pid: id });
+      // Read state is saved after the post and comments have been painted.
       if (window._user && BOARD_MAP[_curBoard].vote) {
         window._sb.from('community_votes').select('post_id').eq('user_id', window._user.id).eq('post_id', id)
           .then(function (v) { _myVotes = new Set((v && v.data || []).map(function (x) { return x.post_id; })); loadComments(id); });
@@ -327,6 +379,7 @@
         '<a class="cm-back" href="#b/' + p.board + '">← ' + esc(bLabel(p.board)) + '</a>' +
       '</div>' +
       '<article class="cm-post">' +
+        '<p id="cmReadStatus" role="status" style="font-size:12px;color:#c8c8c8" hidden></p>' +
         '<h1 class="cm-ptitle">' + (p.is_pinned ? '📌 ' : '') + esc(p.title) + '</h1>' +
         '<div class="cm-pmeta">' +
           (p.status ? '<span class="cm-badge st-' + p.status + '">' + esc(stLabel(p.status)) + '</span>' : '') +
@@ -403,6 +456,8 @@
 
     el.innerHTML = html;
 
+    showReadNotice(_readNotice);
+    if (location.hash === '#p/' + p.id) markPostRead(p.id);
     var box = document.getElementById('cmCommentBody');
     if (box && draft) box.value = draft;
     if (box && window._user && cmup()) {
@@ -785,8 +840,13 @@
     window.onLangApplied = function (lang) { if (typeof prev === 'function') { try { prev(lang); } catch (e) {} } route(); };
     // re-render when auth resolves/changes so admin & vote state reflect the user
     if (window._sb && window._sb.auth && window._sb.auth.onAuthStateChange) {
-      try { window._sb.auth.onAuthStateChange(function () { route(); }); } catch (e) {}
+      try { window._sb.auth.onAuthStateChange(function () {
+        cancelRead();
+        // Let auth.js publish the new user, and leave the auth callback lock.
+        window.setTimeout(route, 0);
+      }); } catch (e) {}
     }
+    window.addEventListener('pagehide', cancelRead);
     route();
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
