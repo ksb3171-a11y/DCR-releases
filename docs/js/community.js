@@ -47,11 +47,17 @@
     var en = (window.T && window.T.en) || {};
     return dict[key] || en[key] || fallback || key;
   }
-  function esc(s) {
-    return (s || '').replace(/[&<>"']/g, function (c) {
-      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
-    });
-  }
+  // 이스케이프의 단일 원천은 layout.js 의 window.escHtml 이다. 여기서 다시 구현하지 말 것 —
+  // 사이트에 이스케이퍼가 세 벌 있었고(여기·billing.js·없는 곳) 그중 auth.js 에는 아예 없어서
+  // 관리자 회원목록이 뚫렸다(security_hardening_devplan.md §5 SEC-04a).
+  // escHtml 이 없으면 조용히 원문을 통과시키는 대신 **크게 죽는다** — 그래야 배선 실수가 보인다.
+  function esc(s) { return window.escHtml(s); }
+
+  // status 는 DB 컬럼이고 `class="cm-badge st-<값>"` 속성 안으로 들어간다. SQL CHECK 를 걸었지만
+  // 그 이전에 들어온 값이 남아 있을 수 있으므로, 화면에서도 **아는 값일 때만** 클래스를 붙인다.
+  // 🚨 esc() 로 감싸는 것으로 갈음하지 말 것 — 그러면 st-&quot;… 같은 쓰레기 클래스가 붙는다.
+  var STATUS_ALL = Object.keys(STATUS).reduce(function (acc, k) { return acc.concat(STATUS[k]); }, []);
+  function stClass(s) { return STATUS_ALL.indexOf(s) >= 0 ? ' st-' + s : ''; }
   // nl2br() used to render every body. renderBody() below supersedes it and is
   // now the only body renderer — leaving a second one around invites a future
   // field to be rendered through the path that does not know about images.
@@ -319,7 +325,7 @@
             (b.answer && p.is_answered ? ' <span class="cm-badge st-done">✓ ' + esc(ct('comm.answered', 'Answered')) + '</span>' : '') +
           '</div>' +
           '<div class="cm-rmeta">' +
-            (p.status ? '<span class="cm-badge st-' + p.status + '">' + esc(stLabel(p.status)) + '</span>' : '') +
+            (p.status ? '<span class="cm-badge' + stClass(p.status) + '">' + esc(stLabel(p.status)) + '</span>' : '') +
             '<span>' + esc(p.author_name) + '</span><span>· ' + fdate(p.created_at) + '</span>' +
             (p.admin_reply ? '<span class="cm-replied">· 💬 ' + esc(ct('comm.staffReplied', 'Staff replied')) + '</span>' : '') +
             (p.is_hidden ? '<span class="cm-hidden">· ' + esc(ct('comm.hidden', 'hidden')) + '</span>' : '') +
@@ -382,7 +388,7 @@
         '<p id="cmReadStatus" role="status" style="font-size:12px;color:#c8c8c8" hidden></p>' +
         '<h1 class="cm-ptitle">' + (p.is_pinned ? '📌 ' : '') + esc(p.title) + '</h1>' +
         '<div class="cm-pmeta">' +
-          (p.status ? '<span class="cm-badge st-' + p.status + '">' + esc(stLabel(p.status)) + '</span>' : '') +
+          (p.status ? '<span class="cm-badge' + stClass(p.status) + '">' + esc(stLabel(p.status)) + '</span>' : '') +
           '<span>' + esc(p.author_name) + '</span><span>· ' + fdate(p.created_at) + '</span>' +
           '<span>· 👁 ' + p.view_count + '</span>' +
           (b.vote

@@ -12,6 +12,38 @@
    MUST load AFTER i18n.js and BEFORE auth.js / board.js (those query the
    injected DOM at parse time). Injection here is synchronous.
    ============================================================================ */
+
+/* ----------------------------------------------------------------------------
+   window.escHtml — HTML escaping, single source for the whole site.
+
+   Lives here because layout.js is the first script every page loads (see the
+   include order in each *.html and in the generated /ko/ /ja/ /zh/ copies), so
+   auth.js, board.js, billing.js, cmUpload.js and community.js can all rely on
+   it without a new <script> tag — adding one would mean regenerating the 27
+   translated pages.
+
+   Why this exists at all: the admin member list rendered `name` and
+   `affiliation` straight into a table. Any registered user can write their own
+   `name` (`grant update (name, affiliation, phone) on profiles to authenticated`),
+   so a payload there runs in the ADMIN's session the moment the list is opened —
+   and the RLS policies treat that one account as full site authority.
+   Single source: security_hardening_devplan.md §5 SEC-04a.
+
+   All five characters matter. Escaping only `&<>` leaves attribute context
+   open — `class="st-<value>"` is escaped out with a plain quote, which is
+   exactly the second defect (SEC-04b). Do not "simplify" this list.
+
+   Machine check: cd frontend && npm run check:site-html-escape
+   -------------------------------------------------------------------------- */
+(function () {
+  'use strict';
+  var MAP = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
+  window.escHtml = function escHtml(s) {
+    if (s === null || s === undefined) return '';
+    return String(s).replace(/[&<>"']/g, function (c) { return MAP[c]; });
+  };
+})();
+
 (function () {
   'use strict';
 

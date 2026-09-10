@@ -10,7 +10,16 @@ const FR_STATUS_LABEL = { proposed:'Proposed', reviewing:'Reviewing', planned:'P
 let _frCat = 'all', _frSort = 'top', _frReqs = [], _frMyVotes = new Set()
 
 function isBoardAdmin() { return _user && _user.email === ADMIN_EMAIL }
-function frEsc(s) { return (s || '').replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c])) }
+// 이스케이프의 단일 원천은 layout.js 의 window.escHtml 이다 (security_hardening_devplan.md §5 SEC-04a).
+// 여기서 다시 구현하지 말 것 — 사이트에 같은 함수가 네 벌 있었고, 없는 파일에서 뚫렸다.
+function frEsc(s) { return window.escHtml(s) }
+
+// class 속성에 들어가는 값은 **아는 값일 때만** 낸다.
+// feature_requests 는 DB CHECK 로도 막혀 있지만(supabase-setup.sql: category/status 둘 다),
+// 화면이 DB 제약에만 기대면 제약이 사라지는 날 조용히 뚫린다 — 일반화하면서 CHECK 가 빠진
+// community_posts 가 정확히 그렇게 뚫렸다 (security_hardening_devplan.md §5 SEC-04b).
+function frCatClass(c) { return FR_CATS.includes(c) ? ' cat-' + c : '' }
+function frStClass(s) { return FR_STATUS.includes(s) ? ' st-' + s : '' }
 function frDate(d) { return d ? new Date(d).toLocaleDateString(currentLang === 'en' ? 'en-US' : 'ko-KR') : '' }
 
 function openBoard() {
@@ -59,8 +68,8 @@ function renderRequests() {
       <div class="req-main">
         <div class="req-title">${frEsc(r.title)}</div>
         <div class="req-meta">
-          <span class="cat-badge cat-${r.category}">${r.category}</span>
-          <span class="st-badge st-${r.status}">${FR_STATUS_LABEL[r.status] || r.status}</span>
+          <span class="cat-badge${frCatClass(r.category)}">${frEsc(r.category)}</span>
+          <span class="st-badge${frStClass(r.status)}">${frEsc(FR_STATUS_LABEL[r.status] || r.status)}</span>
           <span>${frEsc(r.author_name)}</span>
           <span>· ${frDate(r.created_at)}</span>
           ${r.admin_reply ? '<span class="req-replied">· 💬 Admin replied</span>' : ''}
@@ -96,8 +105,8 @@ function boardShowDetail(id) {
   let html = `<button class="board-back" onclick="boardShowList()">← Back to list</button>
     <div class="detail-title">${frEsc(r.title)}</div>
     <div class="detail-meta">
-      <span class="cat-badge cat-${r.category}">${r.category}</span>
-      <span class="st-badge st-${r.status}">${FR_STATUS_LABEL[r.status] || r.status}</span>
+      <span class="cat-badge${frCatClass(r.category)}">${frEsc(r.category)}</span>
+      <span class="st-badge${frStClass(r.status)}">${frEsc(FR_STATUS_LABEL[r.status] || r.status)}</span>
       <span>${frEsc(r.author_name)}</span><span>· ${frDate(r.created_at)}</span>
       <button class="board-btn ghost" style="padding:5px 14px;margin-left:auto" onclick="toggleVote('${r.id}')">▲ ${r.vote_count}${voted ? ' ✓' : ''}</button>
     </div>

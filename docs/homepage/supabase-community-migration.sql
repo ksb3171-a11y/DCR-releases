@@ -18,7 +18,12 @@ create table if not exists public.community_posts (
   body           text not null check (char_length(body) between 1 and 20000),
   author_id      uuid not null references auth.users(id) on delete cascade,
   author_name    text not null default 'Member',
-  status         text,            -- bug: open/reviewing/fixed/wontfix · feature: proposed/reviewing/planned/in_progress/done/declined
+  -- 🚨 status 는 화면에서 class 속성(`st-<값>`) 안으로 들어간다. CHECK 를 빼면 저장형 XSS 가 된다
+  --    (SEC-04b · security_hardening_devplan.md §5). 이미 만들어진 DB 에는 이 줄이 적용되지
+  --    않으므로(create table if not exists) supabase-community-status-hardening.sql 을 따로 돌린다.
+  status         text             -- bug: open/reviewing/fixed/wontfix · feature: proposed/reviewing/planned/in_progress/done/declined
+                   check (status is null or status in ('open','reviewing','fixed','wontfix',
+                                                       'proposed','planned','in_progress','done','declined')),
   admin_reply    text,
   admin_reply_at timestamptz,
   vote_count     integer not null default 0,
@@ -187,6 +192,9 @@ create policy cp_insert on public.community_posts for insert
     and is_answered = false
     and is_pinned = false
     and (board <> 'notice' or auth.jwt()->>'email' = 'ksb3171@gmail.com')
+    -- ★ SEC-04b: 새 글은 게시판의 초기 상태이거나 비어 있어야 한다.
+    --   가드 트리거는 `before update` 뿐이라 INSERT 를 보지 않는다 — 여기서 막아야 한다.
+    and (status is null or status in ('open','proposed'))
   );
 
 -- Posts: update = author (guard locks privileged cols) or admin

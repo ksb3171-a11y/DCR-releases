@@ -50,12 +50,28 @@
   .bm-sec-head { display: flex; align-items: baseline; gap: var(--sp-3); margin-bottom: var(--sp-4); }
   .bm-sec-no { font-family: var(--font-mono); font-size: var(--fs-cap); color: var(--accent); }
   .bm-sec-head h2 { font-size: var(--fs-h3); font-weight: var(--fw-sb); color: #fff; }
-  .bm-body { color: var(--text-soft); line-height: var(--lh-loose); }
+  .bm-body { color: var(--text-soft); line-height: var(--lh-body); }
   .bm-body + .bm-body { margin-top: var(--sp-3); }
   .bm-chips { list-style: none; display: flex; flex-wrap: wrap; gap: var(--sp-2); }
   .bm-chips li { font-size: var(--fs-cap); color: var(--text-soft); border: 1px solid var(--border); background: var(--surface-2); border-radius: var(--r-pill); padding: 5px 13px; }
   .bm-fig { margin-top: var(--sp-5); background: var(--surface-1); border: 1px solid var(--border); border-radius: var(--r-lg); padding: var(--sp-5); text-align: center; overflow-x: auto; }
   .bm-fig svg { max-width: 100%; height: auto; }
+  /* Figure palette — the card SVGs (report/cards/*.ts) are authored against the print
+     manual's vocabulary (template/manual.css :root). The site tokens do not carry those
+     names, and an undefined var() is invalid at computed-value time: stroke falls back to
+     none and fill to black, so the geometry vanishes without any error. Map every name
+     the SVGs use to a dark-theme value here. Adding a new name to a card SVG REQUIRES
+     adding it in both places — npm run check:site-css-vars enforces it. */
+  .bm-fig svg {
+    --ink: #e2e6ea;            /* primary geometry: members, supports, node labels */
+    --ink-soft: #b7bec6;       /* secondary geometry: dimension lines */
+    --muted: #8b93a0;          /* annotation: axes, hatching, small captions */
+    --accent-deep: var(--accent-bright);   /* emphasis (print petrol -> site teal) */
+    --fig-body: rgba(78,201,176,0.10);     /* filled solid region */
+    --fig-knock: var(--surface-1);         /* knockout over lines — matches .bm-fig bg */
+    --fig-hair: rgba(255,255,255,0.14);    /* faint hairline */
+    --fig-wash: rgba(78,201,176,0.14);     /* translucent tint under an --accent stroke */
+  }
   .bm-fig figcaption { margin-top: var(--sp-3); font-size: var(--fs-cap); color: var(--text-dim); }
   .bm-spec { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-5); }
   @media (max-width: 760px) { .bm-spec { grid-template-columns: 1fr; } }
@@ -75,8 +91,8 @@
   .bm-tablewrap .dtable .num { text-align: center; font-family: var(--font-mono); }
   .bm-conclusion { display: flex; gap: var(--sp-4); align-items: flex-start; background: var(--surface-2); border: 1px solid var(--border-accent); border-radius: var(--r-lg); padding: var(--sp-5); }
   .bm-conclusion.fail { border-color: rgba(220,220,170,0.42); }
-  .bm-conclusion p { color: var(--text-soft); line-height: var(--lh-loose); }
-  .bm-refs { color: var(--text-soft); font-size: var(--fs-cap); line-height: var(--lh-loose); padding-left: var(--sp-5); }
+  .bm-conclusion p { color: var(--text-soft); line-height: var(--lh-body); }
+  .bm-refs { color: var(--text-soft); font-size: var(--fs-cap); line-height: var(--lh-body); padding-left: var(--sp-5); }
   .bm-evidence { margin-top: var(--sp-5); display: grid; grid-template-columns: auto 1fr; gap: 6px var(--sp-4); font-size: var(--fs-cap); background: var(--surface-1); border: 1px solid var(--border); border-radius: var(--r-md); padding: var(--sp-4); }
   .bm-evidence dt { color: var(--text-dim); }
   .bm-evidence dd { color: var(--text-soft); word-break: break-all; }
@@ -94,8 +110,8 @@
       "description": "In-plane membrane stress at a stress raiser — custom shell front-line check. STRIX matches the reference solution to −1.994% against a 3% tolerance (PASS)…",
       "url": "https://dcr-st.com/verification/SB2.html",
       "inLanguage": "en",
-      "datePublished": "2026-08-08",
-      "dateModified": "2026-08-08",
+      "datePublished": "2026-08-19",
+      "dateModified": "2026-08-19",
       "author": {
         "@type": "Organization",
         "name": "LPK SOFT Co., Ltd."
@@ -182,7 +198,7 @@
       <span class="bm-vbadge">PASS</span>
       <span class="bm-vfig"><b>−1.994%</b> error</span>
       <span class="bm-vfig">tolerance 3%</span>
-      <span class="bm-vfig">90.8514 MPa vs 92.7 MPa</span>
+      <span class="bm-vfig">90.8516 MPa vs 92.7 MPa</span>
     </div>
   </header>
   <section class="bm-sec">
@@ -207,7 +223,7 @@
           </defs>
           <!-- membrane body: between inner arc (A-D) and outer arc (B-C) -->
           <path d="M 60 23 A 292 247 0 0 1 352 270 L 240 270 A 180 90 0 0 0 60 180 Z"
-                fill="#eef4f2" stroke="none"/>
+                fill="var(--fig-body)" stroke="none"/>
           <!-- outer loaded arc B-C -->
           <path d="M 60 23 A 292 247 0 0 1 352 270" stroke="var(--ink)" stroke-width="2.5" fill="none"/>
           <!-- inner free arc A-D -->
@@ -284,7 +300,7 @@
           <tr>
             <td>Tangential edge stress sigma_yy at D <span class="dim">(MPa)</span></td>
             <td class="mono">mesh 96×48</td>
-            <td class="num">90.8514</td>
+            <td class="num">90.8516</td>
             <td class="num">92.7</td>
             <td class="num"><span class="delta good">−1.994%</span></td>
             <td>PASS</td>
@@ -316,15 +332,15 @@
             <td class="num">−5.86%</td>
           </tr>
           <tr>
-            <td>48×24 cells</td><td class="num">89.0642</td>
+            <td>48×24 cells</td><td class="num">89.0643</td>
             <td class="num">−3.922%</td>
           </tr>
           <tr>
-            <td>64×32 cells</td><td class="num">89.9651</td>
+            <td>64×32 cells</td><td class="num">89.9652</td>
             <td class="num">−2.95%</td>
           </tr>
           <tr>
-            <td>96×48 cells</td><td class="num">90.8514</td>
+            <td>96×48 cells</td><td class="num">90.8516</td>
             <td class="num">−1.994%</td>
           </tr>
         </tbody>
@@ -346,10 +362,10 @@
       <li>STRIX headless harness: <span class="mono">generatePyForLoadCase → python.exe → eleResponse(stresses)</span>.</li>
     </ol>
     <dl class="bm-evidence">
-      <dt>Engine</dt><dd class="mono">v1.0.4 (opensees.pyd)</dd>
-      <dt>Run date</dt><dd class="mono">2026-08-08</dd>
+      <dt>Engine</dt><dd class="mono">v1.0.6 (opensees.pyd)</dd>
+      <dt>Run date</dt><dd class="mono">2026-08-19</dd>
       <dt>Record</dt><dd class="mono">records/SB2.json</dd>
-      <dt>Evidence archive</dt><dd class="mono">verif-evidence-eng1.0.4-win-x64.zip · SB2/</dd>
+      <dt>Evidence archive</dt><dd class="mono">verif-evidence-eng1.0.6-win-x64.zip · SB2/</dd>
       <dt>sha256</dt><dd class="mono">(pending publish)</dd>
     </dl>
   </section>

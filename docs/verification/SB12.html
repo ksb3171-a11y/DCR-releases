@@ -50,12 +50,28 @@
   .bm-sec-head { display: flex; align-items: baseline; gap: var(--sp-3); margin-bottom: var(--sp-4); }
   .bm-sec-no { font-family: var(--font-mono); font-size: var(--fs-cap); color: var(--accent); }
   .bm-sec-head h2 { font-size: var(--fs-h3); font-weight: var(--fw-sb); color: #fff; }
-  .bm-body { color: var(--text-soft); line-height: var(--lh-loose); }
+  .bm-body { color: var(--text-soft); line-height: var(--lh-body); }
   .bm-body + .bm-body { margin-top: var(--sp-3); }
   .bm-chips { list-style: none; display: flex; flex-wrap: wrap; gap: var(--sp-2); }
   .bm-chips li { font-size: var(--fs-cap); color: var(--text-soft); border: 1px solid var(--border); background: var(--surface-2); border-radius: var(--r-pill); padding: 5px 13px; }
   .bm-fig { margin-top: var(--sp-5); background: var(--surface-1); border: 1px solid var(--border); border-radius: var(--r-lg); padding: var(--sp-5); text-align: center; overflow-x: auto; }
   .bm-fig svg { max-width: 100%; height: auto; }
+  /* Figure palette — the card SVGs (report/cards/*.ts) are authored against the print
+     manual's vocabulary (template/manual.css :root). The site tokens do not carry those
+     names, and an undefined var() is invalid at computed-value time: stroke falls back to
+     none and fill to black, so the geometry vanishes without any error. Map every name
+     the SVGs use to a dark-theme value here. Adding a new name to a card SVG REQUIRES
+     adding it in both places — npm run check:site-css-vars enforces it. */
+  .bm-fig svg {
+    --ink: #e2e6ea;            /* primary geometry: members, supports, node labels */
+    --ink-soft: #b7bec6;       /* secondary geometry: dimension lines */
+    --muted: #8b93a0;          /* annotation: axes, hatching, small captions */
+    --accent-deep: var(--accent-bright);   /* emphasis (print petrol -> site teal) */
+    --fig-body: rgba(78,201,176,0.10);     /* filled solid region */
+    --fig-knock: var(--surface-1);         /* knockout over lines — matches .bm-fig bg */
+    --fig-hair: rgba(255,255,255,0.14);    /* faint hairline */
+    --fig-wash: rgba(78,201,176,0.14);     /* translucent tint under an --accent stroke */
+  }
   .bm-fig figcaption { margin-top: var(--sp-3); font-size: var(--fs-cap); color: var(--text-dim); }
   .bm-spec { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-5); }
   @media (max-width: 760px) { .bm-spec { grid-template-columns: 1fr; } }
@@ -75,8 +91,8 @@
   .bm-tablewrap .dtable .num { text-align: center; font-family: var(--font-mono); }
   .bm-conclusion { display: flex; gap: var(--sp-4); align-items: flex-start; background: var(--surface-2); border: 1px solid var(--border-accent); border-radius: var(--r-lg); padding: var(--sp-5); }
   .bm-conclusion.fail { border-color: rgba(220,220,170,0.42); }
-  .bm-conclusion p { color: var(--text-soft); line-height: var(--lh-loose); }
-  .bm-refs { color: var(--text-soft); font-size: var(--fs-cap); line-height: var(--lh-loose); padding-left: var(--sp-5); }
+  .bm-conclusion p { color: var(--text-soft); line-height: var(--lh-body); }
+  .bm-refs { color: var(--text-soft); font-size: var(--fs-cap); line-height: var(--lh-body); padding-left: var(--sp-5); }
   .bm-evidence { margin-top: var(--sp-5); display: grid; grid-template-columns: auto 1fr; gap: 6px var(--sp-4); font-size: var(--fs-cap); background: var(--surface-1); border: 1px solid var(--border); border-radius: var(--r-md); padding: var(--sp-4); }
   .bm-evidence dt { color: var(--text-dim); }
   .bm-evidence dd { color: var(--text-soft); word-break: break-all; }
@@ -411,7 +427,7 @@
       <li>CSI — SAP2000 Analysis Verification, Group 6 (Link) catalog — surveyed and found to contain no static linear-spring example (all dynamic/nonlinear), motivating this self-designed closed form.</li>
     </ol>
     <dl class="bm-evidence">
-      <dt>Engine</dt><dd class="mono">v1.0.4 (tcl)</dd>
+      <dt>Engine</dt><dd class="mono">v1.0.6 (tcl)</dd>
       <dt>Run date</dt><dd class="mono">2026-07-11</dd>
       <dt>Record</dt><dd class="mono">records/SB12.json</dd>
       <dt>Evidence archive</dt><dd class="mono">verif-evidence-eng1.0.2-win-x64.zip · SB12/</dd>

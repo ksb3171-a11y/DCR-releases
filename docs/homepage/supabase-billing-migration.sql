@@ -379,6 +379,24 @@ grant  select (id, name, owner_user_id, seats, join_code, created_at)
 
 
 -- ----------------------------------------------------------------
+-- 8c. subscriptions 컬럼 권한 — 빌링키를 멤버 클라이언트에 노출하지 않음  (★ SEC-07)
+--     pg_subscription_id 는 이름과 달리 **PortOne 빌링키**다. 그 문자열 하나로 카드가 긁힌다.
+--     sub_select 정책이 같은 회사 멤버 전원에게 행을 열어 주므로, 8b 와 **같은 짝**이 필요하다.
+--     ※ 이미 만들어진 DB 에는 이 블록이 소급되지 않는다 → supabase-billing-key-hardening.sql 을 돌린다.
+--     ※ 클라이언트는 subscriptions 를 select('*') 하지 말고 컬럼을 명시할 것.
+--       (검사 = cd frontend && npm run check:supabase-column-guard — 주석만으로는 안 지켜졌다)
+-- ----------------------------------------------------------------
+revoke select on public.subscriptions from authenticated;
+grant  select (
+  id, org_id, user_id, status, plan, pg_provider, currency,
+  unit_amount, renewal_unit_amount, seats,
+  current_period_end, cancel_at_period_end, is_pioneer,
+  created_at, updated_at
+) on public.subscriptions to authenticated;
+-- 제외: pg_subscription_id(빌링키) · renewal_notice_sent_at(내부 발송 기록)
+
+
+-- ----------------------------------------------------------------
 -- 9. handle_new_user 확장 — 신규 가입 처리 (★ 가입코드 모델: 자동 회사 생성 안 함)
 --    가입자는 회사 없이 시작한다. 회사는 (a) 첫 구독 시 create-checkout가 생성하거나
 --    (b) 회사 참여코드/이메일 초대로 기존 회사에 합류함으로써 연결된다.

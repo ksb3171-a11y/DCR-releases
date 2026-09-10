@@ -334,7 +334,13 @@
   async function renderSubscription() {
     var body = el('subBody'); if (!body) return;
     var subs = [];
-    try { var r = await _sb.from('subscriptions').select('*').eq('org_id', _org.id); subs = (r && r.data) || []; }
+    // 🚨 select('*') 금지 — subscriptions 에는 컬럼 revoke 가 걸려 있다.
+    //    pg_subscription_id 는 PortOne **빌링키**이고 그 문자열 하나로 카드가 긁힌다.
+    //    `*` 로 읽으면 권한이 없는 컬럼 때문에 질의 자체가 실패해 결제 화면이 빈다.
+    //    단일 원천: security_hardening_devplan.md §5 SEC-07 · 검사 = npm run check:supabase-column-guard
+    var SUB_COLS = 'id, status, plan, seats, currency, unit_amount, renewal_unit_amount,' +
+                   ' current_period_end, cancel_at_period_end, is_pioneer, created_at';
+    try { var r = await _sb.from('subscriptions').select(SUB_COLS).eq('org_id', _org.id); subs = (r && r.data) || []; }
     catch (e) { return; }
 
     var live = subs.filter(function (s) { return s.status === 'active' || s.status === 'trialing' || s.status === 'past_due'; });
@@ -610,11 +616,9 @@
     }).join('');
   }
 
-  function escapeHtml(s) {
-    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
-      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
-    });
-  }
+  // 이스케이프의 단일 원천은 layout.js 의 window.escHtml 이다 (security_hardening_devplan.md §5 SEC-04a).
+  // 여기서 다시 구현하지 말 것 — 사이트에 같은 함수가 세 벌 있었고, 없는 파일에서 뚫렸다.
+  function escapeHtml(s) { return window.escHtml(s); }
 
   // =================================================================
   //  BOOT — wire to auth state

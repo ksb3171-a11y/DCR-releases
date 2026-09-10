@@ -24,9 +24,13 @@ const DL = {
 // ── ADMIN IMAGE MANAGEMENT ──
 const ADMIN_EMAIL = 'ksb3171@gmail.com'
 const CLOUDINARY_CLOUD = 'dbdamtf2t'
-const CLOUDINARY_PRESET = 'homepage-images'
 const CLOUDINARY_URL = `https://res.cloudinary.com/${CLOUDINARY_CLOUD}/image/upload/f_auto,q_auto/`
-const CLOUDINARY_UPLOAD = `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD}/image/upload`
+
+// 🚨 업로드는 **서명**을 받아서 한다 (security_hardening_devplan.md §5 SEC-11).
+//    예전에는 `upload_preset: 'homepage-images'` 만 붙여 무서명으로 올렸다 — 클라우드명과
+//    프리셋 이름이 이 공개 파일에 그대로 있어 **누구나** 우리 클라우드에 올릴 수 있었다.
+//    서명은 관리자 인증을 거친 Edge Function `sign-upload` 만 발급한다(비밀키는 서버에만 있다).
+//    검사 = cd frontend && npm run check:site-upload-signed
 
 function createUploadOverlay() {
   const ov = document.createElement('div')
@@ -82,12 +86,27 @@ function enableAdminMode() {
         if (!file) return
         const key = el.getAttribute('data-image-key')
         el.style.opacity = '0.5'
-        const fd = new FormData()
-        fd.append('file', file)
-        fd.append('upload_preset', CLOUDINARY_PRESET)
-        fd.append('public_id', 'dcr-homepage/' + key + '_' + Date.now())
+        // 서버가 검증하는 형식과 같아야 한다 — `dcr-homepage/` 아래, [A-Za-z0-9_-] 만.
+        const publicId = 'dcr-homepage/' + String(key).replace(/[^A-Za-z0-9_-]/g, '_') + '_' + Date.now()
         try {
-          const res = await fetch(CLOUDINARY_UPLOAD, { method: 'POST', body: fd })
+          // ① 관리자 인증 + 서명 발급 (비밀키는 서버에만 있다)
+          const signRes = await _sb.functions.invoke('sign-upload', { body: { publicId } })
+          if (signRes.error || !signRes.data || !signRes.data.ok) {
+            el.style.opacity = '1'
+            alert('Upload failed: could not obtain an upload signature. ' +
+                  ((signRes.error && signRes.error.message) || ''))
+            return
+          }
+          const s = signRes.data
+          // ② 서명을 실어 업로드. upload_preset 은 쓰지 않는다(무서명 경로).
+          const fd = new FormData()
+          fd.append('file', file)
+          fd.append('api_key', s.apiKey)
+          fd.append('timestamp', s.timestamp)
+          fd.append('public_id', s.publicId)
+          fd.append('signature', s.signature)
+          const res = await fetch(`https://api.cloudinary.com/v1_1/${s.cloudName}/image/upload`,
+            { method: 'POST', body: fd })
           const data = await res.json()
           el.style.opacity = '1'
           if (data.error) { alert('Upload failed: ' + data.error.message); return }
@@ -117,7 +136,7 @@ async function openMembersModal() {
     .order('created_at', { ascending: false })
 
   if (error || !profiles) {
-    tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;color:#f48771;padding:32px">Failed to load: ' + (error?.message || 'unknown') + '</td></tr>'
+    tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;color:#f48771;padding:32px">Failed to load: ' + escHtml(error?.message || 'unknown') + '</td></tr>'
     return
   }
 
@@ -136,15 +155,18 @@ async function openMembersModal() {
     const joined = p.created_at ? new Date(p.created_at).toLocaleString('ko-KR') : '–'
     const email = emailMap[p.id] || '–'
     const blocked = p.is_blocked ? '<span style="color:#f48771;font-weight:700">Yes</span>' : '–'
+    // 🚨 name·affiliation·email 은 가입자가 스스로 정하는 값이다. 이스케이프 없이 넣으면
+    //    관리자가 이 목록을 여는 순간 **관리자 세션에서** 그 값이 실행된다(SEC-04a).
+    //    status·blocked 는 바로 위에서 문자열 리터럴로만 조립한 배지라 이스케이프하면 깨진다.
     return `<tr>
       <td>${i + 1}</td>
-      <td>${p.name || '–'}</td>
-      <td>${p.affiliation || '–'}</td>
-      <td>${email}</td>
-      <td>${expText}</td>
+      <td>${escHtml(p.name || '–')}</td>
+      <td>${escHtml(p.affiliation || '–')}</td>
+      <td>${escHtml(email)}</td>
+      <td>${escHtml(expText)}</td>
       <td>${status}</td>
       <td>${blocked}</td>
-      <td>${joined}</td>
+      <td>${escHtml(joined)}</td>
     </tr>`
   }).join('')
 
