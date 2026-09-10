@@ -29,6 +29,19 @@ create table if not exists public.site_images (
 -- ── 2. RLS ──────────────────────────────────────────────────────────────────
 alter table public.site_images enable row level security;
 
+--  🚨 2026-09-10 실측 — **대시보드에서 손으로 만든 옛 정책 2개가 있었다.**
+--     RLS 정책은 **OR 로 합쳐진다.** 관리자 전용 정책을 아무리 얹어도 아래 하나가 살아 있으면
+--     로그인한 누구나 이미지 URL 을 바꿔 쓸 수 있다 — **느슨한 쪽이 이긴다.**
+--
+--         polname                                     polcmd
+--         Authenticated users can upsert site_images   *      ← 구멍
+--         Anyone can read site_images                  r      ← si_select 와 중복
+--
+--     처음 이 파일은 새 정책만 추가하고 옛 정책을 지우지 않아 **구멍이 그대로 열려 있었다.**
+--     확인 쿼리가 4행이 아니라 6행을 뱉어 잡혔다. 새 표에서는 no-op 이므로 그대로 둔다.
+drop policy if exists "Authenticated users can upsert site_images" on public.site_images;
+drop policy if exists "Anyone can read site_images"                on public.site_images;
+
 --  읽기: 누구나(비로그인 방문자 포함). 홈페이지가 그려야 한다.
 drop policy if exists si_select on public.site_images;
 create policy si_select on public.site_images for select
