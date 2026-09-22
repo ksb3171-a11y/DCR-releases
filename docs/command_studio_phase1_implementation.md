@@ -616,6 +616,7 @@ D3   릴리스노트 문구 정정                                              
 - 초대형 초안의 Web Worker 검증
 - 네이티브 Electron Open/Save 와 최근 초안 목록 (P2-2 동시 해소)
 - MGT 원문 행 관용 파싱(`iSUB`·`EXVAL` 등 잉여 필드 수용) — §1-1 의 제약 완화
+  → 조사·설계 완료, **구현 보류(사용자 요구 시 착수)**: 리포 루트 `command_studio_mgt_paste_devplan.md` (2026-09-16)
 
 ---
 
