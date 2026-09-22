@@ -126,6 +126,15 @@
         <h3 data-i18n="res.h6t">FAQ</h3>
         <p data-i18n="res.h6d">Quick answers on licensing, platform support, data privacy and updates.</p>
       </a>
+      <!-- Deck lives at the site root (Korean only, one copy) — the absolute path
+           is deliberate so /ko/ /ja/ /zh/ copies all reach the same /presentation/.
+           rewriteRootRelativePaths() only touches css|js|assets|verification. -->
+      <a href="/presentation/" target="_blank" rel="noopener" class="card feature-card hub-card reveal">
+        <div class="hub-top"><div class="card-ico">🎤</div><span class="hub-arrow" data-i18n="res.open">Open →</span></div>
+        <h3 data-i18n="res.h7t">Presentation deck</h3>
+        <p data-i18n="res.h7d">Slides from our engineering-society talk — solver architecture, the verification method and what STRIX does differently.</p>
+        <span class="soon" data-i18n="res.h7tag">Korean</span>
+      </a>
     </div>
   </div>
 </section>
