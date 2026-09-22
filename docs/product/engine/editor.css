@@ -1,0 +1,167 @@
+/* ══════════════════════════════════════════════════════════════════════════
+   발표덱 편집기 — 스타일 (재사용 자산)
+
+   ★ 모든 규칙은 body.editing 아래에만 붙는다.
+     편집을 끄면 화면에 흔적이 0 이어야 하고, 인쇄·게시본에는 아예 나오면 안 된다.
+   ════════════════════════════════════════════════════════════════════════ */
+
+/* ★ 표시 여부는 오직 여기서만 정한다.
+   ⚠ 아래 개별 규칙(#edbar 등)에 display 를 쓰지 말 것 — 같은 우선순위라 뒤에 오는 쪽이
+     이겨서 "편집 중이 아닌데도 툴바가 화면 위 44px 를 덮는" 상태가 된다(실제로 그랬다). */
+#edbar, #edinsp, #edov, #eddraft, #edtoast { display:none; }
+
+body.editing #edbar { display:flex; }
+body.editing #edinsp,
+body.editing #edov { display:block; }
+
+/* 편집 중에는 무대를 줄여 툴바·인스펙터와 겹치지 않게 한다
+   (Deck.fit 이 #stage 크기를 보므로 캔버스가 저절로 그 안에 맞춰진다) */
+body.editing #stage { top:44px; right:264px; }
+body.editing #bar, body.editing #pg, body.editing #hint { display:none; }
+
+/* ── 상단 바 ──────────────────────────────────────────────────────────── */
+#edbar{
+  position:fixed; left:0; right:0; top:0; height:44px; z-index:60;
+  align-items:center; gap:6px; padding:0 10px;
+  background:#14161a; border-bottom:1px solid #2f353d;
+  font-family:var(--sans); font-size:12px; color:var(--text); user-select:none;
+}
+#edbar .grp{ display:flex; align-items:center; gap:4px; }
+#edbar .sep{ width:1px; height:22px; background:#2f353d; margin:0 6px; }
+#edbar .spacer{ flex:1; }
+#edbar .tag{
+  font-weight:700; color:#0d1013; background:var(--accent);
+  padding:3px 9px; border-radius:4px; letter-spacing:.04em;
+}
+#edbar .stat{ color:var(--faint); font-size:11px; }
+#edbar .stat b{ color:var(--warn); font-weight:700; }
+#edbar .stat.dirty{ color:var(--warn); }
+
+.edbtn{
+  background:#1e2126; color:var(--text); border:1px solid #2f353d; border-radius:4px;
+  padding:4px 9px; font-size:12px; font-family:inherit; cursor:pointer; line-height:1.4;
+}
+.edbtn:hover{ background:#272c33; border-color:#3d444d; }
+.edbtn:disabled{ opacity:.38; cursor:default; }
+.edbtn.on{ background:var(--accent-d); border-color:var(--accent); color:#fff; }
+.edbtn.pri{ background:var(--accent-d); border-color:var(--accent); color:#fff; font-weight:700; }
+
+/* ── 우측 인스펙터 ────────────────────────────────────────────────────── */
+#edinsp{
+  position:fixed; right:0; top:44px; bottom:0; width:264px; z-index:60;
+  background:#14161a; border-left:1px solid #2f353d;
+  font-family:var(--sans); font-size:12px; color:var(--text);
+  overflow-y:auto; user-select:none;
+}
+#edinsp .sec{ border-bottom:1px solid #22262c; padding:9px 10px; }
+#edinsp .sec > h4{
+  font-size:10.5px; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--faint); font-weight:700; margin-bottom:7px;
+}
+#edinsp .row{ display:flex; align-items:center; gap:5px; margin-bottom:5px; }
+#edinsp .row:last-child{ margin-bottom:0; }
+#edinsp label{ color:var(--dim); font-size:11px; width:26px; flex:none; }
+#edinsp .hint{ color:var(--faint); font-size:11px; line-height:1.5; }
+#edinsp .lock{ color:var(--warn); font-size:11px; line-height:1.5; }
+#edinsp .note{ color:var(--accent); font-size:11px; line-height:1.5; }
+#edinsp input[type=number], #edinsp input[type=text], #edinsp select{
+  background:#1b1e23; color:var(--text); border:1px solid #2f353d; border-radius:3px;
+  padding:3px 5px; font-size:11.5px; font-family:var(--mono); width:100%;
+  min-width:0; -moz-appearance:textfield;
+}
+#edinsp input[type=color]{
+  background:#1b1e23; border:1px solid #2f353d; border-radius:3px;
+  width:28px; height:22px; padding:1px; cursor:pointer; flex:none;
+}
+#edinsp select{ font-family:var(--sans); }
+#edinsp .btnrow{ display:flex; gap:4px; flex-wrap:wrap; }
+#edinsp .btnrow .edbtn{ flex:1 1 auto; padding:4px 6px; }
+#edinsp .slist{ max-height:190px; overflow-y:auto; border:1px solid #22262c; border-radius:3px; }
+#edinsp .sitem{
+  display:flex; gap:6px; align-items:center; padding:3px 6px; cursor:pointer;
+  font-size:11px; color:var(--dim); border-bottom:1px solid #1b1e23;
+}
+#edinsp .sitem:hover{ background:#1b1e23; }
+#edinsp .sitem.cur{ background:var(--accent-d); color:#fff; }
+#edinsp .sitem .n{ font-family:var(--mono); color:var(--faint); width:20px; flex:none; text-align:right; }
+#edinsp .sitem.cur .n{ color:#cfe4ff; }
+#edinsp .sitem .t{ overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+
+/* ── 캔버스 위 오버레이(화면 좌표) ────────────────────────────────────── */
+#edov{ position:fixed; inset:0; z-index:55; pointer-events:none; }
+#edov .edsel{
+  position:absolute; border:1px solid var(--accent);
+  box-shadow:0 0 0 1px rgba(0,0,0,.55); pointer-events:none;
+}
+#edov .edsel.multi{ border-style:dashed; }
+#edov .edsel.over{ border-color:var(--fail); }
+#edov .edsel.lock{ border-color:var(--warn); border-style:dashed; }
+#edov .edh{
+  position:absolute; width:9px; height:9px; margin:-5px 0 0 -5px;
+  background:#fff; border:1px solid var(--accent-d); border-radius:2px;
+  pointer-events:auto;
+}
+#edov .edh[data-d="nw"], #edov .edh[data-d="se"]{ cursor:nwse-resize; }
+#edov .edh[data-d="ne"], #edov .edh[data-d="sw"]{ cursor:nesw-resize; }
+#edov .edh[data-d="n"],  #edov .edh[data-d="s"] { cursor:ns-resize; }
+#edov .edh[data-d="w"],  #edov .edh[data-d="e"] { cursor:ew-resize; }
+#edov .edg{ position:absolute; background:#ff3ea5; pointer-events:none; }
+#edov .edg.v{ width:1px; }
+#edov .edg.h{ height:1px; }
+#edov .edmq{
+  position:absolute; border:1px solid var(--accent);
+  background:rgba(78,161,255,.12); pointer-events:none;
+}
+
+/* 편집 중 요소 표시 — 내용에는 영향을 주지 않는 외곽선만 */
+body.editing .el{ cursor:default; }
+body.editing .canvas.on .el:not([data-role="foot"]):hover{ outline:1px dashed #48505a; }
+body.editing .el.edtext{ outline:1px solid var(--pass); cursor:text; }
+body.editing .el.edtext:hover{ outline:1px solid var(--pass); }
+body.editing .el[contenteditable="true"]{ cursor:text; }
+
+/* ── 개요(O) 화면의 슬라이드 관리 ──────────────────────────────────────
+   ★ 편집 모드가 아니어도 쓸 수 있다. 다만 `body.edok`(= 편집기를 쓸 수 있는 환경,
+     내 PC에서 연 경우)에서만 나타난다 — 홈페이지 배포본에는 아예 없다. */
+#ovbar{ display:none; }
+body.edok #ov #ovbar{
+  display:flex; align-items:center; gap:6px; margin-bottom:14px;
+  padding:8px 10px; background:#14161a; border:1px solid #2f353d; border-radius:6px;
+  font-family:var(--sans); font-size:12px; color:var(--text);
+  position:sticky; top:-34px; z-index:2;
+}
+#ovbar .spacer{ flex:1; }
+#ovbar .ovcount{ color:var(--faint); font-size:11.5px; margin-left:6px; }
+
+body.edok #ov .ovc{ user-select:none; }
+body.edok #ov .ovc.gen{ opacity:.4; cursor:not-allowed; }
+/* 선택 = 아래 이름줄이 통째로 파랗게 (현재 보고 있는 장 표시 `.cur` 와 헷갈리지 않게) */
+body.edok #ov .ovc.ovsel{ border-color:var(--accent); box-shadow:0 0 0 2px var(--accent); }
+body.edok #ov .ovc.ovsel .ovmeta{ background:var(--accent-d); }
+body.edok #ov .ovc.ovsel .ovmeta .n,
+body.edok #ov .ovc.ovsel .ovmeta .t{ color:#fff; }
+body.edok #ov .ovc.dropL{ box-shadow:-4px 0 0 0 #ff3ea5; }
+body.edok #ov .ovc.dropR{ box-shadow: 4px 0 0 0 #ff3ea5; }
+
+/* ── 초안 복구 배너 · 알림 ────────────────────────────────────────────── */
+#eddraft{
+  position:fixed; left:50%; top:56px; transform:translateX(-50%); z-index:70;
+  background:#1e2126; border:1px solid var(--warn); border-radius:6px;
+  padding:9px 12px; font-family:var(--sans); font-size:12px; color:var(--text);
+  display:none; align-items:center; gap:10px;
+}
+#eddraft.on{ display:flex; }
+#edtoast{
+  position:fixed; left:50%; bottom:24px; transform:translateX(-50%); z-index:70;
+  background:#1e2126; border:1px solid #3d444d; border-radius:6px;
+  padding:7px 14px; font-family:var(--sans); font-size:12px; color:var(--text);
+  display:none; opacity:0; transition:opacity .18s;
+}
+#edtoast.on{ display:block; opacity:1; }
+
+/* ★ 인쇄·게시본에는 편집 흔적이 하나도 남지 않는다 */
+@media print{
+  #edbar, #edinsp, #edov, #eddraft, #edtoast{ display:none !important; }
+  body.editing #stage{ top:0; right:0; }
+  body.editing .el{ outline:none !important; }
+}

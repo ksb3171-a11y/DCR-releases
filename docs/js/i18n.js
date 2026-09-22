@@ -134,6 +134,7 @@
       'hero.sub': 'A desktop platform that takes you from 3D modeling through nonlinear analysis to code-compliant RC design — built on the OpenSees solver and cross-verified against industry references within ±3%.',
       'hero.cta1': 'Download for Windows',
       'hero.cta2': 'Watch the demo',
+      'hero.cta3': 'Product overview',
       'hero.note': 'Free during beta · Windows 10/11 · No credit card',
 
       'trust.solver': 'Powered by',
@@ -800,6 +801,7 @@
       'hero.sub': '3D 모델링부터 비선형 해석, 기준 적합 RC 설계까지 하나의 데스크톱 플랫폼에서. OpenSees 솔버 기반으로 구축되어 업계 표준 대비 ±3% 이내로 교차검증되었습니다.',
       'hero.cta1': 'Windows 다운로드',
       'hero.cta2': '데모 영상 보기',
+      'hero.cta3': '프로그램 소개',
       'hero.note': '베타 기간 무료 · Windows 10/11 · 카드 등록 불필요',
 
       'trust.solver': '솔버 기반',
@@ -1466,6 +1468,7 @@
       'hero.sub': '3DモデリングからNTHA非線形解析、規準適合RC設計までを一気通貫で行えるデスクトッププラットフォーム。OpenSeesソルバー上に構築され、業界リファレンスと±3%以内で相互検証されています。',
       'hero.cta1': 'Windows版をダウンロード',
       'hero.cta2': 'デモを見る',
+      'hero.cta3': '製品紹介',
       'hero.note': 'ベータ期間中は無料 · Windows 10/11 · クレジットカード不要',
 
       'trust.solver': '搭載ソルバー',
@@ -2131,6 +2134,7 @@
       'hero.sub': '从 3D 建模、非线性分析到符合规范的 RC 设计，一站式桌面平台 —— 基于 OpenSees 求解器构建，与行业基准交叉验证，误差在 ±3% 以内。',
       'hero.cta1': '下载 Windows 版',
       'hero.cta2': '观看演示',
+      'hero.cta3': '产品介绍',
       'hero.note': '测试期免费 · Windows 10/11 · 无需信用卡',
       'trust.solver': '驱动引擎',
       'trust.solverName': 'OpenSees (UC Berkeley)',

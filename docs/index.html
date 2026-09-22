@@ -121,6 +121,10 @@
       <div class="hero-actions">
         <a href="#download" class="btn btn-primary btn-lg" data-i18n="hero.cta1">Download for Windows</a>
         <a href="#live" class="btn btn-ghost btn-lg" data-i18n="hero.cta2">▶ Watch the demo</a>
+        <!-- Product deck at the site root (one Korean copy). Absolute on purpose so the
+             /ko/ /ja/ /zh/ builds reach the same /product/ — rewriteRootRelativePaths()
+             only rewrites css|js|assets|verification. -->
+        <a href="/product/" target="_blank" rel="noopener" class="btn btn-secondary btn-lg" data-i18n="hero.cta3">Product overview</a>
       </div>
       <p class="hero-note" data-i18n="hero.note">Free during beta · Windows 10/11 · No credit card</p>
     </div>
