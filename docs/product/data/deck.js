@@ -642,12 +642,21 @@ window.__DECK__ = {
      "y": 525,
      "w": 354.3,
      "h": 82,
+     "html": "<div class=\"key\" style=\"--gc:var(--c2)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-arrows-diagonal-minimize-2\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M18 10h-4v-4\"></path>\n  <path d=\"M20 4l-6 6\"></path>\n  <path d=\"M6 14h4v4\"></path>\n  <path d=\"M10 14l-6 6\"></path>\n</svg></span><b>지진토압해석</b></div>",
+     "id": "e23"
+    },
+    {
+     "type": "text",
+     "x": 72,
+     "y": 620,
+     "w": 354.3,
+     "h": 82,
      "html": "<div class=\"key\" style=\"--gc:var(--c2)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-stack-2\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M12 4l-8 4l8 4l8 -4l-8 -4\"></path>\n  <path d=\"M4 12l8 4l8 -4\"></path>\n  <path d=\"M4 16l8 4l8 -4\"></path>\n</svg></span><b>시공단계해석</b></div>",
      "id": "e16"
     },
     {
      "type": "text",
-     "x": 72,
+     "x": 439.3,
      "y": 620,
      "w": 354.3,
      "h": 82,
@@ -656,7 +665,7 @@ window.__DECK__ = {
     },
     {
      "type": "text",
-     "x": 439.3,
+     "x": 806.5,
      "y": 620,
      "w": 354.3,
      "h": 82,
@@ -665,7 +674,7 @@ window.__DECK__ = {
     },
     {
      "type": "text",
-     "x": 806.5,
+     "x": 1173.8,
      "y": 620,
      "w": 354.3,
      "h": 82,
@@ -674,8 +683,8 @@ window.__DECK__ = {
     },
     {
      "type": "text",
-     "x": 1173.8,
-     "y": 620,
+     "x": 72,
+     "y": 715,
      "w": 354.3,
      "h": 82,
      "html": "<div class=\"key\" style=\"--gc:var(--c3)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-adjustments\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M4 10a2 2 0 1 0 4 0a2 2 0 0 0 -4 0\"></path>\n  <path d=\"M6 4v4\"></path>\n  <path d=\"M6 12v8\"></path>\n  <path d=\"M10 16a2 2 0 1 0 4 0a2 2 0 0 0 -4 0\"></path>\n  <path d=\"M12 4v10\"></path>\n  <path d=\"M12 18v2\"></path>\n  <path d=\"M16 7a2 2 0 1 0 4 0a2 2 0 0 0 -4 0\"></path>\n  <path d=\"M18 4v1\"></path>\n  <path d=\"M18 9v11\"></path>\n</svg></span><b>RC 보·기둥 단면 최적화</b></div>",
@@ -683,7 +692,7 @@ window.__DECK__ = {
     },
     {
      "type": "text",
-     "x": 72,
+     "x": 439.3,
      "y": 715,
      "w": 354.3,
      "h": 82,
@@ -692,7 +701,7 @@ window.__DECK__ = {
     },
     {
      "type": "text",
-     "x": 439.3,
+     "x": 806.5,
      "y": 715,
      "w": 354.3,
      "h": 82,
@@ -763,12 +772,21 @@ window.__DECK__ = {
      "y": 335,
      "w": 354.3,
      "h": 82,
+     "html": "<div class=\"key\" style=\"--gc:var(--c3)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-arrows-join-2\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M3 7h1.948c1.913 0 3.705 .933 4.802 2.5a5.861 5.861 0 0 0 4.802 2.5h6.448\"></path>\n  <path d=\"M3 17h1.95a5.854 5.854 0 0 0 4.798 -2.5a5.854 5.854 0 0 1 4.798 -2.5h5.454\"></path>\n  <path d=\"M18 15l3 -3l-3 -3\"></path>\n</svg></span><b>전이부재 상세설계</b></div>",
+     "id": "e22"
+    },
+    {
+     "type": "text",
+     "x": 806.5,
+     "y": 335,
+     "w": 354.3,
+     "h": 82,
      "html": "<div class=\"key\" style=\"--gc:var(--c3)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-circuit-ground\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M12 13v-8\"></path>\n  <path d=\"M4 13h16\"></path>\n  <path d=\"M7 16h10\"></path>\n  <path d=\"M10 19h4\"></path>\n</svg></span><b>기초(독립,매트,파일) 자동설계</b></div>",
      "id": "e6"
     },
     {
      "type": "text",
-     "x": 806.5,
+     "x": 1173.8,
      "y": 335,
      "w": 354.3,
      "h": 82,
@@ -777,8 +795,8 @@ window.__DECK__ = {
     },
     {
      "type": "text",
-     "x": 1173.8,
-     "y": 335,
+     "x": 72,
+     "y": 430,
      "w": 354.3,
      "h": 82,
      "html": "<div class=\"key\" style=\"--gc:var(--c3)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-focus\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M11.5 12a.5 .5 0 1 0 1 0a.5 .5 0 1 0 -1 0\" fill=\"currentColor\"></path>\n  <path d=\"M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0\"></path>\n</svg></span><b>개별 단위부재 검토</b></div>",
@@ -786,7 +804,7 @@ window.__DECK__ = {
     },
     {
      "type": "text",
-     "x": 72,
+     "x": 439.3,
      "y": 430,
      "w": 354.3,
      "h": 82,
@@ -795,7 +813,7 @@ window.__DECK__ = {
     },
     {
      "type": "text",
-     "x": 439.3,
+     "x": 806.5,
      "y": 430,
      "w": 354.3,
      "h": 82,
@@ -804,7 +822,7 @@ window.__DECK__ = {
     },
     {
      "type": "text",
-     "x": 806.5,
+     "x": 1173.8,
      "y": 430,
      "w": 354.3,
      "h": 82,
@@ -813,8 +831,8 @@ window.__DECK__ = {
     },
     {
      "type": "text",
-     "x": 1173.8,
-     "y": 430,
+     "x": 72,
+     "y": 525,
      "w": 354.3,
      "h": 82,
      "html": "<div class=\"key\" style=\"--gc:var(--c4)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-circuit-switch-open\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M2 12h2\"></path>\n  <path d=\"M20 12h2\"></path>\n  <path d=\"M4 12a2 2 0 1 0 4 0a2 2 0 1 0 -4 0\"></path>\n  <path d=\"M16 12a2 2 0 1 0 4 0a2 2 0 1 0 -4 0\"></path>\n  <path d=\"M7.5 10.5l7.5 -5.5\"></path>\n</svg></span><b>Damper Device (속도,변위)</b></div>",
@@ -822,7 +840,7 @@ window.__DECK__ = {
     },
     {
      "type": "text",
-     "x": 72,
+     "x": 439.3,
      "y": 525,
      "w": 354.3,
      "h": 82,
@@ -831,7 +849,7 @@ window.__DECK__ = {
     },
     {
      "type": "text",
-     "x": 439.3,
+     "x": 806.5,
      "y": 525,
      "w": 354.3,
      "h": 82,
@@ -840,7 +858,7 @@ window.__DECK__ = {
     },
     {
      "type": "text",
-     "x": 806.5,
+     "x": 1173.8,
      "y": 525,
      "w": 354.3,
      "h": 82,
@@ -849,8 +867,8 @@ window.__DECK__ = {
     },
     {
      "type": "text",
-     "x": 1173.8,
-     "y": 525,
+     "x": 72,
+     "y": 620,
      "w": 354.3,
      "h": 82,
      "html": "<div class=\"key\" style=\"--gc:var(--c5)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-activity-heartbeat\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M3 12h4.5l1.5 -6l4 12l2 -9l1.5 3h4.5\"></path>\n</svg></span><b>바닥진동 해석</b></div>",
@@ -858,7 +876,7 @@ window.__DECK__ = {
     },
     {
      "type": "text",
-     "x": 72,
+     "x": 439.3,
      "y": 620,
      "w": 354.3,
      "h": 82,
@@ -867,7 +885,7 @@ window.__DECK__ = {
     },
     {
      "type": "text",
-     "x": 439.3,
+     "x": 806.5,
      "y": 620,
      "w": 354.3,
      "h": 82,
@@ -876,7 +894,7 @@ window.__DECK__ = {
     },
     {
      "type": "text",
-     "x": 806.5,
+     "x": 1173.8,
      "y": 620,
      "w": 354.3,
      "h": 82,
@@ -885,8 +903,8 @@ window.__DECK__ = {
     },
     {
      "type": "text",
-     "x": 1173.8,
-     "y": 620,
+     "x": 72,
+     "y": 715,
      "w": 354.3,
      "h": 82,
      "html": "<div class=\"key\" style=\"--gc:var(--c6)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-ruler-measure\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M19.875 12c.621 0 1.125 .512 1.125 1.143v5.714c0 .631 -.504 1.143 -1.125 1.143h-15.875a1 1 0 0 1 -1 -1v-5.857c0 -.631 .504 -1.143 1.125 -1.143h15.75\"></path>\n  <path d=\"M9 12v2\"></path>\n  <path d=\"M6 12v3\"></path>\n  <path d=\"M12 12v3\"></path>\n  <path d=\"M18 12v3\"></path>\n  <path d=\"M15 12v2\"></path>\n  <path d=\"M3 3v4\"></path>\n  <path d=\"M3 5h18\"></path>\n  <path d=\"M21 3v4\"></path>\n</svg></span><b>구조도면 자동생성</b></div>",
@@ -894,7 +912,7 @@ window.__DECK__ = {
     },
     {
      "type": "text",
-     "x": 72,
+     "x": 439.3,
      "y": 715,
      "w": 354.3,
      "h": 82,
@@ -2119,7 +2137,7 @@ window.__DECK__ = {
      "y": 606,
      "w": 621,
      "h": 152.5,
-     "html": "<div class=\"divider-subtopics\"><a href=\"#wind\" data-go=\"wind\" data-slide=\"24\">설계풍하중 자동산정</a><a href=\"#seismic\" data-go=\"seismic\" data-slide=\"25\">설계지진하중 및 응답스펙트럼</a><a href=\"#09\" data-go=\"09\" data-slide=\"26\">풍동실험 하중 데이터 자동입력</a><a href=\"#live\" data-go=\"live\" data-slide=\"27\">활하중 저감계수 자동산정</a><a href=\"#special\" data-go=\"special\" data-slide=\"28\">특별지진하중 대상 부재 지정</a><a href=\"#displacement\" data-go=\"displacement\" data-slide=\"29\">강제변위·회전 입력</a><a href=\"#slabcopy\" data-go=\"slabcopy\" data-slide=\"30\">Slab Copy</a><a href=\"#walltypeload\" data-go=\"walltypeload\" data-slide=\"31\">벽식구조 바닥하중 변환</a><a href=\"#scaleup\" data-go=\"scaleup\" data-slide=\"32\">Scaleup Factor 자동산정</a></div>",
+     "html": "<div class=\"divider-subtopics\"><a href=\"#wind\" data-go=\"wind\" data-slide=\"24\">설계풍하중 자동산정</a><a href=\"#seismic\" data-go=\"seismic\" data-slide=\"25\">설계지진하중 및 응답스펙트럼</a><a href=\"#earthpressure\" data-go=\"earthpressure\" data-slide=\"26\">지진토압해석</a><a href=\"#09\" data-go=\"09\" data-slide=\"26\">풍동실험 하중 데이터 자동입력</a><a href=\"#live\" data-go=\"live\" data-slide=\"27\">활하중 저감계수 자동산정</a><a href=\"#special\" data-go=\"special\" data-slide=\"28\">특별지진하중 대상 부재 지정</a><a href=\"#displacement\" data-go=\"displacement\" data-slide=\"29\">강제변위·회전 입력</a><a href=\"#slabcopy\" data-go=\"slabcopy\" data-slide=\"30\">Slab Copy</a><a href=\"#walltypeload\" data-go=\"walltypeload\" data-slide=\"31\">벽식구조 바닥하중 변환</a><a href=\"#scaleup\" data-go=\"scaleup\" data-slide=\"32\">Scaleup Factor 자동산정</a></div>",
      "id": "e7"
     }
    ]
@@ -2280,6 +2298,88 @@ window.__DECK__ = {
      "w": 532,
      "h": 111.1,
      "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-weight\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M9 6a3 3 0 1 0 6 0a3 3 0 1 0 -6 0\"></path>\n  <path d=\"M6.835 9h10.33a1 1 0 0 1 .984 .821l1.637 9a1 1 0 0 1 -.984 1.179h-13.604a1 1 0 0 1 -.984 -1.179l1.637 -9a1 1 0 0 1 .984 -.821\"></path>\n</svg></div><h3>설계 응답 확인</h3><p>층별 응답과 부재력을 확인하고 필요한 보정계수를 검토합니다. 하중조합을 통해 부재 설계와 후처리에 활용합니다.</p></div>",
+     "id": "e7"
+    }
+   ]
+  },
+  {
+   "id": "earthpressure",
+   "name": "지진토압해석 — 지하외벽 토압과 설계",
+   "cls": "slide screen",
+   "foot": [
+    72,
+    844,
+    1456,
+    18
+   ],
+   "els": [
+    {
+     "type": "text",
+     "x": 72,
+     "y": 44,
+     "w": 1457,
+     "h": 44,
+     "html": "<header><div class=\"brand\">STRIX<span>.</span></div><div class=\"chapter\">04 하중 산정과 입력</div></header>",
+     "id": "e1"
+    },
+    {
+     "type": "text",
+     "x": 72,
+     "y": 132,
+     "w": 900,
+     "h": 65,
+     "html": "<h2 class=\"title\">지진토압해석 — 지하외벽 토압과 설계</h2>",
+     "id": "e2"
+    },
+    {
+     "type": "text",
+     "x": 72,
+     "y": 216,
+     "w": 1100,
+     "h": 37,
+     "html": "<p class=\"lead\">KDS 41 17 00 14장에 따라 지하외벽에 상시·지진토압을 자동으로 싣고, 벽 패널을 판으로 해석해 배근까지 검토합니다.</p>",
+     "id": "e3"
+    },
+    {
+     "type": "image",
+     "x": 64,
+     "y": 278,
+     "w": 900,
+     "h": 545.5,
+     "slot": "live-earthpressure",
+     "cls": "visual",
+     "frame": "fixed",
+     "bare": true,
+     "fit": "fill",
+     "id": "e4",
+     "recW": 1800,
+     "recH": 1091
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 278,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-first dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-stack-2\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M12 4l-8 4l8 4l8 -4l-8 -4\"></path>\n  <path d=\"M4 12l8 4l8 -4\"></path>\n  <path d=\"M4 16l8 4l8 -4\"></path>\n</svg></div><h3>지반조건과 지진토압 산정</h3><p>Soil Profile에 지층·지하수위·상재하중을 입력합니다. S·F<sub>a</sub>는 지진하중 설정값을 그대로 써 등가정적법으로 지진토압을 계산합니다.</p></div>",
+     "id": "e5"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 389.1,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-arrows-diagonal-minimize-2\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M18 10h-4v-4\"></path>\n  <path d=\"M20 4l-6 6\"></path>\n  <path d=\"M6 14h4v4\"></path>\n  <path d=\"M10 14l-6 6\"></path>\n</svg></div><h3>토압 하중 자동 재하</h3><p>상시토압(EH)과 지진토압(EEP)을 ±X·±Y 면별 하중상태로 만들어 지하외벽에 싣습니다. 지진토압은 지진조합에 편측으로 들어갑니다.</p></div>",
+     "id": "e6"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 500.1,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-geometry\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M7 21l4 -12m2 0l1.48 4.439m.949 2.847l1.571 4.714\"></path>\n  <path d=\"M10 7a2 2 0 1 0 4 0a2 2 0 1 0 -4 0\"></path>\n  <path d=\"M4 12c1.526 2.955 4.588 5 8 5c3.41 0 6.473 -2.048 8 -5\"></path>\n  <path d=\"M12 5v-2\"></path>\n</svg></div><h3>지하외벽 판해석과 배근</h3><p>벽 패널만 떼어 판으로 해석해 전체 모델에 영향을 주지 않습니다. 배근·부벽을 검토하고 계산서로 출력합니다.</p></div>",
      "id": "e7"
     }
    ]
