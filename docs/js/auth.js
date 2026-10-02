@@ -23,6 +23,10 @@ const DL = {
 
 // ── ADMIN IMAGE MANAGEMENT ──
 const ADMIN_EMAIL = 'ksb3171@gmail.com'
+// community.js 의 isAdmin() 이 `window.ADMIN_EMAIL` 을 읽는다. `const` 는 window 에 안 붙어서
+// 운영자에게도 글 상세의 답변·상태·고정·숨김 칸이 안 떴다(community_answer_notify_devplan.md §1-1).
+// 표시용 판정이다 — 실권한은 Supabase RLS·가드 트리거가 갖는다.
+window.ADMIN_EMAIL = ADMIN_EMAIL
 const CLOUDINARY_CLOUD = 'dbdamtf2t'
 const CLOUDINARY_URL = `https://res.cloudinary.com/${CLOUDINARY_CLOUD}/image/upload/f_auto,q_auto/`
 
