@@ -164,7 +164,7 @@ window.__DECK__ = {
      "y": 280,
      "w": 1085,
      "h": 583,
-     "html": "<div class=\"contents-index\"><a href=\"#chapter-1\" data-go=\"chapter-1\" data-slide=\"2\"><span>01</span><div><b>제품 개요</b><p>왜 STRIX인가 · 해석 엔진 · 핵심 기능</p></div></a><a href=\"#chapter-2\" data-go=\"chapter-2\" data-slide=\"8\"><span>02</span><div><b>OpenSees 해석 기반</b><p>탄생 배경 · 발전 과정 · 연구 기반</p></div></a><a href=\"#chapter-3\" data-go=\"chapter-3\" data-slide=\"14\"><span>03</span><div><b>모델링과 AI</b><p>작업 환경 · 인스펙터 · 모델링 · AI</p></div></a><a href=\"#chapter-4\" data-go=\"chapter-4\" data-slide=\"23\"><span>04</span><div><b>하중 산정과 입력</b><p>풍하중 · 지진하중 · 자동산정</p></div></a><a href=\"#chapter-5\" data-go=\"chapter-5\" data-slide=\"33\"><span>05</span><div><b>구조해석과 결과 검토</b><p>해석 · 층별 응답 · 횡력비교</p></div></a><a href=\"#chapter-6\" data-go=\"chapter-6\" data-slide=\"39\"><span>06</span><div><b>부재 설계와 최적화</b><p>RC·강구조 · 지배부재 · 단면 최적화</p></div></a><a href=\"#chapter-7\" data-go=\"chapter-7\" data-slide=\"52\"><span>07</span><div><b>슬래브·기초·상세 설계</b><p>슬래브 · 기초 · 전이부 · 단위부재</p></div></a><a href=\"#chapter-8\" data-go=\"chapter-8\" data-slide=\"63\"><span>08</span><div><b>내진성능평가와 PBSD</b><p>Pushover · 시간이력해석 · 성능 검토</p></div></a><a href=\"#chapter-9\" data-go=\"chapter-9\" data-slide=\"73\"><span>09</span><div><b>진동과 수화열</b><p>보행진동 · 계측 분석 · 수화열</p></div></a><a href=\"#chapter-10\" data-go=\"chapter-10\" data-slide=\"77\"><span>10</span><div><b>설계 성과품</b><p>물량 · 구조도 · 구조계산서</p></div></a><a href=\"#chapter-11\" data-go=\"chapter-11\" data-slide=\"81\"><span>11</span><div><b>검증과 적용</b><p>검증 21건 · 대조항목 131개 · 전건 합격</p></div></a><a href=\"#chapter-apx\" data-go=\"chapter-apx\" data-slide=\"92\"><span>A</span><div><b>부록</b><p>기능별 지원 범위 · 기술 근거 · 자료 안내</p></div></a></div>",
+     "html": "<div class=\"contents-index\"><a href=\"#chapter-1\" data-go=\"chapter-1\" data-slide=\"2\"><span>01</span><div><b>제품 개요</b><p>왜 STRIX인가 · 해석 엔진 · 핵심 기능</p></div></a><a href=\"#chapter-2\" data-go=\"chapter-2\" data-slide=\"9\"><span>02</span><div><b>OpenSees 해석 기반</b><p>탄생 배경 · 발전 과정 · 연구 기반</p></div></a><a href=\"#chapter-3\" data-go=\"chapter-3\" data-slide=\"15\"><span>03</span><div><b>모델링과 AI</b><p>작업 환경 · 인스펙터 · 모델링 · AI · 도움말</p></div></a><a href=\"#chapter-4\" data-go=\"chapter-4\" data-slide=\"26\"><span>04</span><div><b>하중 산정과 입력</b><p>풍하중 · 지진하중 · 토압 · 하중조합</p></div></a><a href=\"#chapter-5\" data-go=\"chapter-5\" data-slide=\"42\"><span>05</span><div><b>구조해석과 결과 검토</b><p>해석 · 층별 응답 · 횡력비교</p></div></a><a href=\"#chapter-6\" data-go=\"chapter-6\" data-slide=\"48\"><span>06</span><div><b>부재 설계와 최적화</b><p>RC·강구조·목구조 · 접합부 · 설계 최적화</p></div></a><a href=\"#chapter-7\" data-go=\"chapter-7\" data-slide=\"66\"><span>07</span><div><b>슬래브·기초·상세 설계</b><p>슬래브·무량판 · 기초 · 전이부 · 단위부재</p></div></a><a href=\"#chapter-8\" data-go=\"chapter-8\" data-slide=\"79\"><span>08</span><div><b>내진성능평가와 PBSD</b><p>Pushover · 시간이력해석 · 성능 검토</p></div></a><a href=\"#chapter-9\" data-go=\"chapter-9\" data-slide=\"89\"><span>09</span><div><b>진동과 수화열</b><p>보행진동 · 계측 분석 · 수화열</p></div></a><a href=\"#chapter-10\" data-go=\"chapter-10\" data-slide=\"93\"><span>10</span><div><b>설계 성과품</b><p>구조도 · 구조계산서 · 확인서 · 물량</p></div></a><a href=\"#chapter-11\" data-go=\"chapter-11\" data-slide=\"98\"><span>11</span><div><b>검증과 적용</b><p>검증 21건 · 대조항목 131개 · 전건 합격</p></div></a><a href=\"#chapter-apx\" data-go=\"chapter-apx\" data-slide=\"107\"><span>A</span><div><b>부록</b><p>기능별 지원 범위 · 기술 근거 · 자료 안내</p></div></a></div>",
      "id": "e5"
     }
    ]
@@ -238,8 +238,8 @@ window.__DECK__ = {
      "x": 64,
      "y": 606,
      "w": 621,
-     "h": 112,
-     "html": "<div class=\"divider-subtopics\"><a href=\"#02\" data-go=\"02\" data-slide=\"3\">왜 STRIX인가?</a><a href=\"#03d\" data-go=\"03d\" data-slide=\"4\">해석 엔진</a><a href=\"#03b\" data-go=\"03b\" data-slide=\"5\">해석부터 설계까지, 프로그램 하나로</a><a href=\"#03\" data-go=\"03\" data-slide=\"6\">핵심 기능 — 모델링 · AI · 해석</a><a href=\"#03c\" data-go=\"03c\" data-slide=\"7\">핵심 기능 — 부재 설계 · 내진성능평가 · 성과품</a></div>",
+     "h": 152.5,
+     "html": "<div class=\"divider-subtopics\"><a href=\"#02\" data-go=\"02\" data-slide=\"3\">왜 STRIX인가?</a><a href=\"#03d\" data-go=\"03d\" data-slide=\"4\">해석 엔진</a><a href=\"#03b\" data-go=\"03b\" data-slide=\"5\">해석부터 설계까지, 프로그램 하나로</a><a href=\"#03\" data-go=\"03\" data-slide=\"6\">핵심 기능 — 모델링 · AI · 해석</a><a href=\"#03c\" data-go=\"03c\" data-slide=\"7\">핵심 기능 — 부재 설계 · 내진성능평가 · 성과품</a><a href=\"#03e\" data-go=\"03e\" data-slide=\"8\">핵심 기능 — 실무 보조 · 상세 검토 · 확인서</a></div>",
      "id": "e7"
     }
    ]
@@ -643,7 +643,7 @@ window.__DECK__ = {
      "w": 354.3,
      "h": 82,
      "html": "<div class=\"key\" style=\"--gc:var(--c2)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-arrows-diagonal-minimize-2\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M18 10h-4v-4\"></path>\n  <path d=\"M20 4l-6 6\"></path>\n  <path d=\"M6 14h4v4\"></path>\n  <path d=\"M10 14l-6 6\"></path>\n</svg></span><b>지진토압해석</b></div>",
-     "id": "e23"
+     "id": "e16"
     },
     {
      "type": "text",
@@ -652,7 +652,7 @@ window.__DECK__ = {
      "w": 354.3,
      "h": 82,
      "html": "<div class=\"key\" style=\"--gc:var(--c2)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-stack-2\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M12 4l-8 4l8 4l8 -4l-8 -4\"></path>\n  <path d=\"M4 12l8 4l8 -4\"></path>\n  <path d=\"M4 16l8 4l8 -4\"></path>\n</svg></span><b>시공단계해석</b></div>",
-     "id": "e16"
+     "id": "e17"
     },
     {
      "type": "text",
@@ -661,7 +661,7 @@ window.__DECK__ = {
      "w": 354.3,
      "h": 82,
      "html": "<div class=\"key\" style=\"--gc:var(--c2)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-chart-arrows-vertical\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M18 21v-14\"></path>\n  <path d=\"M9 15l3 -3l3 3\"></path>\n  <path d=\"M15 10l3 -3l3 3\"></path>\n  <path d=\"M3 21l18 0\"></path>\n  <path d=\"M12 21l0 -9\"></path>\n  <path d=\"M3 6l3 -3l3 3\"></path>\n  <path d=\"M6 21v-18\"></path>\n</svg></span><b>Scaleup Factor</b></div>",
-     "id": "e17"
+     "id": "e18"
     },
     {
      "type": "text",
@@ -670,7 +670,7 @@ window.__DECK__ = {
      "w": 354.3,
      "h": 82,
      "html": "<div class=\"key\" style=\"--gc:var(--c2)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-chart-histogram\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M3 3v18h18\"></path>\n  <path d=\"M20 18v3\"></path>\n  <path d=\"M16 16v5\"></path>\n  <path d=\"M12 13v8\"></path>\n  <path d=\"M8 16v5\"></path>\n  <path d=\"M3 11c6 0 5 -5 9 -5s3 5 9 5\"></path>\n</svg></span><b>지배 횡력(풍,지진) 비교</b></div>",
-     "id": "e18"
+     "id": "e19"
     },
     {
      "type": "text",
@@ -679,7 +679,7 @@ window.__DECK__ = {
      "w": 354.3,
      "h": 82,
      "html": "<div class=\"key\" style=\"--gc:var(--c2)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-arrow-big-down-lines\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M15 12h3.586a1 1 0 0 1 .707 1.707l-6.586 6.586a1 1 0 0 1 -1.414 0l-6.586 -6.586a1 1 0 0 1 .707 -1.707h3.586v-3h6v3\"></path>\n  <path d=\"M15 3h-6\"></path>\n  <path d=\"M15 6h-6\"></path>\n</svg></span><b>활하중 저감 자동적용 지원</b></div>",
-     "id": "e19"
+     "id": "e20"
     },
     {
      "type": "text",
@@ -688,7 +688,7 @@ window.__DECK__ = {
      "w": 354.3,
      "h": 82,
      "html": "<div class=\"key\" style=\"--gc:var(--c3)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-adjustments\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M4 10a2 2 0 1 0 4 0a2 2 0 0 0 -4 0\"></path>\n  <path d=\"M6 4v4\"></path>\n  <path d=\"M6 12v8\"></path>\n  <path d=\"M10 16a2 2 0 1 0 4 0a2 2 0 0 0 -4 0\"></path>\n  <path d=\"M12 4v10\"></path>\n  <path d=\"M12 18v2\"></path>\n  <path d=\"M16 7a2 2 0 1 0 4 0a2 2 0 0 0 -4 0\"></path>\n  <path d=\"M18 4v1\"></path>\n  <path d=\"M18 9v11\"></path>\n</svg></span><b>RC 보·기둥 단면 최적화</b></div>",
-     "id": "e20"
+     "id": "e21"
     },
     {
      "type": "text",
@@ -697,7 +697,7 @@ window.__DECK__ = {
      "w": 354.3,
      "h": 82,
      "html": "<div class=\"key\" style=\"--gc:var(--c3)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-building\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M3 21l18 0\"></path>\n  <path d=\"M9 8l1 0\"></path>\n  <path d=\"M9 12l1 0\"></path>\n  <path d=\"M9 16l1 0\"></path>\n  <path d=\"M14 8l1 0\"></path>\n  <path d=\"M14 12l1 0\"></path>\n  <path d=\"M14 16l1 0\"></path>\n  <path d=\"M5 21v-16a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v16\"></path>\n</svg></span><b>전단벽 최적설계</b></div>",
-     "id": "e21"
+     "id": "e22"
     },
     {
      "type": "text",
@@ -706,7 +706,16 @@ window.__DECK__ = {
      "w": 354.3,
      "h": 82,
      "html": "<div class=\"key\" style=\"--gc:var(--c3)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-shape-2\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M3 5a2 2 0 1 0 4 0a2 2 0 1 0 -4 0\"></path>\n  <path d=\"M17 19a2 2 0 1 0 4 0a2 2 0 1 0 -4 0\"></path>\n  <path d=\"M17 5a2 2 0 1 0 4 0a2 2 0 1 0 -4 0\"></path>\n  <path d=\"M3 19a2 2 0 1 0 4 0a2 2 0 1 0 -4 0\"></path>\n  <path d=\"M6.5 17.5l11 -11m-12.5 .5v10m14 -10v10\"></path>\n</svg></span><b>강재단면 최적화</b></div>",
-     "id": "e22"
+     "id": "e23"
+    },
+    {
+     "type": "text",
+     "x": 1173.8,
+     "y": 715,
+     "w": 354.3,
+     "h": 82,
+     "html": "<div class=\"key\" style=\"--gc:var(--c3)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-settings-automation\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065\"></path>\n  <path d=\"M10 9v6l5 -3l-5 -3\"></path>\n</svg></span><b>Design Optimization</b></div>",
+     "id": "e24"
     }
    ]
   },
@@ -773,7 +782,7 @@ window.__DECK__ = {
      "w": 354.3,
      "h": 82,
      "html": "<div class=\"key\" style=\"--gc:var(--c3)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-arrows-join-2\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M3 7h1.948c1.913 0 3.705 .933 4.802 2.5a5.861 5.861 0 0 0 4.802 2.5h6.448\"></path>\n  <path d=\"M3 17h1.95a5.854 5.854 0 0 0 4.798 -2.5a5.854 5.854 0 0 1 4.798 -2.5h5.454\"></path>\n  <path d=\"M18 15l3 -3l-3 -3\"></path>\n</svg></span><b>전이부재 상세설계</b></div>",
-     "id": "e22"
+     "id": "e6"
     },
     {
      "type": "text",
@@ -782,7 +791,7 @@ window.__DECK__ = {
      "w": 354.3,
      "h": 82,
      "html": "<div class=\"key\" style=\"--gc:var(--c3)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-circuit-ground\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M12 13v-8\"></path>\n  <path d=\"M4 13h16\"></path>\n  <path d=\"M7 16h10\"></path>\n  <path d=\"M10 19h4\"></path>\n</svg></span><b>기초(독립,매트,파일) 자동설계</b></div>",
-     "id": "e6"
+     "id": "e7"
     },
     {
      "type": "text",
@@ -791,7 +800,7 @@ window.__DECK__ = {
      "w": 354.3,
      "h": 82,
      "html": "<div class=\"key\" style=\"--gc:var(--c3)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-air-conditioning\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M8 16a3 3 0 0 1 -3 3\"></path>\n  <path d=\"M16 16a3 3 0 0 0 3 3\"></path>\n  <path d=\"M12 16v4\"></path>\n  <path d=\"M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v4a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2l0 -4\"></path>\n  <path d=\"M7 13v-3a1 1 0 0 1 1 -1h8a1 1 0 0 1 1 1v3\"></path>\n</svg></span><b>비구조요소 내진설계</b></div>",
-     "id": "e7"
+     "id": "e8"
     },
     {
      "type": "text",
@@ -800,70 +809,70 @@ window.__DECK__ = {
      "w": 354.3,
      "h": 82,
      "html": "<div class=\"key\" style=\"--gc:var(--c3)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-focus\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M11.5 12a.5 .5 0 1 0 1 0a.5 .5 0 1 0 -1 0\" fill=\"currentColor\"></path>\n  <path d=\"M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0\"></path>\n</svg></span><b>개별 단위부재 검토</b></div>",
-     "id": "e8"
-    },
-    {
-     "type": "text",
-     "x": 439.3,
-     "y": 430,
-     "w": 354.3,
-     "h": 82,
-     "html": "<div class=\"key\" style=\"--gc:var(--c4)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-shield-check\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M11.46 20.846a12 12 0 0 1 -7.96 -14.846a12 12 0 0 0 8.5 -3a12 12 0 0 0 8.5 3a12 12 0 0 1 -.09 7.06\"></path>\n  <path d=\"M15 19l2 2l4 -4\"></path>\n</svg></span><b>내진성능평가 m계수법</b></div>",
      "id": "e9"
     },
     {
      "type": "text",
-     "x": 806.5,
+     "x": 439.3,
      "y": 430,
      "w": 354.3,
      "h": 82,
-     "html": "<div class=\"key\" style=\"--gc:var(--c4)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-chart-line\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M4 19l16 0\"></path>\n  <path d=\"M4 15l4 -6l4 2l4 -5l4 4\"></path>\n</svg></span><b>Pushover 해석</b></div>",
+     "html": "<div class=\"key\" style=\"--gc:var(--c3)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-hierarchy-2\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M10 3h4v4h-4l0 -4\"></path>\n  <path d=\"M3 17h4v4h-4l0 -4\"></path>\n  <path d=\"M17 17h4v4h-4l0 -4\"></path>\n  <path d=\"M7 17l5 -4l5 4\"></path>\n  <path d=\"M12 7l0 6\"></path>\n</svg></span><b>목구조 설계</b></div>",
      "id": "e10"
     },
     {
      "type": "text",
-     "x": 1173.8,
+     "x": 806.5,
      "y": 430,
      "w": 354.3,
      "h": 82,
-     "html": "<div class=\"key\" style=\"--gc:var(--c4)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-list-tree\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M9 6h11\"></path>\n  <path d=\"M12 12h8\"></path>\n  <path d=\"M15 18h5\"></path>\n  <path d=\"M5 6v.01\"></path>\n  <path d=\"M8 12v.01\"></path>\n  <path d=\"M11 18v.01\"></path>\n</svg></span><b>기둥·벽체 파이버요소 지원</b></div>",
+     "html": "<div class=\"key\" style=\"--gc:var(--c3)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-arrows-join-2\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M3 7h1.948c1.913 0 3.705 .933 4.802 2.5a5.861 5.861 0 0 0 4.802 2.5h6.448\"></path>\n  <path d=\"M3 17h1.95a5.854 5.854 0 0 0 4.798 -2.5a5.854 5.854 0 0 1 4.798 -2.5h5.454\"></path>\n  <path d=\"M18 15l3 -3l-3 -3\"></path>\n</svg></span><b>보-기둥 접합부 검토</b></div>",
      "id": "e11"
     },
     {
      "type": "text",
-     "x": 72,
-     "y": 525,
+     "x": 1173.8,
+     "y": 430,
      "w": 354.3,
      "h": 82,
-     "html": "<div class=\"key\" style=\"--gc:var(--c4)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-circuit-switch-open\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M2 12h2\"></path>\n  <path d=\"M20 12h2\"></path>\n  <path d=\"M4 12a2 2 0 1 0 4 0a2 2 0 1 0 -4 0\"></path>\n  <path d=\"M16 12a2 2 0 1 0 4 0a2 2 0 1 0 -4 0\"></path>\n  <path d=\"M7.5 10.5l7.5 -5.5\"></path>\n</svg></span><b>Damper Device (속도,변위)</b></div>",
+     "html": "<div class=\"key\" style=\"--gc:var(--c4)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-shield-check\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M11.46 20.846a12 12 0 0 1 -7.96 -14.846a12 12 0 0 0 8.5 -3a12 12 0 0 0 8.5 3a12 12 0 0 1 -.09 7.06\"></path>\n  <path d=\"M15 19l2 2l4 -4\"></path>\n</svg></span><b>내진성능평가 m계수법</b></div>",
      "id": "e12"
     },
     {
      "type": "text",
-     "x": 439.3,
+     "x": 72,
      "y": 525,
      "w": 354.3,
      "h": 82,
-     "html": "<div class=\"key\" style=\"--gc:var(--c4)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-report\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M8 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h5.697\"></path>\n  <path d=\"M18 14v4h4\"></path>\n  <path d=\"M18 11v-4a2 2 0 0 0 -2 -2h-2\"></path>\n  <path d=\"M8 5a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2\"></path>\n  <path d=\"M14 18a4 4 0 1 0 8 0a4 4 0 1 0 -8 0\"></path>\n  <path d=\"M8 11h4\"></path>\n  <path d=\"M8 15h3\"></path>\n</svg></span><b>성능기반설계 자동화</b></div>",
+     "html": "<div class=\"key\" style=\"--gc:var(--c4)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-chart-line\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M4 19l16 0\"></path>\n  <path d=\"M4 15l4 -6l4 2l4 -5l4 4\"></path>\n</svg></span><b>Pushover 해석</b></div>",
      "id": "e13"
     },
     {
      "type": "text",
-     "x": 806.5,
+     "x": 439.3,
      "y": 525,
      "w": 354.3,
      "h": 82,
-     "html": "<div class=\"key\" style=\"--gc:var(--c4)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-wave-sine\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M21 12h-2c-.894 0 -1.662 -.857 -1.761 -2c-.296 -3.45 -.749 -6 -2.749 -6s-2.5 3.582 -2.5 8s-.5 8 -2.5 8s-2.452 -2.547 -2.749 -6c-.1 -1.147 -.867 -2 -1.763 -2h-2\"></path>\n</svg></span><b>지진파 스케일링</b></div>",
+     "html": "<div class=\"key\" style=\"--gc:var(--c4)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-list-tree\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M9 6h11\"></path>\n  <path d=\"M12 12h8\"></path>\n  <path d=\"M15 18h5\"></path>\n  <path d=\"M5 6v.01\"></path>\n  <path d=\"M8 12v.01\"></path>\n  <path d=\"M11 18v.01\"></path>\n</svg></span><b>기둥·벽체 파이버요소 지원</b></div>",
      "id": "e14"
     },
     {
      "type": "text",
+     "x": 806.5,
+     "y": 525,
+     "w": 354.3,
+     "h": 82,
+     "html": "<div class=\"key\" style=\"--gc:var(--c4)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-circuit-switch-open\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M2 12h2\"></path>\n  <path d=\"M20 12h2\"></path>\n  <path d=\"M4 12a2 2 0 1 0 4 0a2 2 0 1 0 -4 0\"></path>\n  <path d=\"M16 12a2 2 0 1 0 4 0a2 2 0 1 0 -4 0\"></path>\n  <path d=\"M7.5 10.5l7.5 -5.5\"></path>\n</svg></span><b>Damper Device (속도,변위)</b></div>",
+     "id": "e15"
+    },
+    {
+     "type": "text",
      "x": 1173.8,
      "y": 525,
      "w": 354.3,
      "h": 82,
-     "html": "<div class=\"key\" style=\"--gc:var(--c4)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-settings-automation\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065\"></path>\n  <path d=\"M10 9v6l5 -3l-5 -3\"></path>\n</svg></span><b>THA 멀티 병렬해석</b></div>",
-     "id": "e15"
+     "html": "<div class=\"key\" style=\"--gc:var(--c4)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-report\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M8 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h5.697\"></path>\n  <path d=\"M18 14v4h4\"></path>\n  <path d=\"M18 11v-4a2 2 0 0 0 -2 -2h-2\"></path>\n  <path d=\"M8 5a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2\"></path>\n  <path d=\"M14 18a4 4 0 1 0 8 0a4 4 0 1 0 -8 0\"></path>\n  <path d=\"M8 11h4\"></path>\n  <path d=\"M8 15h3\"></path>\n</svg></span><b>성능기반설계 자동화</b></div>",
+     "id": "e16"
     },
     {
      "type": "text",
@@ -871,8 +880,8 @@ window.__DECK__ = {
      "y": 620,
      "w": 354.3,
      "h": 82,
-     "html": "<div class=\"key\" style=\"--gc:var(--c5)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-activity-heartbeat\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M3 12h4.5l1.5 -6l4 12l2 -9l1.5 3h4.5\"></path>\n</svg></span><b>바닥진동 해석</b></div>",
-     "id": "e16"
+     "html": "<div class=\"key\" style=\"--gc:var(--c4)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-wave-sine\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M21 12h-2c-.894 0 -1.662 -.857 -1.761 -2c-.296 -3.45 -.749 -6 -2.749 -6s-2.5 3.582 -2.5 8s-.5 8 -2.5 8s-2.452 -2.547 -2.749 -6c-.1 -1.147 -.867 -2 -1.763 -2h-2\"></path>\n</svg></span><b>지진파 스케일링</b></div>",
+     "id": "e17"
     },
     {
      "type": "text",
@@ -880,8 +889,8 @@ window.__DECK__ = {
      "y": 620,
      "w": 354.3,
      "h": 82,
-     "html": "<div class=\"key\" style=\"--gc:var(--c5)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-chart-bar\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M3 13a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -6\"></path>\n  <path d=\"M15 9a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -10\"></path>\n  <path d=\"M9 5a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -14\"></path>\n  <path d=\"M4 20h14\"></path>\n</svg></span><b>진동계측자료 분석</b></div>",
-     "id": "e17"
+     "html": "<div class=\"key\" style=\"--gc:var(--c4)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-settings-automation\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065\"></path>\n  <path d=\"M10 9v6l5 -3l-5 -3\"></path>\n</svg></span><b>THA 멀티 병렬해석</b></div>",
+     "id": "e18"
     },
     {
      "type": "text",
@@ -889,8 +898,8 @@ window.__DECK__ = {
      "y": 620,
      "w": 354.3,
      "h": 82,
-     "html": "<div class=\"key\" style=\"--gc:var(--c5)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-temperature\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M10 13.5a4 4 0 1 0 4 0v-8.5a2 2 0 0 0 -4 0v8.5\"></path>\n  <path d=\"M10 9l4 0\"></path>\n</svg></span><b>수화열 해석</b></div>",
-     "id": "e18"
+     "html": "<div class=\"key\" style=\"--gc:var(--c5)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-activity-heartbeat\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M3 12h4.5l1.5 -6l4 12l2 -9l1.5 3h4.5\"></path>\n</svg></span><b>바닥진동 해석</b></div>",
+     "id": "e19"
     },
     {
      "type": "text",
@@ -898,8 +907,8 @@ window.__DECK__ = {
      "y": 620,
      "w": 354.3,
      "h": 82,
-     "html": "<div class=\"key\" style=\"--gc:var(--c6)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-file-type-pdf\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M14 3v4a1 1 0 0 0 1 1h4\"></path>\n  <path d=\"M5 12v-7a2 2 0 0 1 2 -2h7l5 5v4\"></path>\n  <path d=\"M5 18h1.5a1.5 1.5 0 0 0 0 -3h-1.5v6\"></path>\n  <path d=\"M17 18h2\"></path>\n  <path d=\"M20 15h-3v6\"></path>\n  <path d=\"M11 15v6h1a2 2 0 0 0 2 -2v-2a2 2 0 0 0 -2 -2h-1\"></path>\n</svg></span><b>구조계산서 자동생성</b></div>",
-     "id": "e19"
+     "html": "<div class=\"key\" style=\"--gc:var(--c5)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-chart-bar\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M3 13a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -6\"></path>\n  <path d=\"M15 9a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -10\"></path>\n  <path d=\"M9 5a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -14\"></path>\n  <path d=\"M4 20h14\"></path>\n</svg></span><b>진동계측자료 분석</b></div>",
+     "id": "e20"
     },
     {
      "type": "text",
@@ -907,8 +916,8 @@ window.__DECK__ = {
      "y": 715,
      "w": 354.3,
      "h": 82,
-     "html": "<div class=\"key\" style=\"--gc:var(--c6)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-ruler-measure\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M19.875 12c.621 0 1.125 .512 1.125 1.143v5.714c0 .631 -.504 1.143 -1.125 1.143h-15.875a1 1 0 0 1 -1 -1v-5.857c0 -.631 .504 -1.143 1.125 -1.143h15.75\"></path>\n  <path d=\"M9 12v2\"></path>\n  <path d=\"M6 12v3\"></path>\n  <path d=\"M12 12v3\"></path>\n  <path d=\"M18 12v3\"></path>\n  <path d=\"M15 12v2\"></path>\n  <path d=\"M3 3v4\"></path>\n  <path d=\"M3 5h18\"></path>\n  <path d=\"M21 3v4\"></path>\n</svg></span><b>구조도면 자동생성</b></div>",
-     "id": "e20"
+     "html": "<div class=\"key\" style=\"--gc:var(--c5)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-temperature\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M10 13.5a4 4 0 1 0 4 0v-8.5a2 2 0 0 0 -4 0v8.5\"></path>\n  <path d=\"M10 9l4 0\"></path>\n</svg></span><b>수화열 해석</b></div>",
+     "id": "e21"
     },
     {
      "type": "text",
@@ -916,8 +925,183 @@ window.__DECK__ = {
      "y": 715,
      "w": 354.3,
      "h": 82,
+     "html": "<div class=\"key\" style=\"--gc:var(--c6)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-file-type-pdf\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M14 3v4a1 1 0 0 0 1 1h4\"></path>\n  <path d=\"M5 12v-7a2 2 0 0 1 2 -2h7l5 5v4\"></path>\n  <path d=\"M5 18h1.5a1.5 1.5 0 0 0 0 -3h-1.5v6\"></path>\n  <path d=\"M17 18h2\"></path>\n  <path d=\"M20 15h-3v6\"></path>\n  <path d=\"M11 15v6h1a2 2 0 0 0 2 -2v-2a2 2 0 0 0 -2 -2h-1\"></path>\n</svg></span><b>구조계산서 자동생성</b></div>",
+     "id": "e22"
+    },
+    {
+     "type": "text",
+     "x": 806.5,
+     "y": 715,
+     "w": 354.3,
+     "h": 82,
+     "html": "<div class=\"key\" style=\"--gc:var(--c6)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-ruler-measure\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M19.875 12c.621 0 1.125 .512 1.125 1.143v5.714c0 .631 -.504 1.143 -1.125 1.143h-15.875a1 1 0 0 1 -1 -1v-5.857c0 -.631 .504 -1.143 1.125 -1.143h15.75\"></path>\n  <path d=\"M9 12v2\"></path>\n  <path d=\"M6 12v3\"></path>\n  <path d=\"M12 12v3\"></path>\n  <path d=\"M18 12v3\"></path>\n  <path d=\"M15 12v2\"></path>\n  <path d=\"M3 3v4\"></path>\n  <path d=\"M3 5h18\"></path>\n  <path d=\"M21 3v4\"></path>\n</svg></span><b>구조도면 자동생성</b></div>",
+     "id": "e23"
+    },
+    {
+     "type": "text",
+     "x": 1173.8,
+     "y": 715,
+     "w": 354.3,
+     "h": 82,
      "html": "<div class=\"key\" style=\"--gc:var(--c6)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-weight\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M9 6a3 3 0 1 0 6 0a3 3 0 1 0 -6 0\"></path>\n  <path d=\"M6.835 9h10.33a1 1 0 0 1 .984 .821l1.637 9a1 1 0 0 1 -.984 1.179h-13.604a1 1 0 0 1 -.984 -1.179l1.637 -9a1 1 0 0 1 .984 -.821\"></path>\n</svg></span><b>골조공사비 자동산출</b></div>",
-     "id": "e21"
+     "id": "e24"
+    }
+   ]
+  },
+  {
+   "id": "03e",
+   "name": "핵심 기능 ③ — 실무 보조 · 상세 검토 · 확인서",
+   "cls": "slide featgrid",
+   "foot": [
+    72,
+    844,
+    1456,
+    18
+   ],
+   "els": [
+    {
+     "type": "text",
+     "x": 72,
+     "y": 44,
+     "w": 1457,
+     "h": 44,
+     "html": "<header><div class=\"brand\">STRIX<span>.</span></div><div class=\"chapter\">01 제품 개요</div></header>",
+     "id": "e1"
+    },
+    {
+     "type": "text",
+     "x": 72,
+     "y": 132,
+     "w": 984,
+     "h": 65,
+     "html": "<h2 class=\"title\">핵심 기능 — 실무 보조 · 상세 검토 · 확인서</h2>",
+     "id": "e2"
+    },
+    {
+     "type": "text",
+     "x": 72,
+     "y": 216,
+     "w": 1400,
+     "h": 37,
+     "html": "<p class=\"lead\">판 모델링·하중 산정 보조부터 접합부·뚫림전단 검토와 법정 확인서까지 지원합니다.</p>",
+     "id": "e3"
+    },
+    {
+     "type": "text",
+     "x": 72,
+     "y": 292,
+     "w": 1457,
+     "h": 21,
+     "html": "<div class=\"legend\"><span style=\"--gc:var(--c1)\"><i></i>모델링과 AI</span><span style=\"--gc:var(--c2)\"><i></i>하중과 해석</span><span style=\"--gc:var(--c3)\"><i></i>부재 설계</span><span style=\"--gc:var(--c6)\"><i></i>설계 성과품</span></div>",
+     "id": "e4"
+    },
+    {
+     "type": "text",
+     "x": 72,
+     "y": 335,
+     "w": 354.3,
+     "h": 82,
+     "html": "<div class=\"key\" style=\"--gc:var(--c1)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-message-chatbot\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-5l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12\"></path>\n  <path d=\"M9.5 9h.01\"></path>\n  <path d=\"M14.5 9h.01\"></path>\n  <path d=\"M9.5 13a3.5 3.5 0 0 0 5 0\"></path>\n</svg></span><b>도움말 챗봇 (KDS 원문 검색)</b></div>",
+     "id": "e5"
+    },
+    {
+     "type": "text",
+     "x": 439.3,
+     "y": 335,
+     "w": 354.3,
+     "h": 82,
+     "html": "<div class=\"key\" style=\"--gc:var(--c1)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-list-tree\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M9 6h11\"></path>\n  <path d=\"M12 12h8\"></path>\n  <path d=\"M15 18h5\"></path>\n  <path d=\"M5 6v.01\"></path>\n  <path d=\"M8 12v.01\"></path>\n  <path d=\"M11 18v.01\"></path>\n</svg></span><b>따라하기 30개 코스</b></div>",
+     "id": "e6"
+    },
+    {
+     "type": "text",
+     "x": 806.5,
+     "y": 335,
+     "w": 354.3,
+     "h": 82,
+     "html": "<div class=\"key\" style=\"--gc:var(--c1)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-geometry\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M7 21l4 -12m2 0l1.48 4.439m.949 2.847l1.571 4.714\"></path>\n  <path d=\"M10 7a2 2 0 1 0 4 0a2 2 0 1 0 -4 0\"></path>\n  <path d=\"M4 12c1.526 2.955 4.588 5 8 5c3.41 0 6.473 -2.048 8 -5\"></path>\n  <path d=\"M12 5v-2\"></path>\n</svg></span><b>Meshed Slab 판 모델링</b></div>",
+     "id": "e7"
+    },
+    {
+     "type": "text",
+     "x": 1173.8,
+     "y": 335,
+     "w": 354.3,
+     "h": 82,
+     "html": "<div class=\"key\" style=\"--gc:var(--c1)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-adjustments\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M4 10a2 2 0 1 0 4 0a2 2 0 0 0 -4 0\"></path>\n  <path d=\"M6 4v4\"></path>\n  <path d=\"M6 12v8\"></path>\n  <path d=\"M10 16a2 2 0 1 0 4 0a2 2 0 0 0 -4 0\"></path>\n  <path d=\"M12 4v10\"></path>\n  <path d=\"M12 18v2\"></path>\n  <path d=\"M16 7a2 2 0 1 0 4 0a2 2 0 0 0 -4 0\"></path>\n  <path d=\"M18 4v1\"></path>\n  <path d=\"M18 9v11\"></path>\n</svg></span><b>벽체 강성 스케일</b></div>",
+     "id": "e8"
+    },
+    {
+     "type": "text",
+     "x": 72,
+     "y": 430,
+     "w": 354.3,
+     "h": 82,
+     "html": "<div class=\"key\" style=\"--gc:var(--c2)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-select\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M3 5a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-14\"></path>\n  <path d=\"M9 11l3 3l3 -3\"></path>\n</svg></span><b>판 바닥하중·선하중 입력</b></div>",
+     "id": "e9"
+    },
+    {
+     "type": "text",
+     "x": 439.3,
+     "y": 430,
+     "w": 354.3,
+     "h": 82,
+     "html": "<div class=\"key\" style=\"--gc:var(--c2)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-list-details\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M13 5h8\"></path>\n  <path d=\"M13 9h5\"></path>\n  <path d=\"M13 15h8\"></path>\n  <path d=\"M13 19h5\"></path>\n  <path d=\"M3 5a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -4\"></path>\n  <path d=\"M3 15a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -4\"></path>\n</svg></span><b>하중조합 자동생성 (KDS 1.7)</b></div>",
+     "id": "e10"
+    },
+    {
+     "type": "text",
+     "x": 806.5,
+     "y": 430,
+     "w": 354.3,
+     "h": 82,
+     "html": "<div class=\"key\" style=\"--gc:var(--c2)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-angle\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M21 19h-18l9 -15\"></path>\n  <path d=\"M20.615 15.171h.015\"></path>\n  <path d=\"M19.515 11.771h.015\"></path>\n  <path d=\"M17.715 8.671h.015\"></path>\n  <path d=\"M15.415 5.971h.015\"></path>\n</svg></span><b>편토압 전체 안정 검토</b></div>",
+     "id": "e11"
+    },
+    {
+     "type": "text",
+     "x": 1173.8,
+     "y": 430,
+     "w": 354.3,
+     "h": 82,
+     "html": "<div class=\"key\" style=\"--gc:var(--c2)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-weight\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M9 6a3 3 0 1 0 6 0a3 3 0 1 0 -6 0\"></path>\n  <path d=\"M6.835 9h10.33a1 1 0 0 1 .984 .821l1.637 9a1 1 0 0 1 -.984 1.179h-13.604a1 1 0 0 1 -.984 -1.179l1.637 -9a1 1 0 0 1 .984 -.821\"></path>\n</svg></span><b>설하중·지붕풍압 도우미</b></div>",
+     "id": "e12"
+    },
+    {
+     "type": "text",
+     "x": 72,
+     "y": 525,
+     "w": 354.3,
+     "h": 82,
+     "html": "<div class=\"key\" style=\"--gc:var(--c2)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-current-location\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M9 12a3 3 0 1 0 6 0a3 3 0 1 0 -6 0\"></path>\n  <path d=\"M4 12a8 8 0 1 0 16 0a8 8 0 1 0 -16 0\"></path>\n  <path d=\"M12 2l0 2\"></path>\n  <path d=\"M12 20l0 2\"></path>\n  <path d=\"M20 12l2 0\"></path>\n  <path d=\"M2 12l2 0\"></path>\n</svg></span><b>지진구역·기본풍속 지도</b></div>",
+     "id": "e13"
+    },
+    {
+     "type": "text",
+     "x": 439.3,
+     "y": 525,
+     "w": 354.3,
+     "h": 82,
+     "html": "<div class=\"key\" style=\"--gc:var(--c3)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-crosshair\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M4 8v-2a2 2 0 0 1 2 -2h2\"></path>\n  <path d=\"M4 16v2a2 2 0 0 0 2 2h2\"></path>\n  <path d=\"M16 4h2a2 2 0 0 1 2 2v2\"></path>\n  <path d=\"M16 20h2a2 2 0 0 0 2 -2v-2\"></path>\n  <path d=\"M9 12l6 0\"></path>\n  <path d=\"M12 9l0 6\"></path>\n</svg></span><b>무량판 뚫림전단 검토</b></div>",
+     "id": "e14"
+    },
+    {
+     "type": "text",
+     "x": 806.5,
+     "y": 525,
+     "w": 354.3,
+     "h": 82,
+     "html": "<div class=\"key\" style=\"--gc:var(--c3)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-chart-line\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M4 19l16 0\"></path>\n  <path d=\"M4 15l4 -6l4 2l4 -5l4 4\"></path>\n</svg></span><b>처짐 검토 (RC·철골·목재)</b></div>",
+     "id": "e15"
+    },
+    {
+     "type": "text",
+     "x": 1173.8,
+     "y": 525,
+     "w": 354.3,
+     "h": 82,
+     "html": "<div class=\"key\" style=\"--gc:var(--c6)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-file-type-pdf\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M14 3v4a1 1 0 0 0 1 1h4\"></path>\n  <path d=\"M5 12v-7a2 2 0 0 1 2 -2h7l5 5v4\"></path>\n  <path d=\"M5 18h1.5a1.5 1.5 0 0 0 0 -3h-1.5v6\"></path>\n  <path d=\"M17 18h2\"></path>\n  <path d=\"M20 15h-3v6\"></path>\n  <path d=\"M11 15v6h1a2 2 0 0 0 2 -2v-2a2 2 0 0 0 -2 -2h-1\"></path>\n</svg></span><b>구조안전 및 내진설계 확인서</b></div>",
+     "id": "e16"
     }
    ]
   },
@@ -991,7 +1175,7 @@ window.__DECK__ = {
      "y": 606,
      "w": 621,
      "h": 71.5,
-     "html": "<div class=\"divider-subtopics\"><a href=\"#engine-history\" data-go=\"engine-history\" data-slide=\"9\">연구 프레임워크로 시작한 OpenSees</a><a href=\"#engine-trust\" data-go=\"engine-trust\" data-slide=\"10\">공개 연구와 국제 공동 개발의 기반</a><a href=\"#03a\" data-go=\"03a\" data-slide=\"11\">OpenSees</a><a href=\"#engine-elements\" data-go=\"engine-elements\" data-slide=\"12\">요소와 재료</a><a href=\"#engine-solver\" data-go=\"engine-solver\" data-slide=\"13\">해석 절차와 수렴</a></div>",
+     "html": "<div class=\"divider-subtopics\"><a href=\"#engine-history\" data-go=\"engine-history\" data-slide=\"10\">연구 프레임워크로 시작한 OpenSees</a><a href=\"#engine-trust\" data-go=\"engine-trust\" data-slide=\"11\">공개 연구와 국제 공동 개발의 기반</a><a href=\"#03a\" data-go=\"03a\" data-slide=\"12\">OpenSees</a><a href=\"#engine-elements\" data-go=\"engine-elements\" data-slide=\"13\">요소와 재료</a><a href=\"#engine-solver\" data-go=\"engine-solver\" data-slide=\"14\">해석 절차와 수렴</a></div>",
      "id": "e7"
     }
    ]
@@ -1460,9 +1644,9 @@ window.__DECK__ = {
      "type": "text",
      "x": 72,
      "y": 462,
-     "w": 279,
+     "w": 620,
      "h": 36,
-     "html": "<p class=\"lead\">작업 환경 · 인스펙터 · 모델링 · AI</p>",
+     "html": "<p class=\"lead\">작업 환경 · 인스펙터 · 모델링 · AI · 도움말</p>",
      "id": "e3"
     },
     {
@@ -1500,9 +1684,9 @@ window.__DECK__ = {
      "type": "text",
      "x": 64,
      "y": 606,
-     "w": 621,
+     "w": 960,
      "h": 112,
-     "html": "<div class=\"divider-subtopics\"><a href=\"#06\" data-go=\"06\" data-slide=\"15\">AI Prompt</a><a href=\"#05\" data-go=\"05\" data-slide=\"16\">DXF 도면 기반 구조 모델링</a><a href=\"#04\" data-go=\"04\" data-slide=\"17\">우측 인스펙터</a><a href=\"#language\" data-go=\"language\" data-slide=\"18\">한국어·영어 작업 환경</a><a href=\"#modelcheck\" data-go=\"modelcheck\" data-slide=\"19\">AI Model Check</a><a href=\"#07\" data-go=\"07\" data-slide=\"20\">AI Stable Check</a><a href=\"#08\" data-go=\"08\" data-slide=\"21\">멀티타워 모델링 및 동별 결과 관리</a><a href=\"#wallstiff\" data-go=\"wallstiff\" data-slide=\"22\">벽체 강성 스케일</a></div>",
+     "html": "<div class=\"divider-subtopics\"><a href=\"#language\" data-go=\"language\" data-slide=\"16\">한국어·영어 작업 환경</a><a href=\"#04\" data-go=\"04\" data-slide=\"17\">우측 인스펙터</a><a href=\"#06\" data-go=\"06\" data-slide=\"18\">AI Prompt</a><a href=\"#05\" data-go=\"05\" data-slide=\"19\">DXF 도면 기반 구조 모델링</a><a href=\"#modelcheck\" data-go=\"modelcheck\" data-slide=\"20\">AI Model Check</a><a href=\"#07\" data-go=\"07\" data-slide=\"21\">AI Stable Check</a><a href=\"#08\" data-go=\"08\" data-slide=\"22\">멀티타워 모델링 및 동별 결과 관리</a><a href=\"#wallstiff\" data-go=\"wallstiff\" data-slide=\"23\">벽체 강성 스케일</a><a href=\"#chatbot\" data-go=\"chatbot\" data-slide=\"24\">도움말 챗봇</a><a href=\"#tutorials\" data-go=\"tutorials\" data-slide=\"25\">따라하기</a></div>",
      "id": "e7"
     }
    ]
@@ -1744,6 +1928,15 @@ window.__DECK__ = {
      "h": 111.1,
      "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-copy-check\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M7 9.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667l0 -8.666\"></path>\n  <path d=\"M4.012 16.737a2 2 0 0 1 -1.012 -1.737v-10c0 -1.1 .9 -2 2 -2h10c.75 0 1.158 .385 1.5 1\"></path>\n  <path d=\"M11 14l2 2l4 -4\"></path>\n</svg></div><h3>사용자 확인 후 적용</h3><p>검토한 변경안을 모델에 반영하고 결과를 확인합니다. 자연어 요청을 구조모델의 구체적인 작업으로 전환하는 보조 기능입니다.</p></div>",
      "id": "e7"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 611.2,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-message-chatbot\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-5l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12\"></path>\n  <path d=\"M9.5 9h.01\"></path>\n  <path d=\"M14.5 9h.01\"></path>\n  <path d=\"M9.5 13a3.5 3.5 0 0 0 5 0\"></path>\n</svg></div><h3>한국어 입력·설계 결과 조회</h3><p>한국어로 요청하면 한국어로 답합니다. 보·기둥 설계 뒤 소요 철근량·배근·지배 하중조합을 조회합니다.</p></div>",
+     "id": "e8"
     }
    ]
   },
@@ -2064,6 +2257,261 @@ window.__DECK__ = {
      "h": 111.1,
      "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-chart-histogram\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M3 3v18h18\"></path>\n  <path d=\"M20 18v3\"></path>\n  <path d=\"M16 16v5\"></path>\n  <path d=\"M12 13v8\"></path>\n  <path d=\"M8 16v5\"></path>\n  <path d=\"M3 11c6 0 5 -5 9 -5s3 5 9 5\"></path>\n</svg></div><h3>공통부와 함께 검토</h3><p>타워 응답을 공통 저층부의 구조조건과 함께 검토합니다. 구역별 부재 소속과 결과 집계 범위를 확인할 수 있습니다.</p></div>",
      "id": "e7"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 611.2,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-chart-bar\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M3 13a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -6\"></path>\n  <path d=\"M15 9a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -10\"></path>\n  <path d=\"M9 5a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -14\"></path>\n  <path d=\"M4 20h14\"></path>\n</svg></div><h3>동별 결과 확장</h3><p>결과표·횡력비교·하중분담·층 안정성(Story Stability)을 동별로 구분해 확인합니다.</p></div>",
+     "id": "e8"
+    }
+   ]
+  },
+  {
+   "id": "wallstiff",
+   "name": "벽체 강성 스케일 — 균열 강성 반영",
+   "cls": "slide screen",
+   "foot": [
+    72,
+    844,
+    1456,
+    18
+   ],
+   "els": [
+    {
+     "type": "text",
+     "x": 72,
+     "y": 44,
+     "w": 1457,
+     "h": 44,
+     "html": "<header><div class=\"brand\">STRIX<span>.</span></div><div class=\"chapter\">03 모델링과 AI</div></header>",
+     "id": "e1"
+    },
+    {
+     "type": "text",
+     "x": 72,
+     "y": 132,
+     "w": 1400,
+     "h": 65,
+     "html": "<h2 class=\"title\">벽체 강성 스케일 — 균열 강성 반영</h2>",
+     "id": "e2"
+    },
+    {
+     "type": "text",
+     "x": 72,
+     "y": 216,
+     "w": 1400,
+     "h": 37,
+     "html": "<p class=\"lead\">셸 벽요소의 면내·면외 강성에 방향별 배율을 지정해 균열·유효강성을 해석에 반영합니다.</p>",
+     "id": "e3"
+    },
+    {
+     "type": "image",
+     "x": 64,
+     "y": 278,
+     "w": 900,
+     "h": 483.8,
+     "slot": "live-wallstiff",
+     "cls": "visual",
+     "frame": "fixed",
+     "bare": true,
+     "fit": "fill",
+     "id": "e4",
+     "recW": 1920,
+     "recH": 1032
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 278,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-first dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-adjustments\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M4 10a2 2 0 1 0 4 0a2 2 0 0 0 -4 0\"></path>\n  <path d=\"M6 4v4\"></path>\n  <path d=\"M6 12v8\"></path>\n  <path d=\"M10 16a2 2 0 1 0 4 0a2 2 0 0 0 -4 0\"></path>\n  <path d=\"M12 4v10\"></path>\n  <path d=\"M12 18v2\"></path>\n  <path d=\"M16 7a2 2 0 1 0 4 0a2 2 0 0 0 -4 0\"></path>\n  <path d=\"M18 4v1\"></path>\n  <path d=\"M18 9v11\"></path>\n</svg></div><h3>방향별 배율</h3><p>면내 전단·휨·축, 면외 전단·휨·비틀림과 자중에 배율을 각각 지정합니다. 기본값은 모두 1.0입니다.</p></div>",
+     "id": "e5"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 389.1,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-select\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M3 5a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-14\"></path>\n  <path d=\"M9 11l3 3l3 -3\"></path>\n</svg></div><h3>벽 단위 적용</h3><p>Wall ID·Wall Mark 로 대상 벽을 골라 적용하고, 적용 그룹을 목록에서 확인·삭제합니다.</p></div>",
+     "id": "e6"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 500.1,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-stack-2\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M12 4l-8 4l8 4l8 -4l-8 -4\"></path>\n  <path d=\"M4 12l8 4l8 -4\"></path>\n  <path d=\"M4 16l8 4l8 -4\"></path>\n</svg></div><h3>해석에 반영</h3><p>배율은 벽요소마다 저장되어 고유치·응답스펙트럼 등 해석에 그대로 쓰입니다.</p></div>",
+     "id": "e7"
+    }
+   ]
+  },
+  {
+   "id": "chatbot",
+   "name": "도움말 챗봇 — KDS 원문 검색",
+   "cls": "slide screen",
+   "foot": [
+    72,
+    844,
+    1456,
+    18
+   ],
+   "els": [
+    {
+     "type": "text",
+     "x": 72,
+     "y": 44,
+     "w": 1457,
+     "h": 44,
+     "html": "<header><div class=\"brand\">STRIX<span>.</span></div><div class=\"chapter\">03 모델링과 AI</div></header>",
+     "id": "e1"
+    },
+    {
+     "type": "text",
+     "x": 72,
+     "y": 132,
+     "w": 1400,
+     "h": 65,
+     "html": "<h2 class=\"title\">도움말 챗봇 — KDS 원문 검색</h2>",
+     "id": "e2"
+    },
+    {
+     "type": "text",
+     "x": 72,
+     "y": 216,
+     "w": 1400,
+     "h": 37,
+     "html": "<p class=\"lead\">KDS·KCS 원문과 앱 도움말을 직접 검색하고, 조항 전문을 읽은 뒤 근거와 함께 답합니다.</p>",
+     "id": "e3"
+    },
+    {
+     "type": "image",
+     "x": 124.9,
+     "y": 278,
+     "w": 778.2,
+     "h": 545.5,
+     "slot": "live-chatbot",
+     "cls": "visual",
+     "frame": "fixed",
+     "bare": true,
+     "fit": "fill",
+     "id": "e4",
+     "recW": 1284,
+     "recH": 900
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 278,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-first dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-message-chatbot\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-5l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12\"></path>\n  <path d=\"M9.5 9h.01\"></path>\n  <path d=\"M14.5 9h.01\"></path>\n  <path d=\"M9.5 13a3.5 3.5 0 0 0 5 0\"></path>\n</svg></div><h3>기준 원문 검색</h3><p>질문에 맞는 KDS·KCS 조항과 앱 도움말을 찾아 읽고 답합니다. 찾지 못하면 수치를 지어내지 않고 찾지 못했다고 답합니다.</p></div>",
+     "id": "e5"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 389.1,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-file-code\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M14 3v4a1 1 0 0 0 1 1h4\"></path>\n  <path d=\"M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2\"></path>\n  <path d=\"M10 13l-1 2l1 2\"></path>\n  <path d=\"M14 13l1 2l-1 2\"></path>\n</svg></div><h3>조항 원문 창</h3><p>답변의 번호나 출처를 누르면 원본 수식 그림이 담긴 조항 원문 창이 열립니다.</p></div>",
+     "id": "e6"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 500.1,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-zoom-scan\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M8 11a3 3 0 1 0 6 0a3 3 0 0 0 -6 0\"></path>\n  <path d=\"M16 16l-2.5 -2.5\"></path>\n  <path d=\"M3 7v-2a2 2 0 0 1 2 -2h2\"></path>\n  <path d=\"M3 17v2a2 2 0 0 0 2 2h2\"></path>\n  <path d=\"M17 3h2a2 2 0 0 1 2 2v2\"></path>\n  <path d=\"M17 21h2a2 2 0 0 0 2 -2v-2\"></path>\n</svg></div><h3>화면 캡처 질문</h3><p>작업 화면의 캡처를 붙여 넣어 질문할 수 있습니다(최대 4장).</p></div>",
+     "id": "e7"
+    }
+   ]
+  },
+  {
+   "id": "tutorials",
+   "name": "따라하기 — 예제 모델로 익히는 30개 코스",
+   "cls": "slide screen",
+   "foot": [
+    72,
+    844,
+    1456,
+    18
+   ],
+   "els": [
+    {
+     "type": "text",
+     "x": 72,
+     "y": 44,
+     "w": 1457,
+     "h": 44,
+     "html": "<header><div class=\"brand\">STRIX<span>.</span></div><div class=\"chapter\">03 모델링과 AI</div></header>",
+     "id": "e1"
+    },
+    {
+     "type": "text",
+     "x": 72,
+     "y": 132,
+     "w": 1400,
+     "h": 65,
+     "html": "<h2 class=\"title\">따라하기 — 예제 모델로 익히는 30개 코스</h2>",
+     "id": "e2"
+    },
+    {
+     "type": "text",
+     "x": 72,
+     "y": 216,
+     "w": 1400,
+     "h": 37,
+     "html": "<p class=\"lead\">예제 건물을 모델링부터 해석·설계·성과품까지 직접 진행하는 따라하기를 도움말에서 제공합니다.</p>",
+     "id": "e3"
+    },
+    {
+     "type": "image",
+     "x": 78.1,
+     "y": 278,
+     "w": 871.9,
+     "h": 545.5,
+     "slot": "live-tutorials",
+     "cls": "visual",
+     "frame": "fixed",
+     "bare": true,
+     "fit": "fill",
+     "id": "e4",
+     "recW": 1202,
+     "recH": 752
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 278,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-first dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-list-tree\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M9 6h11\"></path>\n  <path d=\"M12 12h8\"></path>\n  <path d=\"M15 18h5\"></path>\n  <path d=\"M5 6v.01\"></path>\n  <path d=\"M8 12v.01\"></path>\n  <path d=\"M11 18v.01\"></path>\n</svg></div><h3>7개 분야 30개 코스</h3><p>건물 따라하기 · 모델링·하중 · 부재 설계·검토 · 기초·지하 · 성과품·AI 도구 · 비선형해석 · 내진성능평가로 나눕니다.</p></div>",
+     "id": "e5"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 389.1,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-ruler-measure\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M19.875 12c.621 0 1.125 .512 1.125 1.143v5.714c0 .631 -.504 1.143 -1.125 1.143h-15.875a1 1 0 0 1 -1 -1v-5.857c0 -.631 .504 -1.143 1.125 -1.143h15.75\"></path>\n  <path d=\"M9 12v2\"></path>\n  <path d=\"M6 12v3\"></path>\n  <path d=\"M12 12v3\"></path>\n  <path d=\"M18 12v3\"></path>\n  <path d=\"M15 12v2\"></path>\n  <path d=\"M3 3v4\"></path>\n  <path d=\"M3 5h18\"></path>\n  <path d=\"M21 3v4\"></path>\n</svg></div><h3>도면에서 출발</h3><p>그리드 치수·단면·하중표에서 출발해 실제 모델링 순서대로 진행합니다.</p></div>",
+     "id": "e6"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 500.1,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-list-check\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M3.5 5.5l1.5 1.5l2.5 -2.5\"></path>\n  <path d=\"M3.5 11.5l1.5 1.5l2.5 -2.5\"></path>\n  <path d=\"M3.5 17.5l1.5 1.5l2.5 -2.5\"></path>\n  <path d=\"M11 6l9 0\"></path>\n  <path d=\"M11 12l9 0\"></path>\n  <path d=\"M11 18l9 0\"></path>\n</svg></div><h3>손계산 대조</h3><p>주요 해석·설계 결과를 손계산과 대조해 확인합니다. 코스는 PDF로 내려받을 수 있습니다.</p></div>",
+     "id": "e7"
     }
    ]
   },
@@ -2095,9 +2543,9 @@ window.__DECK__ = {
      "type": "text",
      "x": 72,
      "y": 462,
-     "w": 239,
+     "w": 620,
      "h": 36,
-     "html": "<p class=\"lead\">풍하중 · 지진하중 · 자동산정</p>",
+     "html": "<p class=\"lead\">풍하중 · 지진하중 · 토압 · 하중조합</p>",
      "id": "e3"
     },
     {
@@ -2135,9 +2583,9 @@ window.__DECK__ = {
      "type": "text",
      "x": 64,
      "y": 606,
-     "w": 621,
-     "h": 152.5,
-     "html": "<div class=\"divider-subtopics\"><a href=\"#wind\" data-go=\"wind\" data-slide=\"24\">설계풍하중 자동산정</a><a href=\"#seismic\" data-go=\"seismic\" data-slide=\"25\">설계지진하중 및 응답스펙트럼</a><a href=\"#earthpressure\" data-go=\"earthpressure\" data-slide=\"26\">지진토압해석</a><a href=\"#09\" data-go=\"09\" data-slide=\"26\">풍동실험 하중 데이터 자동입력</a><a href=\"#live\" data-go=\"live\" data-slide=\"27\">활하중 저감계수 자동산정</a><a href=\"#special\" data-go=\"special\" data-slide=\"28\">특별지진하중 대상 부재 지정</a><a href=\"#displacement\" data-go=\"displacement\" data-slide=\"29\">강제변위·회전 입력</a><a href=\"#slabcopy\" data-go=\"slabcopy\" data-slide=\"30\">Slab Copy</a><a href=\"#walltypeload\" data-go=\"walltypeload\" data-slide=\"31\">벽식구조 바닥하중 변환</a><a href=\"#scaleup\" data-go=\"scaleup\" data-slide=\"32\">Scaleup Factor 자동산정</a></div>",
+     "w": 960,
+     "h": 193,
+     "html": "<div class=\"divider-subtopics\"><a href=\"#wind\" data-go=\"wind\" data-slide=\"27\">설계풍하중 자동산정</a><a href=\"#seismic\" data-go=\"seismic\" data-slide=\"28\">설계지진하중 및 응답스펙트럼</a><a href=\"#hazardmap\" data-go=\"hazardmap\" data-slide=\"29\">지진구역·기본풍속 지도</a><a href=\"#snowroof\" data-go=\"snowroof\" data-slide=\"30\">설하중·지붕풍압 산정 도우미</a><a href=\"#earthpressure\" data-go=\"earthpressure\" data-slide=\"31\">지진토압해석</a><a href=\"#globalstability\" data-go=\"globalstability\" data-slide=\"32\">Global Stability</a><a href=\"#09\" data-go=\"09\" data-slide=\"33\">풍동실험 하중 데이터 자동입력</a><a href=\"#walltypeload\" data-go=\"walltypeload\" data-slide=\"34\">벽식구조 바닥하중 변환</a><a href=\"#platepressure\" data-go=\"platepressure\" data-slide=\"35\">판 하중 입력</a><a href=\"#slabcopy\" data-go=\"slabcopy\" data-slide=\"36\">Slab Copy</a><a href=\"#live\" data-go=\"live\" data-slide=\"37\">활하중 저감계수 자동산정</a><a href=\"#special\" data-go=\"special\" data-slide=\"38\">특별지진하중 대상 부재 지정</a><a href=\"#displacement\" data-go=\"displacement\" data-slide=\"39\">강제변위·회전 입력</a><a href=\"#loadcombo\" data-go=\"loadcombo\" data-slide=\"40\">하중조합 자동생성</a><a href=\"#scaleup\" data-go=\"scaleup\" data-slide=\"41\">Scaleup Factor 자동산정</a></div>",
      "id": "e7"
     }
    ]
@@ -2219,6 +2667,15 @@ window.__DECK__ = {
      "h": 111.1,
      "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-arrows-down\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M7 21l0 -18\"></path>\n  <path d=\"M20 18l-3 3l-3 -3\"></path>\n  <path d=\"M4 18l3 3l3 -3\"></path>\n  <path d=\"M17 21l0 -18\"></path>\n</svg></div><h3>설계 검토에 활용</h3><p>풍하중 해석 결과를 층 응답과 부재 설계에 활용합니다. 횡력비교 기능에서 지진하중 결과와 함께 검토할 수 있습니다.</p></div>",
      "id": "e7"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 611.2,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-building-skyscraper\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M3 21l18 0\"></path>\n  <path d=\"M5 21v-14l8 -4v18\"></path>\n  <path d=\"M19 21v-10l-6 -4\"></path>\n  <path d=\"M9 9l0 .01\"></path>\n  <path d=\"M9 12l0 .01\"></path>\n  <path d=\"M9 15l0 .01\"></path>\n  <path d=\"M9 18l0 .01\"></path>\n</svg></div><h3>층별 수풍 폭</h3><p>풍하중 마법사에서 높이 구간별 외피 폭을 지정합니다. 지도에서 V0 참고값을 확인합니다.</p></div>",
+     "id": "e8"
     }
    ]
   },
@@ -2298,6 +2755,179 @@ window.__DECK__ = {
      "w": 532,
      "h": 111.1,
      "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-weight\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M9 6a3 3 0 1 0 6 0a3 3 0 1 0 -6 0\"></path>\n  <path d=\"M6.835 9h10.33a1 1 0 0 1 .984 .821l1.637 9a1 1 0 0 1 -.984 1.179h-13.604a1 1 0 0 1 -.984 -1.179l1.637 -9a1 1 0 0 1 .984 -.821\"></path>\n</svg></div><h3>설계 응답 확인</h3><p>층별 응답과 부재력을 확인하고 필요한 보정계수를 검토합니다. 하중조합을 통해 부재 설계와 후처리에 활용합니다.</p></div>",
+     "id": "e7"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 611.2,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-rotate\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M19.95 11a8 8 0 1 0 -.5 4m.5 5v-5h-5\"></path>\n</svg></div><h3>우발비틀림·계수 입력</h3><p>우발비틀림을 별도 하중케이스로 분리하고 비틀림비정형 층에 Ax를 적용합니다. 계수 직접 입력과 기반암 보정을 지원합니다.</p></div>",
+     "id": "e8"
+    }
+   ]
+  },
+  {
+   "id": "hazardmap",
+   "name": "지진구역·기본풍속 지도",
+   "cls": "slide screen",
+   "foot": [
+    72,
+    844,
+    1456,
+    18
+   ],
+   "els": [
+    {
+     "type": "text",
+     "x": 72,
+     "y": 44,
+     "w": 1457,
+     "h": 44,
+     "html": "<header><div class=\"brand\">STRIX<span>.</span></div><div class=\"chapter\">04 하중 산정과 입력</div></header>",
+     "id": "e1"
+    },
+    {
+     "type": "text",
+     "x": 72,
+     "y": 132,
+     "w": 1400,
+     "h": 65,
+     "html": "<h2 class=\"title\">지진구역·기본풍속 지도</h2>",
+     "id": "e2"
+    },
+    {
+     "type": "text",
+     "x": 72,
+     "y": 216,
+     "w": 1400,
+     "h": 37,
+     "html": "<p class=\"lead\">지역을 검색하거나 지도에서 골라 지진구역과 기본풍속 V<sub>0</sub>의 참고값을 확인합니다.</p>",
+     "id": "e3"
+    },
+    {
+     "type": "image",
+     "x": 64,
+     "y": 278,
+     "w": 900,
+     "h": 335.6,
+     "slot": "live-hazardmap",
+     "cls": "visual",
+     "frame": "fixed",
+     "bare": true,
+     "fit": "fill",
+     "id": "e4",
+     "recW": 1668,
+     "recH": 622
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 278,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-first dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-current-location\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M9 12a3 3 0 1 0 6 0a3 3 0 1 0 -6 0\"></path>\n  <path d=\"M4 12a8 8 0 1 0 16 0a8 8 0 1 0 -16 0\"></path>\n  <path d=\"M12 2l0 2\"></path>\n  <path d=\"M12 20l0 2\"></path>\n  <path d=\"M20 12l2 0\"></path>\n  <path d=\"M2 12l2 0\"></path>\n</svg></div><h3>지진구역 — KDS 17 10 00</h3><p>행정구역별 지진구역(표 4.2-1), 지진구역계수 Z와 국가지진위험지도의 S 값을 보여 줍니다.</p></div>",
+     "id": "e5"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 389.1,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-wind\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M5 8h8.5a2.5 2.5 0 1 0 -2.34 -3.24\"></path>\n  <path d=\"M3 12h15.5a2.5 2.5 0 1 1 -2.34 3.24\"></path>\n  <path d=\"M4 16h5.5a2.5 2.5 0 1 1 -2.34 3.24\"></path>\n</svg></div><h3>기본풍속 — KDS 41 12 00</h3><p>그림 5.5-1 지도에서 시·군의 V0를 읽고, 입력값과 다르면 표시합니다.</p></div>",
+     "id": "e6"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 500.1,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-shield-check\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M11.46 20.846a12 12 0 0 1 -7.96 -14.846a12 12 0 0 0 8.5 -3a12 12 0 0 0 8.5 3a12 12 0 0 1 -.09 7.06\"></path>\n  <path d=\"M15 19l2 2l4 -4\"></path>\n</svg></div><h3>입력은 설계자가 결정</h3><p>지도 값은 참고값입니다. 저장해도 지진구역·V0·하중은 자동으로 바뀌지 않습니다.</p></div>",
+     "id": "e7"
+    }
+   ]
+  },
+  {
+   "id": "snowroof",
+   "name": "설하중·지붕풍압 산정 도우미",
+   "cls": "slide screen",
+   "foot": [
+    72,
+    844,
+    1456,
+    18
+   ],
+   "els": [
+    {
+     "type": "text",
+     "x": 72,
+     "y": 44,
+     "w": 1457,
+     "h": 44,
+     "html": "<header><div class=\"brand\">STRIX<span>.</span></div><div class=\"chapter\">04 하중 산정과 입력</div></header>",
+     "id": "e1"
+    },
+    {
+     "type": "text",
+     "x": 72,
+     "y": 132,
+     "w": 1400,
+     "h": 65,
+     "html": "<h2 class=\"title\">설하중·지붕풍압 산정 도우미</h2>",
+     "id": "e2"
+    },
+    {
+     "type": "text",
+     "x": 72,
+     "y": 216,
+     "w": 1400,
+     "h": 37,
+     "html": "<p class=\"lead\">지붕 조건을 입력하면 KDS 41 12 00 식에 따라 설하중과 지붕면별 풍압을 계산해 보여 줍니다.</p>",
+     "id": "e3"
+    },
+    {
+     "type": "image",
+     "x": 64,
+     "y": 278,
+     "w": 900,
+     "h": 463,
+     "slot": "live-snowcalc",
+     "cls": "visual",
+     "frame": "fixed",
+     "bare": true,
+     "fit": "fill",
+     "id": "e4",
+     "recW": 1761,
+     "recH": 906
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 278,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-first dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-weight\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M9 6a3 3 0 1 0 6 0a3 3 0 1 0 -6 0\"></path>\n  <path d=\"M6.835 9h10.33a1 1 0 0 1 .984 .821l1.637 9a1 1 0 0 1 -.984 1.179h-13.604a1 1 0 0 1 -.984 -1.179l1.637 -9a1 1 0 0 1 .984 -.821\"></path>\n</svg></div><h3>설하중 — KDS 41 12 00 4장</h3><p>평지붕·경사지붕 설하중, 완경사 최소설하중, 불균형 설하중과 지붕 단차 몰림적설을 식 번호와 함께 표시합니다.</p></div>",
+     "id": "e5"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 389.1,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-wind\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M5 8h8.5a2.5 2.5 0 1 0 -2.34 -3.24\"></path>\n  <path d=\"M3 12h15.5a2.5 2.5 0 1 1 -2.34 3.24\"></path>\n  <path d=\"M4 16h5.5a2.5 2.5 0 1 1 -2.34 3.24\"></path>\n</svg></div><h3>지붕풍압 — 식 (5.3-1)</h3><p>주골조설계용 지붕풍압을 표 5.7-1에 따라 지붕면별로 산정합니다.</p></div>",
+     "id": "e6"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 500.1,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-pencil\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4\"></path>\n  <path d=\"M13.5 6.5l4 4\"></path>\n</svg></div><h3>하중 입력은 설계자 판단</h3><p>계산값은 하중에 자동으로 들어가지 않습니다. 설계자가 판단해 바닥하중 유형에 입력합니다.</p></div>",
      "id": "e7"
     }
    ]
@@ -2385,6 +3015,88 @@ window.__DECK__ = {
    ]
   },
   {
+   "id": "globalstability",
+   "name": "Global Stability — 편토압 건물의 활동·전도·부력",
+   "cls": "slide screen",
+   "foot": [
+    72,
+    844,
+    1456,
+    18
+   ],
+   "els": [
+    {
+     "type": "text",
+     "x": 72,
+     "y": 44,
+     "w": 1457,
+     "h": 44,
+     "html": "<header><div class=\"brand\">STRIX<span>.</span></div><div class=\"chapter\">04 하중 산정과 입력</div></header>",
+     "id": "e1"
+    },
+    {
+     "type": "text",
+     "x": 72,
+     "y": 132,
+     "w": 1400,
+     "h": 65,
+     "html": "<h2 class=\"title\">Global Stability — 편토압 건물의 활동·전도·부력</h2>",
+     "id": "e2"
+    },
+    {
+     "type": "text",
+     "x": 72,
+     "y": 216,
+     "w": 1400,
+     "h": 37,
+     "html": "<p class=\"lead\">한쪽에만 흙이 있는 건물의 활동·전도와 지하수 부력에 대한 안전율을 지점 반력 합계로 산정합니다.</p>",
+     "id": "e3"
+    },
+    {
+     "type": "image",
+     "x": 135.2,
+     "y": 278,
+     "w": 757.6,
+     "h": 545.5,
+     "slot": "live-globalstability",
+     "cls": "visual",
+     "frame": "fixed",
+     "bare": true,
+     "fit": "fill",
+     "id": "e4",
+     "recW": 1000,
+     "recH": 720
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 278,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-first dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-arrows-diagonal-minimize-2\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M18 10h-4v-4\"></path>\n  <path d=\"M20 4l-6 6\"></path>\n  <path d=\"M6 14h4v4\"></path>\n  <path d=\"M10 14l-6 6\"></path>\n</svg></div><h3>토압 하중과 연계</h3><p>상시·지진토압 하중케이스의 반력을 그대로 읽고, 지반에 접하지 않은 면의 토압은 제외합니다.</p></div>",
+     "id": "e5"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 389.1,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-angle\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M21 19h-18l9 -15\"></path>\n  <path d=\"M20.615 15.171h.015\"></path>\n  <path d=\"M19.515 11.771h.015\"></path>\n  <path d=\"M17.715 8.671h.015\"></path>\n  <path d=\"M15.415 5.971h.015\"></path>\n</svg></div><h3>안전율 산정</h3><p>활동은 바닥 마찰계수로, 전도는 지지 외곽선 회전점의 저항모멘트로 계산합니다. 하중계수를 곱하지 않은 사용하중 반력을 씁니다.</p></div>",
+     "id": "e6"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 500.1,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-shield-check\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M11.46 20.846a12 12 0 0 1 -7.96 -14.846a12 12 0 0 0 8.5 -3a12 12 0 0 0 8.5 3a12 12 0 0 1 -.09 7.06\"></path>\n  <path d=\"M15 19l2 2l4 -4\"></path>\n</svg></div><h3>참고 기준과 함께 제시</h3><p>KDS에 건물 전체 안정 조항이 없어 OK/NG 판정은 하지 않고, 옹벽·지하구조물 기준의 안전율을 함께 보여 줍니다.</p></div>",
+     "id": "e7"
+    }
+   ]
+  },
+  {
    "id": "09",
    "name": "풍동실험 하중 데이터 자동입력",
    "cls": "slide screen",
@@ -2461,6 +3173,15 @@ window.__DECK__ = {
      "h": 111.1,
      "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-wind\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M5 8h8.5a2.5 2.5 0 1 0 -2.34 -3.24\"></path>\n  <path d=\"M3 12h15.5a2.5 2.5 0 1 1 -2.34 3.24\"></path>\n  <path d=\"M4 16h5.5a2.5 2.5 0 1 1 -2.34 3.24\"></path>\n</svg></div><h3>후속 해석·설계</h3><p>풍동실험에 따른 해석 결과를 층별 응답과 부재 설계에 활용합니다. 실험하중의 반복 입력과 대조 작업을 줄일 수 있습니다.</p></div>",
      "id": "e7"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 611.2,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-chart-line\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M4 19l16 0\"></path>\n  <path d=\"M4 15l4 -6l4 2l4 -5l4 4\"></path>\n</svg></div><h3>고유주기 대조</h3><p>풍력실험 고유주기와 모델 고유치를 X·Y·비틀림 방향별로 비교하고, 계산서 풍동실험 하중 절에 같은 표를 넣습니다.</p></div>",
+     "id": "e8"
     }
    ]
   },
@@ -2541,6 +3262,88 @@ window.__DECK__ = {
      "w": 532,
      "h": 121,
      "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-arrows-split-2\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M21 17h-5.397a5 5 0 0 1 -4.096 -2.133l-.514 -.734a5 5 0 0 0 -4.096 -2.133h-3.897\"></path>\n  <path d=\"M21 7h-5.395a5 5 0 0 0 -4.098 2.135l-.51 .73a5 5 0 0 1 -4.097 2.135h-3.9\"></path>\n  <path d=\"M18 10l3 -3l-3 -3\"></path>\n  <path d=\"M18 20l3 -3l-3 -3\"></path>\n</svg></div><h3>배분은 한 곳에서</h3><p>면하중을 부재로 나누는 계산이 한 곳뿐이라, 해석·질량·설계가 같은 값을 씁니다.</p></div>"
+    }
+   ]
+  },
+  {
+   "id": "platepressure",
+   "name": "판 하중 입력 — 바닥하중 구역과 선하중",
+   "cls": "slide screen",
+   "foot": [
+    72,
+    844,
+    1456,
+    18
+   ],
+   "els": [
+    {
+     "type": "text",
+     "x": 72,
+     "y": 44,
+     "w": 1457,
+     "h": 44,
+     "html": "<header><div class=\"brand\">STRIX<span>.</span></div><div class=\"chapter\">04 하중 산정과 입력</div></header>",
+     "id": "e1"
+    },
+    {
+     "type": "text",
+     "x": 72,
+     "y": 132,
+     "w": 1400,
+     "h": 65,
+     "html": "<h2 class=\"title\">판 하중 입력 — 바닥하중 구역과 선하중</h2>",
+     "id": "e2"
+    },
+    {
+     "type": "text",
+     "x": 72,
+     "y": 216,
+     "w": 1400,
+     "h": 37,
+     "html": "<p class=\"lead\">판으로 모델링한 슬래브에 바닥하중 구역과 조적 선하중을 3D 뷰포트에서 직접 찍어 입력합니다.</p>",
+     "id": "e3"
+    },
+    {
+     "type": "image",
+     "x": 64,
+     "y": 278,
+     "w": 900,
+     "h": 506.3,
+     "slot": "live-platepressure",
+     "cls": "visual",
+     "frame": "fixed",
+     "bare": true,
+     "fit": "fill",
+     "id": "e4",
+     "recW": 1920,
+     "recH": 1080
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 278,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-first dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-select\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M3 5a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-14\"></path>\n  <path d=\"M9 11l3 3l3 -3\"></path>\n</svg></div><h3>바닥하중 구역</h3><p>판 평면에서 Pick으로 구역을 그려 하중 유형을 지정합니다. 겹친 구역의 하중은 판 전체 하중에 더해집니다.</p></div>",
+     "id": "e5"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 389.1,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-ruler-measure\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M19.875 12c.621 0 1.125 .512 1.125 1.143v5.714c0 .631 -.504 1.143 -1.125 1.143h-15.875a1 1 0 0 1 -1 -1v-5.857c0 -.631 .504 -1.143 1.125 -1.143h15.75\"></path>\n  <path d=\"M9 12v2\"></path>\n  <path d=\"M6 12v3\"></path>\n  <path d=\"M12 12v3\"></path>\n  <path d=\"M18 12v3\"></path>\n  <path d=\"M15 12v2\"></path>\n  <path d=\"M3 3v4\"></path>\n  <path d=\"M3 5h18\"></path>\n  <path d=\"M21 3v4\"></path>\n</svg></div><h3>조적·간막이 선하중</h3><p>벽 위치를 따라 선하중을 그리고, 3D 뷰포트에 값과 함께 표시합니다.</p></div>",
+     "id": "e6"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 500.1,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-geometry\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M7 21l4 -12m2 0l1.48 4.439m.949 2.847l1.571 4.714\"></path>\n  <path d=\"M10 7a2 2 0 1 0 4 0a2 2 0 1 0 -4 0\"></path>\n  <path d=\"M4 12c1.526 2.955 4.588 5 8 5c3.41 0 6.473 -2.048 8 -5\"></path>\n  <path d=\"M12 5v-2\"></path>\n</svg></div><h3>경사·수직 판 면하중</h3><p>하중케이스와 방향을 지정한 면하중을 경사판·수직판에 재하합니다. Slab Load Copy로 다른 층에 복사합니다.</p></div>",
+     "id": "e7"
     }
    ]
   },
@@ -2865,83 +3668,8 @@ window.__DECK__ = {
    ]
   },
   {
-   "id": "chapter-5",
-   "name": "구조해석과 결과 검토",
-   "cls": "slide chapter-intro",
-   "foot": false,
-   "els": [
-    {
-     "type": "text",
-     "x": 72,
-     "y": 44,
-     "w": 1457,
-     "h": 44,
-     "html": "<header><div class=\"brand\">STRIX<span>.</span></div><div class=\"chapter\">CHAPTER 05</div></header>",
-     "id": "e1"
-    },
-    {
-     "type": "text",
-     "x": 72,
-     "y": 340,
-     "w": 661,
-     "h": 76,
-     "html": "<h2 class=\"title\">구조해석과 결과 검토</h2>",
-     "id": "e2"
-    },
-    {
-     "type": "text",
-     "x": 72,
-     "y": 462,
-     "w": 231,
-     "h": 36,
-     "html": "<p class=\"lead\">해석 · 층별 응답 · 횡력비교</p>",
-     "id": "e3"
-    },
-    {
-     "type": "text",
-     "x": 64,
-     "y": 196,
-     "w": 104,
-     "h": 115,
-     "html": "<div class=\"divider-number\">05</div>",
-     "id": "e4"
-    },
-    {
-     "type": "text",
-     "x": 64,
-     "y": 534,
-     "w": 60,
-     "h": 3,
-     "html": "<div class=\"divider-rule\"></div>",
-     "id": "e5"
-    },
-    {
-     "type": "image",
-     "x": 1044,
-     "y": 232,
-     "w": 452,
-     "h": 420,
-     "slot": "c05-analysis-cut",
-     "cls": "divider-photo",
-     "frame": "fixed",
-     "bare": true,
-     "fit": "contain",
-     "id": "e6"
-    },
-    {
-     "type": "text",
-     "x": 64,
-     "y": 606,
-     "w": 621,
-     "h": 71.5,
-     "html": "<div class=\"divider-subtopics\"><a href=\"#basic\" data-go=\"basic\" data-slide=\"34\">정적·고유치·응답스펙트럼 해석</a><a href=\"#11\" data-go=\"11\" data-slide=\"35\">시공단계해석</a><a href=\"#12\" data-go=\"12\" data-slide=\"36\">풍하중·지진하중 횡력비교</a><a href=\"#story\" data-go=\"story\" data-slide=\"37\">층별 Output</a><a href=\"#13\" data-go=\"13\" data-slide=\"38\">구조시스템별 하중분담률</a></div>",
-     "id": "e7"
-    }
-   ]
-  },
-  {
-   "id": "basic",
-   "name": "정적·고유치·응답스펙트럼 해석",
+   "id": "loadcombo",
+   "name": "하중조합 자동생성 — KDS 41 12 00 1.7",
    "cls": "slide screen",
    "foot": [
     72,
@@ -2956,39 +3684,41 @@ window.__DECK__ = {
      "y": 44,
      "w": 1457,
      "h": 44,
-     "html": "<header><div class=\"brand\">STRIX<span>.</span></div><div class=\"chapter\">05 구조해석과 결과 검토</div></header>",
+     "html": "<header><div class=\"brand\">STRIX<span>.</span></div><div class=\"chapter\">04 하중 산정과 입력</div></header>",
      "id": "e1"
     },
     {
      "type": "text",
      "x": 72,
      "y": 132,
-     "w": 622,
+     "w": 1400,
      "h": 65,
-     "html": "<h2 class=\"title\">정적·고유치·응답스펙트럼 해석</h2>",
+     "html": "<h2 class=\"title\">하중조합 자동생성 — KDS 41 12 00 1.7</h2>",
      "id": "e2"
     },
     {
      "type": "text",
      "x": 72,
      "y": 216,
-     "w": 658,
+     "w": 1400,
      "h": 37,
-     "html": "<p class=\"lead\">건물의 중력하중과 횡하중에 대한 기본 해석을 수행하고 결과를 확인합니다.</p>",
+     "html": "<p class=\"lead\">하중케이스의 종류를 읽어 강도설계·지하구조물·기초 허용응력 조합을 기준 식대로 만듭니다.</p>",
      "id": "e3"
     },
     {
      "type": "image",
-     "x": 64,
+     "x": 101,
      "y": 278,
-     "w": 900,
-     "h": 487.2,
-     "slot": "live-basic",
-     "cls": "visual full-window",
+     "w": 826,
+     "h": 545.5,
+     "slot": "live-loadcombo",
+     "cls": "visual",
      "frame": "fixed",
      "bare": true,
      "fit": "fill",
-     "id": "e4"
+     "id": "e4",
+     "recW": 1060,
+     "recH": 700
     },
     {
      "type": "text",
@@ -2996,7 +3726,7 @@ window.__DECK__ = {
      "y": 278,
      "w": 532,
      "h": 111.1,
-     "html": "<div class=\"point dm-first dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-geometry\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M7 21l4 -12m2 0l1.48 4.439m.949 2.847l1.571 4.714\"></path>\n  <path d=\"M10 7a2 2 0 1 0 4 0a2 2 0 1 0 -4 0\"></path>\n  <path d=\"M4 12c1.526 2.955 4.588 5 8 5c3.41 0 6.473 -2.048 8 -5\"></path>\n  <path d=\"M12 5v-2\"></path>\n</svg></div><h3>정적해석</h3><p>하중케이스별 변위, 반력과 부재력을 산정합니다. 하중 평형과 부재 연결 상태를 검토하는 기본 자료로 활용합니다.</p></div>",
+     "html": "<div class=\"point dm-first dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-list-details\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M13 5h8\"></path>\n  <path d=\"M13 9h5\"></path>\n  <path d=\"M13 15h8\"></path>\n  <path d=\"M13 19h5\"></path>\n  <path d=\"M3 5a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -4\"></path>\n  <path d=\"M3 15a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -4\"></path>\n</svg></div><h3>지붕활하중·적설·강우</h3><p>지붕활하중 Lr·적설 S·강우 R 하중케이스를 읽어 식 (1.7-3) 등 해당 조합을 만듭니다.</p></div>",
      "id": "e5"
     },
     {
@@ -3005,7 +3735,7 @@ window.__DECK__ = {
      "y": 389.1,
      "w": 532,
      "h": 111.1,
-     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-wave-sine\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M21 12h-2c-.894 0 -1.662 -.857 -1.761 -2c-.296 -3.45 -.749 -6 -2.749 -6s-2.5 3.582 -2.5 8s-.5 8 -2.5 8s-2.452 -2.547 -2.749 -6c-.1 -1.147 -.867 -2 -1.763 -2h-2\"></path>\n</svg></div><h3>고유치·응답스펙트럼</h3><p>고유주기와 모드형상, 유효질량참여율을 검토합니다. 설정한 스펙트럼과 가진 방향에 따른 응답을 확인합니다.</p></div>",
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-stack-2\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M12 4l-8 4l8 4l8 -4l-8 -4\"></path>\n  <path d=\"M4 12l8 4l8 -4\"></path>\n  <path d=\"M4 16l8 4l8 -4\"></path>\n</svg></div><h3>지하구조물 조합</h3><p>KDS 41 17 00 14.4.2에 따라 지하부 조합을 따로 만들고, 토압 하중계수를 불리·유리 세트별로 적용합니다.</p></div>",
      "id": "e6"
     },
     {
@@ -3014,7 +3744,7 @@ window.__DECK__ = {
      "y": 500.1,
      "w": 532,
      "h": 111.1,
-     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-arrows-diagonal-minimize-2\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M18 10h-4v-4\"></path>\n  <path d=\"M20 4l-6 6\"></path>\n  <path d=\"M6 14h4v4\"></path>\n  <path d=\"M10 14l-6 6\"></path>\n</svg></div><h3>P-Delta 검토</h3><p>P-Delta 해석조건을 지정해 중력하중과 횡변위에 따른 영향을 검토합니다. 적용 하중과 해석 가정을 함께 확인합니다.</p></div>",
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-circuit-ground\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M12 13v-8\"></path>\n  <path d=\"M4 13h16\"></path>\n  <path d=\"M7 16h10\"></path>\n  <path d=\"M10 19h4\"></path>\n</svg></div><h3>기초 허용응력 조합</h3><p>Footing 탭에서 풍직각방향 하중과 풍동실험 풍하중을 포함한 허용응력 조합을 만듭니다.</p></div>",
      "id": "e7"
     }
    ]
@@ -3095,6 +3825,161 @@ window.__DECK__ = {
      "w": 532,
      "h": 111.1,
      "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-copy-check\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M7 9.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667l0 -8.666\"></path>\n  <path d=\"M4.012 16.737a2 2 0 0 1 -1.012 -1.737v-10c0 -1.1 .9 -2 2 -2h10c.75 0 1.158 .385 1.5 1\"></path>\n  <path d=\"M11 14l2 2l4 -4\"></path>\n</svg></div><h3>후속 설계와 대조</h3><p>산정계수가 설계 응답과 하중조합에 적용되는 범위를 확인합니다. 횡력비교 및 층별 결과와 함께 검토합니다.</p></div>",
+     "id": "e7"
+    }
+   ]
+  },
+  {
+   "id": "chapter-5",
+   "name": "구조해석과 결과 검토",
+   "cls": "slide chapter-intro",
+   "foot": false,
+   "els": [
+    {
+     "type": "text",
+     "x": 72,
+     "y": 44,
+     "w": 1457,
+     "h": 44,
+     "html": "<header><div class=\"brand\">STRIX<span>.</span></div><div class=\"chapter\">CHAPTER 05</div></header>",
+     "id": "e1"
+    },
+    {
+     "type": "text",
+     "x": 72,
+     "y": 340,
+     "w": 661,
+     "h": 76,
+     "html": "<h2 class=\"title\">구조해석과 결과 검토</h2>",
+     "id": "e2"
+    },
+    {
+     "type": "text",
+     "x": 72,
+     "y": 462,
+     "w": 231,
+     "h": 36,
+     "html": "<p class=\"lead\">해석 · 층별 응답 · 횡력비교</p>",
+     "id": "e3"
+    },
+    {
+     "type": "text",
+     "x": 64,
+     "y": 196,
+     "w": 104,
+     "h": 115,
+     "html": "<div class=\"divider-number\">05</div>",
+     "id": "e4"
+    },
+    {
+     "type": "text",
+     "x": 64,
+     "y": 534,
+     "w": 60,
+     "h": 3,
+     "html": "<div class=\"divider-rule\"></div>",
+     "id": "e5"
+    },
+    {
+     "type": "image",
+     "x": 1044,
+     "y": 232,
+     "w": 452,
+     "h": 420,
+     "slot": "c05-analysis-cut",
+     "cls": "divider-photo",
+     "frame": "fixed",
+     "bare": true,
+     "fit": "contain",
+     "id": "e6"
+    },
+    {
+     "type": "text",
+     "x": 64,
+     "y": 606,
+     "w": 621,
+     "h": 71.5,
+     "html": "<div class=\"divider-subtopics\"><a href=\"#basic\" data-go=\"basic\" data-slide=\"43\">정적·고유치·응답스펙트럼 해석</a><a href=\"#11\" data-go=\"11\" data-slide=\"44\">시공단계해석</a><a href=\"#12\" data-go=\"12\" data-slide=\"45\">풍하중·지진하중 횡력비교</a><a href=\"#story\" data-go=\"story\" data-slide=\"46\">층별 Output</a><a href=\"#13\" data-go=\"13\" data-slide=\"47\">구조시스템별 하중분담률</a></div>",
+     "id": "e7"
+    }
+   ]
+  },
+  {
+   "id": "basic",
+   "name": "정적·고유치·응답스펙트럼 해석",
+   "cls": "slide screen",
+   "foot": [
+    72,
+    844,
+    1456,
+    18
+   ],
+   "els": [
+    {
+     "type": "text",
+     "x": 72,
+     "y": 44,
+     "w": 1457,
+     "h": 44,
+     "html": "<header><div class=\"brand\">STRIX<span>.</span></div><div class=\"chapter\">05 구조해석과 결과 검토</div></header>",
+     "id": "e1"
+    },
+    {
+     "type": "text",
+     "x": 72,
+     "y": 132,
+     "w": 622,
+     "h": 65,
+     "html": "<h2 class=\"title\">정적·고유치·응답스펙트럼 해석</h2>",
+     "id": "e2"
+    },
+    {
+     "type": "text",
+     "x": 72,
+     "y": 216,
+     "w": 658,
+     "h": 37,
+     "html": "<p class=\"lead\">건물의 중력하중과 횡하중에 대한 기본 해석을 수행하고 결과를 확인합니다.</p>",
+     "id": "e3"
+    },
+    {
+     "type": "image",
+     "x": 64,
+     "y": 278,
+     "w": 900,
+     "h": 487.2,
+     "slot": "live-basic",
+     "cls": "visual full-window",
+     "frame": "fixed",
+     "bare": true,
+     "fit": "fill",
+     "id": "e4"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 278,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-first dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-geometry\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M7 21l4 -12m2 0l1.48 4.439m.949 2.847l1.571 4.714\"></path>\n  <path d=\"M10 7a2 2 0 1 0 4 0a2 2 0 1 0 -4 0\"></path>\n  <path d=\"M4 12c1.526 2.955 4.588 5 8 5c3.41 0 6.473 -2.048 8 -5\"></path>\n  <path d=\"M12 5v-2\"></path>\n</svg></div><h3>정적해석</h3><p>하중케이스별 변위, 반력과 부재력을 산정합니다. 하중 평형과 부재 연결 상태를 검토하는 기본 자료로 활용합니다.</p></div>",
+     "id": "e5"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 389.1,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-wave-sine\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M21 12h-2c-.894 0 -1.662 -.857 -1.761 -2c-.296 -3.45 -.749 -6 -2.749 -6s-2.5 3.582 -2.5 8s-.5 8 -2.5 8s-2.452 -2.547 -2.749 -6c-.1 -1.147 -.867 -2 -1.763 -2h-2\"></path>\n</svg></div><h3>고유치·응답스펙트럼</h3><p>고유주기와 모드형상, 유효질량참여율을 검토합니다. 설정한 스펙트럼과 가진 방향에 따른 응답을 확인합니다.</p></div>",
+     "id": "e6"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 500.1,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-arrows-diagonal-minimize-2\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M18 10h-4v-4\"></path>\n  <path d=\"M20 4l-6 6\"></path>\n  <path d=\"M6 14h4v4\"></path>\n  <path d=\"M10 14l-6 6\"></path>\n</svg></div><h3>P-Delta 검토</h3><p>P-Delta 해석조건을 지정해 중력하중과 횡변위에 따른 영향을 검토합니다. 적용 하중과 해석 가정을 함께 확인합니다.</p></div>",
      "id": "e7"
     }
    ]
@@ -3447,9 +4332,9 @@ window.__DECK__ = {
      "type": "text",
      "x": 72,
      "y": 462,
-     "w": 296,
+     "w": 620,
      "h": 36,
-     "html": "<p class=\"lead\">RC·강구조 · 지배부재 · 단면 최적화</p>",
+     "html": "<p class=\"lead\">RC·강구조·목구조 · 접합부 · 설계 최적화</p>",
      "id": "e3"
     },
     {
@@ -3487,9 +4372,9 @@ window.__DECK__ = {
      "type": "text",
      "x": 64,
      "y": 606,
-     "w": 621,
-     "h": 193,
-     "html": "<div class=\"divider-subtopics\"><a href=\"#rcbeam\" data-go=\"rcbeam\" data-slide=\"40\">RC 보 설계 및 배근 검토</a><a href=\"#rccolumn\" data-go=\"rccolumn\" data-slide=\"41\">RC 기둥 설계 및 배근 검토</a><a href=\"#rcwall\" data-go=\"rcwall\" data-slide=\"42\">RC 벽체 설계 및 검토</a><a href=\"#wallauto\" data-go=\"wallauto\" data-slide=\"43\">전단벽 자동 배근 설계</a><a href=\"#steel\" data-go=\"steel\" data-slide=\"44\">강구조 부재 강도검토</a><a href=\"#14\" data-go=\"14\" data-slide=\"45\">설계 결과 시각화</a><a href=\"#14b\" data-go=\"14b\" data-slide=\"46\">RC 보 지배부재 확인</a><a href=\"#governing-column\" data-go=\"governing-column\" data-slide=\"47\">RC 기둥 지배부재 확인</a><a href=\"#14a\" data-go=\"14a\" data-slide=\"48\">Beam Section Optimization</a><a href=\"#column-optimization\" data-go=\"column-optimization\" data-slide=\"49\">Column Section Optimization</a><a href=\"#steelopt\" data-go=\"steelopt\" data-slide=\"50\">Steel Section Optimization</a><a href=\"#batch\" data-go=\"batch\" data-slide=\"51\">설계 결과 일괄 출력</a></div>",
+     "w": 960,
+     "h": 233.5,
+     "html": "<div class=\"divider-subtopics\"><a href=\"#rcbeam\" data-go=\"rcbeam\" data-slide=\"49\">RC 보 설계 및 배근 검토</a><a href=\"#rccolumn\" data-go=\"rccolumn\" data-slide=\"50\">RC 기둥 설계 및 배근 검토</a><a href=\"#rcwall\" data-go=\"rcwall\" data-slide=\"51\">RC 벽체 설계 및 검토</a><a href=\"#wallauto\" data-go=\"wallauto\" data-slide=\"52\">전단벽 자동 배근 설계</a><a href=\"#steel\" data-go=\"steel\" data-slide=\"53\">강구조 부재 강도검토</a><a href=\"#timber\" data-go=\"timber\" data-slide=\"54\">목구조 설계</a><a href=\"#deflection\" data-go=\"deflection\" data-slide=\"55\">처짐 검토</a><a href=\"#bcjoint\" data-go=\"bcjoint\" data-slide=\"56\">보-기둥 접합부 검토</a><a href=\"#14b\" data-go=\"14b\" data-slide=\"57\">RC 보 지배부재 확인</a><a href=\"#governing-column\" data-go=\"governing-column\" data-slide=\"58\">RC 기둥 지배부재 확인</a><a href=\"#14a\" data-go=\"14a\" data-slide=\"59\">Beam Section Optimization</a><a href=\"#column-optimization\" data-go=\"column-optimization\" data-slide=\"60\">Column Section Optimization</a><a href=\"#steelopt\" data-go=\"steelopt\" data-slide=\"61\">Steel Section Optimization</a><a href=\"#designopt\" data-go=\"designopt\" data-slide=\"62\">Design Optimization</a><a href=\"#designopt-result\" data-go=\"designopt-result\" data-slide=\"63\">최적화 결과</a><a href=\"#14\" data-go=\"14\" data-slide=\"64\">Safety Review</a><a href=\"#batch\" data-go=\"batch\" data-slide=\"65\">설계 결과 일괄 출력</a></div>",
      "id": "e7"
     }
    ]
@@ -3651,6 +4536,97 @@ window.__DECK__ = {
      "h": 111.1,
      "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-shield-check\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M11.46 20.846a12 12 0 0 1 -7.96 -14.846a12 12 0 0 0 8.5 -3a12 12 0 0 0 8.5 3a12 12 0 0 1 -.09 7.06\"></path>\n  <path d=\"M15 19l2 2l4 -4\"></path>\n</svg></div><h3>단면 그룹 검토</h3><p>동일 단면 기둥의 요구량을 비교합니다. 지배부재 확인과 기둥 단면 최적화를 통해 그룹 구성을 검토합니다.</p></div>",
      "id": "e7"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 611.2,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-building\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M3 21l18 0\"></path>\n  <path d=\"M9 8l1 0\"></path>\n  <path d=\"M9 12l1 0\"></path>\n  <path d=\"M9 16l1 0\"></path>\n  <path d=\"M14 8l1 0\"></path>\n  <path d=\"M14 12l1 0\"></path>\n  <path d=\"M14 16l1 0\"></path>\n  <path d=\"M5 21v-16a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v16\"></path>\n</svg></div><h3>비횡구속·필로티 기둥</h3><p>방향별 골조 구분으로 비횡구속 세장 기둥의 모멘트를 확대하고, 필로티·약층으로 지정한 기둥에 KDS 41 17 00 9.8의 상세를 적용합니다.</p></div>",
+     "id": "e8"
+    }
+   ]
+  },
+  {
+   "id": "rcwall",
+   "name": "RC 벽체 설계 및 검토",
+   "cls": "slide screen",
+   "foot": [
+    72,
+    844,
+    1456,
+    18
+   ],
+   "els": [
+    {
+     "type": "text",
+     "x": 72,
+     "y": 44,
+     "w": 1457,
+     "h": 44,
+     "html": "<header><div class=\"brand\">STRIX<span>.</span></div><div class=\"chapter\">06 부재 설계와 최적화</div></header>",
+     "id": "e1"
+    },
+    {
+     "type": "text",
+     "x": 72,
+     "y": 132,
+     "w": 1400,
+     "h": 65,
+     "html": "<h2 class=\"title\">RC 벽체 설계 및 검토</h2>",
+     "id": "e2"
+    },
+    {
+     "type": "text",
+     "x": 72,
+     "y": 216,
+     "w": 1400,
+     "h": 37,
+     "html": "<p class=\"lead\">해석 부재력과 하중조합으로 RC 벽체의 수직근·수평근을 Wall Mark·층별로 설계합니다.</p>",
+     "id": "e3"
+    },
+    {
+     "type": "image",
+     "x": 64,
+     "y": 278,
+     "w": 900,
+     "h": 487.2,
+     "slot": "live-rcwall",
+     "cls": "visual",
+     "frame": "fixed",
+     "bare": true,
+     "fit": "fill",
+     "id": "e4",
+     "recW": 1936,
+     "recH": 1048
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 278,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-first dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-arrows-split-2\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M21 17h-5.397a5 5 0 0 1 -4.096 -2.133l-.514 -.734a5 5 0 0 0 -4.096 -2.133h-3.897\"></path>\n  <path d=\"M21 7h-5.395a5 5 0 0 0 -4.098 2.135l-.51 .73a5 5 0 0 1 -4.097 2.135h-3.9\"></path>\n  <path d=\"M18 10l3 -3l-3 -3\"></path>\n  <path d=\"M18 20l3 -3l-3 -3\"></path>\n</svg></div><h3>수직근·수평근 설계</h3><p>수직근은 축력과 휨(P-M)으로, 수평근은 전단으로 서로 독립적으로 설계합니다.</p></div>",
+     "id": "e5"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 389.1,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-eye\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0\"></path>\n  <path d=\"M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6\"></path>\n</svg></div><h3>초안 확인 후 반영</h3><p>설계 결과는 초안으로 표에 표시되고, Apply Rebar를 눌러야 모델에 반영됩니다.</p></div>",
+     "id": "e6"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 500.1,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-pencil\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4\"></path>\n  <path d=\"M13.5 6.5l4 4\"></path>\n</svg></div><h3>층별 배근 수정</h3><p>층별 배근을 직접 바꾸고 Check Walls에서 검토합니다.</p></div>",
+     "id": "e7"
     }
    ]
   },
@@ -3810,6 +4786,261 @@ window.__DECK__ = {
      "w": 532,
      "h": 111.1,
      "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-shield-check\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M11.46 20.846a12 12 0 0 1 -7.96 -14.846a12 12 0 0 0 8.5 -3a12 12 0 0 0 8.5 3a12 12 0 0 1 -.09 7.06\"></path>\n  <path d=\"M15 19l2 2l4 -4\"></path>\n</svg></div><h3>후보 단면 검토</h3><p>후보 단면에 따른 강도검토 결과를 비교합니다. 단면 변경 후 필요한 재해석과 재검토를 수행합니다.</p></div>",
+     "id": "e7"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 611.2,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-shape-2\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M3 5a2 2 0 1 0 4 0a2 2 0 1 0 -4 0\"></path>\n  <path d=\"M17 19a2 2 0 1 0 4 0a2 2 0 1 0 -4 0\"></path>\n  <path d=\"M17 5a2 2 0 1 0 4 0a2 2 0 1 0 -4 0\"></path>\n  <path d=\"M3 19a2 2 0 1 0 4 0a2 2 0 1 0 -4 0\"></path>\n  <path d=\"M6.5 17.5l11 -11m-12.5 .5v10m14 -10v10\"></path>\n</svg></div><h3>전 단면 강도검토</h3><p>ㄱ·ㄷ·T형강, 강봉, 2L/2C까지 KDS 14 31 10으로 검토하고 P-M 상관·Cm·Cb와 처짐 비를 함께 봅니다.</p></div>",
+     "id": "e8"
+    }
+   ]
+  },
+  {
+   "id": "timber",
+   "name": "목구조 설계 — KDS 41 50",
+   "cls": "slide screen",
+   "foot": [
+    72,
+    844,
+    1456,
+    18
+   ],
+   "els": [
+    {
+     "type": "text",
+     "x": 72,
+     "y": 44,
+     "w": 1457,
+     "h": 44,
+     "html": "<header><div class=\"brand\">STRIX<span>.</span></div><div class=\"chapter\">06 부재 설계와 최적화</div></header>",
+     "id": "e1"
+    },
+    {
+     "type": "text",
+     "x": 72,
+     "y": 132,
+     "w": 1400,
+     "h": 65,
+     "html": "<h2 class=\"title\">목구조 설계 — KDS 41 50</h2>",
+     "id": "e2"
+    },
+    {
+     "type": "text",
+     "x": 72,
+     "y": 216,
+     "w": 1400,
+     "h": 37,
+     "html": "<p class=\"lead\">목재 보·기둥을 하중조합의 하중기간계수를 반영한 허용응력설계로 검토합니다.</p>",
+     "id": "e3"
+    },
+    {
+     "type": "image",
+     "x": 64,
+     "y": 278,
+     "w": 900,
+     "h": 506.3,
+     "slot": "live-timber",
+     "cls": "visual",
+     "frame": "fixed",
+     "bare": true,
+     "fit": "fill",
+     "id": "e4",
+     "recW": 1920,
+     "recH": 1080
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 278,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-first dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-list-check\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M3.5 5.5l1.5 1.5l2.5 -2.5\"></path>\n  <path d=\"M3.5 11.5l1.5 1.5l2.5 -2.5\"></path>\n  <path d=\"M3.5 17.5l1.5 1.5l2.5 -2.5\"></path>\n  <path d=\"M11 6l9 0\"></path>\n  <path d=\"M11 12l9 0\"></path>\n  <path d=\"M11 18l9 0\"></path>\n</svg></div><h3>허용응력 검토</h3><p>인장·압축·휨·전단·조합응력·세장비와 처짐을 KDS 41 50 20에 따라 판정합니다.</p></div>",
+     "id": "e5"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 389.1,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-adjustments\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M4 10a2 2 0 1 0 4 0a2 2 0 0 0 -4 0\"></path>\n  <path d=\"M6 4v4\"></path>\n  <path d=\"M6 12v8\"></path>\n  <path d=\"M10 16a2 2 0 1 0 4 0a2 2 0 0 0 -4 0\"></path>\n  <path d=\"M12 4v10\"></path>\n  <path d=\"M12 18v2\"></path>\n  <path d=\"M16 7a2 2 0 1 0 4 0a2 2 0 0 0 -4 0\"></path>\n  <path d=\"M18 4v1\"></path>\n  <path d=\"M18 9v11\"></path>\n</svg></div><h3>보정계수와 근거</h3><p>하중기간계수 CD 등 보정계수와 설계허용응력을 상세 창에서 확인합니다.</p></div>",
+     "id": "e6"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 500.1,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-file-type-pdf\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M14 3v4a1 1 0 0 0 1 1h4\"></path>\n  <path d=\"M5 12v-7a2 2 0 0 1 2 -2h7l5 5v4\"></path>\n  <path d=\"M5 18h1.5a1.5 1.5 0 0 0 0 -3h-1.5v6\"></path>\n  <path d=\"M17 18h2\"></path>\n  <path d=\"M20 15h-3v6\"></path>\n  <path d=\"M11 15v6h1a2 2 0 0 0 2 -2v-2a2 2 0 0 0 -2 -2h-1\"></path>\n</svg></div><h3>계산서와 사전점검</h3><p>목재 부재 계산서를 구조계산서·일괄 출력으로 내고, Model Check가 수종·단면·하중기간계수 누락을 알립니다.</p></div>",
+     "id": "e7"
+    }
+   ]
+  },
+  {
+   "id": "deflection",
+   "name": "처짐 검토 — RC 보·철골·목재",
+   "cls": "slide screen",
+   "foot": [
+    72,
+    844,
+    1456,
+    18
+   ],
+   "els": [
+    {
+     "type": "text",
+     "x": 72,
+     "y": 44,
+     "w": 1457,
+     "h": 44,
+     "html": "<header><div class=\"brand\">STRIX<span>.</span></div><div class=\"chapter\">06 부재 설계와 최적화</div></header>",
+     "id": "e1"
+    },
+    {
+     "type": "text",
+     "x": 72,
+     "y": 132,
+     "w": 1400,
+     "h": 65,
+     "html": "<h2 class=\"title\">처짐 검토 — RC 보·철골·목재</h2>",
+     "id": "e2"
+    },
+    {
+     "type": "text",
+     "x": 72,
+     "y": 216,
+     "w": 1400,
+     "h": 37,
+     "html": "<p class=\"lead\">강도 검토와 별도로 부재 처짐을 기준 한계와 비교해 사용성 비로 표시합니다.</p>",
+     "id": "e3"
+    },
+    {
+     "type": "image",
+     "x": 64,
+     "y": 278,
+     "w": 900,
+     "h": 327.3,
+     "slot": "live-deflection",
+     "cls": "visual",
+     "frame": "fixed",
+     "bare": true,
+     "fit": "fill",
+     "id": "e4",
+     "recW": 1320,
+     "recH": 480
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 278,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-first dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-chart-line\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M4 19l16 0\"></path>\n  <path d=\"M4 15l4 -6l4 2l4 -5l4 4\"></path>\n</svg></div><h3>RC 보</h3><p>Beam Design·Beam Check가 KDS 14 20 30 4.2.1에 따라 즉시·장기처짐을 검토합니다.</p></div>",
+     "id": "e5"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 389.1,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-shape-2\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M3 5a2 2 0 1 0 4 0a2 2 0 1 0 -4 0\"></path>\n  <path d=\"M17 19a2 2 0 1 0 4 0a2 2 0 1 0 -4 0\"></path>\n  <path d=\"M17 5a2 2 0 1 0 4 0a2 2 0 1 0 -4 0\"></path>\n  <path d=\"M3 19a2 2 0 1 0 4 0a2 2 0 1 0 -4 0\"></path>\n  <path d=\"M6.5 17.5l11 -11m-12.5 .5v10m14 -10v10\"></path>\n</svg></div><h3>철골 부재</h3><p>Steel Check 처짐 열이 δ ≤ δa(KDS 14 30 50)의 비를 강도 DCR과 따로 보여 줍니다.</p></div>",
+     "id": "e6"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 500.1,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-ruler-measure\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M19.875 12c.621 0 1.125 .512 1.125 1.143v5.714c0 .631 -.504 1.143 -1.125 1.143h-15.875a1 1 0 0 1 -1 -1v-5.857c0 -.631 .504 -1.143 1.125 -1.143h15.75\"></path>\n  <path d=\"M9 12v2\"></path>\n  <path d=\"M6 12v3\"></path>\n  <path d=\"M12 12v3\"></path>\n  <path d=\"M18 12v3\"></path>\n  <path d=\"M15 12v2\"></path>\n  <path d=\"M3 3v4\"></path>\n  <path d=\"M3 5h18\"></path>\n  <path d=\"M21 3v4\"></path>\n</svg></div><h3>목재·캔틸레버</h3><p>목재 보는 경사 서까래와 캔틸레버의 처짐까지 검토합니다.</p></div>",
+     "id": "e7"
+    }
+   ]
+  },
+  {
+   "id": "bcjoint",
+   "name": "보-기둥 접합부 검토",
+   "cls": "slide screen",
+   "foot": [
+    72,
+    844,
+    1456,
+    18
+   ],
+   "els": [
+    {
+     "type": "text",
+     "x": 72,
+     "y": 44,
+     "w": 1457,
+     "h": 44,
+     "html": "<header><div class=\"brand\">STRIX<span>.</span></div><div class=\"chapter\">06 부재 설계와 최적화</div></header>",
+     "id": "e1"
+    },
+    {
+     "type": "text",
+     "x": 72,
+     "y": 132,
+     "w": 1400,
+     "h": 65,
+     "html": "<h2 class=\"title\">보-기둥 접합부 검토</h2>",
+     "id": "e2"
+    },
+    {
+     "type": "text",
+     "x": 72,
+     "y": 216,
+     "w": 1400,
+     "h": 37,
+     "html": "<p class=\"lead\">RC 보-기둥 접합부의 띠철근·후프·전단강도·정착을 골조 종류별로 검토합니다.</p>",
+     "id": "e3"
+    },
+    {
+     "type": "image",
+     "x": 64,
+     "y": 278,
+     "w": 900,
+     "h": 506.3,
+     "slot": "live-bcjoint",
+     "cls": "visual",
+     "frame": "fixed",
+     "bare": true,
+     "fit": "fill",
+     "id": "e4",
+     "recW": 1920,
+     "recH": 1080
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 278,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-first dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-arrows-join-2\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M3 7h1.948c1.913 0 3.705 .933 4.802 2.5a5.861 5.861 0 0 0 4.802 2.5h6.448\"></path>\n  <path d=\"M3 17h1.95a5.854 5.854 0 0 0 4.798 -2.5a5.854 5.854 0 0 1 4.798 -2.5h5.454\"></path>\n  <path d=\"M18 15l3 -3l-3 -3\"></path>\n</svg></div><h3>골조 종류별 판정</h3><p>방향별로 고른 골조 종류에 따라 접합부 띠철근의 필요 여부·양·간격을 판정합니다(KDS 14 20 22 4.10 · KDS 41 20 00 4.3.2).</p></div>",
+     "id": "e5"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 389.1,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-shield-check\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M11.46 20.846a12 12 0 0 1 -7.96 -14.846a12 12 0 0 0 8.5 -3a12 12 0 0 0 8.5 3a12 12 0 0 1 -.09 7.06\"></path>\n  <path d=\"M15 19l2 2l4 -4\"></path>\n</svg></div><h3>특수모멘트골조</h3><p>접합부 후프·전단강도·통과 철근 지름·정착 길이를 KDS 14 20 80 4.6에 따라 검토합니다.</p></div>",
+     "id": "e6"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 500.1,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-zoom-in-area\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M15 13v4\"></path>\n  <path d=\"M13 15h4\"></path>\n  <path d=\"M10 15a5 5 0 1 0 10 0a5 5 0 1 0 -10 0\"></path>\n  <path d=\"M22 22l-3 -3\"></path>\n  <path d=\"M6 18h-1a2 2 0 0 1 -2 -2v-1\"></path>\n  <path d=\"M3 11v-1\"></path>\n  <path d=\"M3 6v-1a2 2 0 0 1 2 -2h1\"></path>\n  <path d=\"M10 3h1\"></path>\n  <path d=\"M15 3h1a2 2 0 0 1 2 2v1\"></path>\n</svg></div><h3>절점별 상세 근거</h3><p>창을 열 때 모델의 단면·배근으로 다시 계산하고, 절점마다 판정 근거를 상세 창에서 확인합니다.</p></div>",
      "id": "e7"
     }
    ]
@@ -4215,6 +5446,170 @@ window.__DECK__ = {
    ]
   },
   {
+   "id": "designopt",
+   "name": "Design Optimization — 반복 재해석 최적화",
+   "cls": "slide screen",
+   "foot": [
+    72,
+    844,
+    1456,
+    18
+   ],
+   "els": [
+    {
+     "type": "text",
+     "x": 72,
+     "y": 44,
+     "w": 1457,
+     "h": 44,
+     "html": "<header><div class=\"brand\">STRIX<span>.</span></div><div class=\"chapter\">06 부재 설계와 최적화</div></header>",
+     "id": "e1"
+    },
+    {
+     "type": "text",
+     "x": 72,
+     "y": 132,
+     "w": 1400,
+     "h": 65,
+     "html": "<h2 class=\"title\">Design Optimization — 반복 재해석 최적화</h2>",
+     "id": "e2"
+    },
+    {
+     "type": "text",
+     "x": 72,
+     "y": 216,
+     "w": 1400,
+     "h": 37,
+     "html": "<p class=\"lead\">횡변위·부재 DCR·물량을 함께 검토하고, 반복 재해석으로 단면을 조정한 최적화안을 만듭니다.</p>",
+     "id": "e3"
+    },
+    {
+     "type": "image",
+     "x": 64,
+     "y": 278,
+     "w": 900,
+     "h": 529.8,
+     "slot": "live-designopt-plan",
+     "cls": "visual",
+     "frame": "fixed",
+     "bare": true,
+     "fit": "fill",
+     "id": "e4",
+     "recW": 1320,
+     "recH": 777
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 278,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-first dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-chart-bar\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M3 13a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -6\"></path>\n  <path d=\"M15 9a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -10\"></path>\n  <path d=\"M9 5a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -14\"></path>\n  <path d=\"M4 20h14\"></path>\n</svg></div><h3>모델 분석</h3><p>풍하중 최상층 변위·지진 층간변위비, 부재 DCR 분포, 골조 물량과 공사비를 한 화면에서 검토합니다.</p></div>",
+     "id": "e5"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 389.1,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-settings-2\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M19.875 6.27a2.225 2.225 0 0 1 1.125 1.948v7.284c0 .809 -.443 1.555 -1.158 1.948l-6.75 4.27a2.269 2.269 0 0 1 -2.184 0l-6.75 -4.27a2.225 2.225 0 0 1 -1.158 -1.948v-7.285c0 -.809 .443 -1.554 1.158 -1.947l6.75 -3.98a2.33 2.33 0 0 1 2.25 0l6.75 3.98h-.033\"></path>\n  <path d=\"M9 12a3 3 0 1 0 6 0a3 3 0 1 0 -6 0\"></path>\n</svg></div><h3>최적화 계획</h3><p>단면별로 증대·축소·분리·유지 조치와 규칙을 정합니다. 그룹 배근을 키우는 부재와 분리안을 진단해 보여 줍니다.</p></div>",
+     "id": "e6"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 500.1,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-settings-automation\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065\"></path>\n  <path d=\"M10 9v6l5 -3l-5 -3\"></path>\n</svg></div><h3>작업 사본에서 실행</h3><p>모델은 그대로 두고 작업 사본에서 반복 재해석(Run)합니다. 모델은 결과 단계의 Apply로만 바뀝니다.</p></div>",
+     "id": "e7"
+    }
+   ]
+  },
+  {
+   "id": "designopt-result",
+   "name": "최적화 결과 — 비교·적용·보고서",
+   "cls": "slide screen",
+   "foot": [
+    72,
+    844,
+    1456,
+    18
+   ],
+   "els": [
+    {
+     "type": "text",
+     "x": 72,
+     "y": 44,
+     "w": 1457,
+     "h": 44,
+     "html": "<header><div class=\"brand\">STRIX<span>.</span></div><div class=\"chapter\">06 부재 설계와 최적화</div></header>",
+     "id": "e1"
+    },
+    {
+     "type": "text",
+     "x": 72,
+     "y": 132,
+     "w": 1400,
+     "h": 65,
+     "html": "<h2 class=\"title\">최적화 결과 — 비교·적용·보고서</h2>",
+     "id": "e2"
+    },
+    {
+     "type": "text",
+     "x": 72,
+     "y": 216,
+     "w": 1400,
+     "h": 37,
+     "html": "<p class=\"lead\">최적화안의 단면 변경·DCR 분포·물량 변화를 비교하고, 모델에 적용하거나 보고서로 냅니다.</p>",
+     "id": "e3"
+    },
+    {
+     "type": "image",
+     "x": 64,
+     "y": 278,
+     "w": 900,
+     "h": 480.3,
+     "slot": "live-designopt-result",
+     "cls": "visual",
+     "frame": "fixed",
+     "bare": true,
+     "fit": "fill",
+     "id": "e4",
+     "recW": 1456,
+     "recH": 777
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 278,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-first dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-list-details\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M13 5h8\"></path>\n  <path d=\"M13 9h5\"></path>\n  <path d=\"M13 15h8\"></path>\n  <path d=\"M13 19h5\"></path>\n  <path d=\"M3 5a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -4\"></path>\n  <path d=\"M3 15a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -4\"></path>\n</svg></div><h3>변경 내역</h3><p>단면별 현재·최적화 단면, 부재 수, DCR, 물량 변화를 표와 입면에서 확인합니다.</p></div>",
+     "id": "e5"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 389.1,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-history\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M12 8l0 4l2 2\"></path>\n  <path d=\"M3.05 11a9 9 0 1 1 .5 4m-.5 5v-5h5\"></path>\n</svg></div><h3>DCR 분포와 반복 이력</h3><p>최적화 전후 DCR 분포와 반복 재해석 이력을 비교하고, 더 진행하지 못한 이유를 함께 보여 줍니다.</p></div>",
+     "id": "e6"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 500.1,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-file-export\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M14 3v4a1 1 0 0 0 1 1h4\"></path>\n  <path d=\"M11.5 21h-4.5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v5m-5 6h7m-3 -3l3 3l-3 3\"></path>\n</svg></div><h3>적용과 보고서</h3><p>고른 변경만 Apply로 모델에 반영하고 비교 보고서를 냅니다. RC 보·기둥과 철골 부재를 지원합니다.</p></div>",
+     "id": "e7"
+    }
+   ]
+  },
+  {
    "id": "14",
    "name": "설계 결과 시각화",
    "cls": "slide screen",
@@ -4402,9 +5797,9 @@ window.__DECK__ = {
      "type": "text",
      "x": 72,
      "y": 462,
-     "w": 273,
+     "w": 620,
      "h": 36,
-     "html": "<p class=\"lead\">슬래브 · 기초 · 전이부 · 단위부재</p>",
+     "html": "<p class=\"lead\">슬래브·무량판 · 기초 · 전이부 · 단위부재</p>",
      "id": "e3"
     },
     {
@@ -4442,9 +5837,91 @@ window.__DECK__ = {
      "type": "text",
      "x": 64,
      "y": 606,
-     "w": 621,
+     "w": 960,
      "h": 152.5,
-     "html": "<div class=\"divider-subtopics\"><a href=\"#16\" data-go=\"16\" data-slide=\"53\">슬래브 해석 및 배근 설계</a><a href=\"#footing\" data-go=\"footing\" data-slide=\"54\">독립기초 설계</a><a href=\"#17\" data-go=\"17\" data-slide=\"55\">매트기초 해석 및 설계</a><a href=\"#pile\" data-go=\"pile\" data-slide=\"56\">파일기초 설계</a><a href=\"#18\" data-go=\"18\" data-slide=\"57\">Transfer Detail</a><a href=\"#19\" data-go=\"19\" data-slide=\"58\">DesignPad — RC 단위부재 설계</a><a href=\"#pad-steel\" data-go=\"pad-steel\" data-slide=\"59\">DesignPad — 강구조 및 접합부</a><a href=\"#pad-pc\" data-go=\"pad-pc\" data-slide=\"60\">DesignPad — PC·PSC 및 기타 검토</a><a href=\"#20\" data-go=\"20\" data-slide=\"61\">비구조요소 내진검토</a><a href=\"#anchor\" data-go=\"anchor\" data-slide=\"62\">콘크리트 앵커 설계</a></div>",
+     "html": "<div class=\"divider-subtopics\"><a href=\"#meshedslab\" data-go=\"meshedslab\" data-slide=\"67\">Meshed Slab</a><a href=\"#16\" data-go=\"16\" data-slide=\"68\">슬래브 배근 설계</a><a href=\"#flatplate\" data-go=\"flatplate\" data-slide=\"69\">무량판 뚫림전단 검토</a><a href=\"#footing\" data-go=\"footing\" data-slide=\"70\">독립기초 설계</a><a href=\"#17\" data-go=\"17\" data-slide=\"71\">매트기초 해석 및 설계</a><a href=\"#pile\" data-go=\"pile\" data-slide=\"72\">파일기초 설계</a><a href=\"#18\" data-go=\"18\" data-slide=\"73\">Transfer Detail</a><a href=\"#19\" data-go=\"19\" data-slide=\"74\">DesignPad — RC 단위부재 설계</a><a href=\"#pad-steel\" data-go=\"pad-steel\" data-slide=\"75\">DesignPad — 강구조 및 접합부</a><a href=\"#pad-pc\" data-go=\"pad-pc\" data-slide=\"76\">DesignPad — PC·PSC 및 기타 검토</a><a href=\"#20\" data-go=\"20\" data-slide=\"77\">비구조요소 내진검토</a><a href=\"#anchor\" data-go=\"anchor\" data-slide=\"78\">콘크리트 앵커 설계</a></div>",
+     "id": "e7"
+    }
+   ]
+  },
+  {
+   "id": "meshedslab",
+   "name": "Meshed Slab — 슬래브 판 모델링 작업공간",
+   "cls": "slide screen",
+   "foot": [
+    72,
+    844,
+    1456,
+    18
+   ],
+   "els": [
+    {
+     "type": "text",
+     "x": 72,
+     "y": 44,
+     "w": 1457,
+     "h": 44,
+     "html": "<header><div class=\"brand\">STRIX<span>.</span></div><div class=\"chapter\">07 슬래브·기초·상세 설계</div></header>",
+     "id": "e1"
+    },
+    {
+     "type": "text",
+     "x": 72,
+     "y": 132,
+     "w": 1400,
+     "h": 65,
+     "html": "<h2 class=\"title\">Meshed Slab — 슬래브 판 모델링 작업공간</h2>",
+     "id": "e2"
+    },
+    {
+     "type": "text",
+     "x": 72,
+     "y": 216,
+     "w": 1400,
+     "h": 37,
+     "html": "<p class=\"lead\">한 층의 슬래브를 판으로 그려 여러 층에 보내고, 벽과 함께 본해석으로 풉니다.</p>",
+     "id": "e3"
+    },
+    {
+     "type": "image",
+     "x": 64,
+     "y": 278,
+     "w": 900,
+     "h": 506.3,
+     "slot": "live-meshedslab",
+     "cls": "visual",
+     "frame": "fixed",
+     "bare": true,
+     "fit": "fill",
+     "id": "e4",
+     "recW": 1920,
+     "recH": 1080
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 278,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-first dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-pencil\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4\"></path>\n  <path d=\"M13.5 6.5l4 4\"></path>\n</svg></div><h3>슬래브 작도</h3><p>도메인·개구부·두께 구역·면하중·조적 선하중을 케이스마다 한 층 단위로 그립니다.</p></div>",
+     "id": "e5"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 389.1,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-copy-check\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M7 9.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667l0 -8.666\"></path>\n  <path d=\"M4.012 16.737a2 2 0 0 1 -1.012 -1.737v-10c0 -1.1 .9 -2 2 -2h10c.75 0 1.158 .385 1.5 1\"></path>\n  <path d=\"M11 14l2 2l4 -4\"></path>\n</svg></div><h3>Send to Model</h3><p>같은 슬래브를 여러 층에 판으로 보냅니다. 판 이름은 케이스-층으로 붙습니다.</p></div>",
+     "id": "e6"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 500.1,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-chart-histogram\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M3 3v18h18\"></path>\n  <path d=\"M20 18v3\"></path>\n  <path d=\"M16 16v5\"></path>\n  <path d=\"M12 13v8\"></path>\n  <path d=\"M8 16v5\"></path>\n  <path d=\"M3 11c6 0 5 -5 9 -5s3 5 9 5\"></path>\n</svg></div><h3>본해석과 결과</h3><p>판해석을 따로 하지 않고 본해석에 포함합니다. 부재력과 배근은 Plate Results에서 확인합니다.</p></div>",
      "id": "e7"
     }
    ]
@@ -4526,6 +6003,97 @@ window.__DECK__ = {
      "h": 111.1,
      "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-list-check\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M3.5 5.5l1.5 1.5l2.5 -2.5\"></path>\n  <path d=\"M3.5 11.5l1.5 1.5l2.5 -2.5\"></path>\n  <path d=\"M3.5 17.5l1.5 1.5l2.5 -2.5\"></path>\n  <path d=\"M11 6l9 0\"></path>\n  <path d=\"M11 12l9 0\"></path>\n  <path d=\"M11 18l9 0\"></path>\n</svg></div><h3>설계 성과품 활용</h3><p>검토한 부재 정보와 배근 결과를 도면·물량 작성에 활용합니다. 지원 형식과 모듈별 적용 조건을 확인합니다.</p></div>",
      "id": "e7"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 611.2,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-geometry\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M7 21l4 -12m2 0l1.48 4.439m.949 2.847l1.571 4.714\"></path>\n  <path d=\"M10 7a2 2 0 1 0 4 0a2 2 0 1 0 -4 0\"></path>\n  <path d=\"M4 12c1.526 2.955 4.588 5 8 5c3.41 0 6.473 -2.048 8 -5\"></path>\n  <path d=\"M12 5v-2\"></path>\n</svg></div><h3>층 선택·경사 판 결과</h3><p>층을 골라 그 층만 설계하고 KDS 계수표와 순경간을 적용합니다. Plate Results는 경사·수직 판을 지원합니다.</p></div>",
+     "id": "e8"
+    }
+   ]
+  },
+  {
+   "id": "flatplate",
+   "name": "무량판 뚫림전단 검토",
+   "cls": "slide screen",
+   "foot": [
+    72,
+    844,
+    1456,
+    18
+   ],
+   "els": [
+    {
+     "type": "text",
+     "x": 72,
+     "y": 44,
+     "w": 1457,
+     "h": 44,
+     "html": "<header><div class=\"brand\">STRIX<span>.</span></div><div class=\"chapter\">07 슬래브·기초·상세 설계</div></header>",
+     "id": "e1"
+    },
+    {
+     "type": "text",
+     "x": 72,
+     "y": 132,
+     "w": 1400,
+     "h": 65,
+     "html": "<h2 class=\"title\">무량판 뚫림전단 검토</h2>",
+     "id": "e2"
+    },
+    {
+     "type": "text",
+     "x": 72,
+     "y": 216,
+     "w": 1400,
+     "h": 37,
+     "html": "<p class=\"lead\">판 슬래브를 지지하는 기둥마다 2방향 전단과 편심전단을 함께 검토합니다.</p>",
+     "id": "e3"
+    },
+    {
+     "type": "image",
+     "x": 64,
+     "y": 278,
+     "w": 900,
+     "h": 406.5,
+     "slot": "live-flatplate",
+     "cls": "visual",
+     "frame": "fixed",
+     "bare": true,
+     "fit": "fill",
+     "id": "e4",
+     "recW": 1240,
+     "recH": 560
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 278,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-first dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-crosshair\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M4 8v-2a2 2 0 0 1 2 -2h2\"></path>\n  <path d=\"M4 16v2a2 2 0 0 0 2 2h2\"></path>\n  <path d=\"M16 4h2a2 2 0 0 1 2 2v2\"></path>\n  <path d=\"M16 20h2a2 2 0 0 0 2 -2v-2\"></path>\n  <path d=\"M9 12l6 0\"></path>\n  <path d=\"M12 9l0 6\"></path>\n</svg></div><h3>2방향·편심전단</h3><p>KDS 14 20 22 4.11.2의 2방향 전단과, 기둥이 판에 모멘트를 넘기면 4.11.7의 편심전단을 함께 검토합니다.</p></div>",
+     "id": "e5"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 389.1,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-focus\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M11.5 12a.5 .5 0 1 0 1 0a.5 .5 0 1 0 -1 0\" fill=\"currentColor\"></path>\n  <path d=\"M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0\"></path>\n</svg></div><h3>위험단면 자동 판정</h3><p>기둥 위치에 따라 내부·가장자리·모서리를 구분하고, 개구부에 따른 위험단면 감소를 반영합니다. 최소두께도 검토합니다.</p></div>",
+     "id": "e6"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 500.1,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-tool\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M7 10h3v-3l-3.5 -3.5a6 6 0 0 1 8 8l6 6a2 2 0 0 1 -3 3l-6 -6a6 6 0 0 1 -8 -8l3.5 3.5\"></path>\n</svg></div><h3>보강안 제시</h3><p>NG 기둥에는 슬래브 두께 증가·전단 스터드·스터럽 보강안을 제시하고 DesignPad로 엽니다.</p></div>",
+     "id": "e7"
     }
    ]
   },
@@ -4606,6 +6174,15 @@ window.__DECK__ = {
      "h": 111.1,
      "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-ruler-measure\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M19.875 12c.621 0 1.125 .512 1.125 1.143v5.714c0 .631 -.504 1.143 -1.125 1.143h-15.875a1 1 0 0 1 -1 -1v-5.857c0 -.631 .504 -1.143 1.125 -1.143h15.75\"></path>\n  <path d=\"M9 12v2\"></path>\n  <path d=\"M6 12v3\"></path>\n  <path d=\"M12 12v3\"></path>\n  <path d=\"M18 12v3\"></path>\n  <path d=\"M15 12v2\"></path>\n  <path d=\"M3 3v4\"></path>\n  <path d=\"M3 5h18\"></path>\n  <path d=\"M21 3v4\"></path>\n</svg></div><h3>상부구조와의 연계</h3><p>상부구조 반력을 기초 설계에 활용합니다. 기둥·벽체와 기초의 지지조건을 일관되게 검토합니다.</p></div>",
      "id": "e7"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 611.2,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-crosshair\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M4 8v-2a2 2 0 0 1 2 -2h2\"></path>\n  <path d=\"M4 16v2a2 2 0 0 0 2 2h2\"></path>\n  <path d=\"M16 4h2a2 2 0 0 1 2 2v2\"></path>\n  <path d=\"M16 20h2a2 2 0 0 0 2 -2v-2\"></path>\n  <path d=\"M9 12l6 0\"></path>\n  <path d=\"M12 9l0 6\"></path>\n</svg></div><h3>평면 형태·2방향 전단</h3><p>정사각형·기둥 비율 평면을 고르고, 2방향 전단을 현행 KDS 14 20 22 4.11.2 식으로 검토합니다. 추천 배근을 제시합니다.</p></div>",
+     "id": "e8"
     }
    ]
   },
@@ -4686,6 +6263,15 @@ window.__DECK__ = {
      "h": 111.1,
      "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-tool\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M7 10h3v-3l-3.5 -3.5a6 6 0 0 1 8 8l6 6a2 2 0 0 1 -3 3l-6 -6a6 6 0 0 1 -8 -8l3.5 3.5\"></path>\n</svg></div><h3>영역별 설계 검토</h3><p>판 결과를 바탕으로 기초 설계를 검토합니다. 지반·지지조건의 가정과 배근 조건을 함께 확인합니다.</p></div>",
      "id": "e7"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 611.2,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-table\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M3 5a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-14\"></path>\n  <path d=\"M3 10h18\"></path>\n  <path d=\"M10 3v18\"></path>\n</svg></div><h3>설계대·지지력 판정</h3><p>주열대·중간대 설계대로 배근하고, 허용지지력 판정과 들뜸 절점을 표시합니다. 기둥 펀칭은 편심전단을 함께 봅니다.</p></div>",
+     "id": "e8"
     }
    ]
   },
@@ -4766,6 +6352,15 @@ window.__DECK__ = {
      "h": 111.1,
      "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-table\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M3 5a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-14\"></path>\n  <path d=\"M3 10h18\"></path>\n  <path d=\"M10 3v18\"></path>\n</svg></div><h3>기초 설계 검토</h3><p>파일 반력과 기초의 부재력을 바탕으로 설계를 검토합니다. 파일 및 지반의 적용 조건을 함께 확인합니다.</p></div>",
      "id": "e7"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 611.2,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-settings-automation\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065\"></path>\n  <path d=\"M10 9v6l5 -3l-5 -3\"></path>\n</svg></div><h3>반복 배치·인발 검토</h3><p>판해석을 반복하며 말뚝을 더하고 줄이는 Auto Place 반복 배치와, 허용인발력에 대한 말뚝 인발 검토를 지원합니다.</p></div>",
+     "id": "e8"
     }
    ]
   },
@@ -4846,6 +6441,15 @@ window.__DECK__ = {
      "h": 111.1,
      "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-geometry\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M7 21l4 -12m2 0l1.48 4.439m.949 2.847l1.571 4.714\"></path>\n  <path d=\"M10 7a2 2 0 1 0 4 0a2 2 0 1 0 -4 0\"></path>\n  <path d=\"M4 12c1.526 2.955 4.588 5 8 5c3.41 0 6.473 -2.048 8 -5\"></path>\n  <path d=\"M12 5v-2\"></path>\n</svg></div><h3>배근 및 STM 검토</h3><p>일반 구간의 배근과 D영역의 스트럿-타이 모델을 검토합니다. 입력 가정과 상세 조건에 따라 결과를 확인합니다.</p></div>",
      "id": "e7"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 611.2,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-rotate\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M19.95 11a8 8 0 1 0 -.5 4m.5 5v-5h-5\"></path>\n</svg></div><h3>D영역 상세해석·비틀림</h3><p>D영역 주근 산정 기준을 상세해석(응력장)·STM 중에서 고르고, 벽 편심을 입력하면 전이보 비틀림을 검토합니다.</p></div>",
+     "id": "e8"
     }
    ]
   },
@@ -5232,6 +6836,15 @@ window.__DECK__ = {
      "h": 111.1,
      "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-report\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M8 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h5.697\"></path>\n  <path d=\"M18 14v4h4\"></path>\n  <path d=\"M18 11v-4a2 2 0 0 0 -2 -2h-2\"></path>\n  <path d=\"M8 5a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2\"></path>\n  <path d=\"M14 18a4 4 0 1 0 8 0a4 4 0 1 0 -8 0\"></path>\n  <path d=\"M8 11h4\"></path>\n  <path d=\"M8 15h3\"></path>\n</svg></div><h3>검토 근거 정리</h3><p>입력조건과 적용 근거, 검토 결과를 계산서로 정리합니다. 정착부의 검토와 연계해 활용합니다.</p></div>",
      "id": "e7"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 611.2,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-circuit-ground\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M12 13v-8\"></path>\n  <path d=\"M4 13h16\"></path>\n  <path d=\"M7 16h10\"></path>\n  <path d=\"M10 19h4\"></path>\n</svg></div><h3>상세 입력·앵커 연결</h3><p>세부유형별 상세 입력 창을 두고, 장비의 Fp·Fpv를 연결된 앵커 그룹의 하중으로 넘깁니다.</p></div>",
+     "id": "e8"
     }
    ]
   },
@@ -5384,8 +6997,8 @@ window.__DECK__ = {
      "x": 64,
      "y": 606,
      "w": 621,
-     "h": 152.5,
-     "html": "<div class=\"divider-subtopics\"><a href=\"#mfactor\" data-go=\"mfactor\" data-slide=\"64\">m계수 기반 내진성능평가</a><a href=\"#fiber\" data-go=\"fiber\" data-slide=\"65\">기둥·벽체 파이버 단면</a><a href=\"#21\" data-go=\"21\" data-slide=\"66\">Pushover</a><a href=\"#22\" data-go=\"22\" data-slide=\"67\">지진파 스케일링 및 매칭</a><a href=\"#23\" data-go=\"23\" data-slide=\"68\">THA 멀티병렬해석</a><a href=\"#24\" data-go=\"24\" data-slide=\"69\">힌지 이력 및 에너지 균형 검토</a><a href=\"#damper\" data-go=\"damper\" data-slide=\"70\">Damper Device</a><a href=\"#pbsd\" data-go=\"pbsd\" data-slide=\"71\">PBSD</a><a href=\"#performance\" data-go=\"performance\" data-slide=\"72\">시간이력해석 성능지표 검토</a></div>",
+     "h": 112,
+     "html": "<div class=\"divider-subtopics\"><a href=\"#mfactor\" data-go=\"mfactor\" data-slide=\"80\">m계수 기반 내진성능평가</a><a href=\"#fiber\" data-go=\"fiber\" data-slide=\"81\">기둥·벽체 파이버 단면</a><a href=\"#damper\" data-go=\"damper\" data-slide=\"82\">Damper Device</a><a href=\"#21\" data-go=\"21\" data-slide=\"83\">Pushover</a><a href=\"#22\" data-go=\"22\" data-slide=\"84\">지진파 스케일링 및 매칭</a><a href=\"#23\" data-go=\"23\" data-slide=\"85\">THA 멀티병렬해석</a><a href=\"#24\" data-go=\"24\" data-slide=\"86\">힌지 이력 및 에너지 균형 검토</a><a href=\"#pbsd\" data-go=\"pbsd\" data-slide=\"87\">PBSD</a><a href=\"#performance\" data-go=\"performance\" data-slide=\"88\">시간이력해석 성능지표 검토</a></div>",
      "id": "e7"
     }
    ]
@@ -5467,6 +7080,15 @@ window.__DECK__ = {
      "h": 111.1,
      "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-chart-bar\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M3 13a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -6\"></path>\n  <path d=\"M15 9a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -10\"></path>\n  <path d=\"M9 5a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -14\"></path>\n  <path d=\"M4 20h14\"></path>\n</svg></div><h3>후속 평가 활용</h3><p>평가 결과를 바탕으로 모델과 부재조건을 재검토합니다. 필요에 따라 비선형 정적해석 등 추가 평가를 수행합니다.</p></div>",
      "id": "e7"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 611.2,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-report\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M8 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h5.697\"></path>\n  <path d=\"M18 14v4h4\"></path>\n  <path d=\"M18 11v-4a2 2 0 0 0 -2 -2h-2\"></path>\n  <path d=\"M8 5a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2\"></path>\n  <path d=\"M14 18a4 4 0 1 0 8 0a4 4 0 1 0 -8 0\"></path>\n  <path d=\"M8 11h4\"></path>\n  <path d=\"M8 15h3\"></path>\n</svg></div><h3>KALIS 2025 해설서 기준</h3><p>평가 근거를 KALIS 내진성능평가 세부지침 해설서(2025.1)로 맞추고, 얕은기초 판정과 RC 벽 층별 상세 계산서를 제공합니다.</p></div>",
+     "id": "e8"
     }
    ]
   },
@@ -5707,6 +7329,15 @@ window.__DECK__ = {
      "h": 111.1,
      "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-focus\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M11.5 12a.5 .5 0 1 0 1 0a.5 .5 0 1 0 -1 0\" fill=\"currentColor\"></path>\n  <path d=\"M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0\"></path>\n</svg></div><h3>성능평가 검토</h3><p>적용 기준에 따라 성능 관련 결과를 확인합니다. 목표 성능과 모델 가정을 함께 검토해 평가에 활용합니다.</p></div>",
      "id": "e7"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 611.2,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-chart-line\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M4 19l16 0\"></path>\n  <path d=\"M4 15l4 -6l4 2l4 -5l4 4\"></path>\n</svg></div><h3>계산식 보완</h3><p>기둥 항복모멘트를 해당 축력에서 산정하고, 기준 모드를 푸시오버 모델의 고유치로 정합니다.</p></div>",
+     "id": "e8"
     }
    ]
   },
@@ -6180,7 +7811,7 @@ window.__DECK__ = {
      "y": 606,
      "w": 621,
      "h": 31,
-     "html": "<div class=\"divider-subtopics\"><a href=\"#25\" data-go=\"25\" data-slide=\"74\">Floor Vibration</a><a href=\"#26\" data-go=\"26\" data-slide=\"75\">계측 진동자료 분석</a><a href=\"#27\" data-go=\"27\" data-slide=\"76\">수화열 해석</a></div>",
+     "html": "<div class=\"divider-subtopics\"><a href=\"#25\" data-go=\"25\" data-slide=\"90\">Floor Vibration</a><a href=\"#26\" data-go=\"26\" data-slide=\"91\">계측 진동자료 분석</a><a href=\"#27\" data-go=\"27\" data-slide=\"92\">수화열 해석</a></div>",
      "id": "e7"
     }
    ]
@@ -6453,9 +8084,9 @@ window.__DECK__ = {
      "type": "text",
      "x": 72,
      "y": 462,
-     "w": 220,
+     "w": 620,
      "h": 36,
-     "html": "<p class=\"lead\">물량 · 구조도 · 구조계산서</p>",
+     "html": "<p class=\"lead\">구조도 · 구조계산서 · 확인서 · 물량</p>",
      "id": "e3"
     },
     {
@@ -6495,7 +8126,7 @@ window.__DECK__ = {
      "y": 606,
      "w": 621,
      "h": 71.5,
-     "html": "<div class=\"divider-subtopics\"><a href=\"#29\" data-go=\"29\" data-slide=\"78\">구조도 작성 및 DXF 출력</a><a href=\"#30\" data-go=\"30\" data-slide=\"79\">구조계산서 자동작성 및 편집</a><a href=\"#cost\" data-go=\"cost\" data-slide=\"80\">구조 물량 기반 공사비 검토</a></div>",
+     "html": "<div class=\"divider-subtopics\"><a href=\"#29\" data-go=\"29\" data-slide=\"94\">구조도 작성 및 DXF 출력</a><a href=\"#30\" data-go=\"30\" data-slide=\"95\">구조계산서 자동작성 및 편집</a><a href=\"#confirm\" data-go=\"confirm\" data-slide=\"96\">구조안전 및 내진설계 확인서</a><a href=\"#cost\" data-go=\"cost\" data-slide=\"97\">구조 물량 기반 공사비 검토</a></div>",
      "id": "e7"
     }
    ]
@@ -6577,6 +8208,15 @@ window.__DECK__ = {
      "h": 111.1,
      "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-file-export\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M14 3v4a1 1 0 0 0 1 1h4\"></path>\n  <path d=\"M11.5 21h-4.5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v5m-5 6h7m-3 -3l3 3l-3 3\"></path>\n</svg></div><h3>CAD 후속 작업</h3><p>생성한 도면을 DXF로 출력해 검토·보완합니다. 최종 제출 도면에 필요한 상세와 표기를 확인합니다.</p></div>",
      "id": "e7"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 611.2,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-ruler-measure\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M19.875 12c.621 0 1.125 .512 1.125 1.143v5.714c0 .631 -.504 1.143 -1.125 1.143h-15.875a1 1 0 0 1 -1 -1v-5.857c0 -.631 .504 -1.143 1.125 -1.143h15.75\"></path>\n  <path d=\"M9 12v2\"></path>\n  <path d=\"M6 12v3\"></path>\n  <path d=\"M12 12v3\"></path>\n  <path d=\"M18 12v3\"></path>\n  <path d=\"M15 12v2\"></path>\n  <path d=\"M3 3v4\"></path>\n  <path d=\"M3 5h18\"></path>\n  <path d=\"M21 3v4\"></path>\n</svg></div><h3>일람표·기초평면도</h3><p>슬래브·독립기초 일람표와 매트·파일 기초판을 포함한 기초평면도를 만들고, 창 설정을 저장합니다.</p></div>",
+     "id": "e8"
     }
    ]
   },
@@ -6656,6 +8296,97 @@ window.__DECK__ = {
      "w": 532,
      "h": 111.1,
      "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-file-type-pdf\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M14 3v4a1 1 0 0 0 1 1h4\"></path>\n  <path d=\"M5 12v-7a2 2 0 0 1 2 -2h7l5 5v4\"></path>\n  <path d=\"M5 18h1.5a1.5 1.5 0 0 0 0 -3h-1.5v6\"></path>\n  <path d=\"M17 18h2\"></path>\n  <path d=\"M20 15h-3v6\"></path>\n  <path d=\"M11 15v6h1a2 2 0 0 0 2 -2v-2a2 2 0 0 0 -2 -2h-1\"></path>\n</svg></div><h3>PDF 출력</h3><p>내용과 적용 조건을 검토한 후 PDF로 저장합니다. 제출 및 협의에 필요한 구조계산서 작성에 활용합니다.</p></div>",
+     "id": "e7"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 611.2,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-settings-2\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M19.875 6.27a2.225 2.225 0 0 1 1.125 1.948v7.284c0 .809 -.443 1.555 -1.158 1.948l-6.75 4.27a2.269 2.269 0 0 1 -2.184 0l-6.75 -4.27a2.225 2.225 0 0 1 -1.158 -1.948v-7.285c0 -.809 .443 -1.554 1.158 -1.947l6.75 -3.98a2.33 2.33 0 0 1 2.25 0l6.75 3.98h-.033\"></path>\n  <path d=\"M9 12a3 3 0 1 0 6 0a3 3 0 1 0 -6 0\"></path>\n</svg></div><h3>Page Setup·자동 장</h3><p>머리말·꼬리말·쪽번호를 정하고, 구조평면도·배근 일람표·3D 모델·바닥하중도·슬래브·기초·접합부 장을 자동으로 구성합니다.</p></div>",
+     "id": "e8"
+    }
+   ]
+  },
+  {
+   "id": "confirm",
+   "name": "구조안전 및 내진설계 확인서",
+   "cls": "slide screen",
+   "foot": [
+    72,
+    844,
+    1456,
+    18
+   ],
+   "els": [
+    {
+     "type": "text",
+     "x": 72,
+     "y": 44,
+     "w": 1457,
+     "h": 44,
+     "html": "<header><div class=\"brand\">STRIX<span>.</span></div><div class=\"chapter\">10 설계 성과품</div></header>",
+     "id": "e1"
+    },
+    {
+     "type": "text",
+     "x": 72,
+     "y": 132,
+     "w": 1400,
+     "h": 65,
+     "html": "<h2 class=\"title\">구조안전 및 내진설계 확인서</h2>",
+     "id": "e2"
+    },
+    {
+     "type": "text",
+     "x": 72,
+     "y": 216,
+     "w": 1400,
+     "h": 37,
+     "html": "<p class=\"lead\">법정 서식 별지 제1호·제2호 확인서를 모델과 해석결과의 값으로 채워 PDF로 저장합니다.</p>",
+     "id": "e3"
+    },
+    {
+     "type": "image",
+     "x": 80.4,
+     "y": 278,
+     "w": 867.2,
+     "h": 545.5,
+     "slot": "live-confirm",
+     "cls": "visual",
+     "frame": "fixed",
+     "bare": true,
+     "fit": "fill",
+     "id": "e4",
+     "recW": 1240,
+     "recH": 780
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 278,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-first dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-file-import\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M14 3v4a1 1 0 0 0 1 1h4\"></path>\n  <path d=\"M5 13v-8a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2h-5.5m-9.5 -2h7m-3 -3l3 3l-3 3\"></path>\n</svg></div><h3>모델에서 값을 읽음</h3><p>지역계수·중요도·층수·지반·풍하중·지진하중·층간변위·고유치 값을 계산서와 같은 원천에서 읽습니다.</p></div>",
+     "id": "e5"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 389.1,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-ruler-measure\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M19.875 12c.621 0 1.125 .512 1.125 1.143v5.714c0 .631 -.504 1.143 -1.125 1.143h-15.875a1 1 0 0 1 -1 -1v-5.857c0 -.631 .504 -1.143 1.125 -1.143h15.75\"></path>\n  <path d=\"M9 12v2\"></path>\n  <path d=\"M6 12v3\"></path>\n  <path d=\"M12 12v3\"></path>\n  <path d=\"M18 12v3\"></path>\n  <path d=\"M15 12v2\"></path>\n  <path d=\"M3 3v4\"></path>\n  <path d=\"M3 5h18\"></path>\n  <path d=\"M21 3v4\"></path>\n</svg></div><h3>서식 단위 환산</h3><p>단위가 인쇄된 칸(t/m²·ton·m 등)은 서식 단위로 환산하고, 고친 칸은 표시해 모델 값과 구분합니다.</p></div>",
+     "id": "e6"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 500.1,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-file-type-pdf\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M14 3v4a1 1 0 0 0 1 1h4\"></path>\n  <path d=\"M5 12v-7a2 2 0 0 1 2 -2h7l5 5v4\"></path>\n  <path d=\"M5 18h1.5a1.5 1.5 0 0 0 0 -3h-1.5v6\"></path>\n  <path d=\"M17 18h2\"></path>\n  <path d=\"M20 15h-3v6\"></path>\n  <path d=\"M11 15v6h1a2 2 0 0 0 2 -2v-2a2 2 0 0 0 -2 -2h-1\"></path>\n</svg></div><h3>공식 서식 PDF</h3><p>미리보기는 저장될 PDF와 같으며, 값을 누르면 해당 입력칸으로 이동합니다.</p></div>",
      "id": "e7"
     }
    ]
@@ -6810,7 +8541,7 @@ window.__DECK__ = {
      "y": 606,
      "w": 621,
      "h": 152.5,
-     "html": "<div class=\"divider-subtopics\"><a href=\"#31\" data-go=\"31\" data-slide=\"82\">해석 및 설계 검증</a><a href=\"#verify-overview\" data-go=\"verify-overview\" data-slide=\"83\">결과의 신뢰성을 확보하는 네 가지 방법</a><a href=\"#verify-summary\" data-go=\"verify-summary\" data-slide=\"84\">국제 벤치마크 21건</a><a href=\"#verify-ex-sb2\" data-go=\"verify-ex-sb2\" data-slide=\"85\">SB2 · NAFEMS LE1 타원 막판</a><a href=\"#verify-ex-sb5\" data-go=\"verify-ex-sb5\" data-slide=\"86\">SB5 · 직사각형 판 휨</a><a href=\"#verify-ex-p3s2\" data-go=\"verify-ex-p3s2\" data-slide=\"87\">P3S2 · 자체 안정화 파라미터 민감도</a><a href=\"#verify-static\" data-go=\"verify-static\" data-slide=\"88\">요소 벤치마크 11건</a><a href=\"#verify-dynamic\" data-go=\"verify-dynamic\" data-slide=\"89\">해석·비선형·안정화 10건</a><a href=\"#verify-cross\" data-go=\"verify-cross\" data-slide=\"90\">상용 프로그램 교차검증</a></div>",
+     "html": "<div class=\"divider-subtopics\"><a href=\"#verify-overview\" data-go=\"verify-overview\" data-slide=\"99\">결과의 신뢰성을 확보하는 네 가지 방법</a><a href=\"#verify-summary\" data-go=\"verify-summary\" data-slide=\"100\">국제 벤치마크 21건</a><a href=\"#verify-ex-sb2\" data-go=\"verify-ex-sb2\" data-slide=\"101\">SB2 · NAFEMS LE1 타원 막판</a><a href=\"#verify-ex-sb5\" data-go=\"verify-ex-sb5\" data-slide=\"102\">SB5 · 직사각형 판 휨</a><a href=\"#verify-ex-p3s2\" data-go=\"verify-ex-p3s2\" data-slide=\"103\">P3S2 · 자체 안정화 파라미터 민감도</a><a href=\"#verify-static\" data-go=\"verify-static\" data-slide=\"104\">요소 벤치마크 11건</a><a href=\"#verify-dynamic\" data-go=\"verify-dynamic\" data-slide=\"105\">해석·비선형·안정화 10건</a><a href=\"#verify-cross\" data-go=\"verify-cross\" data-slide=\"106\">상용 프로그램 교차검증</a></div>",
      "id": "e7"
     }
    ]
@@ -7737,7 +9468,7 @@ window.__DECK__ = {
      "w": 621,
      "h": 152.5,
      "type": "text",
-     "html": "<div class=\"divider-subtopics\"><a href=\"#A01\" data-go=\"A01\" data-slide=\"93\">모델링과 작업 환경</a><a href=\"#A02\" data-go=\"A02\" data-slide=\"94\">하중 입력과 자동산정</a><a href=\"#A03\" data-go=\"A03\" data-slide=\"95\">해석 지원 범위</a><a href=\"#A04\" data-go=\"A04\" data-slide=\"96\">층·타워·하중 분담</a><a href=\"#A05\" data-go=\"A05\" data-slide=\"97\">설계 후처리와 최적화</a><a href=\"#A06\" data-go=\"A06\" data-slide=\"98\">슬래브·기초·전이부</a><a href=\"#A07\" data-go=\"A07\" data-slide=\"99\">DesignPad 개별 단위부재</a><a href=\"#A08\" data-go=\"A08\" data-slide=\"100\">비구조요소와 정착부</a><a href=\"#A09\" data-go=\"A09\" data-slide=\"101\">내진성능평가와 PBSD</a><a href=\"#A10\" data-go=\"A10\" data-slide=\"102\">진동과 수화열</a><a href=\"#A11\" data-go=\"A11\" data-slide=\"103\">산출물과 언어 지원</a><a href=\"#A12\" data-go=\"A12\" data-slide=\"104\">기술 근거와 자료 안내</a></div>",
+     "html": "<div class=\"divider-subtopics\"><a href=\"#A01\" data-go=\"A01\" data-slide=\"108\">모델링과 작업 환경</a><a href=\"#A02\" data-go=\"A02\" data-slide=\"109\">하중 입력과 자동산정</a><a href=\"#A03\" data-go=\"A03\" data-slide=\"110\">해석 지원 범위</a><a href=\"#A04\" data-go=\"A04\" data-slide=\"111\">층·타워·하중 분담</a><a href=\"#A05\" data-go=\"A05\" data-slide=\"112\">설계 후처리와 최적화</a><a href=\"#A06\" data-go=\"A06\" data-slide=\"113\">슬래브·기초·전이부</a><a href=\"#A07\" data-go=\"A07\" data-slide=\"114\">DesignPad 개별 단위부재</a><a href=\"#A08\" data-go=\"A08\" data-slide=\"115\">비구조요소와 정착부</a><a href=\"#A09\" data-go=\"A09\" data-slide=\"116\">내진성능평가와 PBSD</a><a href=\"#A10\" data-go=\"A10\" data-slide=\"117\">진동과 수화열</a><a href=\"#A11\" data-go=\"A11\" data-slide=\"118\">산출물과 언어 지원</a><a href=\"#A12\" data-go=\"A12\" data-slide=\"119\">기술 근거와 자료 안내</a></div>",
      "id": "e6"
     }
    ]
