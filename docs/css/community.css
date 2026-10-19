@@ -97,13 +97,13 @@
 .cm-admin-h { color: var(--gold); font-weight: var(--fw-sb); font-size: var(--fs-sm); margin-bottom: var(--sp-3); }
 .cm-admin-act, .cm-form-act { display: flex; gap: var(--sp-2); margin-top: var(--sp-3); }
 .cm-fl { display: block; color: var(--text-dim); font-size: var(--fs-cap); margin-bottom: var(--sp-3); }
-.cm-fl input, .cm-fl textarea, .cm-fl select, .cm-cnew textarea {
+.cm-fl input, .cm-fl textarea, .cm-fl select, .cm-cnew textarea, .cm-cedit textarea {
   display: block; width: 100%; margin-top: 4px; font-family: var(--font-ui); font-size: var(--fs-sm);
   color: var(--text); background: var(--bg); border: 1px solid var(--border-strong); border-radius: var(--r-sm);
   padding: 8px 10px; box-sizing: border-box;
 }
-.cm-fl textarea, .cm-cnew textarea { min-height: 120px; resize: vertical; line-height: var(--lh-snug); }
-.cm-fl input:focus, .cm-fl textarea:focus, .cm-fl select:focus, .cm-cnew textarea:focus { outline: none; border-color: var(--border-accent); }
+.cm-fl textarea, .cm-cnew textarea, .cm-cedit textarea { min-height: 120px; resize: vertical; line-height: var(--lh-snug); }
+.cm-fl input:focus, .cm-fl textarea:focus, .cm-fl select:focus, .cm-cnew textarea:focus, .cm-cedit textarea:focus { outline: none; border-color: var(--border-accent); }
 
 /* ── comments ──────────────────────────────────────────────────────────────── */
 .cm-comments { margin-top: var(--sp-6); }

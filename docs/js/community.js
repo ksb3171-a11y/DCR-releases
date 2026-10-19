@@ -40,6 +40,7 @@
   var _curFiles = { post: [], byComment: {} };   // file attachments of the open post
   var _editingPostId = null;                     // compose screen: id when editing
   var _composeKey = null;                        // board|editId the 'post' session belongs to
+  var _editingCommentId = null;                  // detail screen: comment being edited in place
 
   // ── helpers ──────────────────────────────────────────────────────────────────
   function ct(key, fallback) {
@@ -339,6 +340,7 @@
   // ── DETAIL ────────────────────────────────────────────────────────────────────
   function renderDetail(id) {
     cancelRead();
+    if (!_curPost || _curPost.id !== id) _editingCommentId = null;   // 다른 글로 가면 댓글 수정 상태를 버린다
     var el = app(); if (!el) return;
     el.innerHTML = '<div class="cm-empty">' + esc(ct('comm.loading', 'Loading…')) + '</div>';
     if (!window._sb) return;
@@ -399,7 +401,8 @@
         fileListHtml(_curFiles.post) +
         ((mine || admin) ?
           '<div class="cm-owner">' +
-            (mine ? '<button class="cm-link" onclick="STRIX_CM.edit(\'' + p.id + '\')">' + esc(ct('comm.edit', 'Edit')) + '</button>' : '') +
+            // 관리자도 글을 고칠 수 있다(DB: cp_update 정책 · cp_guard_update 가 관리자를 허용 — community_response_devplan.md §6)
+            '<button class="cm-link" onclick="STRIX_CM.edit(\'' + p.id + '\')">' + esc(ct('comm.edit', 'Edit')) + '</button>' +
             '<button class="cm-link danger" onclick="STRIX_CM.del(\'' + p.id + '\')">' + esc(ct('comm.delete', 'Delete')) + '</button>' +
           '</div>' : '') +
       '</article>';
@@ -430,18 +433,31 @@
     } else {
       html += _curComments.map(function (c) {
         var cmine = window._user && window._user.id === c.author_id;
+        // 댓글 수정 — 작성자 본인(본문만)과 관리자. 실제 판정은 DB(cc_update 정책 · cc_guard_update 트리거)가 한다.
+        var editing = _editingCommentId === c.id && (cmine || admin);
         return '<div class="cm-comment' + (c.is_answer ? ' answer' : '') + '">' +
           '<div class="cm-cmeta">' +
             (c.is_answer ? '<span class="cm-badge st-done">✓ ' + esc(ct('comm.acceptedAnswer', 'Accepted answer')) + '</span> ' : '') +
             '<strong>' + esc(c.author_name) + '</strong><span>· ' + fdate(c.created_at) + '</span>' +
             (c.is_hidden ? '<span class="cm-hidden">· ' + esc(ct('comm.hidden', 'hidden')) + '</span>' : '') +
           '</div>' +
-          '<div class="cm-cbody">' + renderBody(c.body) + '</div>' +
+          (editing
+          ? '<div class="cm-cedit">' +
+              '<textarea id="cmEditCommentBody" data-cid="' + esc(c.id) + '" maxlength="8000">' + esc(c.body) + '</textarea>' +
+              '<div class="cm-cact">' +
+                '<button class="cm-btn ghost" onclick="STRIX_CM.cancelEditComment()">' + esc(ct('comm.cancel', 'Cancel')) + '</button>' +
+                '<button class="cm-btn" onclick="STRIX_CM.saveComment(\'' + esc(c.id) + '\')">' + esc(ct('comm.save', 'Save')) + '</button>' +
+              '</div>' +
+              '<div class="cm-msg" id="cmEditCommentMsg"></div>' +
+            '</div>'
+          : '<div class="cm-cbody">' + renderBody(c.body) + '</div>') +
           fileListHtml(_curFiles.byComment[c.id]) +
+          (editing ? '' :
           '<div class="cm-cact">' +
             (canAccept ? '<button class="cm-link" onclick="STRIX_CM.accept(\'' + c.id + '\',' + (c.is_answer ? 'false' : 'true') + ')">' + esc(c.is_answer ? ct('comm.unaccept', 'Unaccept') : ct('comm.accept', 'Accept answer')) + '</button>' : '') +
+            ((cmine || admin) ? '<button class="cm-link" onclick="STRIX_CM.editComment(\'' + esc(c.id) + '\')">' + esc(ct('comm.edit', 'Edit')) + '</button>' : '') +
             ((cmine || admin) ? '<button class="cm-link danger" onclick="STRIX_CM.delComment(\'' + c.id + '\')">' + esc(ct('comm.delete', 'Delete')) + '</button>' : '') +
-          '</div>' +
+          '</div>') +
         '</div>';
       }).join('');
     }
@@ -459,8 +475,17 @@
     // paid for. Carry the draft across the re-render.
     var prev = document.getElementById('cmCommentBody');
     var draft = prev ? prev.value : '';
+    // 같은 이유로 수정 중인 댓글의 입력값도 다시 그리기를 건너 옮긴다
+    //   (다른 댓글로 수정 대상을 바꿨으면 옮기지 않는다 — data-cid 로 주인을 가린다)
+    var prevEdit = document.getElementById('cmEditCommentBody');
+    var editDraft = prevEdit && prevEdit.getAttribute('data-cid') === _editingCommentId ? prevEdit.value : null;
 
     el.innerHTML = html;
+    var editBox = document.getElementById('cmEditCommentBody');
+    if (editBox) {
+      if (editDraft !== null) editBox.value = editDraft;
+      editBox.focus();
+    }
 
     showReadNotice(_readNotice);
     if (location.hash === '#p/' + p.id) markPostRead(p.id);
@@ -708,6 +733,39 @@
     if (_curPost) loadComments(_curPost.id);
   }
 
+  function editComment(commentId) {
+    if (!requireLogin() || !isUuid(commentId)) return;
+    // 권한이 없으면 상태를 남기지 않는다 — 남기면 나중에 권한이 생긴 화면에서 수정 칸이 저절로 열린다
+    var c = _curComments.find(function (x) { return x.id === commentId; });
+    if (!c || !(isAdmin() || (window._user && window._user.id === c.author_id))) return;
+    _editingCommentId = commentId;
+    paintDetail();
+  }
+
+  function cancelEditComment() {
+    _editingCommentId = null;         // 미확정 입력은 버린다(주인이 없어져 다시 그릴 때 옮기지 않는다)
+    paintDetail();
+  }
+
+  async function saveComment(commentId) {
+    if (!requireLogin() || !isUuid(commentId)) return;
+    var box = document.getElementById('cmEditCommentBody');
+    var msg = document.getElementById('cmEditCommentMsg');
+    if (!box) return;
+    var body = (box.value || '').trim();
+    if (body.length < 1) { return showMsg(msg, ct('comm.errComment', 'Please write a comment.')); }
+    var cur = _curComments.find(function (c) { return c.id === commentId; });
+    if (cur && cur.body === body) { _editingCommentId = null; paintDetail(); return; }   // 바뀐 것이 없다
+    // select 로 되읽는다 — RLS 가 막으면 오류 없이 0행이 오므로 그것을 실패로 본다
+    var res = await window._sb.from('community_comments').update({ body: body }).eq('id', commentId).select('id, body');
+    if (res && res.error) return showMsg(msg, ct('comm.saveFail', 'Save failed.') + ' ' + res.error.message);
+    if (!res || !res.data || !res.data.length || res.data[0].body !== body) return showMsg(msg, ct('comm.saveFail', 'Save failed.'));
+    // 본문에서 지운 이미지 토큰의 첨부를 정리한다(글 수정과 같은 규칙)
+    if (cmup() && cmup().prune) { try { await cmup().prune('comment', commentId, body); } catch (e) {} }
+    _editingCommentId = null;
+    if (_curPost) loadComments(_curPost.id);
+  }
+
   async function del(id) {
     if (!confirm(ct('comm.confirmDel', 'Delete this post permanently?'))) return;
     // same reason as above — and this also covers the comments' attachments,
@@ -811,6 +869,7 @@
   window.STRIX_CM = {
     newPost: newPost, open: open, vote: vote, submit: submit, comment: comment,
     accept: accept, delComment: delComment, del: del, edit: edit,
+    editComment: editComment, cancelEditComment: cancelEditComment, saveComment: saveComment,
     adminSave: adminSave, pin: pin, hide: hide,
     cancelNew: cancelNew, pickImage: pickImage, pickFile: pickFile,
     dropFile: dropFile, sweep: sweep,
