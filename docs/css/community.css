@@ -92,6 +92,22 @@
 .cm-reply { margin-top: var(--sp-4); background: var(--accent-soft); border: 1px solid var(--border-accent); border-radius: var(--r-md); padding: var(--sp-4); color: var(--text); }
 .cm-reply-h { color: var(--accent); font-weight: var(--fw-sb); font-size: var(--fs-sm); margin-bottom: var(--sp-2); }
 
+/* ── 비밀글 · 앱 오류 보고 (error_report_devplan.md §4-9) ─────────────────── */
+.cm-row.cm-locked { cursor: default; opacity: .75; }
+.cm-row.cm-locked:hover { background: transparent; }
+.cm-vis { margin-left: 6px; }
+.cm-report { margin-top: var(--sp-4); background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--r-md); padding: var(--sp-4); color: var(--text); }
+.cm-report-h { color: var(--accent); font-weight: var(--fw-sb); font-size: var(--fs-sm); margin-bottom: var(--sp-3); }
+.cm-report-kv { display: grid; grid-template-columns: max-content 1fr; gap: 4px 14px; font-size: var(--fs-sm); }
+.cm-report-kv span:nth-child(odd) { color: var(--text-dim); }
+.cm-report-kv span:nth-child(even) { overflow-wrap: anywhere; }
+.cm-report details { margin-top: var(--sp-3); font-size: var(--fs-sm); }
+.cm-report summary { cursor: pointer; color: var(--text-soft); }
+.cm-report-pre { margin: var(--sp-2) 0 0; padding: var(--sp-3); background: var(--surface-3); border-radius: var(--r-sm); font-family: var(--font-mono); font-size: var(--fs-cap); white-space: pre-wrap; overflow-wrap: anywhere; max-height: 320px; overflow: auto; }
+.cm-report-vis { margin-top: var(--sp-4); display: flex; gap: var(--sp-3); align-items: center; flex-wrap: wrap; font-size: var(--fs-sm); color: var(--text-soft); }
+button.cm-file { font: inherit; cursor: pointer; }
+.cm-file-gone { opacity: .6; cursor: default; }
+
 /* ── admin / forms ─────────────────────────────────────────────────────────── */
 .cm-admin, .cm-form { margin-top: var(--sp-5); background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--r-md); padding: var(--sp-5); }
 .cm-admin-h { color: var(--gold); font-weight: var(--fw-sb); font-size: var(--fs-sm); margin-bottom: var(--sp-3); }

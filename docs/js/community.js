@@ -132,6 +132,13 @@
     return new Date(d).toLocaleDateString(loc);
   }
   function isAdmin() { return window._user && window._user.email === window.ADMIN_EMAIL; }
+  // 공개 범위 배지 글자 — 값은 DB CHECK(public/secret/private) 이지만 화면에서도 아는 값만(status 와 같은 규칙).
+  //   HTML 은 호출부에서 리터럴 + esc() 로 짠다(사이트 이스케이프 게이트가 조립 함수를 판정하지 못한다)
+  function visLabel(v) {
+    if (v === 'secret') return ct('comm.vis.secret', 'Private');
+    if (v === 'private') return ct('comm.vis.private', 'Hidden · automatic report');
+    return '';
+  }
   function bLabel(id) { return ct('comm.b.' + id + '.t', id); }
   function bDesc(id) { return ct('comm.b.' + id + '.d', ''); }
   function stLabel(s) { return ct('comm.st.' + s, s); }
@@ -253,15 +260,27 @@
     loadCounts();
   }
 
+  function paintCounts(tally) {
+    BOARDS.forEach(function (b) {
+      var n = document.getElementById('cnt-' + b.id);
+      if (n) n.textContent = tally[b.id] || 0;
+    });
+  }
+  // 게시판별 개수 — 비밀글은 세고 남의 숨긴 보고는 세지 않는 서버 함수(error_report_devplan.md §4-9).
+  //   함수가 아직 없는 DB(SQL 적용 전)에서는 종전 조회로 — 홈페이지가 SQL 보다 먼저 배포돼도 깨지지 않게.
   function loadCounts() {
     if (!window._sb) return;
-    window._sb.from('community_posts').select('board').then(function (res) {
-      var data = (res && res.data) || [];
-      var tally = {};
-      data.forEach(function (r) { tally[r.board] = (tally[r.board] || 0) + 1; });
-      BOARDS.forEach(function (b) {
-        var n = document.getElementById('cnt-' + b.id);
-        if (n) n.textContent = tally[b.id] || 0;
+    window._sb.rpc('community_board_counts').then(function (res) {
+      if (res && !res.error && Array.isArray(res.data)) {
+        var t = {};
+        res.data.forEach(function (r) { t[r.board] = r.n; });
+        paintCounts(t);
+        return;
+      }
+      window._sb.from('community_posts').select('board').then(function (r2) {
+        var tally = {};
+        ((r2 && r2.data) || []).forEach(function (r) { tally[r.board] = (tally[r.board] || 0) + 1; });
+        paintCounts(tally);
       });
     });
   }
@@ -283,14 +302,23 @@
     loadPosts(boardId);
   }
 
-  function loadPosts(boardId) {
-    if (!window._sb) return;
+  // 목록 — 남의 비밀글은 🔒 한 줄(제목·작성자를 서버가 가린다), 남의 숨긴 보고는 행이 없다(error_report_devplan.md §4-9).
+  //   함수가 아직 없는 DB 에서는 종전 조회로(원본 행 권한이 비밀글을 이미 막으므로 새지 않는다).
+  function legacyPostQuery(boardId) {
     var b = BOARD_MAP[boardId];
-    var q = window._sb.from('community_posts')
+    return window._sb.from('community_posts')
       .select('id,board,title,body,author_name,status,vote_count,comment_count,view_count,is_pinned,is_hidden,is_answered,admin_reply,created_at')
       .eq('board', boardId)
       .order('is_pinned', { ascending: false })
       .order(b.vote ? 'vote_count' : 'created_at', { ascending: false });
+  }
+  function loadPosts(boardId) {
+    if (!window._sb) return;
+    var b = BOARD_MAP[boardId];
+    var args = { p_board: boardId, p_by_votes: !!b.vote };
+    var q = window._sb.rpc('community_post_list', args).then(function (res) {
+      return (res && res.error) ? legacyPostQuery(boardId) : res;
+    });
     q.then(function (res) {
       if (res && res.error) { listMsg(esc(ct('comm.loadFail', 'Failed to load.')) + ' ' + esc(res.error.message)); return; }
       _posts = (res && res.data) || [];
@@ -311,6 +339,12 @@
     var l = document.getElementById('cmList'); if (!l) return;
     if (!_posts.length) { l.innerHTML = '<div class="cm-empty">' + esc(ct('comm.emptyBoard', 'No posts yet. Be the first to write one.')) + '</div>'; return; }
     l.innerHTML = _posts.map(function (p) {
+      // 남의 비밀글 — 서버가 제목·작성자·수치를 비워 보낸다. 열 수 없으므로 클릭을 걸지 않는다
+      if (p.is_locked) {
+        return '<div class="cm-row cm-locked" title="' + esc(ct('comm.lockedNote', 'Only the author and STRIX staff can open this post.')) + '">' +
+          '<div class="cm-rmain"><div class="cm-rtitle">🔒 ' + esc(ct('comm.locked', 'Private post')) + '</div>' +
+          '<div class="cm-rmeta"><span>' + esc(fdate(p.created_at)) + '</span></div></div></div>';
+      }
       var voted = _myVotes.has(p.id);
       return '<div class="cm-row" onclick="STRIX_CM.open(\'' + p.id + '\')">' +
         (b.vote
@@ -322,6 +356,7 @@
           '<div class="cm-rtitle">' +
             (p.is_pinned ? '<span class="cm-pin">📌</span> ' : '') +
             esc(p.title) +
+            (visLabel(p.visibility) ? ' <span class="cm-badge cm-vis">🔒 ' + esc(visLabel(p.visibility)) + '</span>' : '') +
             (p.comment_count ? ' <span class="cm-cc">[' + p.comment_count + ']</span>' : '') +
             (b.answer && p.is_answered ? ' <span class="cm-badge st-done">✓ ' + esc(ct('comm.answered', 'Answered')) + '</span>' : '') +
           '</div>' +
@@ -391,6 +426,7 @@
         '<h1 class="cm-ptitle">' + (p.is_pinned ? '📌 ' : '') + esc(p.title) + '</h1>' +
         '<div class="cm-pmeta">' +
           (p.status ? '<span class="cm-badge' + stClass(p.status) + '">' + esc(stLabel(p.status)) + '</span>' : '') +
+          (visLabel(p.visibility) ? '<span class="cm-badge cm-vis">🔒 ' + esc(visLabel(p.visibility)) + '</span>' : '') +
           '<span>' + esc(p.author_name) + '</span><span>· ' + fdate(p.created_at) + '</span>' +
           '<span>· 👁 ' + p.view_count + '</span>' +
           (b.vote
@@ -405,7 +441,9 @@
             '<button class="cm-link" onclick="STRIX_CM.edit(\'' + p.id + '\')">' + esc(ct('comm.edit', 'Edit')) + '</button>' +
             '<button class="cm-link danger" onclick="STRIX_CM.del(\'' + p.id + '\')">' + esc(ct('comm.delete', 'Delete')) + '</button>' +
           '</div>' : '') +
-      '</article>';
+      '</article>' +
+      // 앱 오류 보고의 상세(오류·환경·비공개 첨부) — 작성자·운영자만. loadReport 가 채운다
+      ((p.board === 'bug' && (mine || admin)) ? '<div id="cmReport"></div>' : '');
 
     if (p.admin_reply) {
       html += '<div class="cm-reply"><div class="cm-reply-h">💬 ' + esc(ct('comm.staffReply', 'Staff reply')) + ' · ' + fdate(p.admin_reply_at) + '</div>' +
@@ -481,6 +519,7 @@
     var editDraft = prevEdit && prevEdit.getAttribute('data-cid') === _editingCommentId ? prevEdit.value : null;
 
     el.innerHTML = html;
+    if (document.getElementById('cmReport')) loadReport(p);
     var editBox = document.getElementById('cmEditCommentBody');
     if (editBox) {
       if (editDraft !== null) editBox.value = editDraft;
@@ -866,7 +905,96 @@
   }
 
   // ── expose for inline handlers ───────────────────────────────────────────────
+  // ── 앱 오류 보고 상세 (error_report_devplan.md §4-9) ─────────────────────────
+  //  community_post_reports · community_report_files 는 RLS 가 작성자·운영자에게만 돌려준다.
+  //  첨부는 비공개 저장소(report-files) — 누를 때마다 짧은 서명 URL 을 만든다(링크를 미리 박아 두지 않는다).
+  var _reportFiles = [];
+  var REP_CATEGORY = { app: 'comm.rep.cat.app', result: 'comm.rep.cat.result', other: 'comm.rep.cat.other' };
+  function loadReport(p) {
+    var box = document.getElementById('cmReport');
+    if (!box || !window._sb) return;
+    Promise.all([
+      window._sb.from('community_post_reports').select('*').eq('post_id', p.id).maybeSingle(),
+      window._sb.from('community_report_files').select('role,path,name,bytes,purged_at').eq('post_id', p.id).order('created_at', { ascending: true })
+    ]).then(function (r) {
+      var rep = r[0] && !r[0].error ? r[0].data : null;
+      if (!rep || !document.getElementById('cmReport')) { if (box) box.innerHTML = ''; return; }   // 앱 보고가 아니다(또는 SQL 적용 전)
+      _reportFiles = (r[1] && !r[1].error && r[1].data) || [];
+      var mine = window._user && window._user.id === p.author_id;
+      var kindLabel = rep.kind === 'auto' ? ct('comm.rep.auto', 'Automatic (app error)') : ct('comm.rep.manual', 'Reported by the user');
+      var catKey = REP_CATEGORY[rep.category];
+      var kv = [
+        [ct('comm.rep.kind', 'Type'), kindLabel + (catKey ? ' · ' + ct(catKey, rep.category) : '')],
+        [ct('comm.rep.version', 'STRIX version'), rep.app_version],
+        [ct('comm.rep.where', 'Where'), rep.where_ || '—'],
+        [ct('comm.rep.error', 'Error'), rep.error_name ? rep.error_name + ': ' + (rep.error_message || '') : '—']
+      ];
+      // 🚨 innerHTML 로 조립하지 않는다 — 오류 메시지·스택·파일 이름은 사용자 PC 에서 온 값이다. DOM + textContent 만 쓴다
+      var mk = function (tag, cls, text) { var n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
+      var sec = mk('section', 'cm-report');
+      sec.appendChild(mk('div', 'cm-report-h', '🧾 ' + ct('comm.rep.title', 'Error report from the app')));
+      var grid = mk('div', 'cm-report-kv');
+      kv.forEach(function (x) { grid.appendChild(mk('span', null, x[0])); grid.appendChild(mk('span', null, x[1])); });
+      sec.appendChild(grid);
+      var fold = function (label, body) {
+        var d = mk('details'); d.appendChild(mk('summary', null, label)); d.appendChild(mk('pre', 'cm-report-pre', body)); sec.appendChild(d);
+      };
+      if (rep.error_stack) fold(ct('comm.rep.stack', 'Stack trace'), rep.error_stack);
+      fold(ct('comm.rep.env', 'Environment'), JSON.stringify(rep.env || {}, null, 2));
+      if (_reportFiles.length) {
+        var list = mk('div', 'cm-files');
+        _reportFiles.forEach(function (f, i) {
+          var item = mk(f.purged_at ? 'span' : 'button', f.purged_at ? 'cm-file cm-file-gone' : 'cm-file');
+          if (!f.purged_at) { item.type = 'button'; item.addEventListener('click', function () { dlReport(i); }); }
+          item.appendChild(mk('span', 'cm-file-ico', '📎'));
+          item.appendChild(mk('span', 'cm-file-n', f.name));
+          item.appendChild(mk('span', 'cm-file-s', f.purged_at ? ct('comm.rep.purged', 'Deleted after the retention period') : fmtBytes(f.bytes)));
+          list.appendChild(item);
+        });
+        sec.appendChild(list);
+      }
+      if (mine && rep.kind === 'manual' && (p.visibility === 'secret' || p.visibility === 'public')) {
+        var next = p.visibility === 'secret' ? 'public' : 'secret';
+        var vis = mk('div', 'cm-report-vis');
+        vis.appendChild(mk('span', null, p.visibility === 'secret'
+          ? ct('comm.visNote.secret', 'Only you and STRIX staff can open this post.')
+          : ct('comm.visNote.public', 'Any community member can read the title and description. Attached files are never public.')));
+        var btn = mk('button', 'cm-btn ghost sm', next === 'public' ? ct('comm.makePublic', 'Make public') : ct('comm.makeSecret', 'Make private'));
+        btn.type = 'button';
+        btn.addEventListener('click', function () { setVisibility(p.id, next); });
+        vis.appendChild(btn);
+        sec.appendChild(vis);
+      } else if (mine && p.visibility === 'private') {
+        var note = mk('div', 'cm-report-vis');
+        note.appendChild(mk('span', null, ct('comm.visNote.private', 'Automatic reports are not listed on the board. Only you and STRIX staff can see them.')));
+        sec.appendChild(note);
+      }
+      box.textContent = '';
+      box.appendChild(sec);
+    });
+  }
+
+  function dlReport(i) {
+    var f = _reportFiles[i];
+    if (!f || f.purged_at || !window._sb) return;
+    window._sb.storage.from('report-files').createSignedUrl(f.path, 120, { download: f.name }).then(function (r) {
+      if (r && r.data && r.data.signedUrl) window.open(r.data.signedUrl, '_blank', 'noopener');
+      else alert(ct('comm.rep.dlFail', 'The file could not be downloaded.') + (r && r.error ? ' ' + r.error.message : ''));
+    });
+  }
+
+  function setVisibility(id, v) {
+    if (!window._sb || (v !== 'public' && v !== 'secret')) return;
+    if (v === 'public' && !confirm(ct('comm.makePublicConfirm', 'Make this post public? Any community member will be able to read the title and description. Attached files stay private.'))) return;
+    window._sb.from('community_posts').update({ visibility: v }).eq('id', id).then(function (r) {
+      if (r && r.error) { alert(ct('comm.saveFail', 'Could not save.') + ' ' + r.error.message); return; }
+      _curPost = null;
+      renderDetail(id);
+    });
+  }
+
   window.STRIX_CM = {
+    dlReport: dlReport, setVisibility: setVisibility,
     newPost: newPost, open: open, vote: vote, submit: submit, comment: comment,
     accept: accept, delComment: delComment, del: del, edit: edit,
     editComment: editComment, cancelEditComment: cancelEditComment, saveComment: saveComment,
