@@ -229,5 +229,5 @@ textarea.cm-drop { border-color: var(--border-accent) !important; background: va
   .cm-grid { grid-template-columns: 1fr; }
   .cm-rstat { display: none; }
   .cm-file-n { max-width: 180px; }
-  .cm-atthint { display: none; }
+  .cm-atthint, .cm-attbar { display: none; }
 }

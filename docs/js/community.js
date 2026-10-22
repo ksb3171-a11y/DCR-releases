@@ -200,12 +200,9 @@
     }).join('') + '</div>'
   }
 
-  function attachBarHtml(scope) {
+  // 「이미지 추가」·「파일 첨부」 버튼은 서식 도구줄(🖼 📎)로 옮겼다 — 여기는 붙여넣기·끌어다 놓기 안내만
+  function attachBarHtml() {
     return '<div class="cm-attbar">' +
-        '<button type="button" class="cm-btn ghost sm" onclick="STRIX_CM.pickImage(\'' + scope + '\')">' +
-          esc(ct('comm.attAddImage', 'Add image')) + '</button>' +
-        '<button type="button" class="cm-btn ghost sm" onclick="STRIX_CM.pickFile(\'' + scope + '\')">' +
-          esc(ct('comm.attAddFile', 'Attach file')) + '</button>' +
         '<span class="cm-atthint">' + esc(ct('comm.attHint', 'Paste a screenshot (Ctrl+V) or drop files here.')) + '</span>' +
       '</div>'
   }
@@ -226,6 +223,13 @@
     { id: 'hr', label: '―', en: 'Divider' }
   ];
   var FMT_TARGETS = { cmNewBody: 1, cmCommentBody: 1, cmEditCommentBody: 1, cmReply: 1 };
+  // 업로드 세션(cmUpload)이 붙은 칸만 🖼·📎 를 단다 — 댓글 수정·공식 답변 칸은 업로드가 없다.
+  // 이미지 표식은 cmUpload 가 기억한 커서 자리에 들어간다.
+  var FMT_UPLOAD_SCOPE = { cmNewBody: 'post', cmCommentBody: 'comment' };
+  var FMT_UPLOAD_BTNS = [
+    { id: 'image', label: '🖼', key: 'comm.attAddImage', en: 'Add image' },
+    { id: 'file', label: '📎', key: 'comm.attAddFile', en: 'Attach file' }
+  ];
 
   // Built with the DOM (textContent / setAttribute), not an HTML string — call
   // after the screen's innerHTML is set. Idempotent per textarea.
@@ -238,14 +242,15 @@
       bar.className = 'cm-fmtbar';
       bar.setAttribute('role', 'toolbar');
       bar.setAttribute('data-target', id);
-      FMT_BTNS.concat([{ id: 'preview', label: ct('comm.fmt.preview', 'Preview') }]).forEach(function (b) {
+      var btns = FMT_BTNS.concat(FMT_UPLOAD_SCOPE[id] && cmup() ? FMT_UPLOAD_BTNS : []);
+      btns.concat([{ id: 'preview', label: ct('comm.fmt.preview', 'Preview') }]).forEach(function (b) {
         var btn = document.createElement('button');
         btn.type = 'button';
         btn.className = 'cm-fmt cm-fmt-' + b.id;
         btn.setAttribute('data-fmt', b.id);
         btn.textContent = b.label;
         if (b.id === 'preview') btn.setAttribute('aria-pressed', 'false');
-        else { var tip = ct('comm.fmt.' + b.id, b.en); btn.title = tip; btn.setAttribute('aria-label', tip); }
+        else { var tip = ct(b.key || 'comm.fmt.' + b.id, b.en); btn.title = tip; btn.setAttribute('aria-label', tip); }
         bar.appendChild(btn);
       });
       var box = document.createElement('div');
@@ -381,6 +386,7 @@
       e.preventDefault();
       var f = btn.getAttribute('data-fmt');
       if (f === 'preview') fmtTogglePreview(bar, ta);
+      else if (f === 'image' || f === 'file') { if (FMT_UPLOAD_SCOPE[id] && cmup()) cmup().pick(FMT_UPLOAD_SCOPE[id], f); }
       else fmtApply(ta, f);
     });
     el.addEventListener('keydown', function (e) {
@@ -771,7 +777,7 @@
     // comment composer
     html += '<div class="cm-cnew">' +
       '<textarea id="cmCommentBody" maxlength="8000" placeholder="' + esc(window._user ? ct('comm.commentPh', 'Write a comment…') : ct('comm.loginToComment', 'Log in to comment.')) + '"' + (window._user ? '' : ' disabled') + '></textarea>' +
-      (window._user ? attachBarHtml('comment') : '') +
+      (window._user ? attachBarHtml() : '') +
       '<div class="cm-chips" id="cmCommentChips"></div>' +
       '<button class="cm-btn" onclick="STRIX_CM.comment(\'' + p.id + '\')">' + esc(ct('comm.postComment', 'Post comment')) + '</button>' +
       '<div class="cm-msg" id="cmCommentMsg"></div>' +
@@ -835,7 +841,7 @@
         '<div class="cm-msg" id="cmNewMsg"></div>' +
         '<label class="cm-fl">' + esc(ct('comm.fTitle', 'Title')) + '<input id="cmNewTitle" maxlength="160" value="' + esc(p.title || '') + '" placeholder="' + esc(ct('comm.titlePh', 'A clear, short title')) + '"></label>' +
         '<label class="cm-fl">' + esc(ct('comm.fBody', 'Content')) + '<textarea id="cmNewBody" maxlength="20000" placeholder="' + esc(ct('comm.bodyPh', 'Write your post. Links are allowed.')) + '">' + esc(p.body || '') + '</textarea></label>' +
-        attachBarHtml('post') +
+        attachBarHtml() +
         '<div class="cm-chips" id="cmNewChips"></div>' +
         '<div id="cmNewExisting"></div>' +
         '<div class="cm-form-act">' +
