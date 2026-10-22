@@ -50,6 +50,8 @@
     'image/gif':  'gif'
   }
   var MIME_BY_EXT = { png: 'image/png', jpg: 'image/jpeg', jpeg: 'image/jpeg', webp: 'image/webp', gif: 'image/gif' }
+  // file attachments that may also be shown as a picture (no svg — it can carry script)
+  var FILE_IMAGE_MIME = ['image/png', 'image/jpeg', 'image/webp', 'image/gif']
 
   // Kept in lockstep with the ca_fobj_insert policy in
   // supabase-community-attachments-migration.sql. html/svg/xml and every
@@ -715,13 +717,18 @@
   async function fetchFiles(postId, commentIds) {
     var out = { post: [], byComment: {} }
     if (!sb()) return out
-    var cols = 'id,bucket,path,name,bytes,post_id,comment_id,created_at'
+    var cols = 'id,bucket,path,name,mime,bytes,post_id,comment_id,created_at'
 
     function take(rows) {
       return (rows || []).map(function (r) {
         var u = publicUrl(r.bucket, r.path)
         if (!u) return null
-        return { id: r.id, url: u, name: String(r.name || 'file').slice(0, 120), bytes: r.bytes, commentId: r.comment_id }
+        // isImage: a picture sent through "Attach file" is shown inline as well
+        // (community_editor_devplan.md). Judged on the stored mime AND the path's
+        // extension — both must name a raster type the <img> tag can show.
+        var isImage = FILE_IMAGE_MIME.indexOf(String(r.mime || '').toLowerCase()) >= 0 &&
+          /\.(png|jpe?g|webp|gif)$/i.test(String(r.path || ''))
+        return { id: r.id, url: u, name: String(r.name || 'file').slice(0, 120), bytes: r.bytes, commentId: r.comment_id, isImage: isImage }
       }).filter(Boolean)
     }
 

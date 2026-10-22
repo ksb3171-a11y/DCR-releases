@@ -85,8 +85,75 @@
     return _imgRe
   }
 
+  // ── body formatting (community_editor_devplan.md) ─────────────────────────
+  //  A small markdown subset. The body is escaped FIRST and every rule below
+  //  runs on the escaped text, so a rule can only rearrange characters the user
+  //  already typed — it cannot produce a raw < " ' of its own. Each rule writes
+  //  its tag through a replacement *literal* ('<b>$1</b>'), never by joining
+  //  strings (the one exception is the image rule, whose path its regex limits
+  //  to [A-Za-z0-9_-./]), so the only raw markup in the output is listed here.
+  //  Regression: frontend/verification/internal/community_format_selfcheck.mjs
+  //  🚨 Do not add a rule that builds a tag from a function result, and do not
+  //     run a rule on the unescaped source.
+  //
+  //  Blocks (line start)  # ## ###  ·  - * list  ·  1. list  ·  > quote  ·  ---  ·  ``` fence
+  //  Inline               **bold** · *italic* · ~~strike~~ · `code` · [text](https://…) · bare https://…
+  //
+  //  Finished pieces (code, images, links) are parked behind a NUL placeholder
+  //  (keep) so no later rule can reach into them — e.g. a URL typed in an image's
+  //  alt text must not become a link inside the alt attribute. NUL never survives
+  //  from the input (stripped right after esc()).
+  var FMT_TAG_SPLIT = /(<[^>]*>)/;
+  var FMT_HOLD_RE = /\u0000(\d+)\u0000/g;
+  // URL characters on ESCAPED text: stop at whitespace and at the entities esc()
+  // writes for < > " ' so a URL can never run into a neighbouring tag or quote.
+  var FMT_URL = '(?:(?!&(?:lt|gt|quot|#39);)[^\\s<>"\'])*(?:(?!&(?:lt|gt|quot|#39);)[^\\s<>"\'.,;:!?)])';
+  var FMT_LINK_RE = new RegExp('\\[([^\\]\\n]{1,200})\\]\\((https?:\\/\\/' + FMT_URL + ')\\)', 'g');
+  var FMT_AUTO_RE = new RegExp('(^|\\s)(https?:\\/\\/' + FMT_URL + ')', 'g');
+
+  function fmtInline(s) {
+    // emphasis only on text runs — never inside a tag's attributes
+    return s.split(FMT_TAG_SPLIT).map(function (t, i) {
+      if (i % 2) return t;
+      return t
+        .replace(/\*\*(?=\S)([^\n]*?\S)\*\*/g, '<strong>$1</strong>')
+        .replace(/(^|[^\w*])\*(?=[^\s*])([^*\n]*?[^\s*])\*(?![\w*])/g, '$1<em>$2</em>')
+        .replace(/~~(?=\S)([^\n]*?\S)~~/g, '<del>$1</del>');
+    }).join('');
+  }
+
+  function fmtText(s) {
+    s = s
+      .replace(/^### (.+)$/gm, '<h5 class="cm-h">$1</h5>')
+      .replace(/^## (.+)$/gm, '<h4 class="cm-h">$1</h4>')
+      .replace(/^# (.+)$/gm, '<h3 class="cm-h">$1</h3>')
+      .replace(/^-{3,}[ \t]*$/gm, '<hr class="cm-hr">')
+      .replace(/^[-*] (.+)$/gm, '<ul class="cm-ul"><li>$1</li></ul>')
+      .replace(/^(\d{1,3})[.)] (.+)$/gm, '<ol class="cm-ol" start="$1"><li>$2</li></ol>')
+      .replace(/^&gt; ?(.*)$/gm, '<blockquote class="cm-quote">$1</blockquote>')
+      // consecutive list items / quote lines become one block
+      .replace(/<\/ul>\n<ul class="cm-ul">/g, '')
+      .replace(/<\/ol>\n<ol class="cm-ol" start="\d{1,3}">/g, '')
+      .replace(/<\/blockquote>\n<blockquote class="cm-quote">/g, '<br>');
+    s = fmtInline(s);
+    // a block carries its own spacing — drop the line break next to it
+    return s
+      .replace(/(<\/h[345]>|<\/ul>|<\/ol>|<\/blockquote>|<hr class="cm-hr">)\n/g, '$1')
+      .replace(/\n(?=<(?:h[345]|ul|ol|blockquote|hr) )/g, '')
+      .replace(/\n/g, '<br>');
+  }
+
   function renderBody(src) {
+    var held = []
+    function keep(m) { held.push(m); return '\u0000' + (held.length - 1) + '\u0000' }
+    function restore(s) { return s.replace(FMT_HOLD_RE, function (m, n) { return restore(held[+n] || '') }) }
+
     var h = esc(src)                       // ← never skipped, never relaxed
+    h = h.replace(/\u0000/g, '').replace(/\r\n?/g, '\n')
+    // fenced code first — nothing inside it is formatted, not even image tokens
+    h = h.replace(/^```[^\n`]*\n([\s\S]*?)\n```[ \t]*$/gm, '<pre class="cm-code">$1</pre>')
+      .replace(/<pre class="cm-code">[\s\S]*?<\/pre>/g, keep)
+    // images next, so an alt text is parked before any inline rule can reach it
     var re = imgTokenRe()
     if (re) {
       h = h.replace(re, function (m, alt, path) {
@@ -94,8 +161,18 @@
         return '<img class="cm-img" src="' + imgPrefix() + path + '" alt="' + alt +
                '" loading="lazy" decoding="async" referrerpolicy="no-referrer">'
       })
+      h = h.replace(/<img class="cm-img"[^>]*>/g, keep)
     }
-    return h.replace(/\n/g, '<br>')
+    // inline code never spans a parked piece (\u0000) — `![x](…)` stays a picture
+    h = h.replace(/`([^`\n\u0000]+)`/g, '<code class="cm-icode">$1</code>')
+      .replace(/<code class="cm-icode">[^<]*<\/code>/g, keep)
+      .replace(FMT_LINK_RE, '<a class="cm-a" href="$2" target="_blank" rel="noopener noreferrer nofollow ugc">$1</a>')
+      .replace(/<a class="cm-a"[^>]*>[^<]*<\/a>/g, keep)
+      .replace(FMT_AUTO_RE, '$1<a class="cm-a" href="$2" target="_blank" rel="noopener noreferrer nofollow ugc">$2</a>')
+      .replace(/<a class="cm-a"[^>]*>[^<]*<\/a>/g, keep)
+    return restore(fmtText(h))
+      .replace(/<br>(?=<pre class="cm-code">)/g, '')
+      .replace(/(<\/pre>)<br>/g, '$1')
   }
 
   function fmtBytes(n) { var u = cmup(); return u ? u.formatBytes(n) : String(n || 0) }
@@ -104,11 +181,18 @@
   // `?download=` makes Supabase send Content-Disposition: attachment — the plain
   // `download` attribute is ignored cross-origin, so without it a .pdf would
   // open on the storage origin instead of being saved.
+  // A picture sent through "Attach file" is shown as a picture too (cm-fimg —
+  // CSS puts every one on its own row ahead of the chips); its chip keeps the
+  // download link. url is rebuilt by cmUpload, isImage is its mime + extension
+  // whitelist (community_editor_devplan.md).
   function fileListHtml(rows) {
     if (!rows || !rows.length) return ''
     return '<div class="cm-files">' + rows.map(function (f) {
       var href = f.url + '?download=' + encodeURIComponent(f.name)
-      return '<a class="cm-file" href="' + esc(href) + '" target="_blank" rel="noopener noreferrer" download="' + esc(f.name) + '">' +
+      return (f.isImage
+          ? '<img class="cm-img cm-fimg" src="' + esc(f.url) + '" alt="' + esc(f.name) + '" loading="lazy" decoding="async" referrerpolicy="no-referrer">'
+          : '') +
+        '<a class="cm-file" href="' + esc(href) + '" target="_blank" rel="noopener noreferrer" download="' + esc(f.name) + '">' +
           '<span class="cm-file-ico">📎</span>' +
           '<span class="cm-file-n">' + esc(f.name) + '</span>' +
           '<span class="cm-file-s">' + esc(fmtBytes(f.bytes)) + '</span>' +
@@ -125,6 +209,191 @@
         '<span class="cm-atthint">' + esc(ct('comm.attHint', 'Paste a screenshot (Ctrl+V) or drop files here.')) + '</span>' +
       '</div>'
   }
+  // ── formatting toolbar (community_editor_devplan.md) ──────────────────────
+  //  Buttons only insert the markdown marks renderBody() understands — the
+  //  saved body stays plain text, so nothing here widens what can be stored.
+  //  Clicks and Ctrl+B / Ctrl+I are delegated from the app root (bindFormatBar).
+  var FMT_BTNS = [
+    { id: 'bold', label: 'B', en: 'Bold (Ctrl+B)' },
+    { id: 'italic', label: 'I', en: 'Italic (Ctrl+I)' },
+    { id: 'strike', label: 'S', en: 'Strikethrough' },
+    { id: 'heading', label: 'H', en: 'Heading' },
+    { id: 'ul', label: '•', en: 'Bulleted list' },
+    { id: 'ol', label: '1.', en: 'Numbered list' },
+    { id: 'quote', label: '❝', en: 'Quote' },
+    { id: 'code', label: '</>', en: 'Code' },
+    { id: 'link', label: '🔗', en: 'Link' },
+    { id: 'hr', label: '―', en: 'Divider' }
+  ];
+  var FMT_TARGETS = { cmNewBody: 1, cmCommentBody: 1, cmEditCommentBody: 1, cmReply: 1 };
+
+  // Built with the DOM (textContent / setAttribute), not an HTML string — call
+  // after the screen's innerHTML is set. Idempotent per textarea.
+  function mountFormatBars() {
+    Object.keys(FMT_TARGETS).forEach(function (id) {
+      var ta = document.getElementById(id);
+      if (!ta || ta.disabled || ta.__cmFmtBar) return;
+      ta.__cmFmtBar = true;
+      var bar = document.createElement('div');
+      bar.className = 'cm-fmtbar';
+      bar.setAttribute('role', 'toolbar');
+      bar.setAttribute('data-target', id);
+      FMT_BTNS.concat([{ id: 'preview', label: ct('comm.fmt.preview', 'Preview') }]).forEach(function (b) {
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'cm-fmt cm-fmt-' + b.id;
+        btn.setAttribute('data-fmt', b.id);
+        btn.textContent = b.label;
+        if (b.id === 'preview') btn.setAttribute('aria-pressed', 'false');
+        else { var tip = ct('comm.fmt.' + b.id, b.en); btn.title = tip; btn.setAttribute('aria-label', tip); }
+        bar.appendChild(btn);
+      });
+      var box = document.createElement('div');
+      box.className = 'cm-preview';
+      box.setAttribute('data-preview-for', id);
+      box.hidden = true;
+      ta.parentNode.insertBefore(bar, ta);
+      ta.parentNode.insertBefore(box, ta.nextSibling);
+    });
+  }
+
+  // insert `text` over [a,b) keeping the browser's undo stack where it can
+  function fmtReplace(ta, a, b, text, selA, selB) {
+    ta.focus();
+    ta.setSelectionRange(a, b);
+    var ok = false;
+    try { ok = document.execCommand('insertText', false, text); } catch (e) { ok = false; }
+    if (!ok || ta.value.slice(a, a + text.length) !== text) {
+      ta.setRangeText(text, a, b, 'end');
+      ta.dispatchEvent(new Event('input', { bubbles: true }));
+    }
+    ta.setSelectionRange(a + selA, a + selB);
+  }
+
+  function fmtWrap(ta, mark, fallbackKey, fallbackEn) {
+    var a = ta.selectionStart, b = ta.selectionEnd, v = ta.value;
+    var sel = v.slice(a, b);
+    // already wrapped → unwrap
+    if (v.slice(a - mark.length, a) === mark && v.slice(b, b + mark.length) === mark) {
+      fmtReplace(ta, a - mark.length, b + mark.length, sel, 0, sel.length);
+      return;
+    }
+    var inner = sel || ct(fallbackKey, fallbackEn);
+    fmtReplace(ta, a, b, mark + inner + mark, mark.length, mark.length + inner.length);
+  }
+
+  function fmtLines(ta, kind) {
+    var v = ta.value, a = ta.selectionStart, b = ta.selectionEnd;
+    var ls = v.lastIndexOf('\n', a - 1) + 1;
+    var le = v.indexOf('\n', b > a && v.charAt(b - 1) === '\n' ? b - 1 : b);
+    if (le < 0) le = v.length;
+    var lines = v.slice(ls, le).split('\n');
+    var pre = { heading: /^#{1,3} /, ul: /^[-*] /, ol: /^\d{1,3}[.)] /, quote: /^> ?/ }[kind];
+    var all = lines.every(function (l) { return pre.test(l); });
+    var out = lines.map(function (l, i) {
+      if (all) return l.replace(pre, '');
+      var bare = l.replace(/^(#{1,3} |[-*] |\d{1,3}[.)] |> ?)/, '');
+      if (kind === 'heading') return '## ' + bare;
+      if (kind === 'ul') return '- ' + bare;
+      if (kind === 'ol') return (i + 1) + '. ' + bare;
+      return '> ' + bare;
+    }).join('\n');
+    fmtReplace(ta, ls, le, out, out.length, out.length);
+  }
+
+  function fmtCode(ta) {
+    var a = ta.selectionStart, b = ta.selectionEnd, v = ta.value;
+    var sel = v.slice(a, b);
+    if (sel.indexOf('\n') < 0) { fmtWrap(ta, '`', 'comm.fmt.text', 'text'); return; }
+    var lead = a > 0 && v.charAt(a - 1) !== '\n' ? '\n' : '';
+    var body = sel.replace(/\n$/, '');
+    var text = lead + '```\n' + body + '\n```\n';
+    fmtReplace(ta, a, b, text, lead.length + 4, lead.length + 4 + body.length);
+  }
+
+  function fmtLink(ta) {
+    var a = ta.selectionStart, b = ta.selectionEnd;
+    var sel = ta.value.slice(a, b);
+    if (/^https?:\/\/\S+$/.test(sel)) {
+      var label = ct('comm.fmt.linkText', 'link text');
+      fmtReplace(ta, a, b, '[' + label + '](' + sel + ')', 1, 1 + label.length);
+      return;
+    }
+    var txt = sel || ct('comm.fmt.linkText', 'link text');
+    fmtReplace(ta, a, b, '[' + txt + '](https://)', txt.length + 3, txt.length + 11);
+  }
+
+  function fmtHr(ta) {
+    var a = ta.selectionStart, b = ta.selectionEnd, v = ta.value;
+    var lead = a > 0 && v.charAt(a - 1) !== '\n' ? '\n' : '';
+    var text = lead + '---\n';
+    fmtReplace(ta, a, b, text, text.length, text.length);
+  }
+
+  function fmtApply(ta, id) {
+    if (!ta || ta.disabled || ta.readOnly) return;
+    if (id === 'bold') fmtWrap(ta, '**', 'comm.fmt.text', 'text');
+    else if (id === 'italic') fmtWrap(ta, '*', 'comm.fmt.text', 'text');
+    else if (id === 'strike') fmtWrap(ta, '~~', 'comm.fmt.text', 'text');
+    else if (id === 'heading' || id === 'ul' || id === 'ol' || id === 'quote') fmtLines(ta, id);
+    else if (id === 'code') fmtCode(ta);
+    else if (id === 'link') fmtLink(ta);
+    else if (id === 'hr') fmtHr(ta);
+  }
+
+  function fmtTogglePreview(bar, ta) {
+    var box = bar.parentNode && bar.parentNode.querySelector('.cm-preview[data-preview-for="' + ta.id + '"]');
+    var btn = bar.querySelector('[data-fmt="preview"]');
+    if (!box || !btn) return;
+    var on = box.hidden;
+    if (on) {
+      if (ta.value.trim()) {
+        box.innerHTML = renderBody(ta.value);
+      } else {
+        box.textContent = '';
+        var em = document.createElement('span');
+        em.className = 'cm-preview-empty';
+        em.textContent = ct('comm.fmt.previewEmpty', 'Nothing to preview.');
+        box.appendChild(em);
+      }
+      box.style.minHeight = ta.offsetHeight + 'px';
+    }
+    box.hidden = !on;
+    ta.hidden = on;
+    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    btn.textContent = on ? ct('comm.fmt.write', 'Edit') : ct('comm.fmt.preview', 'Preview');
+    Array.prototype.forEach.call(bar.querySelectorAll('.cm-fmt'), function (x) { if (x !== btn) x.disabled = on; });
+    if (!on) ta.focus();
+  }
+
+  function bindFormatBar() {
+    var el = app();
+    if (!el || el.__cmFmt) return;
+    el.__cmFmt = true;
+    el.addEventListener('click', function (e) {
+      var btn = e.target && e.target.closest ? e.target.closest('.cm-fmt') : null;
+      if (!btn || btn.disabled) return;
+      var bar = btn.closest('.cm-fmtbar');
+      var id = bar && bar.getAttribute('data-target');
+      if (!id || !FMT_TARGETS[id]) return;
+      var ta = document.getElementById(id);
+      if (!ta) return;
+      e.preventDefault();
+      var f = btn.getAttribute('data-fmt');
+      if (f === 'preview') fmtTogglePreview(bar, ta);
+      else fmtApply(ta, f);
+    });
+    el.addEventListener('keydown', function (e) {
+      var ta = e.target;
+      if (!ta || ta.tagName !== 'TEXTAREA' || !FMT_TARGETS[ta.id]) return;
+      if (!(e.ctrlKey || e.metaKey) || e.altKey || e.shiftKey) return;
+      var k = String(e.key || '').toLowerCase();
+      if (k !== 'b' && k !== 'i') return;
+      e.preventDefault();
+      fmtApply(ta, k === 'b' ? 'bold' : 'italic');
+    });
+  }
+
   function fdate(d) {
     if (!d) return '';
     var loc = window.currentLang === 'ko' ? 'ko-KR' : window.currentLang === 'ja' ? 'ja-JP'
@@ -519,6 +788,7 @@
     var editDraft = prevEdit && prevEdit.getAttribute('data-cid') === _editingCommentId ? prevEdit.value : null;
 
     el.innerHTML = html;
+    mountFormatBars();
     if (document.getElementById('cmReport')) loadReport(p);
     var editBox = document.getElementById('cmEditCommentBody');
     if (editBox) {
@@ -574,6 +844,7 @@
         '</div>' +
       '</div>';
 
+    mountFormatBars();
     var titleEl = document.getElementById('cmNewTitle');
     var bodyEl = document.getElementById('cmNewBody');
     if (sameTarget) {
@@ -891,7 +1162,7 @@
     var ov = document.createElement('div');
     ov.className = 'cm-lightbox';
     var img = document.createElement('img');
-    img.src = src;                    // already whitelisted by renderBody()
+    img.src = src;                    // already whitelisted by renderBody() / cmUpload.fetchFiles()
     img.alt = '';
     ov.appendChild(img);
     function onKey(ev) { if (ev.key === 'Escape' || ev.key === 'Esc') close(); }
@@ -1010,6 +1281,7 @@
   function boot() {
     if (!document.getElementById('communityApp')) return;
     bindLightbox();
+    bindFormatBar();
     // Leaving a screen throws away uploads it never saved. Without this an
     // abandoned compose (or a jump from one post to another) would leave paid-for
     // objects in Storage until the 24 h admin sweep.
