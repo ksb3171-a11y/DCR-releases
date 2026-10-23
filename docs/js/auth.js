@@ -5,6 +5,9 @@
    ============================================================================ */
 
 // ── SUPABASE ──
+// 비밀번호 재설정 메일 링크로 돌아오면 주소 해시에 `type=recovery`(또는 만료 시 `error_code=otp_expired`)가
+// 실려 온다. 클라이언트가 해시를 읽고 지우기 **전에** 떠 둔다(password_reset_devplan.md §2).
+const _initialHash = location.hash || ''
 const _sb = window.supabase.createClient(
   'https://vkptgohyktnkrludpwej.supabase.co',
   'sb_publishable_g9dLaqgEqjyjEo8FlRdsKA_h131qxJM'
@@ -187,7 +190,8 @@ let _user = null, _profile = null
 
 // ── MODAL ──
 function openModal(type) {
-  document.getElementById(type === 'login' ? 'loginModal' : 'signupModal').classList.add('open')
+  // type = 'login' | 'signup' | 'forgot' | 'recovery' → '<type>Modal'
+  document.getElementById(type + 'Modal').classList.add('open')
 }
 function closeModal(id) {
   document.getElementById(id).classList.remove('open')
@@ -258,6 +262,79 @@ async function handleSignup(e) {
   success.classList.add('show')
   document.getElementById('signupForm').style.display = 'none'
   btn.disabled = false
+}
+
+// ── FORGOT PASSWORD ── (password_reset_devplan.md)
+// 메일 링크가 돌아올 주소 = 지금 보고 있는 언어의 루트(/ · /ko/ · /ja/ · /zh/).
+// 🚨 Supabase 대시보드 Authentication ▸ URL Configuration ▸ Redirect URLs 에 `https://dcr-st.com/**` 가
+//    있어야 한다. 없으면 Supabase 가 Site URL 로 돌려보낸다 — 거기서도 auth.js 가 돌아 재설정 창은 뜬다.
+function resetRedirectUrl() {
+  const base = document.documentElement.getAttribute('data-nav-base') || './'
+  return new URL(base, location.href).href.split('#')[0].split('?')[0]
+}
+
+async function handleForgot(e) {
+  e.preventDefault()
+  const btn     = document.getElementById('forgotBtn')
+  const err     = document.getElementById('forgotError')
+  const success = document.getElementById('forgotSuccess')
+  const t       = T[currentLang] || T.en
+  btn.disabled = true; err.classList.remove('show'); success.classList.remove('show')
+
+  const { error } = await _sb.auth.resetPasswordForEmail(
+    document.getElementById('fp_email').value.trim(),
+    { redirectTo: resetRedirectUrl() }
+  )
+  btn.disabled = false
+  if (error) {
+    err.textContent = error.message; err.classList.add('show')
+    return
+  }
+  // 가입 여부와 무관하게 같은 문구 — 이메일 존재 여부를 알려주지 않는다(Supabase 도 같은 응답을 준다).
+  success.textContent = t['auth.forgot_sent']; success.classList.add('show')
+  document.getElementById('forgotForm').reset()
+}
+
+// ── SET NEW PASSWORD ── (메일 링크 → PASSWORD_RECOVERY 세션)
+async function handleRecovery(e) {
+  e.preventDefault()
+  const btn     = document.getElementById('recoveryBtn')
+  const err     = document.getElementById('recoveryError')
+  const success = document.getElementById('recoverySuccess')
+  const t       = T[currentLang] || T.en
+  btn.disabled = true; err.classList.remove('show'); success.classList.remove('show')
+
+  const pw  = document.getElementById('rc_password').value
+  const pw2 = document.getElementById('rc_pw_confirm').value
+  // 가입과 같은 규칙(handleSignup)
+  if (pw !== pw2) {
+    err.textContent = t['auth.err_pw_match']; err.classList.add('show')
+    btn.disabled = false; return
+  }
+  if (pw.length < 8) {
+    err.textContent = t['auth.err_pw_short']; err.classList.add('show')
+    btn.disabled = false; return
+  }
+
+  const { error } = await _sb.auth.updateUser({ password: pw })
+  btn.disabled = false
+  if (error) {
+    err.textContent = error.message; err.classList.add('show')
+    return
+  }
+  success.textContent = t['auth.recovery_done']; success.classList.add('show')
+  const form = document.getElementById('recoveryForm')
+  form.reset(); form.style.display = 'none'
+}
+
+function openRecoveryModal() {
+  const form = document.getElementById('recoveryForm')
+  if (!form) return
+  form.style.display = ''
+  document.getElementById('recoveryError').classList.remove('show')
+  document.getElementById('recoverySuccess').classList.remove('show')
+  closeModal('loginModal'); closeModal('forgotModal')
+  openModal('recovery')
 }
 
 // ── LOGOUT ──
@@ -342,7 +419,8 @@ document.addEventListener('click', () => {
 })
 
 // ── MODAL OVERLAY: close on backdrop click ──
-;['loginModal','signupModal'].forEach(id => {
+// recoveryModal 은 일부러 뺀다 — 배경을 잘못 눌러 닫히면 메일 링크를 다시 받아야 한다.
+;['loginModal','signupModal','forgotModal'].forEach(id => {
   const overlay = document.getElementById(id)
   if (!overlay) return
   // Close only when the press AND release both land on the backdrop itself.
@@ -374,12 +452,37 @@ _sb.auth.getSession().then(({ data: { session } }) => {
     if (session.user.email === ADMIN_EMAIL) enableAdminMode()
   } else updateAuthUI(null, null)
 })
-_sb.auth.onAuthStateChange((_, session) => {
+_sb.auth.onAuthStateChange((event, session) => {
+  if (event === 'PASSWORD_RECOVERY') openRecoveryModal()
   if (session) {
     loadProfile(session.user)
     if (session.user.email === ADMIN_EMAIL) enableAdminMode()
   } else updateAuthUI(null, null)
 })
+
+// ── PASSWORD RESET ENTRY POINTS ── (password_reset_devplan.md)
+//  · `?reset=1`            앱 로그인 화면의 「Forgot password?」 가 연다 → 재설정 메일 요청 창
+//  · `#…error_code=otp_expired`  메일 링크가 만료·재사용됨 → 같은 창에 안내를 띄운다
+//  · `#…type=recovery`     PASSWORD_RECOVERY 이벤트가 정상 경로다. 이벤트를 놓쳐도 세션이 서면 창을 연다
+;(function () {
+  const params = new URLSearchParams(location.search)
+  if (params.get('reset') === '1') {
+    params.delete('reset')
+    const qs = params.toString()
+    history.replaceState(null, '', location.pathname + (qs ? '?' + qs : '') + location.hash)
+    openModal('forgot')
+  }
+  const hash = new URLSearchParams(_initialHash.replace(/^#/, ''))
+  if (hash.get('error_code') || hash.get('error')) {
+    const t = T[currentLang] || T.en
+    const err = document.getElementById('forgotError')
+    if (err) { err.textContent = t['auth.forgot_expired']; err.classList.add('show') }
+    history.replaceState(null, '', location.pathname + location.search)
+    openModal('forgot')
+  } else if (hash.get('type') === 'recovery') {
+    _sb.auth.getSession().then(({ data: { session } }) => { if (session) openRecoveryModal() })
+  }
+})()
 
 // Load admin-managed images
 loadSiteImages()

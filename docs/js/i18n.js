@@ -65,6 +65,7 @@
       'comm.rep.stack': 'Stack trace',
       'comm.rep.env': 'Environment',
       'comm.rep.purged': 'Deleted after the retention period',
+      'comm.rep.img': 'Attached picture — only the author and STRIX staff can see it',
       'comm.rep.dlFail': 'The file could not be downloaded.',
       'comm.hidden': 'hidden',
       'comm.notFound': 'Post not found.',
@@ -713,7 +714,19 @@
       'auth.days_left': 'Beta: {n} days left',
       'auth.expired': 'Beta expired',
       'auth.err_pw_match': 'Passwords do not match',
-      'auth.err_pw_short': 'Password must be at least 8 characters'
+      'auth.err_pw_short': 'Password must be at least 8 characters',
+      'auth.forgot_link': 'Forgot your password?',
+      'auth.forgot_title': 'Reset Password',
+      'auth.forgot_sub': 'Enter your account email and we will send you a link to set a new password.',
+      'auth.forgot_btn': 'Send Reset Link',
+      'auth.forgot_sent': 'If an account exists for this email, a reset link has been sent. Please check your inbox (and spam folder).',
+      'auth.forgot_expired': 'This email link is invalid or has expired. To reset your password, request a new link below.',
+      'auth.back_to_login': 'Back to log in',
+      'auth.recovery_title': 'Set New Password',
+      'auth.recovery_sub': 'Enter a new password for your account.',
+      'auth.new_password': 'New Password',
+      'auth.recovery_btn': 'Change Password',
+      'auth.recovery_done': 'Your password has been changed. Use the new password to log in to STRIX.'
     },
 
     ko: {
@@ -761,6 +774,7 @@
       'comm.rep.stack': '스택',
       'comm.rep.env': '환경 정보',
       'comm.rep.purged': '보관 기간이 지나 삭제됨',
+      'comm.rep.img': '첨부 그림 — 작성자와 STRIX 운영자만 볼 수 있습니다',
       'comm.rep.dlFail': '파일을 내려받지 못했습니다.',
       'comm.hidden': '숨김',
       'comm.notFound': '글을 찾을 수 없습니다.',
@@ -1409,7 +1423,19 @@
       'auth.days_left': 'Beta: {n}일 남음',
       'auth.expired': 'Beta 만료됨',
       'auth.err_pw_match': '비밀번호가 일치하지 않습니다',
-      'auth.err_pw_short': '비밀번호는 8자 이상이어야 합니다'
+      'auth.err_pw_short': '비밀번호는 8자 이상이어야 합니다',
+      'auth.forgot_link': '비밀번호를 잊으셨나요?',
+      'auth.forgot_title': '비밀번호 재설정',
+      'auth.forgot_sub': '가입한 이메일을 입력하면 새 비밀번호를 설정할 수 있는 링크를 보내드립니다.',
+      'auth.forgot_btn': '재설정 링크 보내기',
+      'auth.forgot_sent': '가입된 이메일이면 재설정 링크를 발송했습니다. 받은 편지함(스팸함 포함)을 확인해주세요.',
+      'auth.forgot_expired': '메일 링크가 유효하지 않거나 만료되었습니다. 비밀번호를 재설정하려면 아래에서 새 링크를 요청해주세요.',
+      'auth.back_to_login': '로그인으로 돌아가기',
+      'auth.recovery_title': '새 비밀번호 설정',
+      'auth.recovery_sub': '계정에 사용할 새 비밀번호를 입력해주세요.',
+      'auth.new_password': '새 비밀번호',
+      'auth.recovery_btn': '비밀번호 변경',
+      'auth.recovery_done': '비밀번호가 변경되었습니다. STRIX 에 새 비밀번호로 로그인하세요.'
     },
 
     ja: {
@@ -1457,6 +1483,7 @@
       'comm.rep.stack': 'スタック',
       'comm.rep.env': '環境情報',
       'comm.rep.purged': '保管期間が過ぎたため削除済み',
+      'comm.rep.img': '添付画像 — 投稿者と STRIX スタッフのみ表示できます',
       'comm.rep.dlFail': 'ファイルをダウンロードできませんでした。',
       'comm.hidden': '非表示',
       'comm.notFound': '投稿が見つかりません。',
@@ -2105,7 +2132,19 @@
       'auth.days_left': 'ベータ: 残り{n}日',
       'auth.expired': 'ベータ期限切れ',
       'auth.err_pw_match': 'パスワードが一致しません',
-      'auth.err_pw_short': 'パスワードは8文字以上で入力してください'
+      'auth.err_pw_short': 'パスワードは8文字以上で入力してください',
+      'auth.forgot_link': 'パスワードをお忘れですか?',
+      'auth.forgot_title': 'パスワード再設定',
+      'auth.forgot_sub': '登録したメールアドレスを入力すると、新しいパスワードを設定するリンクをお送りします。',
+      'auth.forgot_btn': '再設定リンクを送信',
+      'auth.forgot_sent': '登録済みのメールアドレスであれば、再設定リンクを送信しました。受信トレイ(迷惑メールフォルダを含む)をご確認ください。',
+      'auth.forgot_expired': 'メールのリンクが無効か、有効期限が切れています。パスワードを再設定するには、下から新しいリンクを請求してください。',
+      'auth.back_to_login': 'ログインに戻る',
+      'auth.recovery_title': '新しいパスワードの設定',
+      'auth.recovery_sub': 'アカウントの新しいパスワードを入力してください。',
+      'auth.new_password': '新しいパスワード',
+      'auth.recovery_btn': 'パスワードを変更',
+      'auth.recovery_done': 'パスワードを変更しました。新しいパスワードで STRIX にログインしてください。'
     },
 
     zh: {
@@ -2153,6 +2192,7 @@
       'comm.rep.stack': '堆栈',
       'comm.rep.env': '环境信息',
       'comm.rep.purged': '已超过保存期限并删除',
+      'comm.rep.img': '附加图片 — 仅作者和 STRIX 工作人员可见',
       'comm.rep.dlFail': '无法下载文件。',
       'comm.hidden': '已隐藏',
       'comm.notFound': '未找到帖子。',
@@ -2778,7 +2818,19 @@
       'auth.days_left': 'Beta: 剩余 {n} 天',
       'auth.expired': '测试期已结束',
       'auth.err_pw_match': '两次输入的密码不一致',
-      'auth.err_pw_short': '密码至少需要 8 位字符'
+      'auth.err_pw_short': '密码至少需要 8 位字符',
+      'auth.forgot_link': '忘记密码？',
+      'auth.forgot_title': '重置密码',
+      'auth.forgot_sub': '输入注册邮箱，我们将发送设置新密码的链接。',
+      'auth.forgot_btn': '发送重置链接',
+      'auth.forgot_sent': '如果该邮箱已注册，重置链接已发送。请查收收件箱（包括垃圾邮件）。',
+      'auth.forgot_expired': '邮件链接无效或已过期。如需重置密码，请在下方重新申请链接。',
+      'auth.back_to_login': '返回登录',
+      'auth.recovery_title': '设置新密码',
+      'auth.recovery_sub': '请输入账户的新密码。',
+      'auth.new_password': '新密码',
+      'auth.recovery_btn': '修改密码',
+      'auth.recovery_done': '密码已修改。请使用新密码登录 STRIX。'
     }
   };
 

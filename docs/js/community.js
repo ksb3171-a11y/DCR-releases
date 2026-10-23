@@ -74,11 +74,19 @@
   function reEsc(s) { return String(s).replace(/[.*+?^${}()|[\]\\]/g, '\\$&') }
 
   var _imgRe = null, _imgRePfx = null
+  // image size / alignment chosen in the app editor: `![alt|50](…)` · `![alt|50|center](…)` — both values are enums
+  var FMT_IMG_OPTS = '(?:\\|(25|50|75|100)(?:\\|(left|center|right))?)?'
+  // a picture kept in the PRIVATE report storage (app bug report): `![alt|w|a](report:<attachment number>)`.
+  // It becomes a placeholder; loadReport() swaps in a short-lived signed URL for the author and staff only.
+  var FMT_RIMG_RE = new RegExp('!\\[([^\\]\\n]{0,120}?)' + FMT_IMG_OPTS + '\\]\\(report:(\\d{1,3})\\)', 'g')
+  function imgOptClass(w, a) { return (w ? ' cm-w' + w : '') + (a === 'center' || a === 'right' ? ' cm-ia-' + a : '') }
   function imgTokenRe() {
     var p = imgPrefix()
     if (!p) return null
     if (!_imgRe || _imgRePfx !== p) {
-      _imgRe = new RegExp('!\\[([^\\]\\n]{0,120})\\]\\(' + reEsc(p) + '([A-Za-z0-9_\\-./]{1,200})\\)', 'g')
+      // optional `|width|align` after the alt text (app editor — rich_editor_devplan.md §6); the alt is lazy so a
+      // plain `|` inside an older alt text still matches as before
+      _imgRe = new RegExp('!\\[([^\\]\\n]{0,120}?)' + FMT_IMG_OPTS + '\\]\\(' + reEsc(p) + '([A-Za-z0-9_\\-./]{1,200})\\)', 'g')
       _imgRePfx = p
     }
     _imgRe.lastIndex = 0
@@ -97,7 +105,12 @@
   //     run a rule on the unescaped source.
   //
   //  Blocks (line start)  # ## ###  ·  - * list  ·  1. list  ·  > quote  ·  ---  ·  ``` fence
+  //                       {center} {right} line alignment  ·  | a | b | table (needs the |---| line)
   //  Inline               **bold** · *italic* · ~~strike~~ · `code` · [text](https://…) · bare https://…
+  //                       {i}…{/i} · {u}…{/u} · {small|big|huge}…{/same} · {c:name}…{/c} · {hl:name}…{/hl}
+  //  The brace marks come from the STRIX app editor (rich_editor_devplan.md §6 — single source of the mark list is
+  //  frontend/src/components/common/richEditor/richMarkup.ts). Colour/size names are fixed alternations, so the
+  //  captured name that lands in a class attribute can only be one of the listed words.
   //
   //  Finished pieces (code, images, links) are parked behind a NUL placeholder
   //  (keep) so no later rule can reach into them — e.g. a URL typed in an image's
@@ -118,12 +131,43 @@
       return t
         .replace(/\*\*(?=\S)([^\n]*?\S)\*\*/g, '<strong>$1</strong>')
         .replace(/(^|[^\w*])\*(?=[^\s*])([^*\n]*?[^\s*])\*(?![\w*])/g, '$1<em>$2</em>')
-        .replace(/~~(?=\S)([^\n]*?\S)~~/g, '<del>$1</del>');
+        .replace(/~~(?=\S)([^\n]*?\S)~~/g, '<del>$1</del>')
+        .replace(/\{i\}([^\n]*?)\{\/i\}/g, '<em>$1</em>')
+        .replace(/\{u\}([^\n]*?)\{\/u\}/g, '<u>$1</u>')
+        .replace(/\{(small|big|huge)\}([^\n]*?)\{\/\1\}/g, '<span class="cm-sz-$1">$2</span>')
+        .replace(/\{c:(red|orange|yellow|green|blue|indigo|purple|gray)\}([^\n]*?)\{\/c\}/g, '<span class="cm-c-$1">$2</span>')
+        .replace(/\{hl:(yellow|green|blue|pink|orange)\}([^\n]*?)\{\/hl\}/g, '<mark class="cm-hl-$1">$2</mark>');
     }).join('');
+  }
+
+  // GFM-style table: a header row, a |---| line, then rows. The block is ESCAPED text already, and every tag
+  // below is written by a replacement *literal* like the other rules — the input's characters are only cut at
+  // unescaped `|` and wrapped. `\|` is a literal pipe inside a cell (\u0001 holds it while cutting).
+  var FMT_TABLE_RE = /(?:^\|[^\n]*\|[ \t]*(?:\n|$))+/gm;
+  var FMT_TABLE_SEP = /^\|(?:[ \t]*:?-{3,}:?[ \t]*\|)+[ \t]*$/;
+  function fmtRowCut(l) {
+    return l.replace(/\u0001/g, '').replace(/\\\|/g, '\u0001').replace(/[ \t]+$/, '').replace(/^\|(.*)\|$/, '$1');
+  }
+  function fmtRowTh(l) {
+    return fmtRowCut(l).replace(/\|/g, '</th><th>').replace(/^([\s\S]*)$/, '<tr><th>$1</th></tr>')
+      .replace(/<th>[ \t]+/g, '<th>').replace(/[ \t]+<\/th>/g, '</th>').replace(/\u0001/g, '|');
+  }
+  function fmtRowTd(l) {
+    return fmtRowCut(l).replace(/\|/g, '</td><td>').replace(/^([\s\S]*)$/, '<tr><td>$1</td></tr>')
+      .replace(/<td>[ \t]+/g, '<td>').replace(/[ \t]+<\/td>/g, '</td>').replace(/\u0001/g, '|');
+  }
+  function fmtTable(block) {
+    var lines = block.replace(/\n$/, '').split('\n');
+    if (lines.length < 2 || !FMT_TABLE_SEP.test(lines[1])) return block;
+    var out = [fmtRowTh(lines[0])].concat(lines.slice(2).map(fmtRowTd)).join('')
+      .replace(/^([\s\S]*)$/, '<table class="cm-tbl">$1</table>');
+    return /\n$/.test(block) ? out.replace(/$/, '\n') : out;
   }
 
   function fmtText(s) {
     s = s
+      .replace(FMT_TABLE_RE, fmtTable)
+      .replace(/^\{(center|right)\}(.*)$/gm, '<div class="cm-al-$1">$2</div>')
       .replace(/^### (.+)$/gm, '<h5 class="cm-h">$1</h5>')
       .replace(/^## (.+)$/gm, '<h4 class="cm-h">$1</h4>')
       .replace(/^# (.+)$/gm, '<h3 class="cm-h">$1</h3>')
@@ -138,8 +182,8 @@
     s = fmtInline(s);
     // a block carries its own spacing — drop the line break next to it
     return s
-      .replace(/(<\/h[345]>|<\/ul>|<\/ol>|<\/blockquote>|<hr class="cm-hr">)\n/g, '$1')
-      .replace(/\n(?=<(?:h[345]|ul|ol|blockquote|hr) )/g, '')
+      .replace(/(<\/h[345]>|<\/ul>|<\/ol>|<\/blockquote>|<hr class="cm-hr">|<\/div>|<\/table>)\n/g, '$1')
+      .replace(/\n(?=<(?:h[345]|ul|ol|blockquote|hr|div|table) )/g, '')
       .replace(/\n/g, '<br>');
   }
 
@@ -156,13 +200,19 @@
     // images next, so an alt text is parked before any inline rule can reach it
     var re = imgTokenRe()
     if (re) {
-      h = h.replace(re, function (m, alt, path) {
+      h = h.replace(re, function (m, alt, w, a, path) {
         if (path.indexOf('..') >= 0) return m
-        return '<img class="cm-img" src="' + imgPrefix() + path + '" alt="' + alt +
+        return '<img class="cm-img' + esc(imgOptClass(w, a)) + '" src="' + imgPrefix() + path + '" alt="' + alt +
                '" loading="lazy" decoding="async" referrerpolicy="no-referrer">'
       })
-      h = h.replace(/<img class="cm-img"[^>]*>/g, keep)
+      h = h.replace(/<img class="cm-img[^"]*"[^>]*>/g, keep)
     }
+    // private report pictures → placeholder (class = enum words · number = \d{1,3}). The alt text is not shown —
+    // it would be escaped twice here, and the picture itself replaces the placeholder for those who may see it
+    h = h.replace(FMT_RIMG_RE, function (m, alt, w, a, n) {
+      return '<span class="cm-rimg' + esc(imgOptClass(w, a)) + '" data-rf="' + esc(n) + '">🔒 ' +
+             esc(ct('comm.rep.img', 'Attached picture — only the author and STRIX staff can see it')) + '</span>'
+    }).replace(/<span class="cm-rimg[^"]*" data-rf="\d{1,3}">[^<]*<\/span>/g, keep)
     // inline code never spans a parked piece (\u0000) — `![x](…)` stays a picture
     h = h.replace(/`([^`\n\u0000]+)`/g, '<code class="cm-icode">$1</code>')
       .replace(/<code class="cm-icode">[^<]*<\/code>/g, keep)
@@ -1197,6 +1247,7 @@
       var rep = r[0] && !r[0].error ? r[0].data : null;
       if (!rep || !document.getElementById('cmReport')) { if (box) box.innerHTML = ''; return; }   // 앱 보고가 아니다(또는 SQL 적용 전)
       _reportFiles = (r[1] && !r[1].error && r[1].data) || [];
+      showReportImages(_reportFiles);
       var mine = window._user && window._user.id === p.author_id;
       var kindLabel = rep.kind === 'auto' ? ct('comm.rep.auto', 'Automatic (app error)') : ct('comm.rep.manual', 'Reported by the user');
       var catKey = REP_CATEGORY[rep.category];
@@ -1248,6 +1299,34 @@
       }
       box.textContent = '';
       box.appendChild(sec);
+    });
+  }
+
+  // 본문 안 비공개 그림(app 편집기 — rich_editor_devplan.md §6). renderBody 가 남긴 자리(.cm-rimg[data-rf=N])를
+  // 첨부 번호 N 의 screenshot 파일로 바꾼다. 파일 목록은 RLS 가 작성자·운영자에게만 주므로 다른 사람은 자리 표시만 본다.
+  // 🚨 DOM 으로만 만든다(innerHTML 금지) — 서명 주소는 서버가 준 값이고 경로는 아래 정규식이 거른다.
+  function showReportImages(files) {
+    var spots = document.querySelectorAll('.cm-pbody .cm-rimg[data-rf]');
+    if (!spots.length || !window._sb) return;
+    var byNo = {};
+    files.forEach(function (f) {
+      var m = !f.purged_at && /\/(\d{1,3})-screenshot\.(?:png|jpg|jpeg)$/.exec(f.path || '');
+      if (m) byNo[m[1]] = f.path;
+    });
+    Array.prototype.forEach.call(spots, function (spot) {
+      var path = byNo[spot.getAttribute('data-rf')];
+      if (!path) return;
+      window._sb.storage.from('report-files').createSignedUrl(path, 3600).then(function (r) {
+        var url = r && r.data && r.data.signedUrl;
+        if (!url || !/^https:\/\/[a-z0-9]+\.supabase\.co\/storage\/v1\/object\/sign\/report-files\//.test(url) || !spot.parentNode) return;
+        var img = document.createElement('img');
+        img.className = spot.className.replace('cm-rimg', 'cm-img').replace(/[^a-z0-9 -]/gi, '');
+        img.src = url;
+        img.alt = '';
+        img.loading = 'lazy';
+        img.referrerPolicy = 'no-referrer';
+        spot.parentNode.replaceChild(img, spot);
+      });
     });
   }
 

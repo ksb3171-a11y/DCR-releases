@@ -164,10 +164,40 @@
           '<input id="li_email" type="email" autocomplete="email" required data-i18n-ph="auth.email_ph"></div>' +
         '<div class="auth-field"><label data-i18n="auth.password">Password</label>' +
           '<input id="li_password" type="password" autocomplete="current-password" required data-i18n-ph="auth.password_ph"></div>' +
+        '<div class="auth-forgot"><a onclick="switchModal(\'login\',\'forgot\')" data-i18n="auth.forgot_link">Forgot your password?</a></div>' +
         '<button class="auth-submit" id="loginBtn" type="submit" data-i18n="auth.login_btn">Log In</button>' +
       '</form>' +
       '<div class="auth-switch"><span data-i18n="auth.no_account">Don\'t have an account?</span> ' +
         '<a onclick="switchModal(\'login\',\'signup\')" data-i18n="auth.signup_link">Sign up</a></div>' +
+    '</div></div>' +
+    // forgot password — request a reset link (password_reset_devplan.md)
+    '<div class="modal-overlay" id="forgotModal"><div class="auth-modal">' +
+      '<button class="auth-close" onclick="closeModal(\'forgotModal\')">×</button>' +
+      '<div class="auth-modal-title" data-i18n="auth.forgot_title">Reset Password</div>' +
+      '<div class="auth-modal-sub" data-i18n="auth.forgot_sub">Enter your account email and we will send you a link to set a new password.</div>' +
+      '<div class="auth-msg error" id="forgotError"></div>' +
+      '<div class="auth-msg success" id="forgotSuccess"></div>' +
+      '<form id="forgotForm" onsubmit="handleForgot(event)">' +
+        '<div class="auth-field"><label data-i18n="auth.email">Email</label>' +
+          '<input id="fp_email" type="email" autocomplete="email" required data-i18n-ph="auth.email_ph"></div>' +
+        '<button class="auth-submit" id="forgotBtn" type="submit" data-i18n="auth.forgot_btn">Send Reset Link</button>' +
+      '</form>' +
+      '<div class="auth-switch"><a onclick="switchModal(\'forgot\',\'login\')" data-i18n="auth.back_to_login">Back to log in</a></div>' +
+    '</div></div>' +
+    // set new password — opened by the PASSWORD_RECOVERY event after the mail link
+    '<div class="modal-overlay" id="recoveryModal"><div class="auth-modal">' +
+      '<button class="auth-close" onclick="closeModal(\'recoveryModal\')">×</button>' +
+      '<div class="auth-modal-title" data-i18n="auth.recovery_title">Set New Password</div>' +
+      '<div class="auth-modal-sub" data-i18n="auth.recovery_sub">Enter a new password for your account.</div>' +
+      '<div class="auth-msg error" id="recoveryError"></div>' +
+      '<div class="auth-msg success" id="recoverySuccess"></div>' +
+      '<form id="recoveryForm" onsubmit="handleRecovery(event)">' +
+        '<div class="auth-field"><label data-i18n="auth.new_password">New Password</label>' +
+          '<input id="rc_password" type="password" autocomplete="new-password" required data-i18n-ph="auth.password_ph"></div>' +
+        '<div class="auth-field"><label data-i18n="auth.pw_confirm">Confirm Password</label>' +
+          '<input id="rc_pw_confirm" type="password" autocomplete="new-password" required data-i18n-ph="auth.pw_confirm_ph"></div>' +
+        '<button class="auth-submit" id="recoveryBtn" type="submit" data-i18n="auth.recovery_btn">Change Password</button>' +
+      '</form>' +
     '</div></div>' +
     // signup
     '<div class="modal-overlay" id="signupModal"><div class="auth-modal">' +
