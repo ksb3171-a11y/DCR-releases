@@ -19,7 +19,7 @@ window.STRIX_VIDEOS = {
       "labelKey": "vid.tabTut",
       "playlistId": {
         "ko": "PLGBn2O6Kai3k",
-        "en": ""
+        "en": "PLIrQXAKEJEDM"
       },
       "videos": {
         "ko": [
@@ -97,20 +97,382 @@ window.STRIX_VIDEOS = {
             "id": "PoJA-KDuYGY",
             "title": "보-기둥 접합부 검토 따라하기 — B-C Joint Check",
             "duration": "2:37"
+          },
+          {
+            "id": "hdbf-NG-rmk",
+            "title": "전이보 설계 따라하기 — Transfer Detail",
+            "duration": "3:11"
+          },
+          {
+            "id": "DvYmMzgRr5k",
+            "title": "비구조요소 내진설계 따라하기 — 설비 · 앵커 검토",
+            "duration": "9:16"
+          },
+          {
+            "id": "L5wOEMWf2uo",
+            "title": "철골 단면 최적화 따라하기 — Design Optimization",
+            "duration": "4:37"
+          },
+          {
+            "id": "r6S7qEYxdas",
+            "title": "RC 단면 최적화 따라하기 — Design Optimization",
+            "duration": "5:22"
+          },
+          {
+            "id": "A8ZANvHnKpg",
+            "title": "독립기초 설계 따라하기 — Isolated Footing",
+            "duration": "2:52"
+          },
+          {
+            "id": "LybG1jFmZy0",
+            "title": "매트기초 설계 따라하기 — 판해석 · Mat Foundation",
+            "duration": "3:15"
+          },
+          {
+            "id": "UVFKODAfZ2s",
+            "title": "파일기초 설계 따라하기 — 파일 자동 배치",
+            "duration": "7:53"
+          },
+          {
+            "id": "5ayjI3qadFA",
+            "title": "지하외벽 설계 따라하기 — 지진토압 · 토압",
+            "duration": "18:52"
+          },
+          {
+            "id": "J0NlvvZrHBA",
+            "title": "활동 · 전도 · 부력 검토 따라하기 — Global Stability",
+            "duration": "3:46"
+          },
+          {
+            "id": "22ZrtK3vnfk",
+            "title": "구조도면 자동 작성 따라하기 — 구조평면도 · 일람표",
+            "duration": "2:13"
+          },
+          {
+            "id": "_a1rd_VVJpo",
+            "title": "구조계산서 작성 따라하기 — 자동 생성 · 편집",
+            "duration": "4:01"
+          },
+          {
+            "id": "1wg5yxBX8Jg",
+            "title": "AI 구조해석 따라하기 — 자연어로 모델링 · 해석 · 설계",
+            "duration": "4:43"
+          },
+          {
+            "id": "F4NTXsWIvW4",
+            "title": "설계기준 AI 챗봇 따라하기 — 기준 조회 · 근거 확인",
+            "duration": "2:19"
+          },
+          {
+            "id": "Gf5AuU2zTiE",
+            "title": "푸시오버 해석 따라하기 — RC 기둥",
+            "duration": "7:25"
+          },
+          {
+            "id": "03IR3Pex3iI",
+            "title": "푸시오버 해석 따라하기 — RC 골조",
+            "duration": "7:12"
+          },
+          {
+            "id": "H6tqo6oqecs",
+            "title": "비선형 시간이력해석 따라하기 — RC 기둥",
+            "duration": "7:57"
+          },
+          {
+            "id": "6SeYbeBZ2Q8",
+            "title": "내진성능평가 따라하기 — 선형 평가(m계수법) ①",
+            "duration": "4:33"
+          },
+          {
+            "id": "ReSWHwGvr-I",
+            "title": "내진성능평가 따라하기 — 비선형 평가(푸시오버) ②",
+            "duration": "5:42"
           }
         ],
-        "en": []
+        "en": [
+          {
+            "id": "Q_k6_iiyQAA",
+            "title": "STRIX RC Frame Structural Analysis Tutorial — 3-Story Modeling and Results",
+            "duration": "7:17"
+          },
+          {
+            "id": "IDy0Gc_KBZw",
+            "title": "STRIX Steel Braced Frame Design Tutorial — Modeling and Strength Check",
+            "duration": "15:28"
+          },
+          {
+            "id": "Pe-0ny1zNFk",
+            "title": "STRIX Steel Factory Structural Design Tutorial — Sloped Roof Modeling and Strength Check",
+            "duration": "19:54"
+          },
+          {
+            "id": "M7BXDSprtFY",
+            "title": "STRIX Timber Structure Design Tutorial — Pavilion Modeling and Allowable Stress Design",
+            "duration": "17:21"
+          },
+          {
+            "id": "eLOfRqZMlKQ",
+            "title": "STRIX Multi-Tower Structural Analysis Tutorial — Shared Podium Analysis and Design",
+            "duration": "13:20"
+          },
+          {
+            "id": "kL5Ahnvegsg",
+            "title": "STRIX Piloti Apartment Structural Design Tutorial — Wall-Type Transfer Structure ①",
+            "duration": "31:35"
+          },
+          {
+            "id": "ZhjCUn7diVc",
+            "title": "STRIX Piloti Apartment Structural Design Tutorial — Meshed Slab ②",
+            "duration": "18:27"
+          },
+          {
+            "id": "A7ZEeU7BL_Y",
+            "title": "STRIX Piloti Apartment Structural Design Tutorial — Transfer Plate ③",
+            "duration": "14:05"
+          },
+          {
+            "id": "lZpqrQY5Kzc",
+            "title": "STRIX DXF Structural Modeling Tutorial — Frame Model from a Plan Drawing",
+            "duration": "4:39"
+          },
+          {
+            "id": "eXGCezL6kSE",
+            "title": "STRIX Plate Elements and Floor Loads Tutorial — Add Plate",
+            "duration": "5:55"
+          },
+          {
+            "id": "21lRxufEqTc",
+            "title": "STRIX Shear Wall Slab Modeling Tutorial — Meshed Slab",
+            "duration": "6:28"
+          },
+          {
+            "id": "7e6DrUy1mu8",
+            "title": "STRIX Slab Reactions to Walls Tutorial — Slab to Wall",
+            "duration": "10:29"
+          },
+          {
+            "id": "tQmR4xRy3FA",
+            "title": "STRIX Wind Tunnel Load Input Tutorial — Wind Tunnel Loads",
+            "duration": "3:45"
+          },
+          {
+            "id": "gpDlClhLumc",
+            "title": "STRIX RC Slab Design Tutorial — Reinforcement Design",
+            "duration": "2:24"
+          },
+          {
+            "id": "6n8a7VYH7vs",
+            "title": "STRIX Beam-Column Joint Check Tutorial — RC Joint Shear",
+            "duration": "2:51"
+          },
+          {
+            "id": "vu583YdKMnY",
+            "title": "STRIX Transfer Beam Design Tutorial — Transfer Detail",
+            "duration": "3:21"
+          },
+          {
+            "id": "y7bYDLI_pVY",
+            "title": "STRIX Nonstructural Component Seismic Design Tutorial — Equipment and Anchorage",
+            "duration": "9:51"
+          },
+          {
+            "id": "YAIRYNMyCJ0",
+            "title": "STRIX Steel Section Optimization Tutorial — Design Optimization",
+            "duration": "4:51"
+          },
+          {
+            "id": "7V8jsqj9fMM",
+            "title": "STRIX RC Section Optimization Tutorial — Design Optimization",
+            "duration": "5:52"
+          },
+          {
+            "id": "zV4jUEfEp2Q",
+            "title": "STRIX Isolated Footing Design Tutorial — Spread Footing",
+            "duration": "3:05"
+          },
+          {
+            "id": "ArtGrnkA1lM",
+            "title": "STRIX Mat Foundation Design Tutorial — Plate Analysis",
+            "duration": "3:30"
+          },
+          {
+            "id": "AH6Y2Txf3Bc",
+            "title": "STRIX Pile Foundation Design Tutorial — Automatic Pile Layout",
+            "duration": "8:04"
+          },
+          {
+            "id": "VNx5nqDzjxA",
+            "title": "STRIX Basement Wall Design Tutorial — Seismic Earth Pressure",
+            "duration": "19:07"
+          },
+          {
+            "id": "l-7LC-QHC8g",
+            "title": "STRIX Sliding, Overturning and Buoyancy Check Tutorial — Global Stability",
+            "duration": "4:00"
+          },
+          {
+            "id": "iScxYHpZBcs",
+            "title": "STRIX Structural Drawings Tutorial — Framing Plans and Schedules",
+            "duration": "2:19"
+          },
+          {
+            "id": "5MomnIHWBp4",
+            "title": "STRIX Structural Calculation Report Tutorial — Generate and Edit",
+            "duration": "4:04"
+          },
+          {
+            "id": "j_D7uZCX934",
+            "title": "STRIX AI Structural Analysis Tutorial — Model, Analyze and Design in Natural Language",
+            "duration": "5:06"
+          },
+          {
+            "id": "llITiR804FQ",
+            "title": "STRIX Design Code AI Chatbot Tutorial — Look Up Codes and Sources",
+            "duration": "2:28"
+          },
+          {
+            "id": "1FCu0zI7pcA",
+            "title": "Pushover Analysis Tutorial — RC Column",
+            "duration": "7:56"
+          },
+          {
+            "id": "9EbR5mQEKcc",
+            "title": "Pushover Analysis Tutorial — RC Frame",
+            "duration": "7:51"
+          },
+          {
+            "id": "loHBrFokgIs",
+            "title": "STRIX Nonlinear Time History Analysis Tutorial — RC Column",
+            "duration": "8:31"
+          },
+          {
+            "id": "nxmculEPkfo",
+            "title": "STRIX Seismic Performance Evaluation Tutorial — Linear m-Factor Method ①",
+            "duration": "5:10"
+          },
+          {
+            "id": "AhUu1upuCME",
+            "title": "STRIX Seismic Performance Evaluation Tutorial — Nonlinear Pushover Method ②",
+            "duration": "6:09"
+          }
+        ]
       }
     },
     {
       "key": "menu",
       "labelKey": "vid.tabMenu",
       "playlistId": {
-        "ko": "",
+        "ko": "PLTZKOW_1uLFI",
         "en": ""
       },
       "videos": {
-        "ko": [],
+        "ko": [
+          {
+            "id": "tFAIwVJTF3o",
+            "title": "절점 생성 (Add Node)",
+            "duration": "1:24"
+          },
+          {
+            "id": "9V-vaWgsPPA",
+            "title": "프레임요소 생성 (Add Beam)",
+            "duration": "1:13"
+          },
+          {
+            "id": "VNaSqkOR7go",
+            "title": "트러스요소 생성 (Add Truss)",
+            "duration": "1:15"
+          },
+          {
+            "id": "eMgYRNOENAk",
+            "title": "벽요소 생성 (Add Wall)",
+            "duration": "1:11"
+          },
+          {
+            "id": "OeYJW1wQRRs",
+            "title": "판요소 슬래브 생성 (Add Plate)",
+            "duration": "1:29"
+          },
+          {
+            "id": "YDyzilrlpF0",
+            "title": "판 슬래브를 본모델에 보내기 (Meshed Slab)",
+            "duration": "1:21"
+          },
+          {
+            "id": "-3GrhBZ0iXg",
+            "title": "재료 정의 (Material)",
+            "duration": "1:14"
+          },
+          {
+            "id": "s33rMdmK2q4",
+            "title": "단면 정의 (Section)",
+            "duration": "1:14"
+          },
+          {
+            "id": "8LkO63QSrkg",
+            "title": "두께 정의 (Thickness)",
+            "duration": "1:06"
+          },
+          {
+            "id": "cvetBwyLF24",
+            "title": "단면 강성 수정계수 (Sec. Stiff)",
+            "duration": "1:07"
+          },
+          {
+            "id": "Z6oNPDIOWKg",
+            "title": "벽체 강성 수정계수 (Wall Stiff)",
+            "duration": "1:08"
+          },
+          {
+            "id": "hFxX-1vsXoM",
+            "title": "속성 일괄 변경 (Change Para.)",
+            "duration": "0:49"
+          },
+          {
+            "id": "vVyHUk1nyu4",
+            "title": "층 정의 (Story)",
+            "duration": "0:53"
+          },
+          {
+            "id": "QfE-XvJpV4o",
+            "title": "층 복사 (Story Copy)",
+            "duration": "0:57"
+          },
+          {
+            "id": "pfirHSpFOZk",
+            "title": "빌딩 컨트롤 (Bldg. Control)",
+            "duration": "1:03"
+          },
+          {
+            "id": "_PoMSNu-zJA",
+            "title": "타워(동) 분리 (Towers)",
+            "duration": "1:17"
+          },
+          {
+            "id": "zAng7G0kq8s",
+            "title": "도면 기반 자동모델링 (DXF Modeling)",
+            "duration": "1:36"
+          },
+          {
+            "id": "46ZwlKkiJBU",
+            "title": "이동/복사 (Move/Copy)",
+            "duration": "1:12"
+          },
+          {
+            "id": "0631lVEjKfk",
+            "title": "회전 (Rotate)",
+            "duration": "0:57"
+          },
+          {
+            "id": "go3oYi4DMrs",
+            "title": "대칭복사 (Mirror)",
+            "duration": "0:58"
+          },
+          {
+            "id": "np-7ZPrlpzI",
+            "title": "돌출(Extrude)",
+            "duration": "0:56"
+          }
+        ],
         "en": []
       }
     }
