@@ -87,6 +87,31 @@
       }
     }
 
+    /* ── Video window (home hero button → videos.html) ──
+       A real browser window, not an in-page modal, so it can be dragged to another
+       monitor. It opens at a common window size (1280×800, smaller screens 80%/85%).
+       Phones and narrow screens get an ordinary new tab. If the popup is blocked
+       the link's own target="_blank" is left to run.
+       help_video_renewal_devplan.md §10.9 */
+    document.querySelectorAll('[data-video-window]').forEach(a => {
+      a.addEventListener('click', e => {
+        const lang = STATIC_LANG || window.currentLang || 'en';
+        const url = LANG_BASE + 'videos.html?lang=' + encodeURIComponent(lang);
+        const s = window.screen || {};
+        const availW = s.availWidth || window.innerWidth;
+        const availH = s.availHeight || window.innerHeight;
+        if (availW < 820) { a.href = url; return; }   // phone: default new tab
+        const w = Math.round(Math.min(1280, availW * 0.8));
+        const h = Math.round(Math.min(800, availH * 0.85));
+        const left = Math.round((s.availLeft || 0) + (availW - w) / 2);
+        const top = Math.round((s.availTop || 0) + (availH - h) / 2);
+        const win = window.open(url, 'strix-videos',
+          'popup=yes,width=' + w + ',height=' + h + ',left=' + left + ',top=' + top + ',resizable=yes,scrollbars=yes');
+        if (win) { e.preventDefault(); try { win.focus(); } catch (err) {} }
+        else { a.href = url; }
+      });
+    });
+
     /* ── Nav: scroll shadow ── */
     const nav = document.querySelector('.nav');
     if (nav) {

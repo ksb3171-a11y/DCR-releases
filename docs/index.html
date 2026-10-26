@@ -120,7 +120,9 @@
       <p class="hero-sub" data-i18n="hero.sub">A desktop platform that takes you from 3D modeling through nonlinear analysis to code-compliant RC design — built on the OpenSees solver and cross-verified against industry references within ±3%.</p>
       <div class="hero-actions">
         <a href="#download" class="btn btn-primary btn-lg" data-i18n="hero.cta1">Download for Windows</a>
-        <a href="#live" class="btn btn-ghost btn-lg" data-i18n="hero.cta2">▶ Watch the demo</a>
+        <!-- Opens videos.html as its own window (site.js [data-video-window]); absolute
+             href is the no-JS fallback for the /ko/ /ja/ /zh/ copies. -->
+        <a href="/videos.html" target="_blank" rel="noopener" class="btn btn-ghost btn-lg" data-video-window><span data-i18n="hero.cta2">Video tutorials</span></a>
         <!-- Product deck at the site root (one Korean copy). Absolute on purpose so the
              /ko/ /ja/ /zh/ builds reach the same /product/ — rewriteRootRelativePaths()
              only rewrites css|js|assets|verification. -->
