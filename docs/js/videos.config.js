@@ -26,10 +26,10 @@ window.STRIX_VIDEOS = {
           {
             "id": "cto58TRfDnI",
             "title": "RC 골조 구조해석 따라하기 — 3층 모델링 · 해석 · 후처리",
-            "duration": "7:02"
+            "duration": "5:57"
           },
           {
-            "id": "0mUpoe46egE",
+            "id": "51dEHIDv2-c",
             "title": "철골 가새골조 설계 따라하기 — 모델링 · 강도검토",
             "duration": "15:07"
           },
@@ -39,9 +39,9 @@ window.STRIX_VIDEOS = {
             "duration": "19:33"
           },
           {
-            "id": "sCMgOUUo-hk",
+            "id": "U9FPvRLiEXU",
             "title": "목구조 설계 따라하기 — 정자 모델링 · 허용응력설계",
-            "duration": "17:01"
+            "duration": "16:58"
           },
           {
             "id": "o0MLcchuQuQ",
@@ -164,12 +164,12 @@ window.STRIX_VIDEOS = {
             "duration": "2:19"
           },
           {
-            "id": "Gf5AuU2zTiE",
+            "id": "I-m0GNQSm1E",
             "title": "푸시오버 해석 따라하기 — RC 기둥",
-            "duration": "7:25"
+            "duration": "7:23"
           },
           {
-            "id": "03IR3Pex3iI",
+            "id": "85Eip7-lVZQ",
             "title": "푸시오버 해석 따라하기 — RC 골조",
             "duration": "7:12"
           },
@@ -184,21 +184,21 @@ window.STRIX_VIDEOS = {
             "duration": "4:33"
           },
           {
-            "id": "ReSWHwGvr-I",
+            "id": "JEz4n_uc5ug",
             "title": "내진성능평가 따라하기 — 비선형 평가(푸시오버) ②",
-            "duration": "5:42"
+            "duration": "5:40"
           }
         ],
         "en": [
           {
             "id": "Q_k6_iiyQAA",
             "title": "STRIX RC Frame Structural Analysis Tutorial — 3-Story Modeling and Results",
-            "duration": "7:17"
+            "duration": "6:14"
           },
           {
-            "id": "IDy0Gc_KBZw",
+            "id": "0KDRkezXzpI",
             "title": "STRIX Steel Braced Frame Design Tutorial — Modeling and Strength Check",
-            "duration": "15:28"
+            "duration": "15:27"
           },
           {
             "id": "Pe-0ny1zNFk",
@@ -206,9 +206,9 @@ window.STRIX_VIDEOS = {
             "duration": "19:54"
           },
           {
-            "id": "M7BXDSprtFY",
+            "id": "FQ2_yUygOos",
             "title": "STRIX Timber Structure Design Tutorial — Pavilion Modeling and Allowable Stress Design",
-            "duration": "17:21"
+            "duration": "17:15"
           },
           {
             "id": "eLOfRqZMlKQ",
@@ -331,12 +331,12 @@ window.STRIX_VIDEOS = {
             "duration": "2:28"
           },
           {
-            "id": "1FCu0zI7pcA",
+            "id": "jD2V4ghtAsA",
             "title": "Pushover Analysis Tutorial — RC Column",
-            "duration": "7:56"
+            "duration": "7:54"
           },
           {
-            "id": "9EbR5mQEKcc",
+            "id": "ohzE0jedovU",
             "title": "Pushover Analysis Tutorial — RC Frame",
             "duration": "7:51"
           },
@@ -351,9 +351,9 @@ window.STRIX_VIDEOS = {
             "duration": "5:10"
           },
           {
-            "id": "AhUu1upuCME",
+            "id": "bWrGcePzFaU",
             "title": "STRIX Seismic Performance Evaluation Tutorial — Nonlinear Pushover Method ②",
-            "duration": "6:09"
+            "duration": "6:08"
           }
         ]
       }
@@ -363,7 +363,7 @@ window.STRIX_VIDEOS = {
       "labelKey": "vid.tabMenu",
       "playlistId": {
         "ko": "PLTZKOW_1uLFI",
-        "en": ""
+        "en": "PLWVsyE_Rtp2U"
       },
       "videos": {
         "ko": [
@@ -471,9 +471,255 @@ window.STRIX_VIDEOS = {
             "id": "np-7ZPrlpzI",
             "title": "돌출(Extrude)",
             "duration": "0:56"
+          },
+          {
+            "id": "ywKbF--FUUA",
+            "title": "스케일 (Scale)",
+            "duration": "0:56"
+          },
+          {
+            "id": "qHFyULOktmo",
+            "title": "선 요소·벽체 분할 (Divide)",
+            "duration": "1:02"
+          },
+          {
+            "id": "K2DhpMjnB34",
+            "title": "선부재·벽체 병합 (Merge)",
+            "duration": "0:42"
+          },
+          {
+            "id": "d7AMxYcKGEM",
+            "title": "선택 객체 삭제 (Delete)",
+            "duration": "0:40"
+          },
+          {
+            "id": "Iial6JzG8wQ",
+            "title": "불필요 절점 정리 (Purge Nodes)",
+            "duration": "0:56"
+          },
+          {
+            "id": "_uz4hhxjxy8",
+            "title": "절점·프레임 요소 ID 재번호 (Renumbering)",
+            "duration": "0:58"
+          },
+          {
+            "id": "r7nv8K7rApk",
+            "title": "벽체 ID 자동 정렬 (Auto Wall ID)",
+            "duration": "0:44"
+          },
+          {
+            "id": "8ti8SltL12U",
+            "title": "지점(경계조건) 지정 (Support)",
+            "duration": "1:06"
+          },
+          {
+            "id": "4X9CVd3926c",
+            "title": "점 스프링 지점 (Point Spring)",
+            "duration": "1:24"
+          },
+          {
+            "id": "UjJZDq5NGTY",
+            "title": "보 단부 해제 (End Release)",
+            "duration": "1:02"
+          },
+          {
+            "id": "TMyucZSCF9k",
+            "title": "강체 링크 (Rigid Link)",
+            "duration": "0:57"
+          },
+          {
+            "id": "qSXH1nELtDQ",
+            "title": "탄성 링크 (Elastic Link)",
+            "duration": "0:53"
+          },
+          {
+            "id": "tM8ZDslW-Ek",
+            "title": "패널존 효과 (Panel Zone)",
+            "duration": "0:54"
+          },
+          {
+            "id": "EY4aYH1-Na8",
+            "title": "강막 연결 해제 (Diaph. Disc.)",
+            "duration": "0:50"
           }
         ],
-        "en": []
+        "en": [
+          {
+            "id": "-lSsyZZWFac",
+            "title": "Create Nodes (Add Node)",
+            "duration": "1:27"
+          },
+          {
+            "id": "ET3fUH1FM5o",
+            "title": "Create Frame Elements (Add Beam)",
+            "duration": "1:11"
+          },
+          {
+            "id": "Xt3v1VRJqVM",
+            "title": "Create Truss Elements (Add Truss)",
+            "duration": "1:21"
+          },
+          {
+            "id": "YxVRaNN52tw",
+            "title": "Create Wall Elements (Add Wall)",
+            "duration": "1:15"
+          },
+          {
+            "id": "2xBWT9VaXoo",
+            "title": "Add Plate",
+            "duration": "1:37"
+          },
+          {
+            "id": "-DZDmbjhNyQ",
+            "title": "Meshed Slab",
+            "duration": "1:25"
+          },
+          {
+            "id": "oOj-rIcf-Dw",
+            "title": "Materials",
+            "duration": "1:16"
+          },
+          {
+            "id": "pJBRVXNhm1o",
+            "title": "Sections",
+            "duration": "1:22"
+          },
+          {
+            "id": "LMg3F1r63i4",
+            "title": "Thickness",
+            "duration": "1:08"
+          },
+          {
+            "id": "kJIADQ9qSh0",
+            "title": "Section Stiffness Modifiers (Sec. Stiff)",
+            "duration": "1:21"
+          },
+          {
+            "id": "MvbBWUHKxgs",
+            "title": "Wall Stiffness Modifiers",
+            "duration": "1:14"
+          },
+          {
+            "id": "1k8NVbTeIkg",
+            "title": "Change Parameters (Change Para.)",
+            "duration": "0:52"
+          },
+          {
+            "id": "mKXq1YPFGOk",
+            "title": "Story (Floor Level) Definition",
+            "duration": "0:57"
+          },
+          {
+            "id": "iqsonFH4eE4",
+            "title": "Story Copy",
+            "duration": "1:01"
+          },
+          {
+            "id": "3xkajYBI-Jk",
+            "title": "Building Control (Bldg. Control)",
+            "duration": "1:05"
+          },
+          {
+            "id": "gGr3LXIxLAk",
+            "title": "Towers / Multi-Tower",
+            "duration": "1:17"
+          },
+          {
+            "id": "qJAUZDuLQiM",
+            "title": "DXF Modeling",
+            "duration": "1:36"
+          },
+          {
+            "id": "pSM9PUGhDpU",
+            "title": "Move & Copy (Move/Copy)",
+            "duration": "1:11"
+          },
+          {
+            "id": "8djpO2s0i5Y",
+            "title": "Rotate",
+            "duration": "1:00"
+          },
+          {
+            "id": "6Oi2q0vlpFU",
+            "title": "Mirror",
+            "duration": "1:02"
+          },
+          {
+            "id": "VAnG2Sgg_B8",
+            "title": "Extrude",
+            "duration": "0:59"
+          },
+          {
+            "id": "3N-LMxAGdps",
+            "title": "Scale",
+            "duration": "1:04"
+          },
+          {
+            "id": "rxpzDJX4X24",
+            "title": "Divide Line Elements and Walls",
+            "duration": "1:03"
+          },
+          {
+            "id": "bOYSQZCONwU",
+            "title": "Merge Line Elements and Wall Panels",
+            "duration": "0:44"
+          },
+          {
+            "id": "h6GofTSW63w",
+            "title": "Delete Selected Objects",
+            "duration": "0:41"
+          },
+          {
+            "id": "kdCmWlEQm1U",
+            "title": "Purge Redundant Nodes (Purge Nodes)",
+            "duration": "0:59"
+          },
+          {
+            "id": "54MVS4wdQBs",
+            "title": "STRIX Renumber Node and Frame Element IDs (Renumbering)",
+            "duration": "0:55"
+          },
+          {
+            "id": "90_4j9ngNtM",
+            "title": "Auto Wall ID",
+            "duration": "0:40"
+          },
+          {
+            "id": "Eqt6XAVlj-E",
+            "title": "Supports (Boundary Conditions)",
+            "duration": "1:08"
+          },
+          {
+            "id": "cr8toqwQ8jc",
+            "title": "Point Spring Supports",
+            "duration": "1:29"
+          },
+          {
+            "id": "N9-vlDp3MtU",
+            "title": "Beam End Release",
+            "duration": "1:06"
+          },
+          {
+            "id": "AkPv6FLWezA",
+            "title": "Rigid Link",
+            "duration": "0:59"
+          },
+          {
+            "id": "fUXUurD78uo",
+            "title": "Elastic Link",
+            "duration": "0:55"
+          },
+          {
+            "id": "WI03KlWdk-o",
+            "title": "Panel Zone",
+            "duration": "0:55"
+          },
+          {
+            "id": "ZkuB8n2l6Z4",
+            "title": "Diaphragm Disconnect (Diaph. Disc.)",
+            "duration": "0:52"
+          }
+        ]
       }
     }
   ]
