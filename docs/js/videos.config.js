@@ -24,9 +24,9 @@ window.STRIX_VIDEOS = {
       "videos": {
         "ko": [
           {
-            "id": "cto58TRfDnI",
+            "id": "rJ7BRyLcMNQ",
             "title": "RC 골조 구조해석 따라하기 — 3층 모델링 · 해석 · 후처리",
-            "duration": "5:57"
+            "duration": "6:12"
           },
           {
             "id": "51dEHIDv2-c",
@@ -34,9 +34,9 @@ window.STRIX_VIDEOS = {
             "duration": "15:07"
           },
           {
-            "id": "WFLy0o6KfIQ",
+            "id": "qI5jrF4SNq0",
             "title": "철골 공장 구조설계 따라하기 — 경사지붕 모델링 · 강도검토",
-            "duration": "19:33"
+            "duration": "21:14"
           },
           {
             "id": "U9FPvRLiEXU",
@@ -134,9 +134,9 @@ window.STRIX_VIDEOS = {
             "duration": "7:53"
           },
           {
-            "id": "5ayjI3qadFA",
+            "id": "1NFSztPJA3c",
             "title": "지하외벽 설계 따라하기 — 지진토압 · 토압",
-            "duration": "18:52"
+            "duration": "15:09"
           },
           {
             "id": "J0NlvvZrHBA",
@@ -169,9 +169,9 @@ window.STRIX_VIDEOS = {
             "duration": "7:23"
           },
           {
-            "id": "85Eip7-lVZQ",
+            "id": "rzAIcbQqX-8",
             "title": "푸시오버 해석 따라하기 — RC 골조",
-            "duration": "7:12"
+            "duration": "8:12"
           },
           {
             "id": "H6tqo6oqecs",
@@ -191,9 +191,9 @@ window.STRIX_VIDEOS = {
         ],
         "en": [
           {
-            "id": "Q_k6_iiyQAA",
+            "id": "_kAl_RdUPxs",
             "title": "STRIX RC Frame Structural Analysis Tutorial — 3-Story Modeling and Results",
-            "duration": "6:14"
+            "duration": "6:45"
           },
           {
             "id": "0KDRkezXzpI",
@@ -201,9 +201,9 @@ window.STRIX_VIDEOS = {
             "duration": "15:27"
           },
           {
-            "id": "Pe-0ny1zNFk",
+            "id": "Vad3MH-wFEw",
             "title": "STRIX Steel Factory Structural Design Tutorial — Sloped Roof Modeling and Strength Check",
-            "duration": "19:54"
+            "duration": "22:15"
           },
           {
             "id": "FQ2_yUygOos",
@@ -301,9 +301,9 @@ window.STRIX_VIDEOS = {
             "duration": "8:04"
           },
           {
-            "id": "VNx5nqDzjxA",
+            "id": "Ub4z3NhspZQ",
             "title": "STRIX Basement Wall Design Tutorial — Seismic Earth Pressure",
-            "duration": "19:07"
+            "duration": "15:29"
           },
           {
             "id": "l-7LC-QHC8g",
@@ -336,9 +336,9 @@ window.STRIX_VIDEOS = {
             "duration": "7:54"
           },
           {
-            "id": "ohzE0jedovU",
+            "id": "LXDS2HvqbWU",
             "title": "Pushover Analysis Tutorial — RC Frame",
-            "duration": "7:51"
+            "duration": "8:51"
           },
           {
             "id": "loHBrFokgIs",
@@ -541,6 +541,136 @@ window.STRIX_VIDEOS = {
             "id": "EY4aYH1-Na8",
             "title": "강막 연결 해제 (Diaph. Disc.)",
             "duration": "0:50"
+          },
+          {
+            "id": "uysR4G_3RJM",
+            "title": "정적 하중케이스 (Load Case)",
+            "duration": "1:03"
+          },
+          {
+            "id": "zuwf6u0bCmc",
+            "title": "자중 (Self Wt)",
+            "duration": "0:57"
+          },
+          {
+            "id": "j3deP2-XxsY",
+            "title": "하중→질량 변환 (Loads to Mass)",
+            "duration": "1:08"
+          },
+          {
+            "id": "r7sWn84ra3Q",
+            "title": "슬래브 하중 (Slab Load)",
+            "duration": "1:12"
+          },
+          {
+            "id": "36o6QaMG4Rk",
+            "title": "슬래브 하중 층 복사 (Slab Copy)",
+            "duration": "0:50"
+          },
+          {
+            "id": "_o4lN0ciK2w",
+            "title": "보 하중 (Beam Load)",
+            "duration": "1:01"
+          },
+          {
+            "id": "bo85BCU6WdQ",
+            "title": "절점 하중 (Point Load)",
+            "duration": "1:09"
+          },
+          {
+            "id": "oG1REj_B20c",
+            "title": "체적력 (Body Force)",
+            "duration": "1:01"
+          },
+          {
+            "id": "Mk_ZfAKgA34",
+            "title": "절점 집중질량 (Nodal Mass)",
+            "duration": "0:58"
+          },
+          {
+            "id": "VrS21CoEg_4",
+            "title": "강제변위 (Displacement)",
+            "duration": "0:57"
+          },
+          {
+            "id": "DD8v6ExBzUQ",
+            "title": "슬래브 하중의 벽체 전달",
+            "duration": "0:57"
+          },
+          {
+            "id": "pT1BPxO196Q",
+            "title": "판 면하중(Slab Pressure)",
+            "duration": "1:29"
+          },
+          {
+            "id": "I9kopM2h7I8",
+            "title": "판 면하중(Plate Pressure Load)",
+            "duration": "0:51"
+          },
+          {
+            "id": "27HZ41v1mA0",
+            "title": "풍하중 (Wind Load)",
+            "duration": "1:11"
+          },
+          {
+            "id": "d6SC8vnkeLQ",
+            "title": "풍동실험 하중 (Wind Tunnel)",
+            "duration": "1:22"
+          },
+          {
+            "id": "hNcED6blfJ8",
+            "title": "풍동실험 결과 (WT Results)",
+            "duration": "0:42"
+          },
+          {
+            "id": "oI5snw3qX-w",
+            "title": "등가정적 지진하중 (Equiv. Static)",
+            "duration": "1:21"
+          },
+          {
+            "id": "q9s72gJnWqw",
+            "title": "응답스펙트럼 함수 (RS Functions)",
+            "duration": "1:09"
+          },
+          {
+            "id": "yrqeFBVIXf4",
+            "title": "응답스펙트럼 하중케이스 (RS Load Cases)",
+            "duration": "1:09"
+          },
+          {
+            "id": "A92rbL87rIQ",
+            "title": "지층 입력(Soil Profile)",
+            "duration": "1:25"
+          },
+          {
+            "id": "1qlV70iswMY",
+            "title": "지하외벽 토압(Earth Pressure)",
+            "duration": "1:01"
+          },
+          {
+            "id": "XZlJt-z7Bq8",
+            "title": "해석 제어 (Analysis Ctrl)",
+            "duration": "0:55"
+          },
+          {
+            "id": "ycjBJYtwDwc",
+            "title": "고유치(모드) 해석 (Eigenvalue)",
+            "duration": "0:40"
+          },
+          {
+            "id": "e1G0SOX4-3E",
+            "title": "P-Delta 효과",
+            "duration": "0:54"
+          },
+          {
+            "id": "mrjHXhlKDKE",
+            "title": "시공단계 해석 (Constr. Stages)",
+            "duration": "0:57"
+          },
+          {
+            "id": "yI6UGYjUwrc",
+            "title": "해석 실행",
+            "duration": "1:02"
           }
         ],
         "en": [
@@ -718,6 +848,126 @@ window.STRIX_VIDEOS = {
             "id": "ZkuB8n2l6Z4",
             "title": "Diaphragm Disconnect (Diaph. Disc.)",
             "duration": "0:52"
+          },
+          {
+            "id": "FtSJYJ-rOEg",
+            "title": "Static Load Cases",
+            "duration": "1:03"
+          },
+          {
+            "id": "OWhpHGkieeU",
+            "title": "Self Weight (Self Wt)",
+            "duration": "1:00"
+          },
+          {
+            "id": "J7kk9-WufLg",
+            "title": "Loads to Masses",
+            "duration": "1:12"
+          },
+          {
+            "id": "cWp0L-3XL5U",
+            "title": "Slab Loads",
+            "duration": "1:13"
+          },
+          {
+            "id": "zzrsrOiECxc",
+            "title": "Slab Load Copy (Slab Copy)",
+            "duration": "0:51"
+          },
+          {
+            "id": "MpqrsusstEg",
+            "title": "Beam (Member) Loads (Beam Load)",
+            "duration": "1:06"
+          },
+          {
+            "id": "A9a7rinRVLs",
+            "title": "Nodal (Point) Loads (Point Load)",
+            "duration": "1:13"
+          },
+          {
+            "id": "OtXF9MvzqJo",
+            "title": "Body Force",
+            "duration": "1:07"
+          },
+          {
+            "id": "1vbuDGzN4Yo",
+            "title": "Nodal Mass",
+            "duration": "1:03"
+          },
+          {
+            "id": "dHczb4empWg",
+            "title": "Prescribed Displacement",
+            "duration": "0:58"
+          },
+          {
+            "id": "pt8khKSG_ek",
+            "title": "Slab to Wall",
+            "duration": "0:58"
+          },
+          {
+            "id": "ZGTI3KTXnP0",
+            "title": "Slab Pressure (Add Plate loads)",
+            "duration": "1:31"
+          },
+          {
+            "id": "qo3vbgKvT-E",
+            "title": "Plate Pressure Load",
+            "duration": "0:52"
+          },
+          {
+            "id": "lrBY5CvzA3o",
+            "title": "Wind Load",
+            "duration": "1:19"
+          },
+          {
+            "id": "Gi6vfG3hyic",
+            "title": "Wind Tunnel Loads",
+            "duration": "1:28"
+          },
+          {
+            "id": "6UTe5dsXaMA",
+            "title": "Wind Tunnel Results (WT Results)",
+            "duration": "0:49"
+          },
+          {
+            "id": "Bu5iIGVIqE4",
+            "title": "Equivalent Static Seismic (Equiv. Static)",
+            "duration": "1:30"
+          },
+          {
+            "id": "lgtImLifIZc",
+            "title": "Response Spectrum Functions (RS Functions)",
+            "duration": "1:13"
+          },
+          {
+            "id": "fVgeVwjBaGc",
+            "title": "RSA Load Cases (RS Load Cases)",
+            "duration": "1:14"
+          },
+          {
+            "id": "RM3dxYWMmbs",
+            "title": "Soil Profile",
+            "duration": "1:39"
+          },
+          {
+            "id": "cHC9mJDwLFQ",
+            "title": "Earth Pressure",
+            "duration": "1:08"
+          },
+          {
+            "id": "HHmZNuq_1ts",
+            "title": "Analysis Control (Analysis Ctrl)",
+            "duration": "0:58"
+          },
+          {
+            "id": "S9zf84UT_8E",
+            "title": "Eigenvalue (Modal) Analysis",
+            "duration": "0:42"
+          },
+          {
+            "id": "y995J2_jUMM",
+            "title": "P-Delta",
+            "duration": "0:57"
           }
         ]
       }
