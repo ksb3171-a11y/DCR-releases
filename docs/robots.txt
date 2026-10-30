@@ -11,4 +11,4 @@ Disallow: /presentation/
 Disallow: /homepage/
 Disallow: /KDS/
 
-Sitemap: https://dcr-st.com/sitemap.xml
+Sitemap: https://lpksoft.com/sitemap.xml

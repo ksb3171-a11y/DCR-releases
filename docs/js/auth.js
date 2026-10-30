@@ -266,8 +266,8 @@ async function handleSignup(e) {
 
 // ── FORGOT PASSWORD ── (password_reset_devplan.md)
 // 메일 링크가 돌아올 주소 = 지금 보고 있는 언어의 루트(/ · /ko/ · /ja/ · /zh/).
-// 🚨 Supabase 대시보드 Authentication ▸ URL Configuration ▸ Redirect URLs 에 `https://dcr-st.com/**` 가
-//    있어야 한다. 없으면 Supabase 가 Site URL 로 돌려보낸다 — 거기서도 auth.js 가 돌아 재설정 창은 뜬다.
+// 🚨 Supabase 대시보드 Authentication ▸ URL Configuration ▸ Redirect URLs 에 `https://lpksoft.com/**` 가
+//    있어야 한다(옛 `https://dcr-st.com/**` 도 이전 유지 기간 동안 남긴다 — site_domain_migration_devplan.md). 없으면 Supabase 가 Site URL 로 돌려보낸다 — 거기서도 auth.js 가 돌아 재설정 창은 뜬다.
 function resetRedirectUrl() {
   const base = document.documentElement.getAttribute('data-nav-base') || './'
   return new URL(base, location.href).href.split('#')[0].split('?')[0]
