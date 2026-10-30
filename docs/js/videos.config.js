@@ -24,14 +24,14 @@ window.STRIX_VIDEOS = {
       "videos": {
         "ko": [
           {
-            "id": "rJ7BRyLcMNQ",
+            "id": "ol-r3YDlHFY",
             "title": "RC 골조 구조해석 따라하기 — 3층 모델링 · 해석 · 후처리",
             "duration": "6:12"
           },
           {
-            "id": "TUqb2jboN4E",
+            "id": "TUAxAw2IwPc",
             "title": "철골 가새골조 설계 따라하기 — 모델링 · 강도검토",
-            "duration": "13:00"
+            "duration": "12:59"
           },
           {
             "id": "qbA6nv9hKnk",
@@ -44,7 +44,7 @@ window.STRIX_VIDEOS = {
             "duration": "12:50"
           },
           {
-            "id": "kT_mf1H9i0U",
+            "id": "HQb_HMkXzfw",
             "title": "멀티타워 구조해석 따라하기 — 저층부 공유 건물 해석 · 설계",
             "duration": "13:40"
           },
@@ -59,12 +59,12 @@ window.STRIX_VIDEOS = {
             "duration": "16:38"
           },
           {
-            "id": "UWoiaFbZZho",
+            "id": "HH7_5SllfzU",
             "title": "필로티 아파트 구조설계 따라하기 — 전이플레이트 ③",
             "duration": "13:40"
           },
           {
-            "id": "bw7RoTtxIA8",
+            "id": "NkSWbqdcjzA",
             "title": "DXF 구조 모델링 따라하기 — 구조평면도로 골조 만들기",
             "duration": "4:22"
           },
@@ -79,7 +79,7 @@ window.STRIX_VIDEOS = {
             "duration": "6:14"
           },
           {
-            "id": "isnFsfXoEMQ",
+            "id": "1_Zy4PetIgQ",
             "title": "슬래브 반력 벽 전달 따라하기 — Slab to Wall",
             "duration": "12:57"
           },
@@ -89,7 +89,7 @@ window.STRIX_VIDEOS = {
             "duration": "3:32"
           },
           {
-            "id": "qa9utO6SYC0",
+            "id": "tfgBzwc7Pjc",
             "title": "슬래브 설계 따라하기 — 배근 설계 · Slab Design",
             "duration": "2:13"
           },
@@ -124,7 +124,7 @@ window.STRIX_VIDEOS = {
             "duration": "3:17"
           },
           {
-            "id": "BvLW0jAzcpI",
+            "id": "7lkY8VBZSHM",
             "title": "매트기초 설계 따라하기 — 판해석 · Mat Foundation",
             "duration": "3:28"
           },
@@ -149,19 +149,24 @@ window.STRIX_VIDEOS = {
             "duration": "2:22"
           },
           {
-            "id": "AZkAP1WbcpI",
+            "id": "BZV6QpsPdUo",
             "title": "구조계산서 작성 따라하기 — 자동 생성 · 편집",
             "duration": "4:15"
           },
           {
-            "id": "1wg5yxBX8Jg",
+            "id": "SqLpV464n1c",
             "title": "AI 구조해석 따라하기 — 자연어로 모델링 · 해석 · 설계",
-            "duration": "4:43"
+            "duration": "9:30"
           },
           {
-            "id": "F4NTXsWIvW4",
+            "id": "dcWtGcKckBo",
             "title": "설계기준 AI 챗봇 따라하기 — 기준 조회 · 근거 확인",
             "duration": "2:12"
+          },
+          {
+            "id": "BJMVUMktIi0",
+            "title": "STRIX 플러그인 따라하기 — AI 한 문장을 플러그인으로 저장 · 실행",
+            "duration": "6:41"
           },
           {
             "id": "HbW4ImYW3pI",
@@ -191,12 +196,12 @@ window.STRIX_VIDEOS = {
         ],
         "en": [
           {
-            "id": "_kAl_RdUPxs",
+            "id": "tRiri0Xd8JY",
             "title": "STRIX RC Frame Structural Analysis Tutorial — 3-Story Modeling and Results",
             "duration": "6:45"
           },
           {
-            "id": "JNJKKznKX_Y",
+            "id": "UGkFrbLngz4",
             "title": "STRIX Steel Braced Frame Design Tutorial — Modeling and Strength Check",
             "duration": "13:44"
           },
@@ -211,7 +216,7 @@ window.STRIX_VIDEOS = {
             "duration": "13:20"
           },
           {
-            "id": "UPsTsL0K_UY",
+            "id": "h2EPmR3Wf-s",
             "title": "STRIX Multi-Tower Structural Analysis Tutorial — Shared Podium Analysis and Design",
             "duration": "14:03"
           },
@@ -226,14 +231,79 @@ window.STRIX_VIDEOS = {
             "duration": "17:31"
           },
           {
-            "id": "AfEic-PvSHU",
+            "id": "QLlTeyLJfN0",
             "title": "STRIX Piloti Apartment Structural Design Tutorial — Transfer Plate ③",
             "duration": "14:02"
           },
           {
-            "id": "gpDlClhLumc",
+            "id": "LdOlqdldVuU",
+            "title": "STRIX DXF Structural Modeling Tutorial — Frame Model from a Plan Drawing",
+            "duration": "4:40"
+          },
+          {
+            "id": "AAMHMnjwPb4",
+            "title": "STRIX Plate Elements and Floor Loads Tutorial — Add Plate",
+            "duration": "5:40"
+          },
+          {
+            "id": "uW-5eX1dZ6I",
+            "title": "STRIX Shear Wall Slab Modeling Tutorial — Meshed Slab",
+            "duration": "6:34"
+          },
+          {
+            "id": "HTKLNs5zQZg",
+            "title": "STRIX Slab Reactions to Walls Tutorial — Slab to Wall",
+            "duration": "13:28"
+          },
+          {
+            "id": "fcpnwzqt6GU",
+            "title": "STRIX Wind Tunnel Load Input Tutorial — Wind Tunnel Loads",
+            "duration": "3:50"
+          },
+          {
+            "id": "bmpG1Ciet84",
             "title": "STRIX RC Slab Design Tutorial — Reinforcement Design",
             "duration": "2:29"
+          },
+          {
+            "id": "5tcmeTRvbOU",
+            "title": "STRIX Beam-Column Joint Check Tutorial — RC Joint Shear",
+            "duration": "3:06"
+          },
+          {
+            "id": "g-JACwaZQtQ",
+            "title": "STRIX Transfer Beam Design Tutorial — Transfer Detail",
+            "duration": "3:46"
+          },
+          {
+            "id": "ySYq1K1Qahk",
+            "title": "STRIX Nonstructural Component Seismic Design Tutorial — Equipment and Anchorage",
+            "duration": "8:49"
+          },
+          {
+            "id": "9cfcG7QUvbQ",
+            "title": "STRIX Steel Section Optimization Tutorial — Design Optimization",
+            "duration": "4:59"
+          },
+          {
+            "id": "fpF2Dg916RE",
+            "title": "STRIX RC Section Optimization Tutorial — Design Optimization",
+            "duration": "5:59"
+          },
+          {
+            "id": "-57i0mcOxC4",
+            "title": "STRIX Isolated Footing Design Tutorial — Spread Footing",
+            "duration": "3:32"
+          },
+          {
+            "id": "GwClhC0JoR4",
+            "title": "STRIX Mat Foundation Design Tutorial — Plate Analysis",
+            "duration": "3:48"
+          },
+          {
+            "id": "Yk7tEZHd5kA",
+            "title": "STRIX Pile Foundation Design Tutorial — Automatic Pile Layout",
+            "duration": "6:41"
           },
           {
             "id": "Ub4z3NhspZQ",
@@ -241,9 +311,24 @@ window.STRIX_VIDEOS = {
             "duration": "15:29"
           },
           {
-            "id": "j_D7uZCX934",
+            "id": "xAy_pHxNqsA",
+            "title": "STRIX Sliding, Overturning and Buoyancy Check Tutorial — Global Stability",
+            "duration": "4:18"
+          },
+          {
+            "id": "MqCijbb0Gm8",
+            "title": "STRIX Structural Drawings Tutorial — Framing Plans and Schedules",
+            "duration": "2:30"
+          },
+          {
+            "id": "mjkaGlHaz8w",
+            "title": "STRIX Structural Calculation Report Tutorial — Generate and Edit",
+            "duration": "4:21"
+          },
+          {
+            "id": "yuE8u7xz09Q",
             "title": "STRIX AI Structural Analysis Tutorial — Model, Analyze and Design in Natural Language",
-            "duration": "5:06"
+            "duration": "11:09"
           },
           {
             "id": "llITiR804FQ",
@@ -251,9 +336,34 @@ window.STRIX_VIDEOS = {
             "duration": "2:28"
           },
           {
+            "id": "hzxFIM12f5w",
+            "title": "STRIX STRIX Plugins Tutorial — Save an AI Prompt as a Reusable Plugin",
+            "duration": "7:22"
+          },
+          {
+            "id": "msNKdLXjWHg",
+            "title": "Pushover Analysis Tutorial — RC Column",
+            "duration": "8:12"
+          },
+          {
             "id": "LXDS2HvqbWU",
             "title": "Pushover Analysis Tutorial — RC Frame",
             "duration": "8:51"
+          },
+          {
+            "id": "hFdGKWInp5c",
+            "title": "STRIX Nonlinear Time History Analysis Tutorial — RC Column",
+            "duration": "8:39"
+          },
+          {
+            "id": "u7nZXeTmuT8",
+            "title": "STRIX Seismic Performance Evaluation Tutorial — Linear m-Factor Method ①",
+            "duration": "5:10"
+          },
+          {
+            "id": "R1PJmwWi7EE",
+            "title": "STRIX Seismic Performance Evaluation Tutorial — Nonlinear Pushover Method ②",
+            "duration": "6:00"
           }
         ]
       }
@@ -458,6 +568,11 @@ window.STRIX_VIDEOS = {
             "duration": "1:08"
           },
           {
+            "id": "C9TgD8w27QM",
+            "title": "슬래브 하중 (Slab Load)",
+            "duration": "1:15"
+          },
+          {
             "id": "36o6QaMG4Rk",
             "title": "슬래브 하중 층 복사 (Slab Copy)",
             "duration": "0:50"
@@ -566,6 +681,71 @@ window.STRIX_VIDEOS = {
             "id": "yI6UGYjUwrc",
             "title": "해석 실행",
             "duration": "1:02"
+          },
+          {
+            "id": "Finawy6jy-s",
+            "title": "스케일업 계수 (밑면전단력 보정) (Scaleup Fac.)",
+            "duration": "1:04"
+          },
+          {
+            "id": "a0VaYijlPEQ",
+            "title": "변형과 반력 표시",
+            "duration": "0:55"
+          },
+          {
+            "id": "MmmK6LAnmo0",
+            "title": "모드형상 (Mode Shape)",
+            "duration": "0:51"
+          },
+          {
+            "id": "peCNkxHSVCw",
+            "title": "보·벽체 단면력 표시",
+            "duration": "0:51"
+          },
+          {
+            "id": "vXL5zKOT_u0",
+            "title": "판요소 결과 (Plate Results)",
+            "duration": "0:52"
+          },
+          {
+            "id": "YynTRpSKJ_E",
+            "title": "횡력 검토 (Lateral Force Check)",
+            "duration": "1:19"
+          },
+          {
+            "id": "fBvdC3hEt34",
+            "title": "횡력·중력 분담률 (Lateral Share)",
+            "duration": "0:48"
+          },
+          {
+            "id": "5xA_fJ2paLE",
+            "title": "층별 결과 그래프 (Story Graph)",
+            "duration": "0:52"
+          },
+          {
+            "id": "HfAXVYJJKss",
+            "title": "타워별 결과 (Tower Results)",
+            "duration": "1:02"
+          },
+          {
+            "id": "1ZZbeHdTD3Y",
+            "title": "건물 전체 안정 (활동·전도·부력) (Global Stability)",
+            "duration": "1:16"
+          },
+          {
+            "id": "QO5qbMYtxAo",
+            "title": "결과 표 (Result Tables)",
+            "duration": "1:05"
+          },
+          {
+            "id": "s3EL9-nM9vo",
+            "title": "고유치 해석 결과 (Eigenvalue Results)",
+            "duration": "0:54"
+          },
+          {
+            "id": "wVDaNairONA",
+            "title": "시공단계 해석결과 (Construction Results)",
+            "duration": "1:04"
           }
         ],
         "en": [
@@ -760,6 +940,11 @@ window.STRIX_VIDEOS = {
             "duration": "1:12"
           },
           {
+            "id": "SihL88sjtdU",
+            "title": "Slab Loads",
+            "duration": "1:16"
+          },
+          {
             "id": "zzrsrOiECxc",
             "title": "Slab Load Copy (Slab Copy)",
             "duration": "0:51"
@@ -858,6 +1043,51 @@ window.STRIX_VIDEOS = {
             "id": "y995J2_jUMM",
             "title": "P-Delta",
             "duration": "0:57"
+          },
+          {
+            "id": "kTr8B1GjoZ0",
+            "title": "STRIX Construction Stage Analysis (Constr. Stages)",
+            "duration": "1:05"
+          },
+          {
+            "id": "SF1LXONABdE",
+            "title": "Run Analysis",
+            "duration": "1:12"
+          },
+          {
+            "id": "Fpwp1-SKFig",
+            "title": "STRIX Scaleup Factor (Base Shear Scaling) (Scaleup Fac.)",
+            "duration": "1:20"
+          },
+          {
+            "id": "N6H-A1mJ4A8",
+            "title": "Deformed Shape and Reactions",
+            "duration": "0:57"
+          },
+          {
+            "id": "Jj3imthpt64",
+            "title": "Mode Shape",
+            "duration": "1:01"
+          },
+          {
+            "id": "EIO8NQk885A",
+            "title": "Beam and Wall Force Views",
+            "duration": "0:56"
+          },
+          {
+            "id": "dEDb-oKP4QM",
+            "title": "Plate Results",
+            "duration": "0:56"
+          },
+          {
+            "id": "vJSQo39lZZo",
+            "title": "Lateral Force Check",
+            "duration": "1:39"
+          },
+          {
+            "id": "TJDv4i_gIS0",
+            "title": "STRIX Lateral and Gravity Load Share (Lateral Share)",
+            "duration": "0:53"
           }
         ]
       }
