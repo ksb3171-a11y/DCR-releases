@@ -184,6 +184,11 @@ window.STRIX_VIDEOS = {
             "duration": "8:13"
           },
           {
+            "id": "cjsOw7x-KiE",
+            "title": "성능기반 내진설계 따라하기 — 공동주택 비선형 시간이력해석",
+            "duration": "24:24"
+          },
+          {
             "id": "wvbJ5yR26B8",
             "title": "내진성능평가 따라하기 — 선형 평가(m계수법) ①",
             "duration": "4:33"
@@ -354,6 +359,11 @@ window.STRIX_VIDEOS = {
             "id": "hFdGKWInp5c",
             "title": "STRIX Nonlinear Time History Analysis Tutorial — RC Column",
             "duration": "8:39"
+          },
+          {
+            "id": "nEHyAxY0bQQ",
+            "title": "STRIX Performance-Based Seismic Design Tutorial — Apartment Building Nonlinear Analysis",
+            "duration": "26:11"
           },
           {
             "id": "u7nZXeTmuT8",
@@ -746,6 +756,166 @@ window.STRIX_VIDEOS = {
             "id": "wVDaNairONA",
             "title": "시공단계 해석결과 (Construction Results)",
             "duration": "1:04"
+          },
+          {
+            "id": "tsYP8s3S7sU",
+            "title": "설계 파라미터",
+            "duration": "1:05"
+          },
+          {
+            "id": "RwpuqAyaC-Y",
+            "title": "활하중 저감 (Live Load Red.)",
+            "duration": "1:15"
+          },
+          {
+            "id": "v9bbUc8Yr6k",
+            "title": "RC 부재 설계 (Concrete)",
+            "duration": "1:11"
+          },
+          {
+            "id": "0vuVt--kX8E",
+            "title": "강구조 설계 설정 (Steel)",
+            "duration": "1:03"
+          },
+          {
+            "id": "uvCHcWwi4GA",
+            "title": "목구조 설계 패널 (Timber)",
+            "duration": "0:56"
+          },
+          {
+            "id": "Cpnw4JUhSPc",
+            "title": "목구조 부재 속성 (Timber Params)",
+            "duration": "1:29"
+          },
+          {
+            "id": "fkdg6MZjOUM",
+            "title": "목구조 부재 검토 (Timber Checking)",
+            "duration": "0:59"
+          },
+          {
+            "id": "ijaRTbdF-_I",
+            "title": "STRIX 특별지진하중 · 수직지진력 대상 · 내진 기둥 유형 (Special Seis.)",
+            "duration": "1:07"
+          },
+          {
+            "id": "qRLjbXHTagE",
+            "title": "벽체 부호(Wall Mark)",
+            "duration": "1:07"
+          },
+          {
+            "id": "_OrvfY4kHyo",
+            "title": "전체구조물 토압 대상 (U.G Wall Mark)",
+            "duration": "0:46"
+          },
+          {
+            "id": "FePNt0OQVPE",
+            "title": "슬래브 설계 (Slab Design)",
+            "duration": "1:00"
+          },
+          {
+            "id": "cyYTAk3HPGs",
+            "title": "전이구간 상세검토 부재 지정 (Transfer Detail)",
+            "duration": "1:29"
+          },
+          {
+            "id": "JMZP14hrvg0",
+            "title": "개별 지하외벽 설계 (U.G Wall Design)",
+            "duration": "1:13"
+          },
+          {
+            "id": "Bdu5yrnfLw8",
+            "title": "무량판·전이슬래브 뚫림전단 (Flat Plate Punching)",
+            "duration": "1:24"
+          },
+          {
+            "id": "Sb4NCsREOqg",
+            "title": "RC 보 배근설계 (Beam Design)",
+            "duration": "1:13"
+          },
+          {
+            "id": "h-iQDDvVEb0",
+            "title": "RC 기둥 배근설계 (Column Design)",
+            "duration": "1:04"
+          },
+          {
+            "id": "0mK5eIPSTHA",
+            "title": "RC 벽체 자동 배근설계 (Wall Design)",
+            "duration": "1:02"
+          },
+          {
+            "id": "8bK99JwHn-Q",
+            "title": "RC 보·기둥·벽체 강도검토",
+            "duration": "1:08"
+          },
+          {
+            "id": "OvCKBhgZIdA",
+            "title": "철골 부재 강도검토",
+            "duration": "1:00"
+          },
+          {
+            "id": "QIKv5yhd3zs",
+            "title": "철골 단면 최적화 (Steel Optim.)",
+            "duration": "1:02"
+          },
+          {
+            "id": "SJhehqThQpY",
+            "title": "설계·검토 일괄 내보내기 (Batch Export)",
+            "duration": "1:04"
+          },
+          {
+            "id": "6mh9IXQJ6Fg",
+            "title": "설계 최적화 (Design Optimization)",
+            "duration": "1:03"
+          },
+          {
+            "id": "NEQSjfKZnrA",
+            "title": "보-기둥 접합부 검토 (B-C Joint Check)",
+            "duration": "1:04"
+          },
+          {
+            "id": "B0j6J10He6Q",
+            "title": "독립기초 설계 (Isolated Footing)",
+            "duration": "1:02"
+          },
+          {
+            "id": "7kyO0dUSdYs",
+            "title": "매트기초 판해석",
+            "duration": "1:15"
+          },
+          {
+            "id": "uFIWh_yUFHk",
+            "title": "파일기초 판해석 (Pile Foundation)",
+            "duration": "1:19"
+          },
+          {
+            "id": "x7WfcTsAj1s",
+            "title": "비구조요소 내진설계 (Equipment)",
+            "duration": "1:10"
+          },
+          {
+            "id": "dcVcWAxXWzk",
+            "title": "콘크리트 앵커 설계 (Anchor)",
+            "duration": "1:51"
+          },
+          {
+            "id": "N027v3-0HYE",
+            "title": "RC 설계패드",
+            "duration": "0:53"
+          },
+          {
+            "id": "6XJztEI91Go",
+            "title": "강구조 설계패드 (Steel)",
+            "duration": "1:04"
+          },
+          {
+            "id": "OIcC1M68oxo",
+            "title": "PC·PSC 설계패드 (PC/PSC)",
+            "duration": "0:51"
+          },
+          {
+            "id": "ySJ-cdNeGLQ",
+            "title": "기타 구조검토 설계패드 (Misc)",
+            "duration": "0:59"
           }
         ],
         "en": [
@@ -1088,6 +1258,141 @@ window.STRIX_VIDEOS = {
             "id": "TJDv4i_gIS0",
             "title": "STRIX Lateral and Gravity Load Share (Lateral Share)",
             "duration": "0:53"
+          },
+          {
+            "id": "N4WUjad7I6c",
+            "title": "Story Results Graph (Story Graph)",
+            "duration": "0:57"
+          },
+          {
+            "id": "c5Xd_i7vJLo",
+            "title": "Tower Results",
+            "duration": "1:09"
+          },
+          {
+            "id": "_k_YfPx0nDw",
+            "title": "STRIX Global Stability (sliding, overturning, buoyancy)",
+            "duration": "1:33"
+          },
+          {
+            "id": "3wgGNcSuLLg",
+            "title": "Result Tables",
+            "duration": "1:15"
+          },
+          {
+            "id": "Jv6wu-vM0hQ",
+            "title": "Eigenvalue Results",
+            "duration": "1:02"
+          },
+          {
+            "id": "83KC4-XS3nA",
+            "title": "STRIX Construction Stage Results (Construction Results)",
+            "duration": "1:07"
+          },
+          {
+            "id": "uMvE8TnLHpo",
+            "title": "Design Parameters",
+            "duration": "1:07"
+          },
+          {
+            "id": "6nKtL31XSxg",
+            "title": "Live Load Reduction (Live Load Red.)",
+            "duration": "1:25"
+          },
+          {
+            "id": "gJVZnuil56c",
+            "title": "Concrete Member Design",
+            "duration": "1:20"
+          },
+          {
+            "id": "gxclSdiD04Q",
+            "title": "Steel Design Settings",
+            "duration": "1:09"
+          },
+          {
+            "id": "VcoP67AyscI",
+            "title": "Timber Design Panel",
+            "duration": "1:05"
+          },
+          {
+            "id": "K3v8ZfaZ23k",
+            "title": "Timber Member Parameters (Timber Params)",
+            "duration": "1:39"
+          },
+          {
+            "id": "T3YUmuYbwaE",
+            "title": "Timber Member Check (Timber Checking)",
+            "duration": "1:05"
+          },
+          {
+            "id": "tErYUoO8s3Q",
+            "title": "STRIX Special and Vertical Seismic Load Targets · Seismic Column Type (Special Seis.)",
+            "duration": "1:09"
+          },
+          {
+            "id": "UDe4bl66fAk",
+            "title": "Wall Mark",
+            "duration": "1:08"
+          },
+          {
+            "id": "oI_n4rr2aMw",
+            "title": "STRIX Global Earth Pressure Targets (U.G Wall Mark)",
+            "duration": "0:52"
+          },
+          {
+            "id": "Q02i7lliuDQ",
+            "title": "Slab Design",
+            "duration": "1:04"
+          },
+          {
+            "id": "XCgARYtxUqk",
+            "title": "Transfer Detail Members",
+            "duration": "1:32"
+          },
+          {
+            "id": "-XHqhcsmvhE",
+            "title": "Underground Wall Design (U.G Wall Design)",
+            "duration": "1:19"
+          },
+          {
+            "id": "A-fCRrdkJhc",
+            "title": "STRIX Flat Plate and Transfer Plate Punching Shear (Flat Plate Punching)",
+            "duration": "1:38"
+          },
+          {
+            "id": "4PsDk01ZF9w",
+            "title": "RC Beam Design",
+            "duration": "1:22"
+          },
+          {
+            "id": "5_MX7istxWo",
+            "title": "RC Column Design",
+            "duration": "1:13"
+          },
+          {
+            "id": "F0jhZM35yC8",
+            "title": "RC Wall Auto Design (Wall Design)",
+            "duration": "1:09"
+          },
+          {
+            "id": "m7-BbDPsF9M",
+            "title": "RC Beam, Column, and Wall Check",
+            "duration": "1:19"
+          },
+          {
+            "id": "eGn3-PZp6D0",
+            "title": "Steel Member Design Check",
+            "duration": "1:11"
+          },
+          {
+            "id": "N_eUo1OSMII",
+            "title": "Steel Section Optimization (Steel Optim.)",
+            "duration": "1:09"
+          },
+          {
+            "id": "iIRkhUUh12o",
+            "title": "Design Batch Export",
+            "duration": "1:15"
           }
         ]
       }

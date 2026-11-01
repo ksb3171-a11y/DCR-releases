@@ -164,7 +164,7 @@ window.__DECK__ = {
      "y": 280,
      "w": 1085,
      "h": 583,
-     "html": "<div class=\"contents-index\"><a href=\"#chapter-1\" data-go=\"chapter-1\" data-slide=\"2\"><span>01</span><div><b>제품 개요</b><p>왜 STRIX인가 · 해석 엔진 · 핵심 기능</p></div></a><a href=\"#chapter-2\" data-go=\"chapter-2\" data-slide=\"9\"><span>02</span><div><b>OpenSees 해석 기반</b><p>탄생 배경 · 발전 과정 · 연구 기반</p></div></a><a href=\"#chapter-3\" data-go=\"chapter-3\" data-slide=\"15\"><span>03</span><div><b>모델링·AI·CAD</b><p>작업 환경 · 인스펙터 · 모델링 · AI · AI CAD · 도움말</p></div></a><a href=\"#chapter-4\" data-go=\"chapter-4\" data-slide=\"28\"><span>04</span><div><b>하중 산정과 입력</b><p>풍하중 · 지진하중 · 토압 · 하중조합</p></div></a><a href=\"#chapter-5\" data-go=\"chapter-5\" data-slide=\"44\"><span>05</span><div><b>구조해석과 결과 검토</b><p>해석 · 층별 응답 · 횡력비교</p></div></a><a href=\"#chapter-6\" data-go=\"chapter-6\" data-slide=\"50\"><span>06</span><div><b>부재 설계와 최적화</b><p>RC·강구조·목구조 · 접합부 · 설계 최적화</p></div></a><a href=\"#chapter-7\" data-go=\"chapter-7\" data-slide=\"68\"><span>07</span><div><b>슬래브·기초·상세 설계</b><p>슬래브·무량판 · 기초 · 전이부 · 단위부재</p></div></a><a href=\"#chapter-8\" data-go=\"chapter-8\" data-slide=\"81\"><span>08</span><div><b>내진성능평가와 PBSD</b><p>Pushover · 시간이력해석 · 성능 검토</p></div></a><a href=\"#chapter-9\" data-go=\"chapter-9\" data-slide=\"91\"><span>09</span><div><b>진동과 수화열</b><p>보행진동 · 계측 분석 · 수화열</p></div></a><a href=\"#chapter-10\" data-go=\"chapter-10\" data-slide=\"95\"><span>10</span><div><b>설계 성과품</b><p>구조도 · 구조계산서 · 데이터 블록 · 확인서 · 물량</p></div></a><a href=\"#chapter-11\" data-go=\"chapter-11\" data-slide=\"102\"><span>11</span><div><b>검증과 적용</b><p>검증 21건 · 대조항목 131개 · 전건 합격</p></div></a><a href=\"#chapter-apx\" data-go=\"chapter-apx\" data-slide=\"111\"><span>A</span><div><b>부록</b><p>기능별 지원 범위 · 기술 근거 · 자료 안내</p></div></a></div>",
+     "html": "<div class=\"contents-index\"><a href=\"#chapter-1\" data-go=\"chapter-1\" data-slide=\"2\"><span>01</span><div><b>제품 개요</b><p>왜 STRIX인가 · 해석 엔진 · 핵심 기능</p></div></a><a href=\"#chapter-2\" data-go=\"chapter-2\" data-slide=\"9\"><span>02</span><div><b>OpenSees 해석 기반</b><p>탄생 배경 · 발전 과정 · 연구 기반</p></div></a><a href=\"#chapter-3\" data-go=\"chapter-3\" data-slide=\"15\"><span>03</span><div><b>모델링·AI·CAD</b><p>작업 환경 · 인스펙터 · 모델링 · AI · 플러그인 · AI CAD · 도움말</p></div></a><a href=\"#chapter-4\" data-go=\"chapter-4\" data-slide=\"28\"><span>04</span><div><b>하중 산정과 입력</b><p>풍하중 · 지진하중 · 토압 · 하중조합</p></div></a><a href=\"#chapter-5\" data-go=\"chapter-5\" data-slide=\"44\"><span>05</span><div><b>구조해석과 결과 검토</b><p>해석 · 층별 응답 · 횡력비교</p></div></a><a href=\"#chapter-6\" data-go=\"chapter-6\" data-slide=\"50\"><span>06</span><div><b>부재 설계와 최적화</b><p>RC·강구조·목구조 · 접합부 · 설계 최적화</p></div></a><a href=\"#chapter-7\" data-go=\"chapter-7\" data-slide=\"68\"><span>07</span><div><b>슬래브·기초·상세 설계</b><p>슬래브·무량판 · 기초 · 전이부 · 단위부재</p></div></a><a href=\"#chapter-8\" data-go=\"chapter-8\" data-slide=\"81\"><span>08</span><div><b>내진성능평가와 PBSD</b><p>Pushover · 시간이력해석 · 성능 검토</p></div></a><a href=\"#chapter-9\" data-go=\"chapter-9\" data-slide=\"91\"><span>09</span><div><b>진동과 수화열</b><p>보행진동 · 계측 분석 · 수화열</p></div></a><a href=\"#chapter-10\" data-go=\"chapter-10\" data-slide=\"95\"><span>10</span><div><b>설계 성과품</b><p>구조도 · 구조계산서 · 데이터 블록 · 확인서 · 물량</p></div></a><a href=\"#chapter-11\" data-go=\"chapter-11\" data-slide=\"102\"><span>11</span><div><b>검증과 적용</b><p>검증 21건 · 대조항목 131개 · 전건 합격</p></div></a><a href=\"#chapter-apx\" data-go=\"chapter-apx\" data-slide=\"111\"><span>A</span><div><b>부록</b><p>기능별 지원 범위 · 기술 근거 · 자료 안내</p></div></a></div>",
      "id": "e5"
     }
    ]
@@ -1120,6 +1120,15 @@ window.__DECK__ = {
      "h": 82,
      "html": "<div class=\"key\" style=\"--gc:var(--c6)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-report\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M8 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h5.697\"></path>\n  <path d=\"M18 14v4h4\"></path>\n  <path d=\"M18 11v-4a2 2 0 0 0 -2 -2h-2\"></path>\n  <path d=\"M8 5a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2\"></path>\n  <path d=\"M14 18a4 4 0 1 0 8 0a4 4 0 1 0 -8 0\"></path>\n  <path d=\"M8 11h4\"></path>\n  <path d=\"M8 15h3\"></path>\n</svg></span><b>구조계산서 워드 편집기</b></div>",
      "id": "e18"
+    },
+    {
+     "type": "text",
+     "x": 806.5,
+     "y": 620,
+     "w": 354.3,
+     "h": 82,
+     "html": "<div class=\"key\" style=\"--gc:var(--c1)\"><span class=\"cap\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-settings-automation\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065\"></path>\n  <path d=\"M10 9v6l5 -3l-5 -3\"></path>\n</svg></span><b>STRIX 플러그인 반복 작업 버튼</b></div>",
+     "id": "e19"
     }
    ]
   },
@@ -1664,7 +1673,7 @@ window.__DECK__ = {
      "y": 462,
      "w": 620,
      "h": 36,
-     "html": "<p class=\"lead\">작업 환경 · 인스펙터 · 모델링 · AI · AI CAD · 도움말</p>",
+     "html": "<p class=\"lead\">작업 환경 · 인스펙터 · 모델링 · AI · 플러그인 · AI CAD · 도움말</p>",
      "id": "e3"
     },
     {
@@ -1703,8 +1712,8 @@ window.__DECK__ = {
      "x": 64,
      "y": 606,
      "w": 960,
-     "h": 152.5,
-     "html": "<div class=\"divider-subtopics\"><a href=\"#language\" data-go=\"language\" data-slide=\"16\">한국어·영어 작업 환경</a><a href=\"#04\" data-go=\"04\" data-slide=\"17\">우측 인스펙터</a><a href=\"#06\" data-go=\"06\" data-slide=\"18\">AI Prompt</a><a href=\"#05\" data-go=\"05\" data-slide=\"19\">DXF 도면 기반 구조 모델링</a><a href=\"#sig-aicad\" data-go=\"sig-aicad\" data-slide=\"20\">STRIX AI CAD — 말로 도면을 고칩니다</a><a href=\"#aicad\" data-go=\"aicad\" data-slide=\"21\">STRIX AI CAD — 도면 열기·정리·편집</a><a href=\"#modelcheck\" data-go=\"modelcheck\" data-slide=\"22\">AI Model Check</a><a href=\"#07\" data-go=\"07\" data-slide=\"23\">AI Stable Check</a><a href=\"#08\" data-go=\"08\" data-slide=\"24\">멀티타워 모델링 및 동별 결과 관리</a><a href=\"#wallstiff\" data-go=\"wallstiff\" data-slide=\"25\">벽체 강성 스케일</a><a href=\"#chatbot\" data-go=\"chatbot\" data-slide=\"26\">도움말 챗봇</a><a href=\"#tutorials\" data-go=\"tutorials\" data-slide=\"27\">따라하기</a></div>",
+     "h": 233.5,
+     "html": "<div class=\"divider-subtopics\"><a href=\"#language\" data-go=\"language\" data-slide=\"16\">한국어·영어 작업 환경</a><a href=\"#04\" data-go=\"04\" data-slide=\"17\">우측 인스펙터</a><a href=\"#06\" data-go=\"06\" data-slide=\"18\">AI Prompt</a><a href=\"#sig-plugin\" data-go=\"sig-plugin\" data-slide=\"19\">STRIX 플러그인 — 반복 작업을 버튼 하나로</a><a href=\"#plugin-result\" data-go=\"plugin-result\" data-slide=\"20\">플러그인 — 모델 수정과 결과 정리</a><a href=\"#plugin-gallery\" data-go=\"plugin-gallery\" data-slide=\"21\">플러그인 갤러리와 내 도구막대</a><a href=\"#05\" data-go=\"05\" data-slide=\"22\">DXF 도면 기반 구조 모델링</a><a href=\"#sig-aicad\" data-go=\"sig-aicad\" data-slide=\"23\">STRIX AI CAD — 말로 도면을 고칩니다</a><a href=\"#aicad\" data-go=\"aicad\" data-slide=\"24\">STRIX AI CAD — 도면 열기·정리·편집</a><a href=\"#modelcheck\" data-go=\"modelcheck\" data-slide=\"25\">AI Model Check</a><a href=\"#07\" data-go=\"07\" data-slide=\"26\">AI Stable Check</a><a href=\"#08\" data-go=\"08\" data-slide=\"27\">멀티타워 모델링 및 동별 결과 관리</a><a href=\"#wallstiff\" data-go=\"wallstiff\" data-slide=\"28\">벽체 강성 스케일</a><a href=\"#chatbot\" data-go=\"chatbot\" data-slide=\"29\">도움말 챗봇</a><a href=\"#tutorials\" data-go=\"tutorials\" data-slide=\"30\">따라하기</a></div>",
      "id": "e7"
     }
    ]
@@ -1955,6 +1964,288 @@ window.__DECK__ = {
      "h": 111.1,
      "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-message-chatbot\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-5l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12\"></path>\n  <path d=\"M9.5 9h.01\"></path>\n  <path d=\"M14.5 9h.01\"></path>\n  <path d=\"M9.5 13a3.5 3.5 0 0 0 5 0\"></path>\n</svg></div><h3>한국어 입력·설계 결과 조회</h3><p>한국어로 요청하면 한국어로 답합니다. 보·기둥 설계 뒤 소요 철근량·배근·지배 하중조합을 조회합니다.</p></div>",
      "id": "e8"
+    }
+   ]
+  },
+  {
+   "id": "sig-plugin",
+   "name": "STRIX 플러그인 — 반복 작업을 버튼 하나로",
+   "cls": "slide screen",
+   "foot": [
+    72,
+    844,
+    1456,
+    18
+   ],
+   "els": [
+    {
+     "type": "text",
+     "x": 72,
+     "y": 44,
+     "w": 1457,
+     "h": 44,
+     "html": "<header><div class=\"brand\">STRIX<span>.</span></div><div class=\"chapter\">03 모델링·AI·CAD</div></header>",
+     "id": "e1"
+    },
+    {
+     "type": "text",
+     "x": 72,
+     "y": 132,
+     "w": 1400,
+     "h": 65,
+     "html": "<h2 class=\"title\">STRIX 플러그인 — 반복 작업을 버튼 하나로</h2>",
+     "id": "e2"
+    },
+    {
+     "type": "text",
+     "x": 72,
+     "y": 216,
+     "w": 1400,
+     "h": 37,
+     "html": "<p class=\"lead\">AI Prompt 로 한 번 성공한 작업을 저장해 두고, 다음부터는 AI 없이 버튼 하나로 다시 실행합니다.</p>",
+     "id": "e3"
+    },
+    {
+     "type": "image",
+     "x": 77.6,
+     "y": 278,
+     "w": 872.8000000000001,
+     "h": 545.5,
+     "slot": "live-plugin-run",
+     "cls": "visual",
+     "frame": "fixed",
+     "bare": true,
+     "fit": "fill",
+     "id": "e4",
+     "recW": 1400,
+     "recH": 875
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 278,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-first dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-sparkles\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M16 18a2 2 0 0 1 2 2a2 2 0 0 1 2 -2a2 2 0 0 1 -2 -2a2 2 0 0 1 -2 2m0 -12a2 2 0 0 1 2 2a2 2 0 0 1 2 -2a2 2 0 0 1 -2 -2a2 2 0 0 1 -2 2m-7 12a6 6 0 0 1 6 -6a6 6 0 0 1 -6 -6a6 6 0 0 1 -6 6a6 6 0 0 1 6 6\"></path>\n</svg></div><h3>Save as Plugin</h3><p>AI Prompt 결과 카드에서 그 작업에 쓰인 명령을 순서대로 저장합니다. 이름만 적으면 나머지는 자동으로 채워집니다.</p></div>",
+     "id": "e5"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 389.1,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-player-play\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M7 4v16l13 -8l-13 -8\"></path>\n</svg></div><h3>AI 없이 다시 실행</h3><p>실행할 때는 AI 를 부르지 않습니다. 같은 입력이면 언제나 같은 결과이고, API 키·AI 비용이 들지 않습니다.</p></div>",
+     "id": "e6"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 500.1,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-adjustments\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M4 10a2 2 0 1 0 4 0a2 2 0 0 0 -4 0\"></path>\n  <path d=\"M6 4v4\"></path>\n  <path d=\"M6 12v8\"></path>\n  <path d=\"M10 16a2 2 0 1 0 4 0a2 2 0 0 0 -4 0\"></path>\n  <path d=\"M12 4v10\"></path>\n  <path d=\"M12 18v2\"></path>\n  <path d=\"M16 7a2 2 0 1 0 4 0a2 2 0 0 0 -4 0\"></path>\n  <path d=\"M18 4v1\"></path>\n  <path d=\"M18 9v11\"></path>\n</svg></div><h3>실행 때 묻는 값</h3><p>강성 배율·단면 이름처럼 바뀌는 값은 실행 창에서 입력받습니다. 다른 프로젝트에도 값만 바꿔 씁니다.</p></div>",
+     "id": "e7"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 611.2,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-history\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M12 8l0 4l2 2\"></path>\n  <path d=\"M3.05 11a9 9 0 1 1 .5 4m-.5 5v-5h5\"></path>\n</svg></div><h3>되돌리기 한 번</h3><p>모델을 바꾸는 플러그인은 여러 단계라도 되돌리기 한 번에 실행 전으로 돌아갑니다.</p></div>",
+     "id": "e8"
+    }
+   ]
+  },
+  {
+   "id": "plugin-result",
+   "name": "플러그인 — 모델 수정과 결과 정리",
+   "cls": "slide screen",
+   "foot": [
+    72,
+    844,
+    1456,
+    18
+   ],
+   "els": [
+    {
+     "type": "text",
+     "x": 72,
+     "y": 44,
+     "w": 1457,
+     "h": 44,
+     "html": "<header><div class=\"brand\">STRIX<span>.</span></div><div class=\"chapter\">03 모델링·AI·CAD</div></header>",
+     "id": "e1"
+    },
+    {
+     "type": "text",
+     "x": 72,
+     "y": 132,
+     "w": 1400,
+     "h": 65,
+     "html": "<h2 class=\"title\">플러그인 — 모델 수정과 결과 정리</h2>",
+     "id": "e2"
+    },
+    {
+     "type": "text",
+     "x": 72,
+     "y": 216,
+     "w": 1400,
+     "h": 37,
+     "html": "<p class=\"lead\">매번 손으로 하던 모델 편집과, 해석 결과를 원하는 표로 정리하는 일을 함께 플러그인으로 만듭니다.</p>",
+     "id": "e3"
+    },
+    {
+     "type": "image",
+     "x": 77.6,
+     "y": 278,
+     "w": 872.8000000000001,
+     "h": 545.5,
+     "slot": "live-plugin-result",
+     "cls": "visual",
+     "frame": "fixed",
+     "bare": true,
+     "fit": "fill",
+     "id": "e4",
+     "recW": 1400,
+     "recH": 875
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 278,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-first dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-adjustments\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M4 10a2 2 0 1 0 4 0a2 2 0 0 0 -4 0\"></path>\n  <path d=\"M6 4v4\"></path>\n  <path d=\"M6 12v8\"></path>\n  <path d=\"M10 16a2 2 0 1 0 4 0a2 2 0 0 0 -4 0\"></path>\n  <path d=\"M12 4v10\"></path>\n  <path d=\"M12 18v2\"></path>\n  <path d=\"M16 7a2 2 0 1 0 4 0a2 2 0 0 0 -4 0\"></path>\n  <path d=\"M18 4v1\"></path>\n  <path d=\"M18 9v11\"></path>\n</svg></div><h3>모델 수정</h3><p>보·기둥·벽 강성 배율, 외곽보 단면 일괄 지정처럼 반복하던 모델 편집을 한 번에 실행합니다.</p></div>",
+     "id": "e5"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 389.1,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-table\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M3 5a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-14\"></path>\n  <path d=\"M3 10h18\"></path>\n  <path d=\"M10 3v18\"></path>\n</svg></div><h3>결과 정리 표 → Excel</h3><p>기둥 단면별 최대 축력과 축력비 N/(fck·Ag), 보 단면별 I·M·J 최대 부재력을 표로 만들어 Excel·CSV 로 내보냅니다.</p></div>",
+     "id": "e6"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 500.1,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-list-check\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M3.5 5.5l1.5 1.5l2.5 -2.5\"></path>\n  <path d=\"M3.5 11.5l1.5 1.5l2.5 -2.5\"></path>\n  <path d=\"M3.5 17.5l1.5 1.5l2.5 -2.5\"></path>\n  <path d=\"M11 6l9 0\"></path>\n  <path d=\"M11 12l9 0\"></path>\n  <path d=\"M11 18l9 0\"></path>\n</svg></div><h3>여러 단계를 하나로</h3><p>보 설계 실행 → NG 단면만 추리기처럼 여러 단계를 플러그인 하나로 묶습니다.</p></div>",
+     "id": "e7"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 611.2,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-shield-check\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M11.46 20.846a12 12 0 0 1 -7.96 -14.846a12 12 0 0 0 8.5 -3a12 12 0 0 0 8.5 3a12 12 0 0 1 -.09 7.06\"></path>\n  <path d=\"M15 19l2 2l4 -4\"></path>\n</svg></div><h3>판정하지 않는 정리 도구</h3><p>STRIX 가 계산한 결과를 정리할 뿐 기준 판정이 아닙니다. 등록된 명령만 실행하며 임의 코드는 실행하지 않습니다.</p></div>",
+     "id": "e8"
+    }
+   ]
+  },
+  {
+   "id": "plugin-gallery",
+   "name": "플러그인 갤러리와 내 도구막대",
+   "cls": "slide screen",
+   "foot": [
+    72,
+    844,
+    1456,
+    18
+   ],
+   "els": [
+    {
+     "type": "text",
+     "x": 72,
+     "y": 44,
+     "w": 1457,
+     "h": 44,
+     "html": "<header><div class=\"brand\">STRIX<span>.</span></div><div class=\"chapter\">03 모델링·AI·CAD</div></header>",
+     "id": "e1"
+    },
+    {
+     "type": "text",
+     "x": 72,
+     "y": 132,
+     "w": 1400,
+     "h": 65,
+     "html": "<h2 class=\"title\">플러그인 갤러리와 내 도구막대</h2>",
+     "id": "e2"
+    },
+    {
+     "type": "text",
+     "x": 72,
+     "y": 216,
+     "w": 1400,
+     "h": 37,
+     "html": "<p class=\"lead\">앱 안 갤러리에서 플러그인을 찾아 설치하고, 자주 쓰는 것은 내 도구막대에 버튼으로 올립니다.</p>",
+     "id": "e3"
+    },
+    {
+     "type": "image",
+     "x": 77.6,
+     "y": 278,
+     "w": 832,
+     "h": 520,
+     "slot": "live-plugin-gallery",
+     "cls": "visual",
+     "frame": "fixed",
+     "bare": true,
+     "fit": "fill",
+     "id": "e4",
+     "recW": 1400,
+     "recH": 875
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 278,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-first dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-stack-2\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M12 4l-8 4l8 4l8 -4l-8 -4\"></path>\n  <path d=\"M4 12l8 4l8 -4\"></path>\n  <path d=\"M4 16l8 4l8 -4\"></path>\n</svg></div><h3>STRIX 공식 플러그인 8종</h3><p>보 단면별 부재력·기둥 단면별 축력·보 설계 NG 단면·강성 배율 등을 바로 설치하고, 복제해 내 것으로 고칩니다.</p></div>",
+     "id": "e5"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 389.1,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-file-export\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M14 3v4a1 1 0 0 0 1 1h4\"></path>\n  <path d=\"M11.5 21h-4.5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v5m-5 6h7m-3 -3l3 3l-3 3\"></path>\n</svg></div><h3>공유 · 별점 · 리뷰</h3><p>내 플러그인을 갤러리에 올려 공유합니다. 설치 전에 바꾸는 범위와 해석 실행 여부를 확인하고, 별점·리뷰로 평가합니다.</p></div>",
+     "id": "e6"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 500.1,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-message-chatbot\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M18 4a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-5l-5 3v-3h-2a3 3 0 0 1 -3 -3v-8a3 3 0 0 1 3 -3h12\"></path>\n  <path d=\"M9.5 9h.01\"></path>\n  <path d=\"M14.5 9h.01\"></path>\n  <path d=\"M9.5 13a3.5 3.5 0 0 0 5 0\"></path>\n</svg></div><h3>영어 · 한국어 · 자동 번역</h3><p>카드는 영어·한국어 두 언어로 올라갑니다. AI 번역 초안으로 다른 언어 설명을 함께 만듭니다.</p></div>",
+     "id": "e7"
+    },
+    {
+     "type": "text",
+     "x": 1004,
+     "y": 611.2,
+     "w": 532,
+     "h": 111.1,
+     "html": "<div class=\"point dm-loose\"><div class=\"n\"><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"25\" height=\"25\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"icon icon-tabler icons-tabler-outline icon-tabler-tool\">\n  <path stroke=\"none\" d=\"M0 0h24v24H0z\" fill=\"none\"></path>\n  <path d=\"M7 10h3v-3l-3.5 -3.5a6 6 0 0 1 8 8l6 6a2 2 0 0 1 -3 3l-6 -6a6 6 0 0 1 -8 -8l3.5 3.5\"></path>\n</svg></div><h3>내 도구막대</h3><p>자주 쓰는 플러그인과 앱 명령을 버튼으로 모읍니다. STRIX 기본 도구막대도 같은 방법으로 고치며, 설정은 이 PC 에만 저장됩니다.</p></div>",
+     "id": "e8"
+    },
+    {
+     "type": "text",
+     "x": 77.6,
+     "y": 806,
+     "w": 832,
+     "h": 22,
+     "html": "<p style=\"font-size:14px;line-height:1.4;opacity:.7\">연습용 갤러리 화면 — 별점·설치 수는 예시 값입니다.</p>",
+     "id": "e9"
     }
    ]
   },
