@@ -51,8 +51,18 @@
     return { videos: vids, playlistId: typeof pl === 'string' && PLAYLIST_ID_RE.test(pl) ? pl : '' };
   }
 
-  function embedUrl(videoId, playlistId) {
-    var params = 'autoplay=1&rel=0&modestbranding=1&playsinline=1&hl=' + encodeURIComponent(lang);
+  /* A video picked in the app's F1 help: ?v=<id>&t=<seconds> */
+  function pickedVideo() {
+    var q = null;
+    try { q = new URLSearchParams(window.location.search); } catch (e) { return null; }
+    var id = q && q.get('v');
+    if (!id || !VIDEO_ID_RE.test(id)) return null;
+    var sec = /^\d{1,6}$/.test(q.get('t') || '') ? Number(q.get('t')) : 0;
+    return { id: id, start: sec };
+  }
+
+  function embedUrl(videoId, playlistId, start) {
+    var params = 'autoplay=1&rel=0&modestbranding=1&playsinline=1&hl=' + encodeURIComponent(lang) + (start ? '&start=' + start : '');
     if (videoId) return EMBED + encodeURIComponent(videoId) + '?' + params + (playlistId ? '&list=' + encodeURIComponent(playlistId) : '');
     return EMBED + 'videoseries?' + params + '&list=' + encodeURIComponent(playlistId);
   }
@@ -104,10 +114,10 @@
     frameEl.appendChild(btn);
   }
 
-  function loadPlayer(videoId, playlistId, label) {
+  function loadPlayer(videoId, playlistId, label, start) {
     frameEl.textContent = '';
     var f = document.createElement('iframe');
-    f.src = embedUrl(videoId, playlistId);
+    f.src = embedUrl(videoId, playlistId, start);
     f.title = label;
     f.setAttribute('allow', 'autoplay; encrypted-media; picture-in-picture; fullscreen');
     f.setAttribute('allowfullscreen', '');
@@ -204,9 +214,30 @@
     fsBtn = document.getElementById('vidFullscreen');
     ytLink = document.getElementById('vidOnYoutube');
 
+    /* The viewer already pressed play in the app, so the picked video loads at once. */
+    var picked = pickedVideo();
+    var pickedLabel = t('vid.pageTitle');
+    var pickedList = '';
+    if (picked) {
+      CFG.tabs.forEach(function (tab, i) {
+        var d = tabData(tab);
+        d.videos.forEach(function (v, j) {
+          if (v.id !== picked.id) return;
+          state.tab = i; state.video = j;
+          pickedLabel = String(v.title || '');
+          pickedList = d.playlistId;
+        });
+      });
+    }
+
     renderStatic();
     renderTabs();
     renderBody();
+    if (picked) {
+      loadPlayer(picked.id, pickedList, pickedLabel, picked.start);
+      fsBtn.disabled = false;
+      ytLink.href = watchUrl(picked.id, pickedList);
+    }
 
     fsBtn.addEventListener('click', goFullscreen);
     var restore = el('button', 'vid-max-exit', t('vid.exitFullscreen'));
