@@ -62,7 +62,9 @@
   }
 
   function embedUrl(videoId, playlistId, start) {
-    var params = 'autoplay=1&rel=0&modestbranding=1&playsinline=1&hl=' + encodeURIComponent(lang) + (start ? '&start=' + start : '');
+    // enablejsapi·origin: 댓글의 시각 이동과 「현재 시각」이 플레이어와 postMessage 로 주고받는다
+    var params = 'autoplay=1&rel=0&modestbranding=1&playsinline=1&enablejsapi=1&origin=' + encodeURIComponent(window.location.origin) +
+      '&hl=' + encodeURIComponent(lang) + (start ? '&start=' + start : '');
     if (videoId) return EMBED + encodeURIComponent(videoId) + '?' + params + (playlistId ? '&list=' + encodeURIComponent(playlistId) : '');
     return EMBED + 'videoseries?' + params + '&list=' + encodeURIComponent(playlistId);
   }
@@ -75,6 +77,75 @@
   /* ── refs ── */
   var tabsEl, frameEl, titleEl, descEl, listEl, fsBtn, ytLink;
   var state = { tab: 0, video: 0 };
+  var playerTime = null;      // seconds reported by the player; null until it has loaded
+  var changeHandlers = [];
+
+  function currentVideo() {
+    var tab = CFG.tabs[state.tab];
+    var d = tab ? tabData(tab) : { videos: [], playlistId: '' };
+    var v = d.videos[state.video];
+    if (!v) return null;
+    var m = /^(\d+):(\d{2})$/.exec(String(v.duration || ''));
+    return { id: v.id, title: String(v.title || ''), playlistId: d.playlistId, durationSec: m ? Number(m[1]) * 60 + Number(m[2]) : 0 };
+  }
+  function notifyVideo() {
+    var cur = currentVideo();
+    changeHandlers.forEach(function (fn) { fn(cur); });
+  }
+
+  /* ── Player talk (comments): postMessage only, no external API script ── */
+  var PLAYER_ORIGIN = 'https://www.youtube-nocookie.com';
+  function postPlayer(f, msg) {
+    if (f && f.contentWindow) f.contentWindow.postMessage(JSON.stringify(msg), PLAYER_ORIGIN);
+  }
+  function seekPlayer(sec) {
+    var f = frameEl.querySelector('iframe');
+    playerTime = sec;
+    if (f) {
+      postPlayer(f, { event: 'command', func: 'seekTo', args: [sec, true] });
+      postPlayer(f, { event: 'command', func: 'playVideo', args: [] });
+      return;
+    }
+    var cur = currentVideo();
+    if (cur) loadPlayer(cur.id, cur.playlistId, cur.title, sec);
+  }
+  /* The in-player playlist can move on by itself: follow it, or comments would sit under the wrong video. */
+  function followPlayer(id) {
+    var tab = CFG.tabs[state.tab];
+    var d = tab ? tabData(tab) : { videos: [] };
+    var cur = d.videos[state.video];
+    if (!cur || cur.id === id) return;
+    for (var i = 0; i < d.videos.length; i++) {
+      if (d.videos[i].id !== id) continue;
+      state.video = i;
+      titleEl.textContent = String(d.videos[i].title || '');
+      ytLink.href = watchUrl(id, d.playlistId);
+      Array.prototype.forEach.call(listEl.querySelectorAll('.vid-item'), function (n, j) { n.classList.toggle('on', j === i); });
+      notifyVideo();
+      return;
+    }
+  }
+  window.addEventListener('message', function (e) {
+    if (e.origin !== PLAYER_ORIGIN) return;
+    var f = frameEl && frameEl.querySelector('iframe');
+    if (!f || e.source !== f.contentWindow || typeof e.data !== 'string') return;
+    var data = null;
+    try { data = JSON.parse(e.data); } catch (err) { return; }
+    var info = data && data.event === 'infoDelivery' && data.info;
+    if (!info) return;
+    if (typeof info.currentTime === 'number' && isFinite(info.currentTime)) playerTime = info.currentTime;
+    var vd = info.videoData;
+    if (vd && typeof vd.video_id === 'string' && VIDEO_ID_RE.test(vd.video_id)) followPlayer(vd.video_id);
+  });
+
+  /* The comment panel (videoComments.js) reaches the page through this and nothing else. */
+  window.STRIX_VIDEO_WINDOW = {
+    lang: lang, t: t, el: el,
+    current: currentVideo,
+    seek: seekPlayer,
+    time: function () { return playerTime; },
+    onChange: function (fn) { changeHandlers.push(fn); }
+  };
 
   function renderStatic() {
     if (I18N) I18N.apply(lang, { persist: false });
@@ -104,6 +175,7 @@
   /* Poster shown until play is pressed — no request to YouTube yet. */
   function renderPoster(videoId, playlistId, label) {
     frameEl.textContent = '';
+    playerTime = null;
     var btn = el('button', 'vid-poster');
     btn.type = 'button';
     btn.setAttribute('aria-label', t('vid.play') + ' — ' + label);
@@ -122,6 +194,7 @@
     f.setAttribute('allow', 'autoplay; encrypted-media; picture-in-picture; fullscreen');
     f.setAttribute('allowfullscreen', '');
     f.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+    f.addEventListener('load', function () { postPlayer(f, { event: 'listening', id: 1, channel: 'widget' }); });
     frameEl.appendChild(f);
     return f;
   }
@@ -154,6 +227,7 @@
       d.videos.forEach(function (item, i) {
         var li = el('button', 'vid-item' + (i === state.video ? ' on' : ''));
         li.type = 'button';
+        li.setAttribute('data-video-id', item.id);
         li.appendChild(el('span', 'vid-item-no', String(i + 1)));
         var tx = el('span', 'vid-item-tx');
         tx.appendChild(el('span', 'vid-item-title', String(item.title || '')));
@@ -180,6 +254,7 @@
       fsBtn.disabled = true;
       listEl.appendChild(el('p', 'vid-list-note', t('vid.soon')));
     }
+    notifyVideo();
   }
 
   /* Full screen on the player box. If the video is not loaded yet, load it first —
