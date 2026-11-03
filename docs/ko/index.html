@@ -129,7 +129,9 @@
   @media (prefers-reduced-motion:reduce){.hero-bg .hero-bgv{display:none}}
 </style>
 <section class="hero hero-bg">
-  <video class="hero-bgv" src="../assets/video/promo.hero.web.mp4" poster="../assets/video/promo.hero.poster.jpg" autoplay muted playsinline preload="auto" aria-hidden="true"></video>
+  <!-- ?v= = 영상을 바꿀 때마다 올린다(Pages 캐시 10분 · 옛 반복판은 끝이 검게 사라져 「마지막 화면이 안 나온다」 2026-11-03) -->
+  <video class="hero-bgv" src="../assets/video/promo.hero.web.mp4?v=3" poster="../assets/video/promo.hero.poster.jpg?v=3" autoplay muted playsinline preload="auto" aria-hidden="true"></video>
+  <script>(function(){var v=document.querySelector('.hero-bgv');if(!v)return;v.addEventListener('ended',function(){try{v.pause();v.currentTime=Math.max(0,v.duration-0.04)}catch(e){}})})()</script>
   <div class="hero-shade"></div>
   <div class="container">
     <div class="hero-copy">
