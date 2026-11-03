@@ -161,7 +161,7 @@
 
       'hero.badge': 'OpenSees-based · KDS / KBC / KCI / FEMA · AI-assisted',
       'hero.title': 'Structural analysis and design,<br><em>verified to the millimeter.</em>',
-      'hero.sub': 'A desktop platform that takes you from 3D modeling through nonlinear analysis to code-compliant RC design — built on the OpenSees solver and cross-verified against industry references within ±3%.',
+      'hero.sub': 'A desktop platform that takes you from 3D modeling through nonlinear analysis to code-compliant RC design — built on the OpenSees solver and verified against 21 international benchmarks, all 131 checks passed.',
       'hero.cta1': 'Download for Windows',
       'hero.cta2': 'Video tutorials',
       'hero.cta3': 'Product overview',
@@ -207,7 +207,7 @@
       'trust.codes': 'Standards',
       'trust.codesName': 'KDS · KBC · KCI · FEMA',
       'trust.verified': 'Verified',
-      'trust.verifiedName': 'Within ±3% of industry references',
+      'trust.verifiedName': '21 benchmarks, all passed',
 
       'prob.eyebrow': 'Why STRIX',
       'prob.title': 'One model. One source of truth.<br><em>No tool-switching.</em>',
@@ -1032,7 +1032,7 @@
 
       'hero.badge': 'OpenSees 기반 · KDS / KBC / KCI / FEMA · AI 지원',
       'hero.title': '구조해석과 설계,<br><em>밀리미터 단위로 검증된 정확도.</em>',
-      'hero.sub': '3D 모델링부터 비선형 해석, 기준 적합 RC 설계까지 하나의 데스크톱 플랫폼에서. OpenSees 솔버 기반으로 구축되어 업계 표준 대비 ±3% 이내로 교차검증되었습니다.',
+      'hero.sub': '3D 모델링부터 비선형 해석, 기준 적합 RC 설계까지 하나의 데스크톱 플랫폼에서. OpenSees 솔버 기반으로 구축되어 국제 벤치마크 21건·131개 항목을 전건 통과했습니다.',
       'hero.cta1': 'Windows 다운로드',
       'hero.cta2': '사용법 영상',
       'hero.cta3': '프로그램 소개',
@@ -1078,7 +1078,7 @@
       'trust.codes': '기준',
       'trust.codesName': 'KDS · KBC · KCI · FEMA',
       'trust.verified': '검증',
-      'trust.verifiedName': '업계 표준 대비 ±3% 이내',
+      'trust.verifiedName': '벤치마크 21건 전건 통과',
 
       'prob.eyebrow': 'STRIX을 선택하는 이유',
       'prob.title': '하나의 모델, 하나의 진실 원천.<br><em>도구 전환 없음.</em>',
@@ -1903,7 +1903,7 @@
 
       'hero.badge': 'OpenSeesベース · KDS / KBC / KCI / FEMA · AI支援',
       'hero.title': '構造解析と設計を、<br><em>ミリメートル単位で検証。</em>',
-      'hero.sub': '3DモデリングからNTHA非線形解析、規準適合RC設計までを一気通貫で行えるデスクトッププラットフォーム。OpenSeesソルバー上に構築され、業界リファレンスと±3%以内で相互検証されています。',
+      'hero.sub': '3DモデリングからNTHA非線形解析、規準適合RC設計までを一気通貫で行えるデスクトッププラットフォーム。OpenSeesソルバー上に構築され、国際ベンチマーク21件・131項目をすべてクリアしています。',
       'hero.cta1': 'Windows版をダウンロード',
       'hero.cta2': '使い方動画',
       'hero.cta3': '製品紹介',
@@ -1949,7 +1949,7 @@
       'trust.codes': '基準',
       'trust.codesName': 'KDS · KBC · KCI · FEMA',
       'trust.verified': '検証済み',
-      'trust.verifiedName': '業界リファレンスと±3%以内',
+      'trust.verifiedName': 'ベンチマーク21件 全件クリア',
 
       'prob.eyebrow': 'STRIXを選ぶ理由',
       'prob.title': '1つのモデル。1つの真実の源。<br><em>ツールの切り替え不要。</em>',
@@ -2773,7 +2773,7 @@
       'auth.logout': '退出登录',
       'hero.badge': '基于 OpenSees · KDS / KBC / KCI / FEMA · AI 辅助',
       'hero.title': '结构分析与设计，<br><em>毫米级精度验证。</em>',
-      'hero.sub': '从 3D 建模、非线性分析到符合规范的 RC 设计，一站式桌面平台 —— 基于 OpenSees 求解器构建，与行业基准交叉验证，误差在 ±3% 以内。',
+      'hero.sub': '从 3D 建模、非线性分析到符合规范的 RC 设计，一站式桌面平台 —— 基于 OpenSees 求解器构建，21 项国际基准测试、131 个校核项全部通过。',
       'hero.cta1': '下载 Windows 版',
       'hero.cta2': '使用教程视频',
       'hero.cta3': '产品介绍',
@@ -2818,7 +2818,7 @@
       'trust.codes': '规范',
       'trust.codesName': 'KDS · KBC · KCI · FEMA',
       'trust.verified': '已验证',
-      'trust.verifiedName': '与行业基准误差在 ±3% 以内',
+      'trust.verifiedName': '21 项基准测试全部通过',
       'prob.eyebrow': '为何选择 STRIX',
       'prob.title': '一个模型，一个真实源。<br><em>无需在工具间切换。</em>',
       'prob.lead': '传统工作流将建模、分析、设计与报告分散在彼此割裂的工具中 —— 反复重录数据、协调符号约定、信任黑盒结果。STRIX 闭合了这一环路。',
