@@ -114,7 +114,22 @@
 <main id="top">
 
 <!-- ════════════ 1. HERO ════════════ -->
-<section class="hero">
+<!-- 첫 화면 배경 영상 — 소개영상 인트로 0–9 s(24층 공동주택 모델이 층층이 올라가 완성 → 해석 스캔) · 무음 반복.
+     원천 = tools/video-studio/promo(timeline.hero.json) · promo_video_devplan.md. 오른쪽 이미지 칸 대신 첫 화면 전체 배경(사용자 「우측 영상 크기가 너무 작다」) -->
+<style>
+  .hero.hero-bg{position:relative;overflow:hidden;min-height:min(92vh,980px);display:flex;align-items:center}
+  .hero-bg .hero-bgv{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:62% 50%;z-index:0}
+  .hero-bg .hero-shade{position:absolute;inset:0;z-index:1;pointer-events:none;
+    background:linear-gradient(90deg,rgba(10,10,19,.96) 0%,rgba(10,10,19,.86) 32%,rgba(10,10,19,.35) 58%,rgba(10,10,19,0) 78%),
+               linear-gradient(0deg,rgba(10,10,19,1) 0%,rgba(10,10,19,0) 22%)}
+  .hero-bg .container{position:relative;z-index:2;display:block}
+  .hero-bg .hero-copy{max-width:700px}
+  @media (max-width:980px){.hero-bg .hero-shade{background:linear-gradient(0deg,rgba(10,10,19,.97) 30%,rgba(10,10,19,.55) 100%)}}
+  @media (prefers-reduced-motion:reduce){.hero-bg .hero-bgv{display:none}}
+</style>
+<section class="hero hero-bg">
+  <video class="hero-bgv" src="../assets/video/promo.hero.web.mp4" poster="../assets/video/promo.hero.poster.jpg" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
+  <div class="hero-shade"></div>
   <div class="container">
     <div class="hero-copy">
       <span class="badge badge-accent hero-badge" data-i18n="hero.badge">基于 OpenSees · KDS / KBC / KCI / FEMA · AI 辅助</span>
@@ -129,14 +144,11 @@
              /ko/ /ja/ /zh/ builds reach the same /product/ — rewriteRootRelativePaths()
              only rewrites css|js|assets|verification. -->
         <a href="/product/" target="_blank" rel="noopener" class="btn btn-secondary btn-lg" data-i18n="hero.cta3">产品介绍</a>
+        <!-- 소개영상(유튜브 일부 공개) — 한국어 페이지는 한국어판, 그 밖은 영어판(아래 스크립트가 html lang 으로 고른다) -->
+        <a href="https://youtu.be/RuZIlLImOyU" target="_blank" rel="noopener" class="btn btn-secondary btn-lg" data-promo-video><span data-i18n="hero.cta4">▶ 观看介绍视频</span></a>
+        <script>(function(){var a=document.querySelector('[data-promo-video]');if(a&&/^ko/.test(document.documentElement.lang))a.href='https://youtu.be/rrQDpRTyuAU'})()</script>
       </div>
       <p class="hero-note" data-i18n="hero.note">测试期免费 · Windows 10/11 · 无需信用卡</p>
-    </div>
-    <div class="hero-visual reveal">
-      <div class="media-frame ratio-16x9" data-image-key="hero-main" data-label="HERO — main app screenshot">
-        <div class="win-chrome"><i></i><i></i><i></i></div>
-        <div class="ph"><span class="ico">🧊</span><span data-i18n="live.ph">截图 / GIF 占位 —— 由管理员上传替换</span></div>
-      </div>
     </div>
   </div>
 </section>
@@ -318,42 +330,63 @@
     <div class="section-head center reveal">
       <span class="eyebrow" data-i18n="price.eyebrow">价格</span>
       <h2 class="section-title" data-i18n="price.title">透明、自助的价格</h2>
-      <p class="section-lead" style="text-align:center" data-i18n="price.lead">无需“索取报价”。套餐清晰，即时订阅 —— 在确认前清楚看到你将支付的费用。</p>
+      <p class="section-lead" style="text-align:center" data-i18n="price.lead">套餐清晰，无需额外购买功能 —— 付款前可确认金额和条款。</p>
     </div>
     <div class="price-grid">
-      <div class="card price-card reveal">
-        <span class="plan-name" data-i18n="price.beta">测试版</span>
-        <div class="price"><span data-i18n="price.betaPrice">免费</span> <small data-i18n="price.betaNote">测试期内</small></div>
-        <ul class="price-list">
-          <li data-i18n="price.b1">完整建模与分析</li>
-          <li data-i18n="price.b2">RC 设计与报告</li>
-          <li data-i18n="price.b3">社区支持</li>
-        </ul>
-        <a href="#download" class="btn btn-secondary btn-block" data-i18n="hero.cta1">下载 Windows 版</a>
-      </div>
-      <div class="card price-card featured reveal d1">
-        <span class="price-ribbon" data-i18n="price.ribbon">最受欢迎</span>
-        <span class="plan-name" data-i18n="price.pro">Pioneer</span>
-        <div class="price"><span data-i18n="price.proPrice">即将公布</span> <small data-i18n="price.proNote">自助订阅</small></div>
-        <ul class="price-list">
-          <li data-i18n="price.p1">包含测试版全部功能</li>
-          <li data-i18n="price.p2">所有更新与优先支持</li>
-          <li data-i18n="price.p3">商用许可</li>
+      <article class="card plan-card featured reveal">
+        <span class="plan-ribbon" data-i18n="prc.pioneerRibbon">仅限发布当年</span>
+        <div>
+          <div class="plan-name" data-i18n="prc.pioneerName">Pioneer</div>
+          <div class="plan-tag" data-i18n="prc.pioneerTag">年付 · 发布当年付款的许可证</div>
+        </div>
+        <div class="plan-price"><span data-plan-price="pioneer_annual">—</span> <span class="per" data-i18n="prc.perSeatYear">/ 许可证 / 年</span></div>
+        <div class="plan-renew" data-i18n="prc.pioneerRenew">自购买日起适用 1 年，之后按年付价格续费</div>
+        <ul class="plan-list">
+          <li data-i18n="prc.f.full">完整的建模、分析、设计与报告</li>
+          <li data-i18n="prc.f.updates">包含所有更新</li>
+          <li data-i18n="prc.f.commercial">商用许可</li>
+          <li data-i18n="prc.f.pioneerLock">每个许可证 1 年优惠价</li>
+          <li data-i18n="prc.f.noAddon">无需额外购买功能</li>
         </ul>
         <a href="pricing.html" class="btn btn-primary btn-block" data-i18n="price.cta">查看完整价格</a>
-      </div>
-      <div class="card price-card reveal d2">
-        <span class="plan-name" data-i18n="price.team">年付 / 月付</span>
-        <div class="price"><span data-i18n="price.teamPrice">即将公布</span> <small data-i18n="price.teamNote">席位池 &amp; 成员</small></div>
-        <ul class="price-list">
-          <li data-i18n="price.t1">浮动席位池</li>
-          <li data-i18n="price.t2">成员无限</li>
-          <li data-i18n="price.t3">30天免费试用</li>
+      </article>
+      <article class="card plan-card reveal d1">
+        <div>
+          <div class="plan-name" data-i18n="prc.annualName">年付</div>
+          <div class="plan-tag" data-i18n="prc.annualTag">最超值 · 优惠 3 个月</div>
+        </div>
+        <div class="plan-price"><span data-plan-price="annual">—</span> <span class="per" data-i18n="prc.perSeatYear">/ 许可证 / 年</span></div>
+        <div class="plan-renew" data-i18n="prc.afterPioneer">发布次年起提供</div>
+        <ul class="plan-list">
+          <li data-i18n="prc.f.full">完整的建模、分析、设计与报告</li>
+          <li data-i18n="prc.f.updates">包含所有更新</li>
+          <li data-i18n="prc.f.commercial">商用许可</li>
+          <li data-i18n="prc.f.save">相当于 9 个月的月付价格</li>
+          <li data-i18n="prc.f.noAddon">无需额外购买功能</li>
         </ul>
         <a href="pricing.html" class="btn btn-secondary btn-block" data-i18n="price.cta">查看完整价格</a>
-      </div>
+      </article>
+      <article class="card plan-card reveal d2">
+        <div>
+          <div class="plan-name" data-i18n="prc.monthlyName">月付</div>
+          <div class="plan-tag" data-i18n="prc.monthlyTag">灵活 · 随时取消</div>
+        </div>
+        <div class="plan-price"><span data-plan-price="monthly">—</span> <span class="per" data-i18n="prc.perSeatMonth">/ 许可证 / 月</span></div>
+        <div class="plan-renew" data-i18n="prc.afterPioneer">发布次年起提供</div>
+        <ul class="plan-list">
+          <li data-i18n="prc.f.full">完整的建模、分析、设计与报告</li>
+          <li data-i18n="prc.f.updates">包含所有更新</li>
+          <li data-i18n="prc.f.commercial">商用许可</li>
+          <li data-i18n="prc.f.flex">无年度承诺</li>
+          <li data-i18n="prc.f.noAddon">无需额外购买功能</li>
+        </ul>
+        <a href="pricing.html" class="btn btn-secondary btn-block" data-i18n="price.cta">查看完整价格</a>
+      </article>
     </div>
-    <p class="hero-note" style="text-align:center;margin-top:var(--sp-5)" data-i18n="price.launchNote">付费套餐将在正式发布时开放 —— 测试期间 STRIX 免费。</p>
+    <div style="text-align:center;margin-top:var(--sp-6)">
+      <span class="badge badge-beta"><span class="dot"></span><span data-i18n="prc.trialBadge">申请 1 个月免费试用 —— 无需信用卡</span></span>
+      <p class="dim" style="font-size:var(--fs-cap);margin-top:var(--sp-3)" data-i18n="prc.ccyNote">标示价格不含增值税。测试期间 STRIX 可免费使用。</p>
+    </div>
   </div>
 </section>
 
@@ -385,6 +418,7 @@
 <script src="../js/i18n.js"></script>
 <script src="../js/layout.js"></script>
 <script src="../js/auth.js"></script>
+<script src="../js/billing.js"></script>
 <script src="../js/board.js"></script>
 <script src="../js/site.js"></script>
 <script src="../js/pdfPreview.js"></script>

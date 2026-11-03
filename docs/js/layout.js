@@ -127,10 +127,29 @@
       '</div>' +
     '</div></header>';
 
+  var BIZ_SEP = '<span class="footer-biz-sep"> | </span>';
+
   var FOOTER = '' +
     '<footer class="footer"><div class="container">' +
       '<div class="footer-brand"><div class="nav-logo">' + LOGOMARK + '</div>' +
-        '<p data-i18n="foot.tagline">Independent commercial structural analysis &amp; design — built to exceed, not imitate.</p>' +
+        // Business information. Values and the outstanding [placeholders] come from
+        // pricing_payment_devplan.md §17.10 — do not fill a placeholder by guessing.
+        '<div class="footer-biz">' +
+          '<p><span data-i18n="foot.bizName">LPK SOFT Co., Ltd. (주식회사 엘피케이소프트)</span>' + BIZ_SEP +
+            '<span data-i18n="foot.bizRepLabel">Representative</span> 김시범</p>' +
+          '<p><span data-i18n="foot.bizRegLabel">Business Registration No.</span> 592-81-03752</p>' +
+          '<p><span data-i18n="foot.bizMailOrderLabel">Mail-order Report No.</span> ' +
+            '<span class="ph-todo" data-i18n="foot.todoMailOrderNo">[After filing]</span> ' +
+            '(<span class="ph-todo" data-i18n="foot.todoMailOrderOffice">[Authority]</span>)</p>' +
+          '<p><span data-i18n="foot.bizAddrLabel">Address</span> 서울특별시 송파구 거마로 11, 3층 370호</p>' +
+          '<p><span data-i18n="foot.bizPhoneLabel">Phone</span> ' +
+            '<a href="tel:+827052755735">070-5275-5735</a>' + BIZ_SEP +
+            '<span data-i18n="foot.bizEmailLabel">Email</span> ' +
+            '<a href="mailto:support@lpksoft.com">support@lpksoft.com</a></p>' +
+          '<p><span data-i18n="foot.bizHostLabel">Hosting</span> ' +
+            '<span class="ph-todo" data-i18n="foot.todoHost">[GitHub, Inc. TBC]</span>' + BIZ_SEP +
+            '<span class="ph-todo" data-i18n="foot.todoBizCheck">[Business info check]</span></p>' +
+        '</div>' +
       '</div>' +
       '<div class="footer-col"><h4 data-i18n="foot.product">Product</h4>' +
         '<a href="' + nav('product.html') + '" data-i18n="nav.product">Product</a>' +
@@ -144,11 +163,14 @@
         '<a href="' + home('download') + '" data-i18n="nav.download">Download</a>' +
       '</div>' +
       '<div class="footer-col"><h4 data-i18n="foot.company">Company</h4>' +
-        '<a href="mailto:ksb3171@gmail.com">Contact</a>' +
+        '<a href="' + nav('community.html#b/qna') + '" data-i18n="foot.contact">Contact</a>' +
+        '<a href="' + nav('terms.html') + '" data-i18n="foot.terms">Terms of Service</a>' +
+        '<a href="' + nav('privacy.html') + '" class="footer-strong" data-i18n="foot.privacy">Privacy Policy</a>' +
+        '<a href="' + nav('refund.html') + '" data-i18n="foot.refund">Refund Policy</a>' +
       '</div>' +
     '</div>' +
     '<div class="container footer-bottom">' +
-      '<span data-i18n="foot.copyright">© 2026 STRIX. All rights reserved.</span>' +
+      '<span data-i18n="foot.copyright">© 2026 LPK SOFT Co., Ltd. All rights reserved.</span>' +
       '<span class="mono" style="color:var(--text-mute)">Built with OpenSees · React · Electron</span>' +
     '</div></footer>';
 

@@ -114,7 +114,22 @@
 <main id="top">
 
 <!-- ════════════ 1. HERO ════════════ -->
-<section class="hero">
+<!-- 첫 화면 배경 영상 — 소개영상 인트로 0–9 s(24층 공동주택 모델이 층층이 올라가 완성 → 해석 스캔) · 무음 반복.
+     원천 = tools/video-studio/promo(timeline.hero.json) · promo_video_devplan.md. 오른쪽 이미지 칸 대신 첫 화면 전체 배경(사용자 「우측 영상 크기가 너무 작다」) -->
+<style>
+  .hero.hero-bg{position:relative;overflow:hidden;min-height:min(92vh,980px);display:flex;align-items:center}
+  .hero-bg .hero-bgv{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:62% 50%;z-index:0}
+  .hero-bg .hero-shade{position:absolute;inset:0;z-index:1;pointer-events:none;
+    background:linear-gradient(90deg,rgba(10,10,19,.96) 0%,rgba(10,10,19,.86) 32%,rgba(10,10,19,.35) 58%,rgba(10,10,19,0) 78%),
+               linear-gradient(0deg,rgba(10,10,19,1) 0%,rgba(10,10,19,0) 22%)}
+  .hero-bg .container{position:relative;z-index:2;display:block}
+  .hero-bg .hero-copy{max-width:700px}
+  @media (max-width:980px){.hero-bg .hero-shade{background:linear-gradient(0deg,rgba(10,10,19,.97) 30%,rgba(10,10,19,.55) 100%)}}
+  @media (prefers-reduced-motion:reduce){.hero-bg .hero-bgv{display:none}}
+</style>
+<section class="hero hero-bg">
+  <video class="hero-bgv" src="../assets/video/promo.hero.web.mp4" poster="../assets/video/promo.hero.poster.jpg" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
+  <div class="hero-shade"></div>
   <div class="container">
     <div class="hero-copy">
       <span class="badge badge-accent hero-badge" data-i18n="hero.badge">OpenSeesベース · KDS / KBC / KCI / FEMA · AI支援</span>
@@ -129,14 +144,11 @@
              /ko/ /ja/ /zh/ builds reach the same /product/ — rewriteRootRelativePaths()
              only rewrites css|js|assets|verification. -->
         <a href="/product/" target="_blank" rel="noopener" class="btn btn-secondary btn-lg" data-i18n="hero.cta3">製品紹介</a>
+        <!-- 소개영상(유튜브 일부 공개) — 한국어 페이지는 한국어판, 그 밖은 영어판(아래 스크립트가 html lang 으로 고른다) -->
+        <a href="https://youtu.be/RuZIlLImOyU" target="_blank" rel="noopener" class="btn btn-secondary btn-lg" data-promo-video><span data-i18n="hero.cta4">▶ 紹介動画を見る</span></a>
+        <script>(function(){var a=document.querySelector('[data-promo-video]');if(a&&/^ko/.test(document.documentElement.lang))a.href='https://youtu.be/rrQDpRTyuAU'})()</script>
       </div>
       <p class="hero-note" data-i18n="hero.note">ベータ期間中は無料 · Windows 10/11 · クレジットカード不要</p>
-    </div>
-    <div class="hero-visual reveal">
-      <div class="media-frame ratio-16x9" data-image-key="hero-main" data-label="HERO — main app screenshot">
-        <div class="win-chrome"><i></i><i></i><i></i></div>
-        <div class="ph"><span class="ico">🧊</span><span data-i18n="live.ph">スクリーンショット / GIF枠 — 管理アップロードで差し替え</span></div>
-      </div>
     </div>
   </div>
 </section>
@@ -318,42 +330,63 @@
     <div class="section-head center reveal">
       <span class="eyebrow" data-i18n="price.eyebrow">価格</span>
       <h2 class="section-title" data-i18n="price.title">透明でセルフサービスの価格</h2>
-      <p class="section-lead" style="text-align:center" data-i18n="price.lead">「お見積りはこちら」は不要。明確なプラン、即時サブスクリプション — 契約前に支払額を正確に把握できます。</p>
+      <p class="section-lead" style="text-align:center" data-i18n="price.lead">明確なプラン、機能の追加購入なし — 決済前に金額と条件を確認できます。</p>
     </div>
     <div class="price-grid">
-      <div class="card price-card reveal">
-        <span class="plan-name" data-i18n="price.beta">ベータ</span>
-        <div class="price"><span data-i18n="price.betaPrice">無料</span> <small data-i18n="price.betaNote">ベータ期間中</small></div>
-        <ul class="price-list">
-          <li data-i18n="price.b1">モデリングと解析をフル機能で</li>
-          <li data-i18n="price.b2">RC設計とレポート</li>
-          <li data-i18n="price.b3">コミュニティサポート</li>
-        </ul>
-        <a href="#download" class="btn btn-secondary btn-block" data-i18n="hero.cta1">Windows版をダウンロード</a>
-      </div>
-      <div class="card price-card featured reveal d1">
-        <span class="price-ribbon" data-i18n="price.ribbon">一番人気</span>
-        <span class="plan-name" data-i18n="price.pro">Pioneer</span>
-        <div class="price"><span data-i18n="price.proPrice">近日公開</span> <small data-i18n="price.proNote">セルフサービス購読</small></div>
-        <ul class="price-list">
-          <li data-i18n="price.p1">ベータのすべて</li>
-          <li data-i18n="price.p2">すべてのアップデートと優先サポート</li>
-          <li data-i18n="price.p3">商用利用ライセンス</li>
+      <article class="card plan-card featured reveal">
+        <span class="plan-ribbon" data-i18n="prc.pioneerRibbon">リリース年限定</span>
+        <div>
+          <div class="plan-name" data-i18n="prc.pioneerName">Pioneer</div>
+          <div class="plan-tag" data-i18n="prc.pioneerTag">年額 · リリース年に決済したライセンス</div>
+        </div>
+        <div class="plan-price"><span data-plan-price="pioneer_annual">—</span> <span class="per" data-i18n="prc.perSeatYear">/ ライセンス / 年</span></div>
+        <div class="plan-renew" data-i18n="prc.pioneerRenew">購入日から1年適用後、年額価格で更新</div>
+        <ul class="plan-list">
+          <li data-i18n="prc.f.full">モデリング・解析・設計・レポートをフル機能で</li>
+          <li data-i18n="prc.f.updates">すべてのアップデートを含む</li>
+          <li data-i18n="prc.f.commercial">商用利用ライセンス</li>
+          <li data-i18n="prc.f.pioneerLock">ライセンスごとに1年間の特別価格</li>
+          <li data-i18n="prc.f.noAddon">機能の追加購入なし</li>
         </ul>
         <a href="pricing.html" class="btn btn-primary btn-block" data-i18n="price.cta">価格の全体を見る</a>
-      </div>
-      <div class="card price-card reveal d2">
-        <span class="plan-name" data-i18n="price.team">年額 / 月額</span>
-        <div class="price"><span data-i18n="price.teamPrice">近日公開</span> <small data-i18n="price.teamNote">シートプール &amp; メンバー</small></div>
-        <ul class="price-list">
-          <li data-i18n="price.t1">フローティングシートプール</li>
-          <li data-i18n="price.t2">メンバー無制限</li>
-          <li data-i18n="price.t3">30日間無料トライアル</li>
+      </article>
+      <article class="card plan-card reveal d1">
+        <div>
+          <div class="plan-name" data-i18n="prc.annualName">年額</div>
+          <div class="plan-tag" data-i18n="prc.annualTag">お得 · 3か月分割引</div>
+        </div>
+        <div class="plan-price"><span data-plan-price="annual">—</span> <span class="per" data-i18n="prc.perSeatYear">/ ライセンス / 年</span></div>
+        <div class="plan-renew" data-i18n="prc.afterPioneer">リリース翌年から提供</div>
+        <ul class="plan-list">
+          <li data-i18n="prc.f.full">モデリング・解析・設計・レポートをフル機能で</li>
+          <li data-i18n="prc.f.updates">すべてのアップデートを含む</li>
+          <li data-i18n="prc.f.commercial">商用利用ライセンス</li>
+          <li data-i18n="prc.f.save">月額9か月分の価格</li>
+          <li data-i18n="prc.f.noAddon">機能の追加購入なし</li>
         </ul>
         <a href="pricing.html" class="btn btn-secondary btn-block" data-i18n="price.cta">価格の全体を見る</a>
-      </div>
+      </article>
+      <article class="card plan-card reveal d2">
+        <div>
+          <div class="plan-name" data-i18n="prc.monthlyName">月額</div>
+          <div class="plan-tag" data-i18n="prc.monthlyTag">柔軟 · いつでも解約可能</div>
+        </div>
+        <div class="plan-price"><span data-plan-price="monthly">—</span> <span class="per" data-i18n="prc.perSeatMonth">/ ライセンス / 月</span></div>
+        <div class="plan-renew" data-i18n="prc.afterPioneer">リリース翌年から提供</div>
+        <ul class="plan-list">
+          <li data-i18n="prc.f.full">モデリング・解析・設計・レポートをフル機能で</li>
+          <li data-i18n="prc.f.updates">すべてのアップデートを含む</li>
+          <li data-i18n="prc.f.commercial">商用利用ライセンス</li>
+          <li data-i18n="prc.f.flex">年間契約の縛りなし</li>
+          <li data-i18n="prc.f.noAddon">機能の追加購入なし</li>
+        </ul>
+        <a href="pricing.html" class="btn btn-secondary btn-block" data-i18n="price.cta">価格の全体を見る</a>
+      </article>
     </div>
-    <p class="hero-note" style="text-align:center;margin-top:var(--sp-5)" data-i18n="price.launchNote">有料プランは正式リリース時に開始します — ベータ期間中、STRIXは無料です。</p>
+    <div style="text-align:center;margin-top:var(--sp-6)">
+      <span class="badge badge-beta"><span class="dot"></span><span data-i18n="prc.trialBadge">1か月無料トライアル申込 — クレジットカード不要</span></span>
+      <p class="dim" style="font-size:var(--fs-cap);margin-top:var(--sp-3)" data-i18n="prc.ccyNote">掲載価格は付加価値税別です。ベータ期間中、STRIXは無料でご利用いただけます。</p>
+    </div>
   </div>
 </section>
 
@@ -385,6 +418,7 @@
 <script src="../js/i18n.js"></script>
 <script src="../js/layout.js"></script>
 <script src="../js/auth.js"></script>
+<script src="../js/billing.js"></script>
 <script src="../js/board.js"></script>
 <script src="../js/site.js"></script>
 <script src="../js/pdfPreview.js"></script>

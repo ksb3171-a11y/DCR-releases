@@ -12,13 +12,16 @@
 
   var PORTONE_SDK_URL = 'https://cdn.portone.io/v2/browser-sdk.js';
   var SEAT_TIMEOUT_MS = 3 * 60 * 1000; // heartbeat window → "in use"
-  // Display fallback mirrors the server-authoritative catalog in _shared/plans.ts.
-  // Validation checks keep the two catalogs identical; checkout always trusts server values.
-  var PRICE_CATALOG = {
-    pioneer_annual: { KRW: 1200000, USD: 900,  JPY: 135000, CNY: 6500 },
-    annual:         { KRW: 2500000, USD: 1800, JPY: 270000, CNY: 13000 },
-    monthly:        { KRW: 250000,  USD: 180,  JPY: 27000,  CNY: 1300 }
-  };
+  // Display catalog. Kept empty while prices are unpublished (PRICES_PUBLIC = false) so the amounts
+  // do not ship in this public script. To publish, copy the figures from _shared/plans.ts here.
+  // Checkout always trusts the server values.
+  var PRICE_CATALOG = {};
+  // Mirrors PIONEER_CUTOFF_ISO in _shared/plans.ts — the server decides; this only guides the buttons.
+  var PIONEER_CUTOFF_MS = Date.parse('2028-01-01T00:00:00+09:00');
+  function planOpen(plan) {
+    var pioneerPeriod = Date.now() < PIONEER_CUTOFF_MS;
+    return plan === 'pioneer_annual' ? pioneerPeriod : !pioneerPeriod;
+  }
   var LANG_CURRENCY = { ko: 'KRW', en: 'USD', ja: 'JPY', zh: 'CNY' };
   var CURRENCY_LOCALE = { KRW: 'ko-KR', USD: 'en-US', JPY: 'ja-JP', CNY: 'zh-CN' };
 
@@ -130,9 +133,24 @@
   // =================================================================
   //  PRICING PAGE
   // =================================================================
+  // Amounts stay hidden until the owner decides to publish them (independent of commercial_mode,
+  // which gates licensing and the trial clock). Flip to true to show the catalog.
+  var PRICES_PUBLIC = false;
+  function renderPlanPrices() {
+    document.querySelectorAll('[data-plan-price]').forEach(function (node) {
+      node.textContent = PRICES_PUBLIC ? money(unitPrice(node.getAttribute('data-plan-price'))) : t('prc.tba', 'To be announced');
+    });
+  }
+
   function initPricing() {
     var input = el('seatInput');
-    if (!input) return;
+    if (!input) {
+      // Home pricing section: same cards, no seat stepper or checkout.
+      renderPlanPrices();
+      var prevHomeLang = window.onLangApplied;
+      window.onLangApplied = function (lang) { if (prevHomeLang) prevHomeLang(lang); renderPlanPrices(); };
+      return;
+    }
 
     function seats() {
       var n = parseInt(input.value, 10);
@@ -141,17 +159,13 @@
       return n;
     }
     function recompute() {
-      // Pre-launch: prices are not finalized — show "to be announced" instead of
-      // concrete amounts. Seat count still reflects the chosen concurrency (payment
-      // direction stays: company → seat pool → members). Re-enable money rendering
-      // here when the final price list is set.
       var n = seats();
-      var tba = t('prc.tba', 'To be announced');
-      document.querySelectorAll('[data-plan-price]').forEach(function (node) {
-        node.textContent = tba;
-      });
+      renderPlanPrices();
       document.querySelectorAll('[data-total-plan]').forEach(function (node) {
-        node.textContent = n + ' ' + (n === 1 ? t('prc.seatOne', 'seat') : t('prc.seatMany', 'seats'));
+        var seatText = n + ' ' + (n === 1 ? t('prc.seatOne', 'seat') : t('prc.seatMany', 'seats'));
+        var plan = node.getAttribute('data-total-plan');
+        var perKey = plan === 'monthly' ? 'prc.totalMonth' : 'prc.totalYear';
+        node.textContent = PRICES_PUBLIC ? seatText + ' · ' + money(unitPrice(plan) * n) + ' ' + t(perKey, '') : seatText;
       });
       var renew = document.querySelector('[data-i18n="prc.pioneerRenew"]');
       if (renew) renew.textContent = t('prc.pioneerRenew', 'Renewal price announced at launch');
@@ -162,6 +176,13 @@
     recompute();
 
     document.querySelectorAll('[data-subscribe]').forEach(function (btn) {
+      if (!planOpen(btn.getAttribute('data-subscribe'))) {
+        btn.disabled = true;
+        // i18n re-applies data-i18n on load and language change, so the key must change too.
+        btn.setAttribute('data-i18n', 'prc.planClosed');
+        btn.textContent = t('prc.planClosed', 'Not available now');
+        return;
+      }
       btn.addEventListener('click', function () {
         var plan = btn.getAttribute('data-subscribe');
         startCheckout(plan, seats(), currentCurrency(), btn);
@@ -170,6 +191,7 @@
 
     // billing-mode note
     loadConfig().then(function () {
+      recompute();
       var note = el('billingModeNote');
       if (!note) return;
       if (!_cfg.commercial_mode) {
@@ -625,7 +647,7 @@
   // =================================================================
   var page = (document.body && document.body.dataset.page) || '';
 
-  if (page === 'pricing') {
+  if (page === 'pricing' || document.querySelector('[data-plan-price]')) {
     initPricing();
   } else if (page === 'account') {
     var booted = false;
