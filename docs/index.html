@@ -112,7 +112,8 @@
 <main id="top">
 
 <!-- ════════════ 1. HERO ════════════ -->
-<!-- 첫 화면 배경 영상 — 소개영상 인트로 0–9 s(24층 공동주택 모델이 층층이 올라가 완성 → 해석 스캔) · 무음 반복.
+<!-- 첫 화면 배경 영상 — 소개영상 인트로 0–8.6 s(24층 공동주택 모델이 층층이 올라가 완성 → 해석 스캔 완료) · 무음 · 한 번만 재생하고 마지막 장면에 멈춘다
+     (loop 없음 — 사용자 「계속 순환하니 정신이 없다」 2026-11-03).
      원천 = tools/video-studio/promo(timeline.hero.json) · promo_video_devplan.md. 오른쪽 이미지 칸 대신 첫 화면 전체 배경(사용자 「우측 영상 크기가 너무 작다」) -->
 <style>
   .hero.hero-bg{position:relative;overflow:hidden;min-height:min(92vh,980px);display:flex;align-items:center}
@@ -126,7 +127,7 @@
   @media (prefers-reduced-motion:reduce){.hero-bg .hero-bgv{display:none}}
 </style>
 <section class="hero hero-bg">
-  <video class="hero-bgv" src="assets/video/promo.hero.web.mp4" poster="assets/video/promo.hero.poster.jpg" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
+  <video class="hero-bgv" src="assets/video/promo.hero.web.mp4" poster="assets/video/promo.hero.poster.jpg" autoplay muted playsinline preload="auto" aria-hidden="true"></video>
   <div class="hero-shade"></div>
   <div class="container">
     <div class="hero-copy">
