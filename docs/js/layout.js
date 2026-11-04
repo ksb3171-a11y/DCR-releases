@@ -139,9 +139,9 @@
             '<span data-i18n="foot.bizRepLabel">Representative</span> 김시범</p>' +
           '<p><span data-i18n="foot.bizRegLabel">Business Registration No.</span> 592-81-03752</p>' +
           '<p><span data-i18n="foot.bizMailOrderLabel">Mail-order Report No.</span> ' +
-            '<span class="ph-todo" data-i18n="foot.todoMailOrderNo">[After filing]</span> ' +
-            '(<span class="ph-todo" data-i18n="foot.todoMailOrderOffice">[Authority]</span>)</p>' +
-          '<p><span data-i18n="foot.bizAddrLabel">Address</span> 서울특별시 송파구 거마로 11, 3층 370호</p>' +
+            '2026-서울송파-3076 ' +
+            '(<span data-i18n="foot.mailOrderOffice">Songpa-gu Office, Seoul</span>)</p>' +
+          '<p><span data-i18n="foot.bizAddrLabel">Address</span> 서울특별시 송파구 거마로 11, 창원빌딩 3층 370호 (거여동)</p>' +
           '<p><span data-i18n="foot.bizPhoneLabel">Phone</span> ' +
             '<a href="tel:+827052755735">070-5275-5735</a>' + BIZ_SEP +
             '<span data-i18n="foot.bizEmailLabel">Email</span> ' +

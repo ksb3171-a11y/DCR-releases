@@ -89,6 +89,16 @@ window.STRIX_VIDEOS = {
             "duration": "3:32"
           },
           {
+            "id": "fc3bvE7BPlk",
+            "title": "STRIX 건축평면도로 구조 모델링 따라하기 — AI CAD 로 구조도 작성 · 모델 생성",
+            "duration": "3:27"
+          },
+          {
+            "id": "QFMXaqyAg60",
+            "title": "우클릭 메뉴 모델링 따라하기 — 단면 · 재료 · 두께 · 지점 바꾸기",
+            "duration": "7:36"
+          },
+          {
             "id": "tfgBzwc7Pjc",
             "title": "슬래브 설계 따라하기 — 배근 설계 · Slab Design",
             "duration": "2:13"
@@ -117,6 +127,21 @@ window.STRIX_VIDEOS = {
             "id": "SPBt2TQjz9A",
             "title": "RC 단면 최적화 따라하기 — Design Optimization",
             "duration": "5:28"
+          },
+          {
+            "id": "ut2Mjb7df64",
+            "title": "말뚝 위치이탈 검토 따라하기 — 독립기초 현장시공 위치 재해석",
+            "duration": "3:24"
+          },
+          {
+            "id": "YIMsgA_7aFQ",
+            "title": "슬래브 개구부 검토 따라하기 — 설계 단계 · 사후 개구부 보강",
+            "duration": "4:30"
+          },
+          {
+            "id": "ImfGQNzdL1Q",
+            "title": "주각 앵커볼트 위치이탈 재검토 따라하기 — 철골 핀 주각 판해석",
+            "duration": "3:10"
           },
           {
             "id": "CPK0DkhWmcA",
@@ -266,6 +291,16 @@ window.STRIX_VIDEOS = {
             "duration": "3:50"
           },
           {
+            "id": "Prq4MQ4z83k",
+            "title": "STRIX Architectural Plan to Structural Model Tutorial — Drawing to Modeling with AI CAD",
+            "duration": "3:40"
+          },
+          {
+            "id": "EpZe4UIXrpM",
+            "title": "STRIX Right-Click Menu Modeling Tutorial — Change Sections, Materials, Thickness and Supports",
+            "duration": "7:43"
+          },
+          {
             "id": "bmpG1Ciet84",
             "title": "STRIX RC Slab Design Tutorial — Reinforcement Design",
             "duration": "2:29"
@@ -294,6 +329,21 @@ window.STRIX_VIDEOS = {
             "id": "fpF2Dg916RE",
             "title": "STRIX RC Section Optimization Tutorial — Design Optimization",
             "duration": "5:59"
+          },
+          {
+            "id": "OKDtOKK9R7U",
+            "title": "STRIX Mislocated Pile Review Tutorial — Isolated Pile Cap at As-Built Positions",
+            "duration": "3:55"
+          },
+          {
+            "id": "pkm4EI55-X4",
+            "title": "STRIX Slab Opening Review Tutorial — Design-Stage and After-the-Fact Openings",
+            "duration": "4:36"
+          },
+          {
+            "id": "kAAHU1rEORc",
+            "title": "STRIX Anchor Bolts Built Off Position Tutorial — Steel Pinned Base Plate Analysis",
+            "duration": "3:34"
           },
           {
             "id": "-57i0mcOxC4",
@@ -423,9 +473,9 @@ window.STRIX_VIDEOS = {
             "duration": "1:14"
           },
           {
-            "id": "s33rMdmK2q4",
+            "id": "OxfZg8_I1ZU",
             "title": "단면 정의 (Section)",
-            "duration": "1:14"
+            "duration": "1:40"
           },
           {
             "id": "8LkO63QSrkg",
@@ -916,6 +966,11 @@ window.STRIX_VIDEOS = {
             "id": "ySJ-cdNeGLQ",
             "title": "기타 구조검토 설계패드 (Misc)",
             "duration": "0:59"
+          },
+          {
+            "id": "Ks6dSpEV49M",
+            "title": "선택과 표시 범위",
+            "duration": "1:33"
           }
         ],
         "en": [
@@ -955,9 +1010,9 @@ window.STRIX_VIDEOS = {
             "duration": "1:16"
           },
           {
-            "id": "pJBRVXNhm1o",
+            "id": "vsNpJ_dGSvU",
             "title": "Sections",
-            "duration": "1:22"
+            "duration": "1:50"
           },
           {
             "id": "LMg3F1r63i4",
@@ -1393,6 +1448,11 @@ window.STRIX_VIDEOS = {
             "id": "iIRkhUUh12o",
             "title": "Design Batch Export",
             "duration": "1:15"
+          },
+          {
+            "id": "Hv5o8etRnZ4",
+            "title": "Selection and Active Scope",
+            "duration": "1:37"
           }
         ]
       }
