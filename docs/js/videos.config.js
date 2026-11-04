@@ -94,9 +94,9 @@ window.STRIX_VIDEOS = {
             "duration": "3:27"
           },
           {
-            "id": "QFMXaqyAg60",
+            "id": "ywNcSayW4x0",
             "title": "우클릭 메뉴 모델링 따라하기 — 단면 · 재료 · 두께 · 지점 바꾸기",
-            "duration": "7:36"
+            "duration": "7:51"
           },
           {
             "id": "tfgBzwc7Pjc",
@@ -296,9 +296,9 @@ window.STRIX_VIDEOS = {
             "duration": "3:40"
           },
           {
-            "id": "EpZe4UIXrpM",
+            "id": "qztkqwrr3Fo",
             "title": "STRIX Right-Click Menu Modeling Tutorial — Change Sections, Materials, Thickness and Supports",
-            "duration": "7:43"
+            "duration": "7:59"
           },
           {
             "id": "bmpG1Ciet84",
@@ -968,9 +968,129 @@ window.STRIX_VIDEOS = {
             "duration": "0:59"
           },
           {
+            "id": "NN8CSUxL73U",
+            "title": "비선형 전역 옵션 (Global Options)",
+            "duration": "1:17"
+          },
+          {
+            "id": "qT1VrsBO16Q",
+            "title": "비선형 RC 재료 (RC Material)",
+            "duration": "1:29"
+          },
+          {
+            "id": "YRNJpi3mSkc",
+            "title": "비선형 강재 재료 (Steel Material)",
+            "duration": "1:40"
+          },
+          {
+            "id": "n7rxH6KyYJg",
+            "title": "비선형 조적 재료 (Masonry Material)",
+            "duration": "1:02"
+          },
+          {
+            "id": "xuEp28T1yZE",
+            "title": "조적 채움벽 정의 (Infill Define)",
+            "duration": "1:26"
+          },
+          {
+            "id": "WVo5zxUPo_8",
+            "title": "채움벽 배치 (Infill Assign)",
+            "duration": "1:24"
+          },
+          {
+            "id": "x9y6Fxdk_iA",
+            "title": "허리벽 구속 기둥 (Restrained Col.)",
+            "duration": "1:01"
+          },
+          {
+            "id": "SPiHNi7LNkg",
+            "title": "감쇠장치 관리 (Damper)",
+            "duration": "1:44"
+          },
+          {
+            "id": "_HG8XKoDwc0",
+            "title": "m계수 평가 실행 (Run m-Factor)",
+            "duration": "1:10"
+          },
+          {
+            "id": "yY09nNjqQpU",
+            "title": "1차 평가 결과 (Results)",
+            "duration": "1:33"
+          },
+          {
+            "id": "6YEQJUYvf8Y",
+            "title": "성능상태 (Performance Status)",
+            "duration": "0:52"
+          },
+          {
+            "id": "DyR22Uq0-rA",
+            "title": "푸시오버 하중케이스 (Push. Load Case)",
+            "duration": "1:31"
+          },
+          {
+            "id": "N74zklIJuWA",
+            "title": "푸시오버해석 실행",
+            "duration": "1:11"
+          },
+          {
+            "id": "cNrtBX6wW7k",
+            "title": "푸시오버 역량곡선 (V-D) (Pushover Curve)",
+            "duration": "1:40"
+          },
+          {
+            "id": "ySsqctr-6O8",
+            "title": "푸시오버 소성힌지 상태 (Hinge Status)",
+            "duration": "1:09"
+          },
+          {
+            "id": "bRPcWkGZ3kc",
+            "title": "푸시오버 통합 결과 (Results)",
+            "duration": "1:16"
+          },
+          {
+            "id": "MqUN7VURQW0",
+            "title": "시간이력해석 실행 (Run THA)",
+            "duration": "1:13"
+          },
+          {
+            "id": "OrgHtuQWH48",
+            "title": "에너지 밸런스 신뢰도 (Energy Balance)",
+            "duration": "1:08"
+          },
+          {
+            "id": "nEI8KCt3xOU",
+            "title": "다지점(코너/편심) 층간변위 검토 (Story Drift Check)",
+            "duration": "1:46"
+          },
+          {
+            "id": "VUODL2h42d0",
+            "title": "층전단력 THA vs RSA 비교 (Story Shear)",
+            "duration": "1:11"
+          },
+          {
+            "id": "_MBA3HhJH0Y",
+            "title": "제진장치 응답 (Device Response)",
+            "duration": "1:22"
+          },
+          {
+            "id": "MSqxuIUZEsE",
+            "title": "벽체 재료변형률 검토 (Wall Strain Check)",
+            "duration": "1:19"
+          },
+          {
+            "id": "1m7ZhEixbOw",
+            "title": "벽체 전단 검토 (Wall Shear Check)",
+            "duration": "1:21"
+          },
+          {
+            "id": "VLZ0qemZIJY",
+            "title": "연결보 소성회전각 검토 (Coupling Beam Check)",
+            "duration": "1:21"
+          },
+          {
             "id": "Ks6dSpEV49M",
             "title": "선택과 표시 범위",
-            "duration": "1:33"
+            "duration": "1:39"
           }
         ],
         "en": [
@@ -1450,9 +1570,89 @@ window.STRIX_VIDEOS = {
             "duration": "1:15"
           },
           {
+            "id": "7gSzZWtg5wc",
+            "title": "Beam-Column Joint Check (B-C Joint Check)",
+            "duration": "1:10"
+          },
+          {
+            "id": "OTrqPZsptms",
+            "title": "Isolated Footing Design",
+            "duration": "1:14"
+          },
+          {
+            "id": "kJITtFnCwOM",
+            "title": "Mat Foundation Plate Analysis",
+            "duration": "1:21"
+          },
+          {
+            "id": "ISTsnvj7who",
+            "title": "Pile Foundation Plate Analysis",
+            "duration": "1:27"
+          },
+          {
+            "id": "_zR5zn2ul8I",
+            "title": "Nonstructural Seismic Design (Equipment)",
+            "duration": "1:18"
+          },
+          {
+            "id": "nUgglSpb2o0",
+            "title": "Concrete Anchor Design",
+            "duration": "2:05"
+          },
+          {
+            "id": "qmdVvsgYwO0",
+            "title": "RC DesignPad",
+            "duration": "1:03"
+          },
+          {
+            "id": "wOPdInmLwjg",
+            "title": "Steel DesignPad",
+            "duration": "1:26"
+          },
+          {
+            "id": "XkCn6-YeJUs",
+            "title": "PC/PSC DesignPad",
+            "duration": "0:58"
+          },
+          {
+            "id": "TVDc0LSc0Uw",
+            "title": "Miscellaneous DesignPad",
+            "duration": "1:10"
+          },
+          {
+            "id": "tEgi-M_1wRc",
+            "title": "Nonlinear Global Options",
+            "duration": "1:23"
+          },
+          {
+            "id": "_mEOKqXyGDk",
+            "title": "Nonlinear RC Material",
+            "duration": "1:36"
+          },
+          {
+            "id": "ilXiqXctNac",
+            "title": "Nonlinear Steel Material",
+            "duration": "1:52"
+          },
+          {
+            "id": "5Gv8EAGlO6M",
+            "title": "Nonlinear Masonry Material",
+            "duration": "1:09"
+          },
+          {
+            "id": "xxBbupPsgTg",
+            "title": "Infill Define",
+            "duration": "1:38"
+          },
+          {
+            "id": "-IPSXLaDodI",
+            "title": "Infill Assign",
+            "duration": "1:33"
+          },
+          {
             "id": "Hv5o8etRnZ4",
             "title": "Selection and Active Scope",
-            "duration": "1:37"
+            "duration": "1:43"
           }
         ]
       }
