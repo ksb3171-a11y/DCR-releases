@@ -254,16 +254,8 @@
     '<div id="adminBadge"><span class="admin-tag">🛠 Admin Mode</span>' +
       '<button class="admin-members-btn" onclick="openMembersModal()">👥 Members</button></div>' +
     // members
-    '<div id="membersModal"><div class="modal-box">' +
-      '<div class="modal-header"><h3>👥 Member List</h3>' +
-        '<button class="modal-close" onclick="closeMembersModal()">×</button></div>' +
-      '<div class="modal-body"><table><thead><tr>' +
-        '<th>#</th><th>Name</th><th>Company</th><th>Email</th><th>Expires</th><th>Status</th><th>Blocked</th><th>Joined</th>' +
-      '</tr></thead><tbody id="membersTableBody">' +
-        '<tr><td colspan="8" style="text-align:center;color:#555;padding:32px">Loading...</td></tr>' +
-      '</tbody></table></div>' +
-      '<div class="modal-footer" id="membersFooter">–</div>' +
-    '</div></div>' +
+    // members dashboard — 내용은 js/admin-members.js 가 그린다(운영자가 열 때만 불러온다)
+    '<div id="membersModal"></div>' +
     // quick buttons
     '<div id="quickBtns">' +
       '<button onclick="location.href=\'' + nav('community.html') + '\'" title="Community" style="font-size:18px">💡</button>' +

@@ -141,37 +141,12 @@
 }
 #adminBadge .admin-members-btn:hover { background: rgba(78,201,176,0.3); }
 
-/* ── MEMBERS MODAL ── */
+/* ── MEMBERS DASHBOARD (운영자) — 내용 스타일은 css/admin-members.css (열 때 불러온다) ── */
 #membersModal {
   display: none; position: fixed; inset: 0; z-index: 99999;
-  background: rgba(0,0,0,0.7); align-items: center; justify-content: center;
+  background: rgba(5,5,10,0.72); align-items: center; justify-content: center; padding: 20px;
 }
 #membersModal.open { display: flex; }
-#membersModal .modal-box {
-  background: var(--surface-3); border: 1px solid var(--border-accent);
-  border-radius: 12px; width: 90%; max-width: 900px; max-height: 80vh;
-  display: flex; flex-direction: column; box-shadow: var(--shadow-2);
-}
-#membersModal .modal-header {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 16px 24px; border-bottom: 1px solid var(--border);
-}
-#membersModal .modal-header h3 { color: var(--accent); font-size: 15px; font-weight: 700; margin: 0; }
-#membersModal .modal-close { background: none; border: none; color: var(--dim); font-size: 20px; cursor: pointer; line-height: 1; }
-#membersModal .modal-close:hover { color: #fff; }
-#membersModal .modal-body { overflow-y: auto; padding: 0; flex: 1; }
-#membersModal table { width: 100%; border-collapse: collapse; font-size: 12px; }
-#membersModal thead th {
-  background: var(--surface-2); color: var(--accent); font-weight: 700;
-  padding: 10px 16px; text-align: left; position: sticky; top: 0;
-  border-bottom: 1px solid var(--border);
-}
-#membersModal tbody tr { border-bottom: 1px solid rgba(255,255,255,0.04); }
-#membersModal tbody tr:hover { background: rgba(255,255,255,0.03); }
-#membersModal tbody td { padding: 10px 16px; color: var(--text-soft); }
-#membersModal .badge-active { color: var(--accent); font-weight: 700; }
-#membersModal .badge-expired { color: #f48771; font-weight: 700; }
-#membersModal .modal-footer { padding: 12px 24px; border-top: 1px solid var(--border); font-size: 11px; color: var(--text-mute); }
 
 /* ── QUICK BUTTONS ── */
 #quickBtns {

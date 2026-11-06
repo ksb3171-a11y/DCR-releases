@@ -130,58 +130,43 @@ function enableAdminMode() {
   })
 }
 
-// ── ADMIN MEMBERS MODAL ──
+// ── ADMIN MEMBERS DASHBOARD ──
+// 내용은 js/admin-members.js · css/admin-members.css 가 맡는다. 운영자가 처음 열 때만 불러온다
+// (일반 방문자 페이지 무게를 늘리지 않는다 — members_dashboard_devplan.md).
+// 데이터는 admin_* RPC 로만 읽는다. 운영자 판정은 DB 함수 안에서 한다(화면 판정은 편의일 뿐이다).
+const AUTH_SCRIPT_SRC = (document.currentScript && document.currentScript.src) || location.href
+let _membersDashLoading = null
+
+function loadMembersDashboard() {
+  if (window.StrixMembersDashboard) return Promise.resolve()
+  if (_membersDashLoading) return _membersDashLoading
+  _membersDashLoading = new Promise((resolve, reject) => {
+    const css = document.createElement('link')
+    css.rel = 'stylesheet'
+    css.href = new URL('../css/admin-members.css', AUTH_SCRIPT_SRC).href
+    document.head.appendChild(css)
+    const js = document.createElement('script')
+    js.src = new URL('admin-members.js', AUTH_SCRIPT_SRC).href
+    js.onload = () => resolve()
+    js.onerror = () => { _membersDashLoading = null; reject(new Error('admin-members.js load failed')) }
+    document.head.appendChild(js)
+  })
+  return _membersDashLoading
+}
+
 async function openMembersModal() {
-  document.getElementById('membersModal').classList.add('open')
-  const tbody = document.getElementById('membersTableBody')
-  const footer = document.getElementById('membersFooter')
-  tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;color:#555;padding:32px">Loading...</td></tr>'
-
-  const { data: profiles, error } = await _sb
-    .from('profiles')
-    .select('id, name, affiliation, expires_at, is_blocked, created_at')
-    .order('created_at', { ascending: false })
-
-  if (error || !profiles) {
-    tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;color:#f48771;padding:32px">Failed to load: ' + escHtml(error?.message || 'unknown') + '</td></tr>'
-    return
+  const box = document.getElementById('membersModal')
+  box.classList.add('open')
+  try {
+    await loadMembersDashboard()
+    window.StrixMembersDashboard.open(box, _sb)
+  } catch (e) {
+    box.textContent = 'Failed to load the dashboard: ' + (e && e.message ? e.message : 'unknown')
   }
-
-  const { data: { users } } = await _sb.auth.admin.listUsers().catch(() => ({ data: { users: [] } }))
-  const emailMap = {}
-  if (users) users.forEach(u => emailMap[u.id] = u.email)
-
-  const now = new Date()
-  tbody.innerHTML = profiles.map((p, i) => {
-    const exp = p.expires_at ? new Date(p.expires_at) : null
-    const active = exp && exp > now
-    const expText = exp ? exp.toLocaleDateString('ko-KR') : '–'
-    const status = exp
-      ? (active ? '<span class="badge-active">Active</span>' : '<span class="badge-expired">Expired</span>')
-      : '–'
-    const joined = p.created_at ? new Date(p.created_at).toLocaleString('ko-KR') : '–'
-    const email = emailMap[p.id] || '–'
-    const blocked = p.is_blocked ? '<span style="color:#f48771;font-weight:700">Yes</span>' : '–'
-    // 🚨 name·affiliation·email 은 가입자가 스스로 정하는 값이다. 이스케이프 없이 넣으면
-    //    관리자가 이 목록을 여는 순간 **관리자 세션에서** 그 값이 실행된다(SEC-04a).
-    //    status·blocked 는 바로 위에서 문자열 리터럴로만 조립한 배지라 이스케이프하면 깨진다.
-    return `<tr>
-      <td>${i + 1}</td>
-      <td>${escHtml(p.name || '–')}</td>
-      <td>${escHtml(p.affiliation || '–')}</td>
-      <td>${escHtml(email)}</td>
-      <td>${escHtml(expText)}</td>
-      <td>${status}</td>
-      <td>${blocked}</td>
-      <td>${escHtml(joined)}</td>
-    </tr>`
-  }).join('')
-
-  const activeCount = profiles.filter(p => p.expires_at && new Date(p.expires_at) > now).length
-  footer.textContent = `Total: ${profiles.length} members  |  Active: ${activeCount}  |  Expired: ${profiles.length - activeCount}`
 }
 
 function closeMembersModal() {
+  if (window.StrixMembersDashboard) window.StrixMembersDashboard.close()
   document.getElementById('membersModal').classList.remove('open')
 }
 
