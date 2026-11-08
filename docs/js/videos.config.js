@@ -473,7 +473,7 @@ window.STRIX_VIDEOS = {
             "duration": "1:14"
           },
           {
-            "id": "OxfZg8_I1ZU",
+            "id": "XajPNEgKU2s",
             "title": "단면 정의 (Section)",
             "duration": "1:40"
           },
@@ -1088,9 +1088,159 @@ window.STRIX_VIDEOS = {
             "duration": "1:21"
           },
           {
-            "id": "Ks6dSpEV49M",
+            "id": "F5BsREnFaCY",
+            "title": "구조계산서 편집 (Design Calculations)",
+            "duration": "1:11"
+          },
+          {
+            "id": "DcKZjwltE9I",
+            "title": "구조안전 및 내진설계 확인서 (Safety Confirmation)",
+            "duration": "1:13"
+          },
+          {
+            "id": "oCNlv6Ke--o",
+            "title": "구조도면 작성 (Structural Drawings)",
+            "duration": "1:11"
+          },
+          {
+            "id": "HSSgb4QmuLY",
+            "title": "DXF 내보내기 (Export DXF)",
+            "duration": "1:06"
+          },
+          {
+            "id": "z4Nk66Lu89Q",
+            "title": "물량 산출 (Quantity Takeoff)",
+            "duration": "1:15"
+          },
+          {
+            "id": "JMikKy3y7qY",
+            "title": "보행 유발 바닥진동 평가 (Floor Vibration)",
+            "duration": "1:26"
+          },
+          {
+            "id": "oNHCh8LlNcI",
+            "title": "진동 후처리 (Vibration Results)",
+            "duration": "1:43"
+          },
+          {
+            "id": "Og-ujIEdjiw",
+            "title": "콘크리트 배합 (Concrete Mix)",
+            "duration": "1:39"
+          },
+          {
+            "id": "PJGH17q24ks",
+            "title": "표면 처리 (Surface Treatment)",
+            "duration": "1:24"
+          },
+          {
+            "id": "pAtlkV9plyA",
+            "title": "하부 구속과 균열 판정 기준 (Restraint)",
+            "duration": "0:57"
+          },
+          {
+            "id": "RmQZ0pYVimU",
+            "title": "분할 타설 계획 (Pour Schedule)",
+            "duration": "1:08"
+          },
+          {
+            "id": "4A3G_maaK90",
+            "title": "외기 조건 (Ambient Conditions)",
+            "duration": "0:47"
+          },
+          {
+            "id": "njsjZHfZiDE",
+            "title": "온도관리계획 (Temperature Control Plan)",
+            "duration": "1:10"
+          },
+          {
+            "id": "G0Rl3yrDBHc",
+            "title": "수화열 해석 실행과 결과 (Run Analysis)",
+            "duration": "1:15"
+          },
+          {
+            "id": "YNPArwCDfJI",
+            "title": "수화열 해석 결과 (Hydration Results)",
+            "duration": "1:32"
+          },
+          {
+            "id": "M3XgVh8911c",
+            "title": "절점 정보 조회 (Node Info)",
+            "duration": "1:01"
+          },
+          {
+            "id": "uJ2LB0TiNsA",
+            "title": "요소 정보 조회 (Elem Info)",
+            "duration": "1:02"
+          },
+          {
+            "id": "alJjn5imEwA",
+            "title": "전처리 테이블 (Pre-Process Tables)",
+            "duration": "1:01"
+          },
+          {
+            "id": "zHf7116awlQ",
+            "title": "고아 절점 찾기 (Find Orphans)",
+            "duration": "0:53"
+          },
+          {
+            "id": "-JpxVuzvidQ",
+            "title": "3D 거리 측정 (Distance)",
+            "duration": "0:47"
+          },
+          {
+            "id": "fy7fn21p5gU",
+            "title": "3점 3D 각도 측정 (Angle)",
+            "duration": "0:54"
+          },
+          {
+            "id": "hXNVBhtycns",
+            "title": "캡쳐",
+            "duration": "1:00"
+          },
+          {
+            "id": "DsqlL0Yzol0",
+            "title": "명령 스튜디오 (Command Studio)",
+            "duration": "1:00"
+          },
+          {
+            "id": "0DuQLDfOqv8",
+            "title": "단면설계기 (Section Designer)",
+            "duration": "1:20"
+          },
+          {
+            "id": "_i9XI-EeYHY",
+            "title": "STRIX AI CAD",
+            "duration": "1:42"
+          },
+          {
+            "id": "cZYKF-yhN9g",
+            "title": "표시 옵션과 화면 모드",
+            "duration": "1:03"
+          },
+          {
+            "id": "iHFy2IkKCG4",
+            "title": "실행 취소와 다시 실행",
+            "duration": "0:52"
+          },
+          {
+            "id": "5YxRxpxpfEg",
+            "title": "단축키와 앱 옵션",
+            "duration": "1:06"
+          },
+          {
+            "id": "hCuMK4HaHPE",
+            "title": "시점과 확대 범위",
+            "duration": "0:50"
+          },
+          {
+            "id": "O8zgGV1PMVs",
             "title": "선택과 표시 범위",
             "duration": "1:39"
+          },
+          {
+            "id": "_x8foXtDDrI",
+            "title": "기능개선 (Feature Request)",
+            "duration": "0:50"
           }
         ],
         "en": [
@@ -1130,7 +1280,7 @@ window.STRIX_VIDEOS = {
             "duration": "1:16"
           },
           {
-            "id": "vsNpJ_dGSvU",
+            "id": "BPENRqm16tE",
             "title": "Sections",
             "duration": "1:50"
           },
@@ -1650,9 +1800,259 @@ window.STRIX_VIDEOS = {
             "duration": "1:33"
           },
           {
-            "id": "Hv5o8etRnZ4",
+            "id": "VxRe7u9agm4",
+            "title": "Damper Manager",
+            "duration": "1:49"
+          },
+          {
+            "id": "IepFPQVb7ZY",
+            "title": "Run m-Factor Evaluation",
+            "duration": "1:16"
+          },
+          {
+            "id": "VpMn-gu2pJ0",
+            "title": "First Evaluation Results",
+            "duration": "1:46"
+          },
+          {
+            "id": "pAvylqP-g-I",
+            "title": "Performance Status",
+            "duration": "0:56"
+          },
+          {
+            "id": "LwO7xXPnPAo",
+            "title": "Pushover Load Case (Push. Load Case)",
+            "duration": "1:38"
+          },
+          {
+            "id": "aNVWLH-oKUg",
+            "title": "Run Pushover Analysis",
+            "duration": "1:17"
+          },
+          {
+            "id": "Cjxrx1FyHU8",
+            "title": "STRIX Pushover Capacity Curve (V-D) (Pushover Curve)",
+            "duration": "1:54"
+          },
+          {
+            "id": "AGA5ysDgteQ",
+            "title": "Pushover Plastic Hinge Status",
+            "duration": "1:14"
+          },
+          {
+            "id": "LMJ9iiR_26M",
+            "title": "Pushover Results",
+            "duration": "1:20"
+          },
+          {
+            "id": "kOkXheWhlWE",
+            "title": "Run Time History Analysis",
+            "duration": "1:19"
+          },
+          {
+            "id": "cvKdady61nY",
+            "title": "Energy Balance (Reliability)",
+            "duration": "1:16"
+          },
+          {
+            "id": "j1liuS4MF8c",
+            "title": "Story Drift Check (Multi-Point / Corner)",
+            "duration": "1:54"
+          },
+          {
+            "id": "XRHcvFWIefc",
+            "title": "Story Shear — THA vs RSA",
+            "duration": "1:23"
+          },
+          {
+            "id": "405SgtEoSVI",
+            "title": "Seismic Device Response",
+            "duration": "1:38"
+          },
+          {
+            "id": "FSl2sJg2lEI",
+            "title": "Wall Strain Check (Material Strain)",
+            "duration": "1:33"
+          },
+          {
+            "id": "VaguWM28l_s",
+            "title": "Wall Shear Check",
+            "duration": "1:32"
+          },
+          {
+            "id": "5579IziEwa0",
+            "title": "Coupling Beam Check (Plastic Rotation)",
+            "duration": "1:32"
+          },
+          {
+            "id": "o8IYcC8s7Js",
+            "title": "Structural Design Calculations",
+            "duration": "1:22"
+          },
+          {
+            "id": "iOww_HWvr-M",
+            "title": "STRIX Structural Safety & Seismic Design Confirmation (Safety Confirmation)",
+            "duration": "1:23"
+          },
+          {
+            "id": "np_0N8nQRoE",
+            "title": "Structural Drawings",
+            "duration": "1:18"
+          },
+          {
+            "id": "naZmVkrLOcw",
+            "title": "Export DXF",
+            "duration": "1:12"
+          },
+          {
+            "id": "AXCWJp6MEbY",
+            "title": "Quantity Takeoff",
+            "duration": "1:24"
+          },
+          {
+            "id": "IgNlXqBsOBE",
+            "title": "Floor Vibration Assessment",
+            "duration": "1:36"
+          },
+          {
+            "id": "mA_ZHbUH4e8",
+            "title": "STRIX Vibration Post Processor (Vibration Results)",
+            "duration": "2:04"
+          },
+          {
+            "id": "L4wrJMxkl8M",
+            "title": "Hydration Pour Blocks",
+            "duration": "1:07"
+          },
+          {
+            "id": "2vvZMrQGCPY",
+            "title": "Concrete Mix",
+            "duration": "1:56"
+          },
+          {
+            "id": "U3cybAK8PFg",
+            "title": "Surface Treatment",
+            "duration": "1:28"
+          },
+          {
+            "id": "pEAv1zm9fxo",
+            "title": "Restraint",
+            "duration": "0:59"
+          },
+          {
+            "id": "ezxYgSjtCbY",
+            "title": "Pour Schedule",
+            "duration": "1:18"
+          },
+          {
+            "id": "Y-jFp9uBWGo",
+            "title": "Ambient Conditions",
+            "duration": "0:57"
+          },
+          {
+            "id": "5y9U7M0fW3o",
+            "title": "Temperature Control Plan",
+            "duration": "1:17"
+          },
+          {
+            "id": "JfEpIQA7Mpo",
+            "title": "STRIX Run and Review Hydration Analysis (Run Analysis)",
+            "duration": "1:30"
+          },
+          {
+            "id": "JMJ8uBSacfI",
+            "title": "Hydration Results",
+            "duration": "1:45"
+          },
+          {
+            "id": "aez4ZyNy56E",
+            "title": "Node Information",
+            "duration": "1:08"
+          },
+          {
+            "id": "1fZ2osj9u8o",
+            "title": "Element Information (Elem Info)",
+            "duration": "1:09"
+          },
+          {
+            "id": "hVtO1s9Z3HQ",
+            "title": "Pre-Process Tables",
+            "duration": "1:05"
+          },
+          {
+            "id": "NcDyvPSMZiM",
+            "title": "STRIX Find Duplicate Nodes and Elements (Find Duplicates)",
+            "duration": "1:11"
+          },
+          {
+            "id": "VlBfVYSZ8Qk",
+            "title": "Find Orphan Nodes (Find Orphans)",
+            "duration": "0:57"
+          },
+          {
+            "id": "hYdcqeXgvt8",
+            "title": "3D Distance Measurement",
+            "duration": "0:54"
+          },
+          {
+            "id": "4hs9lkzSdpI",
+            "title": "Three-Point 3D Angle Measurement",
+            "duration": "1:02"
+          },
+          {
+            "id": "TAeMireL7jM",
+            "title": "Capture",
+            "duration": "1:07"
+          },
+          {
+            "id": "YP12ES5gPb0",
+            "title": "Command Studio",
+            "duration": "1:06"
+          },
+          {
+            "id": "xFDbIg6uVDY",
+            "title": "Section Designer",
+            "duration": "1:38"
+          },
+          {
+            "id": "obHDngdUTF4",
+            "title": "STRIX AI CAD",
+            "duration": "1:47"
+          },
+          {
+            "id": "yjNBHtlNYN0",
+            "title": "Display Options and View Modes",
+            "duration": "1:08"
+          },
+          {
+            "id": "vvNep4ripss",
+            "title": "Undo, Redo, and History",
+            "duration": "0:54"
+          },
+          {
+            "id": "D9NmNMjpjU8",
+            "title": "Hotkeys and Application Options",
+            "duration": "1:07"
+          },
+          {
+            "id": "rhw4t_-55ws",
+            "title": "View and Zoom Controls",
+            "duration": "0:52"
+          },
+          {
+            "id": "R4YQgHqeGmw",
             "title": "Selection and Active Scope",
             "duration": "1:43"
+          },
+          {
+            "id": "RJXi9E_ITOE",
+            "title": "Bug Report",
+            "duration": "0:54"
+          },
+          {
+            "id": "XWt6kXb_P7U",
+            "title": "Feature Request",
+            "duration": "0:54"
           }
         ]
       }
