@@ -187,6 +187,22 @@
       .replace(/\n/g, '<br>');
   }
 
+  // ── video player under a video link (2026-11-11 · community_response_devplan.md §7) ──
+  //  A line that holds a link to OUR video page (lpksoft.com/videos.html?v=…) or to YouTube gets a player
+  //  right below it, on every board (posts · comments · staff replies share renderBody). The link stays as it is.
+  //  Safety: the only value taken from the input is the video id, and the regex limits it to exactly 11 of
+  //  [A-Za-z0-9_-]; the rest of the tag is a fixed literal (same rule as the image path above). The host is the
+  //  no-cookie player that videos.html already uses. Runs on ESCAPED text after code is parked, so a link inside
+  //  `code` or a ``` fence never becomes a player. One player per line (the first video link).
+  var FMT_VIDEO_RE = /(?:^|[\s(\[\]])https?:\/\/(?:(?:www\.)?lpksoft\.com\/videos\.html\?v=|(?:www\.|m\.)?youtube\.com\/watch\?v=|youtu\.be\/|(?:www\.)?youtube(?:-nocookie)?\.com\/embed\/)([A-Za-z0-9_-]{11})(?![A-Za-z0-9_-])/;
+  var FMT_VIDEO_ID_RE = /^[A-Za-z0-9_-]{11}$/;
+  function fmtVideoPlayer(id) {
+    if (!FMT_VIDEO_ID_RE.test(id)) return ''
+    return '<div class="cm-video"><iframe src="https://www.youtube-nocookie.com/embed/' + esc(id) +
+      '?rel=0&amp;playsinline=1" title="YouTube video player" loading="lazy" allow="encrypted-media; picture-in-picture; fullscreen"' +
+      ' allowfullscreen="" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>'
+  }
+
   function renderBody(src) {
     var held = []
     function keep(m) { held.push(m); return '\u0000' + (held.length - 1) + '\u0000' }
@@ -216,6 +232,14 @@
     // inline code never spans a parked piece (\u0000) — `![x](…)` stays a picture
     h = h.replace(/`([^`\n\u0000]+)`/g, '<code class="cm-icode">$1</code>')
       .replace(/<code class="cm-icode">[^<]*<\/code>/g, keep)
+    // video player on its own line below the line that links the video (code is parked by now)
+    h = h.split('\n').map(function (line) {
+      if (/^\|/.test(line)) return line            // a table row — a block between rows would break the table
+      var m = FMT_VIDEO_RE.exec(line)
+      var player = m ? fmtVideoPlayer(m[1]) : ''
+      return player ? line + '\n' + keep(player) : line
+    }).join('\n')
+    h = h
       .replace(FMT_LINK_RE, '<a class="cm-a" href="$2" target="_blank" rel="noopener noreferrer nofollow ugc">$1</a>')
       .replace(/<a class="cm-a"[^>]*>[^<]*<\/a>/g, keep)
       .replace(FMT_AUTO_RE, '$1<a class="cm-a" href="$2" target="_blank" rel="noopener noreferrer nofollow ugc">$2</a>')
@@ -223,6 +247,8 @@
     return restore(fmtText(h))
       .replace(/<br>(?=<pre class="cm-code">)/g, '')
       .replace(/(<\/pre>)<br>/g, '$1')
+      .replace(/<br>(?=<div class="cm-video">)/g, '')
+      .replace(/(<\/iframe><\/div>)<br>/g, '$1')
   }
 
   function fmtBytes(n) { var u = cmup(); return u ? u.formatBytes(n) : String(n || 0) }

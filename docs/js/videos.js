@@ -294,15 +294,28 @@
     var pickedLabel = t('vid.pageTitle');
     var pickedList = '';
     if (picked) {
-      CFG.tabs.forEach(function (tab, i) {
-        var d = tabData(tab);
-        d.videos.forEach(function (v, j) {
-          if (v.id !== picked.id) return;
-          state.tab = i; state.video = j;
-          pickedLabel = String(v.title || '');
-          pickedList = d.playlistId;
+      var findPicked = function () {
+        var found = false;
+        CFG.tabs.forEach(function (tab, i) {
+          var d = tabData(tab);
+          d.videos.forEach(function (v, j) {
+            if (found || v.id !== picked.id) return;
+            found = true;
+            state.tab = i; state.video = j;
+            pickedLabel = String(v.title || '');
+            pickedList = d.playlistId;
+          });
         });
-      });
+        return found;
+      };
+      // The picked video may be in the other language's list (e.g. a Korean video linked from a board post
+      // while the page language is English) — then show that language's list, so the title and the
+      // highlighted row are the video that plays, not the first video of the tab (2026-11-11).
+      if (!findPicked()) {
+        var keepLang = videoLang;
+        videoLang = videoLang === 'ko' ? 'en' : 'ko';
+        if (!findPicked()) videoLang = keepLang;
+      }
     }
 
     renderStatic();

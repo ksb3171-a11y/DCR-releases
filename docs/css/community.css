@@ -146,6 +146,10 @@ button.cm-file { font: inherit; cursor: pointer; }
   background: var(--bg); cursor: zoom-in;
 }
 .cm-cbody .cm-img { max-height: 320px; }
+/* video player under a video link (community.js fmtVideoPlayer) — 16:9, full width up to 720px */
+.cm-video { width: 100%; max-width: 720px; aspect-ratio: 16 / 9; margin: var(--sp-3) auto; border: 1px solid var(--border); border-radius: var(--r-sm); overflow: hidden; background: #000; }
+.cm-video iframe { display: block; width: 100%; height: 100%; border: 0; }
+.cm-cbody .cm-video { max-width: 480px; }
 
 .cm-lightbox {
   position: fixed; inset: 0; z-index: 4000; display: flex; align-items: center; justify-content: center;
