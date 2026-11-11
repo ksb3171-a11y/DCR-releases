@@ -11,7 +11,8 @@
 --     (지금 리포의 billing.js 는 이미 컬럼을 명시하도록 고쳐져 있다.)
 --
 --  ── 무엇을 고치는가 ────────────────────────────────────────────────────────
---  `subscriptions.pg_subscription_id` 는 이름과 달리 **PortOne 빌링키**다.
+--  `subscriptions.pg_subscription_id` 는 이름과 달리 **빌링키**다(작성 당시 PortOne · 2026-11-10 부터 토스 —
+--  토스 customerKey(pg_customer_key)도 같은 이유로 숨긴다: supabase-billing-pg-split-migration.sql).
 --  그 문자열 하나면 `create-checkout` 의 `confirm` 으로 카드를 긁을 수 있다.
 --
 --  그런데 `sub_select` 정책은 **같은 회사 멤버 전원**에게 그 행을 열어 준다:

@@ -112,8 +112,8 @@
       "description": "Production THA (Newmark) pipeline — §1 SDOF anchor vs independent closed form + §2 MDOF modal-vs-Rayleigh self-consistency. STRIX matches the reference…",
       "url": "https://lpksoft.com/verification/TH1.html",
       "inLanguage": "en",
-      "datePublished": "2026-07-11",
-      "dateModified": "2026-07-11",
+      "datePublished": "2026-11-10",
+      "dateModified": "2026-11-10",
       "author": {
         "@type": "Organization",
         "name": "LPK SOFT Co., Ltd."
@@ -130,7 +130,7 @@
       "about": [
         {
           "@type": "Thing",
-          "name": "Production integrator Newmark 0.5 0.25 + Path -dt -prependZero ground motion"
+          "name": "The app&rsquo;s own THA builder end to end (Newmark 0.5/0.25, piecewise-linear ground motion) on the STRIX engine"
         },
         {
           "@type": "Thing",
@@ -142,15 +142,15 @@
         },
         {
           "@type": "Thing",
-          "name": "§2: SM5 Bathe-Wilson 9-storey frame reused verbatim (production writeNodes/writeElements/computeNodeMassMap)"
+          "name": "§2: SM5 Bathe-Wilson 9-storey frame through the same builder (production node/element/mass emission)"
         },
         {
           "@type": "Thing",
-          "name": "§2: Rayleigh a0/a1 calibrated LIVE from this model’s own eigen output, not reused"
+          "name": "§2: Rayleigh a0/a1 calibrated from this model’s own modal periods (reported by the THA run), not reused"
         }
       ],
       "citation": "Independently re-derived in this repo (not transcribed from any external table) — see benchmarks/dynamic/TH1_sdofAnchor.ts header.",
-      "keywords": "TH1, Nonlinear Benchmarks, dynamic-sdof, structural analysis verification, benchmark, OpenSees"
+      "keywords": "TH1, Nonlinear Benchmarks, dynamic-sdof, structural analysis verification, benchmark"
     },
     {
       "@type": "BreadcrumbList",
@@ -198,24 +198,24 @@
     <p class="bm-sub">Production THA (Newmark) pipeline — §1 SDOF anchor vs independent closed form + §2 MDOF modal-vs-Rayleigh self-consistency</p>
     <div class="bm-verdict">
       <span class="bm-vbadge">PASS</span>
-      <span class="bm-vfig"><b>−0.0016%</b> error</span>
+      <span class="bm-vfig"><b>−0.0017%</b> error</span>
       <span class="bm-vfig">tolerance 0.01%</span>
-      <span class="bm-vfig">200.783 mm vs 200.786209 mm</span>
+      <span class="bm-vfig">200.782798 mm vs 200.786209 mm</span>
     </div>
   </header>
   <section class="bm-sec">
     <div class="bm-sec-head"><span class="bm-sec-no">§2</span><h2>Technical features tested</h2></div>
     <ul class="bm-chips">
-        <li>Production <b>integrator Newmark 0.5 0.25</b> + <span class="mono">Path -dt -prependZero</span> ground motion</li>
+        <li>The app&rsquo;s own <b>THA builder</b> end to end (Newmark 0.5/0.25, piecewise-linear ground motion) on the <b>STRIX engine</b></li>
         <li>§1: independent closed-form SDOF recurrence (undetermined coefficients), cross-checked vs RK4 pre-run</li>
         <li>§1: O(dt²) convergence order measured directly, not assumed</li>
-        <li>§2: SM5 Bathe-Wilson 9-storey frame reused verbatim (production writeNodes/writeElements/computeNodeMassMap)</li>
-        <li>§2: Rayleigh a0/a1 calibrated LIVE from this model’s own <span class="mono">eigen</span> output, not reused</li>
+        <li>§2: SM5 Bathe-Wilson 9-storey frame through the same builder (production node/element/mass emission)</li>
+        <li>§2: Rayleigh a0/a1 calibrated from this model’s own modal periods (reported by the THA run), not reused</li>
     </ul>
   </section>
   <section class="bm-sec">
     <div class="bm-sec-head"><span class="bm-sec-no">§3</span><h2>Problem description</h2></div>
-    <p class="bm-body">THA (time-history analysis) has no third-party published example in STRIX’s scope the way CSI 1-020/1-026 served the RSA/Pushover benchmarks — CSI 1-022’s ground-motion record was never digitized (devplan §12.12, explicit user decision), and a full nonlinear-hinge THA is already covered by SH1 (element mechanics) + SP1 (pushover driver). TH1 instead isolates and checks the ONE thing SH1/SP1 do not: the <b>time-integration scheme itself</b>, in two complementary stages. <b>§1 (SDOF anchor)</b> drives a single isolated spring-mass (same isolation strategy as SH1’s bare-hinge rig) with a resonant sine pulse through STRIX’s production Newmark integrator, and compares it — at six halvings of dt — against a closed-form solution re-derived from scratch (undetermined coefficients on the piecewise-linear-interpolated forcing OpenSees’s own <span class="mono">Path -dt</span> assumes) and cross-validated against an independent RK4 integrator BEFORE any OpenSees run (SH1 lesson: hand-derivation alone is not trustworthy — devplan §12.11/§12.13). <b>§2 (MDOF self-convergence)</b> then exercises a REAL multi-mode structure — SM5’s already-validated Bathe &amp; Wilson frame — and checks that STRIX’s two independent production damping formulations, <span class="mono">modalDampingQ</span> and Rayleigh <span class="mono">rayleigh a0 a1 0 0</span>, agree with each other when both are calibrated to the same 3% ratio at the structure’s own two dominant frequencies (calibrated live from this run’s own <span class="mono">eigen</span> call, not reused from SM5’s approximate shear-rigid eigenvalues — devplan §12.14). No external reference exists for a full MDOF THA, so §2 is graded as bounded self-consistency (gap must shrink and floor out with dt, target &lt;0.5% at the finest dt), one notch looser than §1’s convergence-to-truth proof.</p>
+    <p class="bm-body">THA (time-history analysis) has no third-party published example in STRIX’s scope the way CSI 1-020/1-026 served the RSA/Pushover benchmarks — CSI 1-022’s ground-motion record was never digitized (devplan §12.12, explicit user decision), and a full nonlinear-hinge THA is already covered by SH1 (element mechanics) + SP1 (pushover driver). TH1 instead isolates and checks the ONE thing SH1/SP1 do not: the <b>time-integration scheme itself</b>, in two complementary stages. <b>§1 (SDOF anchor)</b> drives a single isolated single-degree-of-freedom column (one elastic column, base fixed, top free only laterally, lumped top mass) with a resonant sine pulse through the app&rsquo;s production THA builder and the STRIX engine, and compares it — at six halvings of dt — against a closed-form solution re-derived from scratch (undetermined coefficients on the piecewise-linear-interpolated ground motion the builder uses) and cross-validated against an independent RK4 integrator before any engine run (hand-derivation alone is not trustworthy — devplan §12.11/§12.13). The builder&rsquo;s other stages (a gravity stage with no load, tiny masses on restrained DOFs, the recovery ladder) do not act on this problem; every run is checked to advance exactly one output row per dt. <b>§2 (MDOF self-convergence)</b> then exercises a REAL multi-mode structure — SM5’s already-validated Bathe &amp; Wilson frame — and checks that STRIX’s two independent production damping formulations, modal damping (3% on 9 modes) and Rayleigh damping, agree with each other when both are calibrated to the same 3% ratio at the structure’s own two dominant frequencies (taken from the periods this THA run itself reports, not reused from SM5’s shear-rigid eigenvalues — devplan §12.14). No external reference exists for a full MDOF THA, so §2 is graded as bounded self-consistency (gap must shrink and floor out with dt, target &lt;0.5% at the finest dt), one notch looser than §1’s convergence-to-truth proof.</p>
     <figure class="bm-fig">
       <svg viewBox="0 0 620 300" role="img" aria-label="Left: isolated SDOF spring-mass driven by a resonant ground pulse. Right: multi-storey frame roof compared under modal vs Rayleigh damping">
           <!-- §1 SDOF rig -->
@@ -258,7 +258,7 @@
           <text x="562" y="194" font-family="Consolas,monospace" font-size="10" font-weight="700" fill="var(--accent-deep)" text-anchor="middle">rayleigh a0/a1</text>
           <text x="562" y="210" font-family="Consolas,monospace" font-size="10" fill="var(--muted)" text-anchor="middle">(live eigen, 3%)</text>
         </svg>
-      <figcaption><b>Figure TH1.</b> Left (§1): isolated SDOF spring-mass-damper driven by a resonant ground pulse, dt-swept against an independent closed form. Right (§2): SM5’s Bathe-Wilson frame, roof Ux compared between modalDampingQ and live-calibrated Rayleigh damping.</figcaption>
+      <figcaption><b>Figure TH1.</b> Left (§1): isolated SDOF spring-mass-damper driven by a resonant ground pulse, dt-swept against an independent closed form. Right (§2): SM5’s Bathe-Wilson frame, roof Ux compared between modal and Rayleigh damping calibrated at the frame’s own periods.</figcaption>
     </figure>
   </section>
   <section class="bm-sec">
@@ -270,11 +270,11 @@
       </div>
       <div class="bm-spec-col">
         <h3>§2 MDOF rig</h3>
-        <dl><dt>Model</dt><dd>SM5 Bathe-Wilson (reused)</dd><dt>numModes</dt><dd>9 (production formula)</dd><dt>Damping ratio</dt><dd>3% modal AND Rayleigh</dd><dt>Rayleigh calib.</dt><dd>live eigen (Tcl expr)</dd></dl>
+        <dl><dt>Model</dt><dd>SM5 Bathe-Wilson (reused)</dd><dt>numModes</dt><dd>9 (production formula)</dd><dt>Damping ratio</dt><dd>3% modal AND Rayleigh</dd><dt>Rayleigh calib.</dt><dd>own modal periods (T1, T2)</dd></dl>
       </div>
       <div class="bm-spec-col">
         <h3>Analysis &amp; engine</h3>
-        <dl><dt>Integrator</dt><dd>Newmark 0.5/0.25</dd><dt>Ground motion</dt><dd>Path -dt -prependZero</dd><dt>dt sweep (§1 / §2)</dt><dd>6 / 5 halvings</dd><dt>Engine</dt><dd>Tcl (OpenSees.exe)</dd></dl>
+        <dl><dt>Integrator</dt><dd>Newmark 0.5/0.25</dd><dt>Ground motion</dt><dd>piecewise-linear, starts at 0</dd><dt>dt sweep (§1 / §2)</dt><dd>6 / 5 halvings</dd><dt>Engine</dt><dd>STRIX engine (THA)</dd></dl>
       </div>
     </div>
   </section>
@@ -285,7 +285,7 @@
       <li><span class="q">Peak relative displacement, zeta=0% (undamped), dt=0.003125s (finest)</span><code>max|u(t)|, SDOF recurrence for piecewise-linear-interpolated forcing (undetermined coefficients), zeta=0%</code><span class="v">= 397.874575 mm</span></li>
       <li><span class="q">MDOF §2 — peak roof Ux |modal-rayleigh| relative diff %, dt=0.0125s (finest)</span><code>|peakModal - peakRayleigh| / max(|peakModal|,|peakRayleigh|) * 100, both formulations calibrated to 3% at this model's own two dominant eigenfrequencies (mirrored from mdof.quantities below for §5/§6 rendering — see mdof block for the full MDOF model description)</code><span class="v">= 0 %</span></li>
     </ol>
-    <p class="bm-src">Reference is NOT transcribed from any external table — it is the exact solution of the damped SDOF equation of motion (ü + 2*zeta*omega*u̇ + omega²*u = -üg(t)) for the SAME piecewise-linear-interpolated ground-motion samples OpenSees's `Path -dt` assumes, re-derived from scratch via undetermined coefficients (free-vibration term + forced response to a linear-in-tau interval force, zero IC) in benchmarks/dynamic/TH1_sdofAnchor.ts. De-risked (SH1 lesson, devplan §12.11, 'hand-derivation isn't trustworthy alone') two ways BEFORE any OpenSees run: (1) an internal algebraic identity (d/dtau[unit-ramp response] == unit-step response, a basic LTI fact not assumed anywhere in the derivation) falls out exactly; (2) internal/TH1_closedform_selfcheck.ts cross-validates the closed form against an independent fixed-fine-substep RK4 integrator (completely different numerical method, shares no formula) to ~1e-11% before the Tcl runner was ever written. Because both STRIX and the closed form consume the identical discretized (piecewise-linear) excitation, any difference between them is pure Newmark time-integration error — which the average-acceleration method (unconditionally stable, 2nd-order accurate) must shrink as O(dt²) as dt -&gt; 0.</p>
+    <p class="bm-src">Reference is NOT transcribed from any external table — it is the exact solution of the damped SDOF equation of motion (ü + 2*zeta*omega*u̇ + omega²*u = -üg(t)) for the SAME piecewise-linear-interpolated ground-motion samples the app's THA time series assumes (linear between samples), re-derived from scratch via undetermined coefficients (free-vibration term + forced response to a linear-in-tau interval force, zero IC) in benchmarks/dynamic/TH1_sdofAnchor.ts. De-risked (SH1 lesson, devplan §12.11, 'hand-derivation isn't trustworthy alone') two ways BEFORE any engine run: (1) an internal algebraic identity (d/dtau[unit-ramp response] == unit-step response, a basic LTI fact not assumed anywhere in the derivation) falls out exactly; (2) internal/TH1_closedform_selfcheck.ts cross-validates the closed form against an independent fixed-fine-substep RK4 integrator (completely different numerical method, shares no formula) to ~1e-11% before the engine runner was ever written. Because both STRIX and the closed form consume the identical discretized (piecewise-linear) excitation, any difference between them is pure Newmark time-integration error — which the average-acceleration method (unconditionally stable, 2nd-order accurate) must shrink as O(dt²) as dt -&gt; 0.</p>
   </section>
   <section class="bm-sec">
     <div class="bm-sec-head"><span class="bm-sec-no">§6</span><h2>Results comparison</h2></div>
@@ -296,25 +296,25 @@
           <tr>
             <td>Peak relative displacement, zeta=5%, dt=0.003125s (finest) <span class="dim">(mm)</span></td>
             <td class="mono">zeta=0.05, dt=0.003125</td>
-            <td class="num">200.783</td>
+            <td class="num">200.782798</td>
             <td class="num">200.786209</td>
-            <td class="num"><span class="delta good">−0.0016%</span></td>
+            <td class="num"><span class="delta good">−0.0017%</span></td>
             <td>PASS</td>
           </tr>
           <tr>
             <td>Peak relative displacement, zeta=0% (undamped), dt=0.003125s (finest) <span class="dim">(mm)</span></td>
             <td class="mono">zeta=0, dt=0.003125</td>
-            <td class="num">397.855</td>
+            <td class="num">397.855333</td>
             <td class="num">397.874575</td>
-            <td class="num"><span class="delta good">−0.0049%</span></td>
+            <td class="num"><span class="delta good">−0.0048%</span></td>
             <td>PASS</td>
           </tr>
           <tr>
             <td>MDOF §2 — peak roof Ux |modal-rayleigh| relative diff %, dt=0.0125s (finest) <span class="dim">(%)</span></td>
             <td class="mono">modal vs rayleigh, dt=0.0125 (finest)</td>
-            <td class="num">2.59×10⁻⁴</td>
+            <td class="num">1.88×10⁻⁴</td>
             <td class="num">0</td>
-            <td class="num"><span class="delta good">+0.00026%</span></td>
+            <td class="num"><span class="delta good">+0.00019%</span></td>
             <td>PASS</td>
           </tr>
         </tbody>
@@ -328,83 +328,83 @@
         <thead><tr><th>Case</th><th class="num">peak diff (%)</th><th class="num">Δ</th></tr></thead>
         <tbody>
           <tr>
-            <td>zeta=0, dt=0.1</td><td class="num">43.187416</td>
+            <td>zeta=0, dt=0.1</td><td class="num">43.187415</td>
             <td class="num">+43.1874%</td>
           </tr>
           <tr>
-            <td>zeta=0, dt=0.05</td><td class="num">11.607101</td>
+            <td>zeta=0, dt=0.05</td><td class="num">11.607091</td>
             <td class="num">+11.6071%</td>
           </tr>
           <tr>
-            <td>zeta=0, dt=0.025</td><td class="num">2.940882</td>
+            <td>zeta=0, dt=0.025</td><td class="num">2.940893</td>
             <td class="num">+2.9409%</td>
           </tr>
           <tr>
-            <td>zeta=0, dt=0.0125</td><td class="num">0.737392</td>
+            <td>zeta=0, dt=0.0125</td><td class="num">0.737395</td>
             <td class="num">+0.7374%</td>
           </tr>
           <tr>
-            <td>zeta=0, dt=0.00625</td><td class="num">0.184478</td>
+            <td>zeta=0, dt=0.00625</td><td class="num">0.184475</td>
             <td class="num">+0.1845%</td>
           </tr>
           <tr>
-            <td>zeta=0, dt=0.003125</td><td class="num">0.046134</td>
+            <td>zeta=0, dt=0.003125</td><td class="num">0.046126</td>
             <td class="num">+0.0461%</td>
           </tr>
           <tr>
-            <td>zeta=0.05, dt=0.1</td><td class="num">35.080208</td>
+            <td>zeta=0.05, dt=0.1</td><td class="num">35.080211</td>
             <td class="num">+35.0802%</td>
           </tr>
           <tr>
-            <td>zeta=0.05, dt=0.05</td><td class="num">9.001611</td>
+            <td>zeta=0.05, dt=0.05</td><td class="num">9.001591</td>
             <td class="num">+9.0016%</td>
           </tr>
           <tr>
-            <td>zeta=0.05, dt=0.025</td><td class="num">2.277185</td>
+            <td>zeta=0.05, dt=0.025</td><td class="num">2.277168</td>
             <td class="num">+2.2772%</td>
           </tr>
           <tr>
-            <td>zeta=0.05, dt=0.0125</td><td class="num">0.571352</td>
-            <td class="num">+0.5714%</td>
+            <td>zeta=0.05, dt=0.0125</td><td class="num">0.571346</td>
+            <td class="num">+0.5713%</td>
           </tr>
           <tr>
-            <td>zeta=0.05, dt=0.00625</td><td class="num">0.142848</td>
-            <td class="num">+0.1428%</td>
+            <td>zeta=0.05, dt=0.00625</td><td class="num">0.142864</td>
+            <td class="num">+0.1429%</td>
           </tr>
           <tr>
-            <td>zeta=0.05, dt=0.003125</td><td class="num">0.035736</td>
+            <td>zeta=0.05, dt=0.003125</td><td class="num">0.035719</td>
             <td class="num">+0.0357%</td>
           </tr>
           <tr>
-            <td>mdof dt=0.2</td><td class="num">0.00513</td>
-            <td class="num">+0.0051%</td>
+            <td>mdof dt=0.2</td><td class="num">0.005259</td>
+            <td class="num">+0.0053%</td>
           </tr>
           <tr>
-            <td>mdof dt=0.1</td><td class="num">0.009305</td>
-            <td class="num">+0.0093%</td>
+            <td>mdof dt=0.1</td><td class="num">0.00937</td>
+            <td class="num">+0.0094%</td>
           </tr>
           <tr>
-            <td>mdof dt=0.05</td><td class="num">0.007897</td>
+            <td>mdof dt=0.05</td><td class="num">0.007882</td>
             <td class="num">+0.0079%</td>
           </tr>
           <tr>
-            <td>mdof dt=0.025</td><td class="num">0.002715</td>
-            <td class="num">+0.0027%</td>
+            <td>mdof dt=0.025</td><td class="num">0.002645</td>
+            <td class="num">+0.0026%</td>
           </tr>
           <tr>
-            <td>mdof dt=0.0125</td><td class="num">2.5852×10⁻⁴</td>
-            <td class="num">+0.00026%</td>
+            <td>mdof dt=0.0125</td><td class="num">1.8774×10⁻⁴</td>
+            <td class="num">+0.00019%</td>
           </tr>
         </tbody>
       </table>
     </div>
-    <p class="bm-body"><b>§1</b> (zeta=0/5%, first 12 rows): as dt halves six times (T/10 &rarr; T/320), the peak-displacement error against the independent closed form shrinks by almost exactly 4&times; each step — a measured convergence order of <span class="pill">2.000</span> at the finest dt pairs for both damping ratios, textbook confirmation of the average-acceleration Newmark method’s theoretical O(dt²) accuracy. The finest-dt error itself is a few thousandths of a percent, orders of magnitude inside the 0.01% gate. <b>§2</b> (last 5 rows, "mdof dt=…"): because modalDampingQ and Rayleigh are two genuinely different numerical formulations (not one exact answer vs an approximation), their gap does not vanish to zero — it shrinks with dt and floors out at a small residual from the few off-resonance modes (3&ndash;9) each scheme treats slightly differently. At the finest swept dt (0.0125s) the gap is <span class="pill">0.00026%</span>, about 1,900&times; inside the 0.5% self-consistency gate. (Note: the MDOF excitation amplitude a0 was reduced 10&times; from the value first used in devplan §12.14 purely for report-card readability — the model is linear-elastic, so this rescales the roof peak displacement proportionally without moving the gating diff% at all, which is a pure ratio of two amplitudes.)</p>
+    <p class="bm-body"><b>§1</b> (zeta=0/5%, first 12 rows): as dt halves six times (T/10 &rarr; T/320), the peak-displacement error against the independent closed form shrinks by almost exactly 4&times; each step — a measured convergence order of <span class="pill">2.000</span> at the finest dt pairs for both damping ratios, textbook confirmation of the average-acceleration Newmark method’s theoretical O(dt²) accuracy. The finest-dt error itself is a few thousandths of a percent, orders of magnitude inside the 0.01% gate. <b>§2</b> (last 5 rows, "mdof dt=…"): because modal and Rayleigh damping are two genuinely different numerical formulations (not one exact answer vs an approximation), their gap does not vanish to zero — it shrinks with dt and floors out at a small residual from the few off-resonance modes (3&ndash;9) each scheme treats slightly differently. At the finest swept dt (0.0125s) the gap is <span class="pill">0.00019%</span>, about 2,600&times; inside the 0.5% self-consistency gate. (Note: the MDOF excitation amplitude a0 was reduced 10&times; from the value first used in devplan §12.14 purely for report-card readability — the model is linear-elastic, so this rescales the roof peak displacement proportionally without moving the gating diff% at all, which is a pure ratio of two amplitudes.)</p>
   </section>
   <section class="bm-sec">
     <div class="bm-sec-head"><span class="bm-sec-no">§8</span><h2>Conclusion</h2></div>
     <div class="bm-conclusion">
       <span class="bm-vbadge">PASS</span>
-      <p>STRIX’s production Newmark time-integrator reproduces an independently re-derived (and RK4-cross-checked) SDOF closed form to a few thousandths of a percent at the finest dt, with the theoretically expected O(dt²) convergence order measured directly across six dt halvings and two damping ratios (§1, <b>PASS</b>). On a real multi-mode structure, the production modal and Rayleigh damping formulations agree to 0.00026% at the finest dt — about 1,900&times; inside their self-consistency gate — confirming both damping paths, the live eigen-based Rayleigh calibration, and the reused production node/element/mass emission functions are all internally consistent (§2, <b>PASS</b>). Together with SH1 (custom P-M-M hinge element mechanics) and SP1 (Pushover driver vs CSI 1-026), TH1 completes STRIX’s nonlinear verification track: SH1&rarr;SP1&rarr;TH1 now each defend a distinct layer — element, static nonlinear driver, and dynamic time-integration — of the same nonlinear analysis pipeline.</p>
+      <p>The app&rsquo;s production THA path on the STRIX engine reproduces an independently re-derived (and RK4-cross-checked) SDOF closed form to a few thousandths of a percent at the finest dt, with the theoretically expected O(dt²) convergence order measured directly across six dt halvings and two damping ratios (§1, <b>PASS</b>). On a real multi-mode structure, the production modal and Rayleigh damping formulations agree to 0.00019% at the finest dt — about 2,600&times; inside their self-consistency gate — confirming both damping paths, the period-based Rayleigh calibration, and the production node/element/mass emission functions are all internally consistent (§2, <b>PASS</b>). TH1 defends the dynamic time-integration layer of the nonlinear analysis pipeline; the element (SH1) and static nonlinear driver (SP1) layers are verified on their own cards.</p>
     </div>
   </section>
   <section class="bm-sec">
@@ -413,13 +413,13 @@
       <li>Newmark, N. M. (1959) — <i>A Method of Computation for Structural Dynamics</i>, ASCE Journal of the Engineering Mechanics Division 85(3) (average-acceleration method, &gamma;=0.5, &beta;=0.25, unconditionally stable, O(dt²) accurate — the closed-form comparison target for §1’s convergence order).</li>
       <li>Chopra, A. K. — <i>Dynamics of Structures</i> (SDOF piecewise-linear-interpolated-excitation recurrence form, re-derived independently in benchmarks/dynamic/TH1_sdofAnchor.ts, not transcribed from any table).</li>
       <li>SM5 (devplan §12.1, refsolutions/SM5.json) — Bathe &amp; Wilson ten-bay nine-storey frame, <span class="mono">buildBatheWilsonModel</span>, reused verbatim for §2 (already validated &lt;0.001% against published eigenvalues).</li>
-      <li>OpenSees — <span class="mono">integrator Newmark</span>, <span class="mono">modalDampingQ</span>, <span class="mono">rayleigh</span>, <span class="mono">timeSeries Path -dt -prependZero</span>, <span class="mono">UniformExcitation</span>; STRIX production <span class="mono">buildThaTcl</span> (TclBuilder.ts, integration/damping/ground-motion wiring reused conceptually, not the full recovery-ladder pipeline — see benchmarks/dynamic/TH1_sdofAnchor.ts and TH1_mdofSelfConvergence.ts file headers).</li>
+      <li>STRIX production THA builder <span class="mono">buildThaTcl</span> run on the STRIX engine (THA route) — the full app script, including its gravity stage and recovery ladder; see benchmarks/dynamic/TH1_sdofAnchor.ts and TH1_mdofSelfConvergence.ts file headers for why those stages do not act on these linear problems.</li>
     </ol>
     <dl class="bm-evidence">
-      <dt>Engine</dt><dd class="mono">v1.0.6 (tcl)</dd>
-      <dt>Run date</dt><dd class="mono">2026-07-11</dd>
+      <dt>Engine</dt><dd class="mono">STRIX engine 0.134.1 (84a381f)</dd>
+      <dt>Run date</dt><dd class="mono">2026-11-10</dd>
       <dt>Record</dt><dd class="mono">records/TH1.json</dd>
-      <dt>Evidence archive</dt><dd class="mono">verif-evidence-eng1.0.2-win-x64.zip · TH1/</dd>
+      <dt>Evidence archive</dt><dd class="mono">verif-evidence-strix0.134.1-win-x64.zip · TH1/</dd>
       <dt>sha256</dt><dd class="mono">(pending publish)</dd>
     </dl>
   </section>

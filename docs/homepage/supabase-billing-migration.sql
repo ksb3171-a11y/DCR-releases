@@ -121,7 +121,7 @@ create table if not exists public.subscriptions (
   user_id              uuid        references auth.users(id) on delete set null,  -- 결제 주체
   status               text        not null check (status in ('trialing','active','past_due','canceled','expired')),
   plan                 text        not null check (plan in ('annual','monthly','pioneer_annual')),
-  pg_provider          text        not null default 'portone',
+  pg_provider          text        not null default 'portone',  -- ⚠ 2026-11-10 대체: supabase-billing-pg-split-migration.sql (toss|paddle · 기본값 제거)
   pg_subscription_id   text,                                   -- PG측 구독 식별자(webhook 매칭)
   currency             text        not null check (currency in ('KRW','USD','JPY','CNY')),
   unit_amount          numeric     not null check (unit_amount > 0), -- 현재 기간 좌석당 고정가
@@ -148,7 +148,7 @@ create table if not exists public.payments (
   org_id          uuid        references public.organizations(id) on delete set null,
   user_id         uuid        references auth.users(id) on delete set null,
   subscription_id uuid        references public.subscriptions(id) on delete set null,
-  pg_provider     text        not null default 'portone',
+  pg_provider     text        not null default 'portone',  -- ⚠ 2026-11-10 대체: supabase-billing-pg-split-migration.sql
   pg_payment_id   text,
   amount          numeric     not null,
   currency        text        not null default 'KRW',
@@ -380,7 +380,7 @@ grant  select (id, name, owner_user_id, seats, join_code, created_at)
 
 -- ----------------------------------------------------------------
 -- 8c. subscriptions 컬럼 권한 — 빌링키를 멤버 클라이언트에 노출하지 않음  (★ SEC-07)
---     pg_subscription_id 는 이름과 달리 **PortOne 빌링키**다. 그 문자열 하나로 카드가 긁힌다.
+--     pg_subscription_id 는 이름과 달리 **빌링키**다(작성 당시 PortOne · 2026-11-10 부터 토스). 그것으로 카드가 긁힌다.
 --     sub_select 정책이 같은 회사 멤버 전원에게 행을 열어 주므로, 8b 와 **같은 짝**이 필요하다.
 --     ※ 이미 만들어진 DB 에는 이 블록이 소급되지 않는다 → supabase-billing-key-hardening.sql 을 돌린다.
 --     ※ 클라이언트는 subscriptions 를 select('*') 하지 말고 컬럼을 명시할 것.

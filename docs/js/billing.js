@@ -10,7 +10,14 @@
 (function () {
   'use strict';
 
-  var PORTONE_SDK_URL = 'https://cdn.portone.io/v2/browser-sdk.js';
+  // Two gateways (pricing_payment_devplan.md §17.7a · §17.7b): Korea → Toss Payments (KRW) · elsewhere → Paddle (USD).
+  // The buyer picks the billing country right before checkout; the SERVER (create-checkout) decides
+  // gateway, currency and amount and locks the company to its first gateway.
+  var TOSS_SDK_URL = 'https://js.tosspayments.com/v2/standard';
+  var PADDLE_JS_URL = 'https://cdn.paddle.com/paddle/v2/paddle.js';
+  // "Other country" is sent as ZZ (ISO user-assigned "unknown") — it only means "not Korea";
+  // Paddle collects the real billing address itself.
+  var COUNTRY_KR = 'KR', COUNTRY_OTHER = 'ZZ';
   var SEAT_TIMEOUT_MS = 3 * 60 * 1000; // heartbeat window → "in use"
   // Display catalog. Kept empty while prices are unpublished (PRICES_PUBLIC = false) so the amounts
   // do not ship in this public script. To publish, copy the figures from _shared/plans.ts here.
@@ -22,8 +29,9 @@
     var pioneerPeriod = Date.now() < PIONEER_CUTOFF_MS;
     return plan === 'pioneer_annual' ? pioneerPeriod : !pioneerPeriod;
   }
-  var LANG_CURRENCY = { ko: 'KRW', en: 'USD', ja: 'JPY', zh: 'CNY' };
-  var CURRENCY_LOCALE = { KRW: 'ko-KR', USD: 'en-US', JPY: 'ja-JP', CNY: 'zh-CN' };
+  // Display only: Korean pages show KRW, every other language shows USD (JPY/CNY dropped 2026-11-10).
+  var LANG_CURRENCY = { ko: 'KRW', en: 'USD', ja: 'USD', zh: 'USD' };
+  var CURRENCY_LOCALE = { KRW: 'ko-KR', USD: 'en-US' };
 
   // ── small DOM utils ─────────────────────────────────────────────
   function el(id) { return document.getElementById(id); }
@@ -89,8 +97,14 @@
     try {
       var res = await _sb.functions.invoke(name, { body: body || {} });
       if (res.error) {
-        // FunctionsFetchError (not deployed / network) vs HTTP error
-        return { ok: false, notReady: true, error: res.error.message || String(res.error) };
+        // FunctionsFetchError (not deployed / network) vs HTTP error. An HTTP error carries our
+        // JSON body ({ error: "<code>" }) on error.context — read the code so the page can say why.
+        var code = null;
+        try {
+          var ctx = res.error.context;
+          if (ctx && typeof ctx.json === 'function') { var j = await ctx.json(); code = (j && j.error) || null; }
+        } catch (e) { /* not JSON */ }
+        return { ok: false, notReady: !code, code: code, error: res.error.message || String(res.error) };
       }
       return { ok: true, data: res.data };
     } catch (e) {
@@ -115,19 +129,136 @@
     return _cfg;
   }
 
-  // ── PortOne browser SDK loader ──────────────────────────────────
-  var _poPromise = null;
-  function loadPortOne() {
-    if (window.PortOne) return Promise.resolve(window.PortOne);
-    if (_poPromise) return _poPromise;
-    _poPromise = new Promise(function (resolve, reject) {
+  // ── payment SDK loader (Toss v2 · Paddle.js v2) ─────────────────
+  var _sdkPromises = {};
+  function loadSdk(url, globalName) {
+    if (window[globalName]) return Promise.resolve(window[globalName]);
+    if (_sdkPromises[url]) return _sdkPromises[url];
+    _sdkPromises[url] = new Promise(function (resolve, reject) {
       var s = document.createElement('script');
-      s.src = PORTONE_SDK_URL;
-      s.onload = function () { resolve(window.PortOne); };
-      s.onerror = function () { reject(new Error('PortOne SDK failed to load')); };
+      s.src = url;
+      s.onload = function () { window[globalName] ? resolve(window[globalName]) : reject(new Error(globalName + ' missing')); };
+      s.onerror = function () { delete _sdkPromises[url]; reject(new Error(globalName + ' SDK failed to load')); };
       document.head.appendChild(s);
     });
-    return _poPromise;
+    return _sdkPromises[url];
+  }
+
+  // ── billing-country chooser (right before checkout · user decision 2026-11-10) ──
+  // Resolves { country:'KR'|'ZZ', bizNo, consents } or null (cancelled). Korean pages pre-select Korea.
+  // Korea also asks the buyer type (§17.7d): optional business number (verified at NTS by the server)
+  // + the consents that apply. The server re-checks everything — this only collects and explains.
+  // No amounts are shown here (prices stay unpublished in this public script).
+  function chooseCountry(plan) {
+    return new Promise(function (resolve) {
+      var preKR = window.currentLang === 'ko';
+      var annualLike = plan !== 'monthly';
+      var ov = document.createElement('div');
+      ov.style.cssText = 'position:fixed;inset:0;z-index:100000;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(6,8,12,.6);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);';
+      var ui = 'font-family:var(--font-ui,system-ui,-apple-system,sans-serif)';
+      // Options are built with DOM nodes (textContent), not HTML strings.
+      function opt(val, label, checked) {
+        var lab = document.createElement('label');
+        lab.style.cssText = 'display:flex;align-items:center;gap:10px;padding:10px 12px;margin-top:8px;border:1px solid var(--border,rgba(255,255,255,.1));border-radius:10px;cursor:pointer;color:#fff;font-size:14px;' + ui;
+        var inp = document.createElement('input');
+        inp.type = 'radio'; inp.name = 'billCountry'; inp.value = val; inp.checked = !!checked;
+        lab.appendChild(inp);
+        lab.appendChild(document.createTextNode(' ' + label));
+        return lab;
+      }
+      ov.innerHTML =
+        '<div role="dialog" aria-modal="true" style="max-width:460px;width:100%;background:var(--surface-2,#14161d);border:1px solid var(--border,rgba(255,255,255,.1));border-radius:16px;padding:24px;box-shadow:0 24px 64px rgba(0,0,0,.55)">' +
+          '<div style="font-size:17px;font-weight:700;color:#fff;margin-bottom:8px;' + ui + '">' + escapeHtml(t('prc.countryTitle', 'Billing country')) + '</div>' +
+          '<div style="font-size:13px;line-height:1.6;color:var(--text-soft,#c7ccd6);' + ui + '">' + escapeHtml(t('prc.countryBody', '')) + '</div>' +
+          '<div data-slot="countries"></div>' +
+          '<div data-slot="kr" style="margin-top:14px"></div>' +
+          '<div style="display:flex;justify-content:flex-end;gap:10px;margin-top:20px">' +
+            '<button type="button" data-act="cancel" class="btn btn-ghost">' + escapeHtml(t('prc.countryCancel', 'Cancel')) + '</button>' +
+            '<button type="button" data-act="ok" class="btn btn-primary">' + escapeHtml(t('prc.countryContinue', 'Continue to payment')) + '</button>' +
+          '</div>' +
+        '</div>';
+      var slot = ov.querySelector('[data-slot="countries"]');
+      slot.appendChild(opt(COUNTRY_KR, t('prc.countryKR', 'Korea (KRW)'), preKR));
+      slot.appendChild(opt(COUNTRY_OTHER, t('prc.countryOther', 'Other country (USD)'), !preKR));
+
+      // Korea-only block — built with DOM nodes (textContent), no HTML strings.
+      var kr = ov.querySelector('[data-slot="kr"]');
+      var txt = 'font-size:13px;line-height:1.6;color:var(--text-soft,#c7ccd6);' + ui;
+      function para(text) { var d = document.createElement('div'); d.style.cssText = txt; d.textContent = text; return d; }
+      function check(key, label) {
+        var lab = document.createElement('label');
+        lab.style.cssText = 'display:flex;align-items:flex-start;gap:8px;margin-top:8px;cursor:pointer;color:#fff;font-size:13px;line-height:1.5;' + ui;
+        var c = document.createElement('input'); c.type = 'checkbox'; c.setAttribute('data-consent', key); c.style.marginTop = '3px';
+        lab.appendChild(c); lab.appendChild(document.createTextNode(label));
+        return lab;
+      }
+      var bizLabel = para(t('prc.bizNoLabel', 'Business registration number (optional)'));
+      var biz = document.createElement('input');
+      biz.type = 'text'; biz.inputMode = 'numeric'; biz.maxLength = 12; biz.placeholder = '000-00-00000'; biz.setAttribute('autocomplete', 'off');
+      biz.style.cssText = 'width:100%;margin-top:6px;padding:8px 10px;border-radius:8px;border:1px solid var(--border-strong,rgba(255,255,255,.2));background:var(--surface-1,#0e1015);color:#fff;font-size:14px;font-family:var(--font-mono,monospace)';
+      var bizHint = para(t('prc.bizNoHint', 'Enter it to buy as a business (checked with the National Tax Service). Leave it empty to buy as an individual.'));
+      var consentBox = document.createElement('div');
+      kr.appendChild(bizLabel); kr.appendChild(biz); kr.appendChild(bizHint); kr.appendChild(consentBox);
+
+      var okBtn = null;
+      function isKR() { var s = ov.querySelector('input[name="billCountry"]:checked'); return !!s && s.value === COUNTRY_KR; }
+      function hasBiz() { return biz.value.replace(/[\s-]/g, '') !== ''; }
+      function renderConsents() {
+        consentBox.textContent = '';
+        if (hasBiz()) {
+          consentBox.appendChild(check('businessUse', t('prc.agreeBusinessUse', 'This is a purchase for business use.')));
+          consentBox.appendChild(check('refundTerms', t('prc.agreeBizRefund', 'I agree that business purchases are not refunded for change of mind or early cancellation.')));
+        } else if (annualLike) {
+          consentBox.appendChild(para(t('prc.indivRefundFormula', 'Early cancellation refund = amount paid × remaining days ÷ contract days − 10% of the amount paid (0 if negative). The day you cancel counts as used.')));
+          consentBox.appendChild(check('refundTerms', t('prc.agreeIndivProrated', 'I agree to this refund calculation.')));
+        } else {
+          consentBox.appendChild(check('refundTerms', t('prc.agreeIndivMonthly', 'I agree that cancelling a monthly plan stops it from the next month, and the current month is not refunded.')));
+        }
+        sync();
+      }
+      function sync() {
+        kr.style.display = isKR() ? '' : 'none';
+        if (!okBtn) return;
+        var ok = true;
+        if (isKR()) consentBox.querySelectorAll('input[data-consent]').forEach(function (c) { if (!c.checked) ok = false; });
+        okBtn.disabled = !ok;
+      }
+      var lastHasBiz = false;
+      biz.addEventListener('input', function () { if (hasBiz() !== lastHasBiz) { lastHasBiz = hasBiz(); renderConsents(); } });
+      consentBox.addEventListener('change', sync);
+      ov.querySelectorAll('input[name="billCountry"]').forEach(function (r) { r.addEventListener('change', sync); });
+      document.body.appendChild(ov);
+      okBtn = ov.querySelector('[data-act="ok"]');
+      renderConsents();
+      function finish(v) {
+        document.removeEventListener('keydown', onKey);
+        if (ov.parentNode) ov.parentNode.removeChild(ov);
+        resolve(v);
+      }
+      function onKey(e) { if (e.key === 'Escape') finish(null); }
+      document.addEventListener('keydown', onKey);
+      ov.addEventListener('mousedown', function (e) { if (e.target === ov) finish(null); });
+      ov.querySelector('[data-act="cancel"]').addEventListener('click', function () { finish(null); });
+      okBtn.addEventListener('click', function () {
+        var sel = ov.querySelector('input[name="billCountry"]:checked');
+        if (!sel) return finish(null);
+        if (sel.value !== COUNTRY_KR) return finish({ country: sel.value, bizNo: '', consents: {} });
+        var consents = {};
+        consentBox.querySelectorAll('input[data-consent]').forEach(function (c) { consents[c.getAttribute('data-consent')] = c.checked; });
+        finish({ country: COUNTRY_KR, bizNo: biz.value.trim(), consents: consents });
+      });
+    });
+  }
+
+  function checkoutError(code) {
+    if (code === 'bad_biz_no') return t('prc.bizBad', 'Check the business registration number (10 digits).');
+    if (code === 'biz_not_verified') return t('prc.bizNotVerified', 'This number is not an active business at the National Tax Service. Check it, or leave it empty to buy as an individual.');
+    if (code === 'biz_check_unavailable') return t('prc.bizCheckDown', 'The business number check is not available right now. Please try again shortly.');
+    if (code === 'consent_required') return t('prc.consentRequired', 'Please confirm the required agreements.');
+    if (code === 'country_locked') return t('prc.countryLocked', 'Your company is already billed in another currency. Contact support.');
+    if (code === 'paddle_not_configured' || code === 'paddle_price_mismatch') return t('prc.paddleNotReady', 'International checkout is not available yet.');
+    if (code === 'plan_closed') return t('prc.planClosed', 'Not available now');
+    return t('prc.backendPending', 'Checkout is not connected yet.');
   }
 
   // =================================================================
@@ -185,9 +316,16 @@
       }
       btn.addEventListener('click', function () {
         var plan = btn.getAttribute('data-subscribe');
-        startCheckout(plan, seats(), currentCurrency(), btn);
+        startCheckout(plan, seats(), btn);
       });
     });
+    // Returning from the Toss card page (successUrl / failUrl). Wait for the first language apply so
+    // the notice is in the page language (i18n applies after this script runs); `load` is the fallback.
+    var resumed = false;
+    function resumeOnce() { if (resumed) return; resumed = true; resumeTossReturn(); }
+    var prevLangResume = window.onLangApplied;
+    window.onLangApplied = function (lang) { if (prevLangResume) prevLangResume(lang); resumeOnce(); };
+    window.addEventListener('load', function () { setTimeout(resumeOnce, 0); });
 
     // billing-mode note
     loadConfig().then(function () {
@@ -195,10 +333,10 @@
       var note = el('billingModeNote');
       if (!note) return;
       if (!_cfg.commercial_mode) {
-        note.textContent = t('prc.noteBeta', 'Subscriptions open at commercial launch. Checkout currently runs in PortOne test mode (no real charge).');
+        note.textContent = t('prc.noteBeta', 'Subscriptions open at commercial launch. Checkout currently runs in test mode (no real charge).');
         note.style.display = 'block';
       } else if (!_cfg.billing_enabled) {
-        note.textContent = t('prc.noteTest', 'Test mode — checkout runs against PortOne sandbox; no real charge is made.');
+        note.textContent = t('prc.noteTest', 'Test mode — checkout runs in the payment provider\'s sandbox; no real charge is made.');
         note.style.display = 'block';
       }
     });
@@ -207,11 +345,10 @@
     window.onLangApplied = function (lang) { if (prevLang) prevLang(lang); recompute(); };
   }
 
-  async function startCheckout(plan, seatCount, currency, btn) {
+  async function startCheckout(plan, seatCount, btn) {
     if (!window._user) { if (window.openModal) openModal('login'); return; }
 
     // Beta: billing is not enabled yet → STRIX is free, do NOT open a real checkout.
-    // (Without PortOne configured the SDK would fail with "storeId required".)
     await loadConfig();
     if (!_cfg.billing_enabled) {
       notify(
@@ -221,54 +358,102 @@
       return;
     }
 
+    // 0) billing country, chosen right before checkout (the server still decides the gateway)
+    var choice = await chooseCountry(plan);
+    if (!choice) return;
+
     var orig = btn ? btn.textContent : '';
     if (btn) { btn.disabled = true; btn.textContent = t('prc.processing', 'Processing…'); }
     function done() { if (btn) { btn.disabled = false; btn.textContent = orig; } }
 
-    // 1) ask server to start a checkout (records pending sub, returns issue params)
-    var start = await callFn('create-checkout', { action: 'start', plan: plan, seats: seatCount, currency: currency });
-    if (!start.ok) {
-      done();
-      notify(t('prc.backendPending', 'Checkout backend is not connected yet. This will be live in PortOne test mode once Edge Functions are deployed.'));
-      return;
-    }
-    var p = start.data || {};
-    // 2) browser billing-key issuance via PortOne
-    var PortOne;
-    try { PortOne = await loadPortOne(); }
-    catch (e) { done(); notify(t('prc.sdkFail', 'Could not load the payment module. Check your connection and retry.')); return; }
-
-    var issue;
-    try {
-      issue = await PortOne.requestIssueBillingKey({
-        storeId: p.storeId,
-        channelKey: p.channelKey,
-        billingKeyMethod: p.billingKeyMethod || 'CARD',
-        issueId: p.issueId,
-        issueName: p.issueName || ('STRIX ' + plan),
-        customer: p.customer || {}
-      });
-    } catch (e) { done(); notify((e && e.message) || 'Payment cancelled.'); return; }
-
-    if (!issue || issue.code !== undefined) {
-      done();
-      notify((issue && issue.message) || t('prc.payCancelled', 'Payment was cancelled.'));
-      return;
-    }
-
-    // 3) confirm on server: charge first period + activate subscription + sync seats
-    var confirm = await callFn('create-checkout', {
-      action: 'confirm', plan: plan, seats: seatCount,
-      currency: p.currency || currency,
-      issueId: p.issueId, billingKey: issue.billingKey
+    // 1) server picks gateway + price and returns what the payment page needs
+    var start = await callFn('create-checkout', {
+      action: 'start', plan: plan, seats: seatCount, country: choice.country,
+      bizNo: choice.bizNo || undefined, consents: choice.consents
     });
+    if (!start.ok) { done(); notify(checkoutError(start.code)); return; }
+    var p = start.data || {};
+
+    if (p.provider === 'toss') return startToss(p, plan, seatCount, done);
+    if (p.provider === 'paddle') return startPaddle(p, done);
     done();
-    if (!confirm.ok) {
-      notify(t('prc.confirmFail', 'The billing key was issued but activation failed. Please contact support — you have not been charged twice.'));
+    notify(t('prc.backendPending', 'Checkout is not connected yet.'));
+  }
+
+  // ── Toss Payments: card registration (billing auth) → redirect back here with authKey ──
+  // The billing key is issued SERVER-side from that one-time authKey (confirm); it never reaches the browser.
+  async function startToss(p, plan, seatCount, done) {
+    var TossPayments;
+    try { TossPayments = await loadSdk(TOSS_SDK_URL, 'TossPayments'); }
+    catch (e) { done(); notify(t('prc.sdkFail', 'Could not load the payment module. Check your connection and retry.')); return; }
+    var back = window.location.origin + window.location.pathname;
+    var q = '?pg=toss&issue=' + encodeURIComponent(p.issueId) + '&plan=' + encodeURIComponent(plan) + '&seats=' + encodeURIComponent(seatCount);
+    try {
+      var payment = TossPayments(p.clientKey).payment({ customerKey: p.customerKey });
+      await payment.requestBillingAuth({
+        method: 'CARD',
+        successUrl: back + q,
+        failUrl: back + q + '&fail=1',
+        customerEmail: (p.customer && p.customer.email) || undefined,
+        customerName: (p.customer && p.customer.name) || undefined
+      });
+      // the page navigates away on success; reaching here means it did not
+    } catch (e) {
+      done();
+      notify(t('prc.payCancelled', 'Payment was cancelled.'));
+    }
+  }
+
+  // Back from the Toss page: confirm on the server (issue billing key + first charge + activate).
+  async function resumeTossReturn() {
+    var qs = new URLSearchParams(window.location.search);
+    if (qs.get('pg') !== 'toss') return;
+    // authKey is single-use — take it out of the address bar and history right away.
+    var authKey = qs.get('authKey'), customerKey = qs.get('customerKey');
+    var issueId = qs.get('issue'), plan = qs.get('plan'), seats = parseInt(qs.get('seats'), 10);
+    var failed = qs.get('fail') === '1';
+    try { window.history.replaceState(null, '', window.location.pathname + window.location.hash); } catch (e) {}
+    if (failed || !authKey || !customerKey || !issueId) {
+      notify(failed ? t('prc.payCancelled', 'Payment was cancelled.') : t('prc.payFailed', 'Payment did not go through. No charge was made.'));
       return;
     }
-    // success → go to account
-    window.location.href = 'account.html';
+    var r = await callFn('create-checkout', {
+      action: 'confirm', plan: plan, seats: seats, country: COUNTRY_KR,
+      issueId: issueId, authKey: authKey, customerKey: customerKey
+    });
+    if (r.ok) { window.location.href = 'account.html'; return; }
+    notify(r.code === 'charge_failed' || r.code === 'billing_key_issue_failed'
+      ? t('prc.payFailed', 'Payment did not go through. No charge was made.')
+      : (r.code === 'country_locked' ? checkoutError(r.code) : t('prc.confirmFail', 'Your card was authorized but activation failed. Please contact support.')));
+  }
+
+  // ── Paddle: the server created the transaction; Paddle.js only opens it ──
+  var _paddleReady = false;
+  async function startPaddle(p, done) {
+    var Paddle;
+    try { Paddle = await loadSdk(PADDLE_JS_URL, 'Paddle'); }
+    catch (e) { done(); notify(t('prc.sdkFail', 'Could not load the payment module. Check your connection and retry.')); return; }
+    try {
+      if (!_paddleReady) {
+        if (p.environment === 'sandbox' && Paddle.Environment && Paddle.Environment.set) Paddle.Environment.set('sandbox');
+        Paddle.Initialize({
+          token: p.clientToken,
+          eventCallback: function (ev) {
+            // Activation is done by paddle-webhook; the account page shows it when it lands.
+            if (ev && ev.name === 'checkout.completed') window.location.href = 'account.html?pending=1';
+            if (ev && ev.name === 'checkout.closed') done();
+          }
+        });
+        _paddleReady = true;
+      }
+      Paddle.Checkout.open({
+        transactionId: p.transactionId,
+        customer: (p.customer && p.customer.email) ? { email: p.customer.email } : undefined
+      });
+    } catch (e) {
+      done();
+      notify(t('prc.sdkFail', 'Could not load the payment module. Check your connection and retry.'));
+    }
   }
 
   // =================================================================
@@ -357,7 +542,7 @@
     var body = el('subBody'); if (!body) return;
     var subs = [];
     // 🚨 select('*') 금지 — subscriptions 에는 컬럼 revoke 가 걸려 있다.
-    //    pg_subscription_id 는 PortOne **빌링키**이고 그 문자열 하나로 카드가 긁힌다.
+    //    pg_subscription_id 는 토스 **빌링키**(Paddle 이면 구독 ID)이고, pg_customer_key 와 함께면 카드가 긁힌다.
     //    `*` 로 읽으면 권한이 없는 컬럼 때문에 질의 자체가 실패해 결제 화면이 빈다.
     //    단일 원천: security_hardening_devplan.md §5 SEC-07 · 검사 = npm run check:supabase-column-guard
     var SUB_COLS = 'id, status, plan, seats, currency, unit_amount, renewal_unit_amount,' +
@@ -370,6 +555,16 @@
 
     if (!live.length) {
       if (badge) hide(badge);
+      // Back from a Paddle checkout: paddle-webhook activates the subscription a moment later.
+      var pending = parseInt(new URLSearchParams(window.location.search).get('pending'), 10);
+      if (pending >= 1 && pending <= 5) {
+        body.innerHTML = '<p class="dim">' + escapeHtml(t('acct.pendingActivation', 'Payment received. Your subscription appears here in a moment.')) + '</p>';
+        setTimeout(function () {
+          try { window.history.replaceState(null, '', window.location.pathname + '?pending=' + (pending + 1)); } catch (e) {}
+          renderSubscription();
+        }, 5000);
+        return;
+      }
       body.innerHTML =
         '<p class="dim" style="margin-bottom:var(--sp-4)">' + t('acct.noSub', 'No active subscription. Start a plan to unlock commercial use beyond the trial.') + '</p>' +
         '<a href="pricing.html" class="btn btn-primary">' + t('acct.choosePlan', 'Choose a plan') + '</a>';
@@ -617,6 +812,7 @@
     else notify(t('prc.backendPending', 'Backend not connected yet.'));
   }
 
+  var PROVIDER_LABEL = { toss: 'Toss Payments', paddle: 'Paddle' };
   async function renderPayments() {
     var body = el('paymentsBody'); if (!body) return;
     var rows = [];
@@ -626,16 +822,37 @@
     if (!rows.length) { body.innerHTML = '<tr><td colspan="5" class="empty-line">' + t('acct.noPayments', 'No payments yet.') + '</td></tr>'; return; }
     body.innerHTML = rows.map(function (p) {
       var st = { paid: 'badge-verified', refunded: 'badge-standard', failed: 'badge-beta' }[p.status] || 'badge-standard';
-      var receipt = (p.raw_event && p.raw_event.receiptUrl)
-        ? '<a href="' + p.raw_event.receiptUrl + '" target="_blank" rel="noopener" style="color:var(--accent)">' + t('acct.view', 'View') + '</a>' : '—';
+      // Expense evidence (no tax invoice — DEC-TAXINV): Toss = 카드 매출전표 (receipt.url stored by our
+      // server at approval) · Paddle = invoice PDF (short-lived link, fetched on click via payment-receipt).
+      // receiptUrl is still only https and escaped.
+      var rurl = p.raw_event && typeof p.raw_event.receiptUrl === 'string' && /^https:\/\//.test(p.raw_event.receiptUrl) ? p.raw_event.receiptUrl : '';
+      var hasDoc = p.status === 'paid' || p.status === 'refunded';
+      var receipt = '—';
+      if (hasDoc && p.pg_provider === 'toss' && rurl) {
+        receipt = '<a href="' + escapeHtml(rurl) + '" target="_blank" rel="noopener" style="color:var(--accent)">' + escapeHtml(t('acct.cardSlip', 'Card receipt')) + '</a>';
+      } else if (hasDoc && p.pg_provider === 'paddle' && /^txn_/.test(String(p.pg_payment_id || ''))) {
+        receipt = '<button type="button" class="btn btn-ghost" style="padding:2px 8px" data-invoice="' + escapeHtml(p.id) + '">' + escapeHtml(t('acct.invoice', 'Invoice')) + '</button>';
+      }
       return '<tr>' +
         '<td>' + fmtDate(p.paid_at || p.created_at) + '</td>' +
-        '<td>' + escapeHtml(p.pg_provider || 'PortOne') + '</td>' +
+        '<td>' + escapeHtml(PROVIDER_LABEL[p.pg_provider] || p.pg_provider || '—') + '</td>' +
         '<td class="num">' + money(p.amount, p.currency || 'KRW') + '</td>' +
         '<td><span class="badge ' + st + '"><span class="dot"></span>' + t('acct.st_' + p.status, p.status) + '</span></td>' +
         '<td>' + receipt + '</td>' +
       '</tr>';
     }).join('');
+    body.querySelectorAll('[data-invoice]').forEach(function (b) {
+      b.addEventListener('click', async function () {
+        // Open the tab synchronously (popup blockers), then point it at the pre-signed URL.
+        var w = window.open('', '_blank');
+        if (w) { try { w.opener = null; } catch (e) {} }
+        var r = await callFn('payment-receipt', { paymentId: b.getAttribute('data-invoice') });
+        var url = r.ok && r.data && typeof r.data.url === 'string' && /^https:\/\//.test(r.data.url) ? r.data.url : '';
+        if (url && w) { w.location.href = url; return; }
+        if (w) w.close();
+        notify(t('acct.invoiceFail', 'The invoice is not available right now. Please try again later.'));
+      });
+    });
   }
 
   // 이스케이프의 단일 원천은 layout.js 의 window.escHtml 이다 (security_hardening_devplan.md §5 SEC-04a).

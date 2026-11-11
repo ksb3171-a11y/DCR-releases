@@ -43,45 +43,72 @@ window.__DECK_DATA__ = {
  "records": {
   "P3S2": {
    "id": "P3S2",
-   "title": "자체 안정화 파라미터 민감도 (벽 모드주기)",
-   "titleEn": "Custom stabilization parameter sensitivity (wall modal periods)",
-   "sourceShort": "내부 V&V 합격기준",
-   "source": "Internal V&V acceptance criterion. The custom artificial stabilizers (-drillingStab, -rotFloor) exist only to remove spurious zero-energy rotational modes; a valid stabilization must leave physical response invariant. Acceptance: the mass-dominant modal periods change by less than the tolerance as each stabilizer is swept over two orders of magnitude about its production value.",
+   "title": "막 전단벽 캔틸레버 면내 고유주기 (Timoshenko 정해)",
+   "titleEn": "Membrane shear-wall cantilever — fundamental in-plane period vs exact Timoshenko beam",
+   "sourceShort": "Timoshenko 캔틸레버 정해 (Huang · Cowper κ)",
+   "source": "Exact Timoshenko cantilever without rotary inertia: characteristic determinant from EI ψ'' + κGA(w' − ψ) = 0, κGA(w'' − ψ') + ρAω²w = 0 with clamped–free boundary conditions (the frequency equation of T.C. Huang, J. Appl. Mech. 28 (1961) 579–584 with the rotary-inertia term removed); shear coefficient κ = 10(1+ν)/(12+11ν) (G.R. Cowper, J. Appl. Mech. 33 (1966) 335–340, rectangle). Independently checked against a converged 1-D Timoshenko finite-element solution (verification/internal/p3s2_timoshenko_selfcheck.ts).",
    "count": 4,
-   "errorPct": 0.19,
+   "errorPct": -0.1913,
    "tolerancePct": 0.5,
    "verdict": "PASS",
+   "slide": {
+    "title": "P3S2 · 막 전단벽 면내 고유주기 — Timoshenko 정해 대조",
+    "lead": "STRIX 엔진의 막 벽체가 캔틸레버 벽의 면내 1차 주기를 보 이론의 정해대로 재현하는지 검증합니다.",
+    "points": [
+     {
+      "h": "검증 대상 기능",
+      "b": "STRIX 엔진의 막 벽체 요소와 생산 지진질량 경로의 자중 질량. 메쉬 4단계 세분화(3×6 → 24×48)로 수렴을 봅니다."
+     },
+     {
+      "h": "왜 이 검증이 필요한가",
+      "b": "전단벽은 대부분 건물에서 강성이 가장 큰 횡저항 부재이고, 그 면내 주기가 스펙트럼 요구를 정합니다. H/W = 3 에서는 전단 유연성을 무시할 수 없어 정해가 Euler-Bernoulli 값보다 약 6% 깁니다."
+     },
+     {
+      "h": "해석 조건",
+      "b": "벽체 3000×9000 mm, 두께 200 mm, 하단 고정, 전 절점 면외 구속(바닥판 강막 이상화). 질량은 자중만이며 수평 자유도에 집중됩니다. 메쉬 3×6 · 6×12 · 12×24 · 24×48."
+     },
+     {
+      "h": "참조해와 판정",
+      "b": [
+       "회전관성 없는 Timoshenko 캔틸레버 정해(Cowper κ = 0.845)는 T₁ = ",
+       " s 입니다. 24×48 메쉬 오차 ",
+       ", 허용오차 ",
+       "."
+      ]
+     }
+    ]
+   },
    "computed": [
     {
-     "quantity": "Membrane · mode 1 (X 68%)",
+     "quantity": "Fundamental in-plane period — mesh 3×6",
      "unit": "s",
-     "strix": "0.0505095",
-     "ref": "0.0505295",
-     "diffPct": 0.0394,
+     "strix": "0.0504698",
+     "ref": "0.0505932",
+     "diffPct": -0.2441,
      "verdict": "PASS"
     },
     {
-     "quantity": "Membrane · mode 3 (X 6%) governing",
+     "quantity": "Fundamental in-plane period — mesh 6×12",
      "unit": "s",
-     "strix": "0.00467991",
-     "ref": "0.00468882",
-     "diffPct": 0.19,
+     "strix": "0.0504555",
+     "ref": "0.0505932",
+     "diffPct": -0.2722,
      "verdict": "PASS"
     },
     {
-     "quantity": "Plate · mode 1 (Y 66%)",
+     "quantity": "Fundamental in-plane period — mesh 12×24",
      "unit": "s",
-     "strix": "0.714623",
-     "ref": "0.714754",
-     "diffPct": 0.0183,
+     "strix": "0.0504811",
+     "ref": "0.0505932",
+     "diffPct": -0.2217,
      "verdict": "PASS"
     },
     {
-     "quantity": "Plate · mode 4 (X 68%) governing",
+     "quantity": "Fundamental in-plane period — mesh 24×48",
      "unit": "s",
-     "strix": "0.0505095",
-     "ref": "0.0505295",
-     "diffPct": 0.0394,
+     "strix": "0.0504964",
+     "ref": "0.0505932",
+     "diffPct": -0.1913,
      "verdict": "PASS"
     }
    ]
@@ -93,40 +120,40 @@ window.__DECK_DATA__ = {
    "sourceShort": "CSI SAP2000 Ex. 1-016",
    "source": "CSI SAP2000 Software Verification Example 1-016 'Tension Stiffening Using P-Delta Analysis'; independent reference = Timoshenko, Strength of Materials Part II, 1956, eq. 23 p.28 and eqs. 43/45 p.43. Reproduced from scratch by pd1Theory() to u=1.5, deflWithIn=-0.5433047259, momentWithKin=11.4980793, matching CSI's published -0.54330 in / 11.498 k-in exactly (exact unit conversion of the same physical problem, dimensionless u is unit-invariant).",
    "count": 4,
-   "errorPct": -0.035217,
+   "errorPct": -0.050488,
    "tolerancePct": 0.1,
    "verdict": "PASS",
    "computed": [
     {
      "quantity": "Uz (no tension)",
      "unit": "in",
-     "strix": "-1.04161",
+     "strix": "-1.04193",
      "ref": "-1.04167",
-     "diffPct": 0.005039,
+     "diffPct": -0.025068,
      "verdict": "PASS"
     },
     {
      "quantity": "My (no tension)",
      "unit": "kip-in",
-     "strix": "22.499",
+     "strix": "22.5",
      "ref": "22.5",
-     "diffPct": -0.004274,
+     "diffPct": 0.000094,
      "verdict": "PASS"
     },
     {
      "quantity": "Uz (w/ tension)",
      "unit": "in",
-     "strix": "-0.543496",
+     "strix": "-0.543579",
      "ref": "-0.543305",
-     "diffPct": -0.035217,
+     "diffPct": -0.050488,
      "verdict": "PASS"
     },
     {
      "quantity": "My (w/ tension)",
      "unit": "kip-in",
-     "strix": "11.4937",
+     "strix": "11.4925",
      "ref": "11.4981",
-     "diffPct": -0.038374,
+     "diffPct": -0.048139,
      "verdict": "PASS"
     }
    ]
@@ -138,7 +165,7 @@ window.__DECK_DATA__ = {
    "sourceShort": "Timoshenko & Gere",
    "source": "Timoshenko & Gere, Mechanics of Materials — cantilever tip deflection under an end load (Euler-Bernoulli).",
    "count": 4,
-   "errorPct": 0.0002,
+   "errorPct": 0,
    "tolerancePct": 1,
    "verdict": "PASS",
    "computed": [
@@ -147,7 +174,7 @@ window.__DECK_DATA__ = {
      "unit": "mm",
      "strix": "-0.107865",
      "ref": "-0.107865",
-     "diffPct": 0.0002,
+     "diffPct": 0,
      "verdict": "PASS"
     },
     {
@@ -258,9 +285,9 @@ window.__DECK_DATA__ = {
    "title": "Elastic Link Beta Angle 좌표변환 (경사 6-DOF 스프링)",
    "titleEn": "Elastic Link (twoNodeLink) Beta Angle coordinate transformation — inclined 6-DOF spring",
    "sourceShort": "자체 유도 폐형식해",
-   "source": "Self-designed closed form (no CSI/NAFEMS published example fits — CSI Group 6 Link catalog is dynamic-only, see devplan §12.3 SB12 note). Independent reference = exact linear-algebra congruence transform K_global = (C*T)^T * diag(k_local) * (C*T), solved by an independent Gaussian-elimination linear solve. T = blockdiag(R,R), R = MIDAS Beta-Angle local frame re-derived from scratch (benchmarks/element/SB12_elasticLink.ts, no import from production TclBuilder code) -- this is the transform under test. C = OpenSees TwoNodeLink's own shear/rotation basic-deformation coupling (TwoNodeLink.cpp setTranLocalBasic(), confirmed against OpenSees/OpenSees GitHub source; shearDist fixed 0.5 as DCR always emits) -- real, documented, non-DCR element physics, included only so the closed form matches the engine, not itself under test. Not a FEM discretization/convergence problem -- exact linear algebra, so near-machine-precision agreement with the simulated result is expected.",
+   "source": "Self-designed closed form (no CSI/NAFEMS published example fits — CSI Group 6 Link catalog is dynamic-only, see devplan §12.3 SB12 note). Independent reference = exact linear-algebra congruence transform K_global = (C*T)^T * diag(k_local) * (C*T), solved by an independent Gaussian-elimination linear solve. T = blockdiag(R,R), R = MIDAS Beta-Angle local frame re-derived from scratch (benchmarks/element/SB12_elasticLink.ts, no import from production TclBuilder code) -- this is the transform under test. C = the two-node link's standard shear/rotation basic-deformation coupling (shear acts at shearDist = 0.5 of the link length, the value STRIX always emits: each shear basic deformation picks up ± half the link length times the end rotations) -- link kinematics, included only so the closed form matches the element, not itself under test. Not a FEM discretization/convergence problem -- exact linear algebra, so near-machine-precision agreement with the simulated result is expected.",
    "count": 12,
-   "errorPct": 0.00008086,
+   "errorPct": -0.0001079,
    "tolerancePct": 0.01,
    "verdict": "PASS",
    "computed": [
@@ -269,7 +296,7 @@ window.__DECK_DATA__ = {
      "unit": "mm",
      "strix": "0.152961",
      "ref": "0.152961",
-     "diffPct": 0.00008086,
+     "diffPct": -0.0001079,
      "verdict": "PASS"
     },
     {
@@ -277,7 +304,7 @@ window.__DECK_DATA__ = {
      "unit": "mm",
      "strix": "-0.322861",
      "ref": "-0.322861",
-     "diffPct": 0.00009459,
+     "diffPct": -0.00003846,
      "verdict": "PASS"
     },
     {
@@ -285,7 +312,7 @@ window.__DECK_DATA__ = {
      "unit": "mm",
      "strix": "0.434406",
      "ref": "0.434406",
-     "diffPct": -0.00006821,
+     "diffPct": -0.00003765,
      "verdict": "PASS"
     },
     {
@@ -293,7 +320,7 @@ window.__DECK_DATA__ = {
      "unit": "rad",
      "strix": "0.000353789",
      "ref": "0.000353789",
-     "diffPct": 0.00008411,
+     "diffPct": 0.00000953,
      "verdict": "PASS"
     },
     {
@@ -301,7 +328,7 @@ window.__DECK_DATA__ = {
      "unit": "rad",
      "strix": "-0.000237923",
      "ref": "-0.000237923",
-     "diffPct": -0.00002007,
+     "diffPct": 0.00006323,
      "verdict": "PASS"
     },
     {
@@ -309,7 +336,7 @@ window.__DECK_DATA__ = {
      "unit": "rad",
      "strix": "-4.2642e-5",
      "ref": "-4.2642e-5",
-     "diffPct": 0.00006371,
+     "diffPct": 0.00017661,
      "verdict": "PASS"
     },
     {
@@ -317,7 +344,7 @@ window.__DECK_DATA__ = {
      "unit": "mm",
      "strix": "-0.12171",
      "ref": "-0.12171",
-     "diffPct": 0.00027024,
+     "diffPct": -0.00003358,
      "verdict": "PASS"
     },
     {
@@ -325,7 +352,7 @@ window.__DECK_DATA__ = {
      "unit": "mm",
      "strix": "0.426039",
      "ref": "0.426039",
-     "diffPct": 0.00008999,
+     "diffPct": -0.0000124,
      "verdict": "PASS"
     },
     {
@@ -333,7 +360,7 @@ window.__DECK_DATA__ = {
      "unit": "mm",
      "strix": "-0.0153195",
      "ref": "-0.0153195",
-     "diffPct": 0.00006334,
+     "diffPct": 0.00005683,
      "verdict": "PASS"
     },
     {
@@ -341,7 +368,7 @@ window.__DECK_DATA__ = {
      "unit": "rad",
      "strix": "-0.000295859",
      "ref": "-0.000295859",
-     "diffPct": 0.00013526,
+     "diffPct": -0.0000129,
      "verdict": "PASS"
     },
     {
@@ -349,7 +376,7 @@ window.__DECK_DATA__ = {
      "unit": "rad",
      "strix": "-2.0239e-5",
      "ref": "-2.0239e-5",
-     "diffPct": -0.0000487,
+     "diffPct": -0.0000699,
      "verdict": "PASS"
     },
     {
@@ -357,7 +384,7 @@ window.__DECK_DATA__ = {
      "unit": "rad",
      "strix": "-0.000145984",
      "ref": "-0.000145984",
-     "diffPct": -0.00006456,
+     "diffPct": -2.8e-7,
      "verdict": "PASS"
     }
    ]
@@ -369,16 +396,16 @@ window.__DECK_DATA__ = {
    "sourceShort": "NAFEMS Standard Benchmarks",
    "source": "NAFEMS, The Standard NAFEMS Benchmarks (Linear Elastic), Benchmark LE1 — elliptic membrane; reference tangential edge stress sigma_yy = 92.7 MPa at point D.",
    "count": 1,
-   "errorPct": -1.994,
+   "errorPct": -2,
    "tolerancePct": 3,
    "verdict": "PASS",
    "computed": [
     {
      "quantity": "Tangential edge stress sigma_yy at D",
      "unit": "MPa",
-     "strix": "90.8514",
+     "strix": "90.8464",
      "ref": "92.7",
-     "diffPct": -1.994,
+     "diffPct": -2,
      "verdict": "PASS"
     }
    ]
@@ -388,18 +415,18 @@ window.__DECK_DATA__ = {
    "title": "Cook's membrane — 왜곡메쉬 면내휨",
    "titleEn": "Cook's membrane (skew panel, in-plane bending on a distorted mesh)",
    "sourceShort": "Cook 왜곡메쉬 벤치마크",
-   "source": "Cook's membrane, a standard finite-element distortion benchmark (R.D. Cook, 1974). No closed-form solution; the reference is the fine-mesh converged tip displacement at the loaded-edge midpoint Q, PLANE STRESS, E=1, nu=1/3, unit shear resultant: normalized u_Q*E*t/P = 23.91 (literature band 23.90-23.96). The plane-strain counterpart is 21.52 (Sevilla et al. / locking-free FCFV report 21.42 converged); DCR walls are plane stress (membrane section), and 21.42/(1-nu^2) ~= 23.9 confirms the plane-stress mid-edge value.",
+   "source": "Cook's membrane, a standard finite-element distortion benchmark (R.D. Cook, 1974). No closed-form solution; the reference is the fine-mesh converged tip displacement at the loaded-edge midpoint Q, PLANE STRESS, E=1, nu=1/3, unit shear resultant: normalized u_Q*E*t/P = 23.91 (literature band 23.90-23.96). The plane-strain counterpart is 21.52 (Sevilla et al. / locking-free FCFV report 21.42 converged); STRIX walls are plane stress (membrane section), and 21.42/(1-nu^2) ~= 23.9 confirms the plane-stress mid-edge value.",
    "count": 1,
-   "errorPct": 0.2,
+   "errorPct": 0.184,
    "tolerancePct": 3,
    "verdict": "PASS",
    "computed": [
     {
      "quantity": "Normalized tip displacement u_Q*E*t/P (mid loaded edge)",
      "unit": "norm.",
-     "strix": "23.9578",
+     "strix": "23.9541",
      "ref": "23.91",
-     "diffPct": 0.2,
+     "diffPct": 0.184,
      "verdict": "PASS"
     }
    ]
@@ -411,7 +438,7 @@ window.__DECK_DATA__ = {
    "sourceShort": "Timoshenko & Woinowsky-Krieger",
    "source": "Timoshenko & Woinowsky-Krieger, Theory of Plates and Shells, 2nd ed. (1959): Table 8 (SS, uniform), Eq.147 & Table 23 (SS, central point), Table 35 (clamped, uniform), Table 37 (clamped, central point), ν = 0.3. The eight-case layout follows CSI SAP2000 Verification Example 2-005 (geometry after MacNeal & Harder, 1985). STRIX recovers the scale-invariant deflection coefficient α (= w·D/(q·a⁴) uniform, w·D/(P·a²) point) and compares it to the published table value; a = short side.",
    "count": 8,
-   "errorPct": -0.621,
+   "errorPct": -0.62,
    "tolerancePct": 2,
    "verdict": "PASS",
    "computed": [
@@ -452,7 +479,7 @@ window.__DECK_DATA__ = {
      "unit": "",
      "strix": "0.0116",
      "ref": "0.0116",
-     "diffPct": -0.002,
+     "diffPct": -0.003,
      "verdict": "PASS"
     },
     {
@@ -476,7 +503,7 @@ window.__DECK_DATA__ = {
      "unit": "",
      "strix": "0.00721",
      "ref": "0.00725",
-     "diffPct": -0.621,
+     "diffPct": -0.62,
      "verdict": "PASS"
     }
    ]
@@ -503,7 +530,7 @@ window.__DECK_DATA__ = {
     {
      "quantity": "Deflection coefficient α",
      "unit": "",
-     "strix": "0.004112",
+     "strix": "0.004113",
      "ref": "0.004115",
      "diffPct": -0.061,
      "verdict": "PASS"
@@ -549,7 +576,7 @@ window.__DECK_DATA__ = {
    "sourceShort": "CSI SAP2000 Ex. 1-013",
    "source": "CSI SAP2000 Software Verification Example 1-013 'Simply Supported Beam on Elastic Foundation'; independent reference = Timoshenko, Strength of Materials Part II, 1956, Problem 3, p.23 (exact continuum solution of EI y'''' + k y = 0, pinned-pinned, central load). Reproduced from scratch by sb7Theory() to −0.0893327 in / 17697.995 k-in, matching CSI's published −0.08933 in / 17698 k-in.",
    "count": 2,
-   "errorPct": 0.000057,
+   "errorPct": 0.000036,
    "tolerancePct": 0.05,
    "verdict": "PASS",
    "computed": [
@@ -558,7 +585,7 @@ window.__DECK_DATA__ = {
      "unit": "in",
      "strix": "-0.0893327",
      "ref": "-0.0893327",
-     "diffPct": 0.000057,
+     "diffPct": 0.000036,
      "verdict": "PASS"
     },
     {
@@ -566,7 +593,7 @@ window.__DECK_DATA__ = {
      "unit": "kip-in",
      "strix": "17697.9",
      "ref": "17698",
-     "diffPct": -0.000747,
+     "diffPct": -0.000602,
      "verdict": "PASS"
     }
    ]
@@ -578,56 +605,56 @@ window.__DECK_DATA__ = {
    "sourceShort": "전단변형 연속체 이론해",
    "source": "Exact continuum reference: simply-supported Timoshenko (shear-flexible) beam with translational mass and rotary inertia excluded — matching the production lumped translational-mass model. The SS frequencies have a closed form with no root-finding, ωₙ² = (EI·βₙ⁴/ρA)/(1 + EI·βₙ²/κGA) with βₙ=nπ/L, which reduces to the exact Euler SS frequency ωE,ₙ²=EI·βₙ⁴/ρA in the shear-rigid limit κGA→∞. Reproduced from scratch by sb8Theory() to the values below. The shear term lowers the frequencies by 4.4% (mode 1) to 52.4% (mode 6) below Euler, so STRIX must reproduce the shear-lowered values. Genre context: NAFEMS 'Selected Benchmarks for Natural Frequency Analysis' (deep simply-supported beam, FV5); shear coefficient κ=5/6 (Cowper 1966, rectangular); Timoshenko beam dynamics closed forms (Timoshenko & Young; Blevins, Formulas for Natural Frequency and Mode Shape; Han, Benaroya & Wei 1999).",
    "count": 6,
-   "errorPct": 0.017469,
+   "errorPct": 0.047818,
    "tolerancePct": 0.05,
    "verdict": "PASS",
    "computed": [
     {
      "quantity": "Natural frequency f₁",
      "unit": "Hz",
-     "strix": "102.149",
+     "strix": "102.146",
      "ref": "102.149",
-     "diffPct": -0.000039,
+     "diffPct": -0.003436,
      "verdict": "PASS"
     },
     {
      "quantity": "Natural frequency f₂",
      "unit": "Hz",
-     "strix": "364.057",
+     "strix": "364.017",
      "ref": "364.059",
-     "diffPct": -0.000679,
+     "diffPct": -0.011463,
      "verdict": "PASS"
     },
     {
      "quantity": "Natural frequency f₃",
      "unit": "Hz",
-     "strix": "706.672",
+     "strix": "706.544",
      "ref": "706.69",
-     "diffPct": -0.002599,
+     "diffPct": -0.020668,
      "verdict": "PASS"
     },
     {
      "quantity": "Natural frequency f₄",
      "unit": "Hz",
-     "strix": "1078.04",
+     "strix": "1077.78",
      "ref": "1078.1",
-     "diffPct": -0.006033,
+     "diffPct": -0.029664,
      "verdict": "PASS"
     },
     {
      "quantity": "Natural frequency f₅",
      "unit": "Hz",
-     "strix": "1455.64",
+     "strix": "1455.24",
      "ref": "1455.8",
-     "diffPct": -0.011021,
+     "diffPct": -0.038607,
      "verdict": "PASS"
     },
     {
      "quantity": "Natural frequency f₆",
      "unit": "Hz",
-     "strix": "1831.7",
+     "strix": "1831.14",
      "ref": "1832.02",
-     "diffPct": -0.017469,
+     "diffPct": -0.047818,
      "verdict": "PASS"
     }
    ]
@@ -639,24 +666,24 @@ window.__DECK_DATA__ = {
    "sourceShort": "CSI SAP2000 Ex. 1-018",
    "source": "CSI SAP2000 Software Verification Example 1-018 'Bending, Shear and Axial Deformations in a Rigid Frame'; independent reference = unit-load (virtual-work) method, Cook & Young, Advanced Mechanics of Materials, 1985, p.244. STRIX omits the shear term (elasticBeamColumn has no shear-area argument, TclBuilder.ts:465 — Euler-Bernoulli only, same scope as SB1) and re-derives the axial + bending terms from scratch via sb9Theory(); the result matches CSI's published in-lb values (converted to N·mm) to 6 significant figures: axial 0.0076043 vs CSI 0.00760 in, bending 2.7236096 vs CSI 2.723610 in.",
    "count": 3,
-   "errorPct": 0.010571,
+   "errorPct": -0.000136,
    "tolerancePct": 0.05,
    "verdict": "PASS",
    "computed": [
     {
      "quantity": "Midspan deflection Uz — combined (axial+bending)",
      "unit": "mm",
-     "strix": "-69.3655",
+     "strix": "-69.3729",
      "ref": "-69.3728",
-     "diffPct": 0.010571,
+     "diffPct": -0.000136,
      "verdict": "PASS"
     },
     {
      "quantity": "Midspan deflection Uz — bending only (area x1e5)",
      "unit": "mm",
-     "strix": "-69.1723",
+     "strix": "-69.1798",
      "ref": "-69.1797",
-     "diffPct": 0.010674,
+     "diffPct": -0.000111,
      "verdict": "PASS"
     },
     {
@@ -664,17 +691,17 @@ window.__DECK_DATA__ = {
      "unit": "mm",
      "strix": "-0.193176",
      "ref": "-0.193149",
-     "diffPct": -0.01393,
+     "diffPct": -0.013856,
      "verdict": "PASS"
     }
    ]
   },
   "SH1": {
    "id": "SH1",
-   "title": "자체 P-M-M 기둥힌지 (DcrPMMHinge3d) 요소역학",
-   "titleEn": "DcrPMMHinge3d custom P-M-M column hinge — element-mechanics defense",
+   "title": "자체 P-M-M 기둥힌지 요소역학 (STRIX 엔진)",
+   "titleEn": "STRIX custom P-M-M column hinge — element-mechanics defense",
    "sourceShort": "자체 유도 (제3자 공개예제 부재)",
-   "source": "No third-party published example exists for this DCR-original element (unlike SP1/CSI 1-026) — devplan §12.11 honesty split: (a) the uniaxial FEMA-356/ASCE-41 4-branch backbone (elastic/hardening/post-capping softening/residual) and (b) the Fritsch & Carlson (1980, SIAM J. Numer. Anal. 17(2):238-246) monotone-cubic capacity interpolation are PUBLISHED external models — re-derived from scratch in benchmarks/nonlinear/SH1_pmmHingeBackbone.ts, never by reading DcrPMMHinge3d.cpp. (c) The biaxial Bresler-type capacity-envelope projection (independent per-direction backbones + closed-form radial scale-back beta=min(1,1/Phi)) is DCR's own §5.9 design choice — the interaction SURFACE FORM (normalized power-law) is standard/published, but this specific combination algorithm has no external authority to validate against; quantities C_* verify the implementation is self-consistent with DCR's own stated specification, not that the specification itself reproduces a third-party benchmark.",
+   "source": "No third-party published example exists for this STRIX-original element (unlike SP1/CSI 1-026) — devplan §12.11 honesty split: (a) the uniaxial FEMA-356/ASCE-41 4-branch backbone (elastic/hardening/post-capping softening/residual) and (b) the Fritsch & Carlson (1980, SIAM J. Numer. Anal. 17(2):238-246) monotone-cubic capacity interpolation are PUBLISHED external models — re-derived from scratch in benchmarks/nonlinear/SH1_pmmHingeBackbone.ts, never by reading the element source. (c) The biaxial Bresler-type capacity-envelope projection (independent per-direction backbones + closed-form radial scale-back beta=min(1,1/Phi)) is STRIX's own §5.9 design choice — the interaction SURFACE FORM (normalized power-law) is standard/published, but this specific combination algorithm has no external authority to validate against; quantities C_* verify the implementation is self-consistent with STRIX's own stated specification, not that the specification itself reproduces a third-party benchmark.",
    "count": 11,
    "errorPct": 0,
    "tolerancePct": 0.01,
@@ -784,25 +811,25 @@ window.__DECK_DATA__ = {
     {
      "quantity": "Eigenvalue ω²",
      "unit": "rad^2/s^2",
-     "strix": "0.589538",
+     "strix": "0.589542",
      "ref": "0.589541",
-     "diffPct": -0.0005,
+     "diffPct": 0.0002,
      "verdict": "PASS"
     },
     {
      "quantity": "Eigenvalue ω²",
      "unit": "rad^2/s^2",
-     "strix": "5.52693",
+     "strix": "5.52696",
      "ref": "5.52695",
-     "diffPct": -0.0004,
+     "diffPct": 0.0002,
      "verdict": "PASS"
     },
     {
      "quantity": "Eigenvalue ω²",
      "unit": "rad^2/s^2",
-     "strix": "16.5878",
+     "strix": "16.5879",
      "ref": "16.5878",
-     "diffPct": -0.0002,
+     "diffPct": 0.0005,
      "verdict": "PASS"
     }
    ]
@@ -873,73 +900,73 @@ window.__DECK_DATA__ = {
    "title": "ASME 고유치 골조 — 3D 고정단 파이프 프레임",
    "titleEn": "ASME eigenvalue frame — 3-D fixed-base pipe frame with lumped joint masses",
    "sourceShort": "ASME 파이프프레임 · 독립 조립",
-   "source": "Independent reference: the SAME 42-DOF (six per node) 3-D frame assembled from first principles with the identical pipe Timoshenko element (local 12×12 with shear parameter φ = 12EI/GAsL², Avy=Avz=0.9A, torsion GJ/L, axial EA/L, rotated to global) and the identical eps=1e-8 rotational-mass floor, then solved with the DENSE generalised eigensolver scipy.linalg.eigh — a separate implementation and a different solver from STRIX's OpenSees FE assembly + sparse eigsh. Agreement to machine precision across all 24 modes verifies the eigensolver on a fully 3-D coupled structure with explicit nodal masses. The classical benchmark is Problem No. 1 of the ASME 1972 Program Verification & Qualification Library (CSI SAP2000 Verification Example 1-023); its published 'independent' column (Peterson 1981 / DeSalvo & Swanson 1977) is Guyan-reduced 42→24 DOF and so differs from the full solution by up to ±3% — hence it is used only as a secondary physical bracket, not the primary target.",
+   "source": "Independent reference: the SAME 42-DOF (six per node) 3-D frame assembled from first principles with the identical pipe Timoshenko element (local 12×12 with shear parameter φ = 12EI/GAsL², Avy=Avz=A/2, torsion GJ/L, axial EA/L, rotated to global) and the identical eps=1e-8 rotational-mass floor, then solved with the DENSE generalised eigensolver scipy.linalg.eigh — a separate implementation and a different solver from the STRIX engine's FE assembly and modal solver. Agreement to machine precision across all 24 modes verifies the eigensolver on a fully 3-D coupled structure with explicit nodal masses. The classical benchmark is Problem No. 1 of the ASME 1972 Program Verification & Qualification Library (CSI SAP2000 Verification Example 1-023); its published 'independent' column (Peterson 1981 / DeSalvo & Swanson 1977) is Guyan-reduced 42→24 DOF and so differs from the full solution by up to ±3% — hence it is used only as a secondary physical bracket, not the primary target.",
    "count": 8,
-   "errorPct": 0.0014,
+   "errorPct": 0.0015,
    "tolerancePct": 0.05,
    "verdict": "PASS",
    "computed": [
     {
      "quantity": "Eigenvalue ω²",
      "unit": "rad^2/s^2",
-     "strix": "506339",
-     "ref": "506332",
-     "diffPct": 0.0014,
+     "strix": "488559",
+     "ref": "488567",
+     "diffPct": -0.0015,
      "verdict": "PASS"
     },
     {
      "quantity": "Eigenvalue ω²",
      "unit": "rad^2/s^2",
-     "strix": "553804",
-     "ref": "553811",
-     "diffPct": -0.0011,
+     "strix": "529444",
+     "ref": "529439",
+     "diffPct": 0.0009,
      "verdict": "PASS"
     },
     {
      "quantity": "Eigenvalue ω²",
      "unit": "rad^2/s^2",
-     "strix": "771531",
-     "ref": "771530",
-     "diffPct": 0.0001,
-     "verdict": "PASS"
-    },
-    {
-     "quantity": "Eigenvalue ω²",
-     "unit": "rad^2/s^2",
-     "strix": "1.9049e+6",
-     "ref": "1.9049e+6",
-     "diffPct": 0.0006,
-     "verdict": "PASS"
-    },
-    {
-     "quantity": "Eigenvalue ω²",
-     "unit": "rad^2/s^2",
-     "strix": "6.6926e+6",
-     "ref": "6.6925e+6",
+     "strix": "743006",
+     "ref": "743004",
      "diffPct": 0.0003,
      "verdict": "PASS"
     },
     {
      "quantity": "Eigenvalue ω²",
      "unit": "rad^2/s^2",
-     "strix": "7.4352e+6",
-     "ref": "7.4352e+6",
-     "diffPct": 0.0002,
+     "strix": "1.8389e+6",
+     "ref": "1.8389e+6",
+     "diffPct": 0,
      "verdict": "PASS"
     },
     {
      "quantity": "Eigenvalue ω²",
      "unit": "rad^2/s^2",
-     "strix": "8.5056e+6",
-     "ref": "8.5056e+6",
-     "diffPct": 0.0002,
+     "strix": "6.4490e+6",
+     "ref": "6.4490e+6",
+     "diffPct": 0.0003,
      "verdict": "PASS"
     },
     {
      "quantity": "Eigenvalue ω²",
      "unit": "rad^2/s^2",
-     "strix": "1.2767e+7",
-     "ref": "1.2767e+7",
+     "strix": "7.0477e+6",
+     "ref": "7.0477e+6",
+     "diffPct": 0.0003,
+     "verdict": "PASS"
+    },
+    {
+     "quantity": "Eigenvalue ω²",
+     "unit": "rad^2/s^2",
+     "strix": "8.0464e+6",
+     "ref": "8.0464e+6",
+     "diffPct": 0.0003,
+     "verdict": "PASS"
+    },
+    {
+     "quantity": "Eigenvalue ω²",
+     "unit": "rad^2/s^2",
+     "strix": "1.1893e+7",
+     "ref": "1.1893e+7",
      "diffPct": 0.0002,
      "verdict": "PASS"
     }
@@ -952,48 +979,48 @@ window.__DECK_DATA__ = {
    "sourceShort": "CSI SAP2000 Ex. 1-026",
    "source": "CSI SAP2000 Software Verification Example 1-026 'Frame – Moment and Shear Hinges' (PDF confirmed, devplan §12.7) — moment-hinge backbone (My/Mc/Mr/thetaC) taken verbatim from CSI's published figure. The independent target values below are NOT CSI's own published 'Independent' column (those include a GAv shear term and a 0.4in shear-hinge plastic term with no STRIX counterpart — STRIX has no discrete shear hinge). Re-derived from scratch by sp1Theory()/sp1UzRyAt() using the SAME unit-load method (Cook & Young 1985 p.244, as CSI itself cites) minus the shear terms, with the elastic term using STRIX's actual body stiffness EI_mod=(11/10)×EI (TclBuilder.ts N_FAC=10 series-stiffness correction, RC-column FEMA lumped-hinge branch) and the hinge rotation taken from the REAL production convertFemaToModIMK() clamp output (csi mode, -10%Ke), not assumed.",
    "count": 5,
-   "errorPct": 0.00017296955481079692,
+   "errorPct": -0.0000060701025836400506,
    "tolerancePct": 1,
    "verdict": "PASS",
    "computed": [
     {
      "quantity": "Tip Uz at Point1 (P=My/L, elastic boundary)",
      "unit": "mm",
-     "strix": "5",
-     "ref": "5",
-     "diffPct": -0.000007053399126863812,
+     "strix": "1.82808",
+     "ref": "1.8281",
+     "diffPct": -0.0010264289712167008,
      "verdict": "PASS"
     },
     {
      "quantity": "Base hinge rotation at Point1",
      "unit": "rad",
-     "strix": "0.00768032",
-     "ref": "0.00768032",
-     "diffPct": 0.00005302337698475143,
+     "strix": "0.0025",
+     "ref": "0.00250003",
+     "diffPct": -0.001227255738373538,
      "verdict": "PASS"
     },
     {
      "quantity": "Tip Uz at Point2 (P=Mc/L, hardening peak)",
      "unit": "mm",
-     "strix": "24.9983",
-     "ref": "24.9983",
-     "diffPct": 0.00017296955481079692,
+     "strix": "24.7894",
+     "ref": "24.7894",
+     "diffPct": -0.0000060701025836400506,
      "verdict": "PASS"
     },
     {
      "quantity": "Base hinge rotation at Point2 (= thetaC)",
      "unit": "rad",
-     "strix": "0.0403531",
-     "ref": "0.0403531",
-     "diffPct": -0.00005073244730166147,
+     "strix": "0.04",
+     "ref": "0.04",
+     "diffPct": -0.000006011501785387262,
      "verdict": "PASS"
     },
     {
      "quantity": "Uz self-consistency across ALL recorded pre-peak (ascending) steps",
      "unit": "%",
-     "strix": "-0.000769162",
+     "strix": "-0.00102643",
      "ref": "0",
-     "diffPct": -0.0007691621465968322,
+     "diffPct": -0.0010264289712167008,
      "verdict": "PASS"
     }
    ]
@@ -1005,7 +1032,7 @@ window.__DECK_DATA__ = {
    "sourceShort": "CSI SAP2000 Ex. 1-020",
    "source": "CSI SAP2000 Software Verification, Example 1-020 (Response-Spectrum Analysis of a Two-Dimensional Rigid Frame); independent solution = Chopra, \"Dynamics of Structures\" (1995), Ex. 13.11, p.521. A single-bay, two-story fixed-base plane frame under a 5%-damped response spectrum, bending deformations only (shear/axial ignored), mass excited in X only. Reference values (Chopra) are the two periods, the SRSS lateral displacements, and the SRSS column/beam bending moments.",
    "count": 8,
-   "errorPct": 0.219,
+   "errorPct": 0.185,
    "tolerancePct": 1,
    "verdict": "PASS",
    "computed": [
@@ -1028,49 +1055,49 @@ window.__DECK_DATA__ = {
     {
      "quantity": "Displacement Ux — joint 2 (floor 1)",
      "unit": "in",
-     "strix": "7.579",
+     "strix": "7.576",
      "ref": "7.566",
-     "diffPct": 0.165,
+     "diffPct": 0.131,
      "verdict": "PASS"
     },
     {
      "quantity": "Displacement Ux — joint 3 (roof)",
      "unit": "in",
-     "strix": "18.844",
+     "strix": "18.838",
      "ref": "18.81",
-     "diffPct": 0.183,
+     "diffPct": 0.149,
      "verdict": "PASS"
     },
     {
      "quantity": "Moment — story-1 column base (jt 1)",
      "unit": "kip·in",
-     "strix": "12640",
+     "strix": "12636",
      "ref": "12624",
-     "diffPct": 0.126,
+     "diffPct": 0.091,
      "verdict": "PASS"
     },
     {
      "quantity": "Moment — story-2 column base (jt 2)",
      "unit": "kip·in",
-     "strix": "6025",
+     "strix": "6023",
      "ref": "6024",
-     "diffPct": 0.016,
+     "diffPct": -0.018,
      "verdict": "PASS"
     },
     {
      "quantity": "Moment — floor-1 beam at column (jt 2)",
      "unit": "kip·in",
-     "strix": "9813",
+     "strix": "9810",
      "ref": "9792",
-     "diffPct": 0.219,
+     "diffPct": 0.185,
      "verdict": "PASS"
     },
     {
      "quantity": "Moment — roof beam at column (jt 3)",
      "unit": "kip·in",
-     "strix": "5224",
+     "strix": "5222",
      "ref": "5220",
-     "diffPct": 0.079,
+     "diffPct": 0.045,
      "verdict": "PASS"
     }
    ]
@@ -1082,7 +1109,7 @@ window.__DECK_DATA__ = {
    "sourceShort": "CSI SAP2000 Ex. 1-024",
    "source": "CSI SAP2000 Software Verification, Example 1-024 (Response-Spectrum Analysis of a Three-Dimensional Moment Frame); independent solution = Peterson (1981), reproduced exactly by SAP2000. A two-story, two-bay-by-two-bay fixed-base 3-D moment frame with a plan eccentricity between the geometric centre (35, 25 ft) and the centre of mass (38, 27 ft), excited by a constant 0.4 g response spectrum in the X direction with 4% modal damping. Bending and axial deformations are retained; shear is ignored (shear area 0). Story mass acts in X and Y only (no rotational mass inertia), giving four natural modes. Reference values (Peterson) are the four modal periods and the roof centre-of-mass X-displacement under four modal-combination rules (SRSS, CQC, ABS, NRC-10%).",
    "count": 8,
-   "errorPct": 0.069,
+   "errorPct": 0.104,
    "tolerancePct": 1,
    "verdict": "PASS",
    "computed": [
@@ -1091,7 +1118,7 @@ window.__DECK_DATA__ = {
      "unit": "s",
      "strix": "0.22705",
      "ref": "0.2271",
-     "diffPct": -0.021,
+     "diffPct": -0.022,
      "verdict": "PASS"
     },
     {
@@ -1121,9 +1148,9 @@ window.__DECK_DATA__ = {
     {
      "quantity": "Roof CM Ux — SRSS",
      "unit": "ft",
-     "strix": "0.02011",
+     "strix": "0.0201",
      "ref": "0.02012",
-     "diffPct": -0.05,
+     "diffPct": -0.085,
      "verdict": "PASS"
     },
     {
@@ -1131,23 +1158,23 @@ window.__DECK_DATA__ = {
      "unit": "ft",
      "strix": "0.02013",
      "ref": "0.02014",
-     "diffPct": -0.029,
+     "diffPct": -0.064,
      "verdict": "PASS"
     },
     {
      "quantity": "Roof CM Ux — ABS",
      "unit": "ft",
-     "strix": "0.02049",
+     "strix": "0.02048",
      "ref": "0.0205",
-     "diffPct": -0.045,
+     "diffPct": -0.079,
      "verdict": "PASS"
     },
     {
      "quantity": "Roof CM Ux — NRC 10%",
      "unit": "ft",
-     "strix": "0.02015",
+     "strix": "0.02014",
      "ref": "0.02016",
-     "diffPct": -0.069,
+     "diffPct": -0.104,
      "verdict": "PASS"
     }
    ]
@@ -1159,168 +1186,168 @@ window.__DECK_DATA__ = {
    "sourceShort": "CSI SAP2000 Ex. 1-025",
    "source": "CSI SAP2000 Software Verification, Example 1-025 (Response-Spectrum Analysis of a Three-Dimensional Braced Frame); independent solution = Peterson (1981), reproduced exactly (0 %) by SAP2000. A three-story, L-shaped building framed by four identical two-bay, three-story X-braced planar frames whose columns and diagonals carry axial force only (all pinned). The frames are tied by a rigid floor diaphragm at each level. All mass is concentrated at a centre-of-mass joint per level with X and Y translational mass (1.24224 kip-s²/in) and a rotational mass moment of inertia about Z (174,907.4 kip-in-s²), giving nine dynamic DOF; for consistency with Peterson only the first two modes drive the RSA. The excitation is the El-Centro-derived 5%-damped response spectrum applied in X, combined by CQC, SRSS and ABS. Reference values are the two modal frequencies, the roof centre-of-mass (joint 51) X/Y displacement and Z rotation, and the axial forces in three Frame-1 elements (a column and two diagonals) under each combination rule.",
    "count": 20,
-   "errorPct": 0.108,
+   "errorPct": 0.142,
    "tolerancePct": 1.5,
    "verdict": "PASS",
    "computed": [
     {
      "quantity": "Frequency — mode 1",
      "unit": "Hz",
-     "strix": "3.05908",
+     "strix": "3.05916",
      "ref": "3.0592",
-     "diffPct": -0.004,
+     "diffPct": -0.001,
      "verdict": "PASS"
     },
     {
      "quantity": "Frequency — mode 2",
      "unit": "Hz",
-     "strix": "3.11867",
+     "strix": "3.11876",
      "ref": "3.1188",
-     "diffPct": -0.004,
+     "diffPct": -0.001,
      "verdict": "PASS"
     },
     {
      "quantity": "Roof CM Ux — CQC",
      "unit": "in",
-     "strix": "1.03241",
+     "strix": "1.03204",
      "ref": "1.0329",
-     "diffPct": -0.048,
+     "diffPct": -0.083,
      "verdict": "PASS"
     },
     {
      "quantity": "Roof CM Ux — SRSS",
      "unit": "in",
-     "strix": "0.736835",
+     "strix": "0.736576",
      "ref": "0.7372",
-     "diffPct": -0.05,
+     "diffPct": -0.085,
      "verdict": "PASS"
     },
     {
      "quantity": "Roof CM Ux — ABS",
      "unit": "in",
-     "strix": "1.04181",
+     "strix": "1.04144",
      "ref": "1.0423",
-     "diffPct": -0.047,
+     "diffPct": -0.083,
      "verdict": "PASS"
     },
     {
      "quantity": "Roof CM Uy — CQC",
      "unit": "in",
-     "strix": "0.141363",
+     "strix": "0.141323",
      "ref": "0.1414",
-     "diffPct": -0.026,
+     "diffPct": -0.054,
      "verdict": "PASS"
     },
     {
      "quantity": "Roof CM Uy — SRSS",
      "unit": "in",
-     "strix": "0.736835",
+     "strix": "0.736576",
      "ref": "0.7372",
-     "diffPct": -0.05,
+     "diffPct": -0.085,
      "verdict": "PASS"
     },
     {
      "quantity": "Roof CM Uy — ABS",
      "unit": "in",
-     "strix": "1.04181",
+     "strix": "1.04144",
      "ref": "1.0423",
-     "diffPct": -0.047,
+     "diffPct": -0.083,
      "verdict": "PASS"
     },
     {
      "quantity": "Roof CM Rz — CQC",
      "unit": "rad",
-     "strix": "0.000251727",
+     "strix": "0.000251642",
      "ref": "0.000252",
-     "diffPct": -0.108,
+     "diffPct": -0.142,
      "verdict": "PASS"
     },
     {
      "quantity": "Roof CM Rz — SRSS",
      "unit": "rad",
-     "strix": "0.000251727",
+     "strix": "0.000251642",
      "ref": "0.000252",
-     "diffPct": -0.108,
+     "diffPct": -0.142,
      "verdict": "PASS"
     },
     {
      "quantity": "Roof CM Rz — ABS",
      "unit": "rad",
-     "strix": "0.000251727",
+     "strix": "0.000251642",
      "ref": "0.000252",
-     "diffPct": -0.108,
+     "diffPct": -0.142,
      "verdict": "PASS"
     },
     {
      "quantity": "Axial elm 1 — CQC",
      "unit": "kip",
-     "strix": "279.348",
+     "strix": "279.249",
      "ref": "279.48",
-     "diffPct": -0.047,
+     "diffPct": -0.082,
      "verdict": "PASS"
     },
     {
      "quantity": "Axial elm 1 — SRSS",
      "unit": "kip",
-     "strix": "200.455",
+     "strix": "200.385",
      "ref": "200.55",
-     "diffPct": -0.047,
+     "diffPct": -0.082,
      "verdict": "PASS"
     },
     {
      "quantity": "Axial elm 1 — ABS",
      "unit": "kip",
-     "strix": "281.862",
+     "strix": "281.763",
      "ref": "281.99",
-     "diffPct": -0.045,
+     "diffPct": -0.081,
      "verdict": "PASS"
     },
     {
      "quantity": "Axial elm 4 — CQC",
      "unit": "kip",
-     "strix": "194.409",
+     "strix": "194.342",
      "ref": "194.5",
-     "diffPct": -0.047,
+     "diffPct": -0.081,
      "verdict": "PASS"
     },
     {
      "quantity": "Axial elm 4 — SRSS",
      "unit": "kip",
-     "strix": "139.505",
+     "strix": "139.457",
      "ref": "139.57",
-     "diffPct": -0.047,
+     "diffPct": -0.081,
      "verdict": "PASS"
     },
     {
      "quantity": "Axial elm 4 — ABS",
      "unit": "kip",
-     "strix": "196.159",
+     "strix": "196.091",
      "ref": "196.25",
-     "diffPct": -0.046,
+     "diffPct": -0.081,
      "verdict": "PASS"
     },
     {
      "quantity": "Axial elm 6 — CQC",
      "unit": "kip",
-     "strix": "120.464",
+     "strix": "120.423",
      "ref": "120.52",
-     "diffPct": -0.046,
+     "diffPct": -0.081,
      "verdict": "PASS"
     },
     {
      "quantity": "Axial elm 6 — SRSS",
      "unit": "kip",
-     "strix": "86.4431",
+     "strix": "86.4136",
      "ref": "86.48",
-     "diffPct": -0.043,
+     "diffPct": -0.077,
      "verdict": "PASS"
     },
     {
      "quantity": "Axial elm 6 — ABS",
      "unit": "kip",
-     "strix": "121.548",
+     "strix": "121.507",
      "ref": "121.61",
-     "diffPct": -0.051,
+     "diffPct": -0.085,
      "verdict": "PASS"
     }
    ]
@@ -1332,7 +1359,7 @@ window.__DECK_DATA__ = {
    "sourceShort": "리포 내 독립 재유도",
    "source": "Independently re-derived in this repo (not transcribed from any external table) — see benchmarks/dynamic/TH1_sdofAnchor.ts header.",
    "count": 3,
-   "errorPct": -0.00159813,
+   "errorPct": -0.00169887,
    "tolerancePct": 0.01,
    "verdict": "PASS",
    "computed": [
@@ -1341,7 +1368,7 @@ window.__DECK_DATA__ = {
      "unit": "mm",
      "strix": "200.783",
      "ref": "200.786",
-     "diffPct": -0.00159813,
+     "diffPct": -0.00169887,
      "verdict": "PASS"
     },
     {
@@ -1349,15 +1376,15 @@ window.__DECK_DATA__ = {
      "unit": "mm",
      "strix": "397.855",
      "ref": "397.875",
-     "diffPct": -0.00491982,
+     "diffPct": -0.00483615,
      "verdict": "PASS"
     },
     {
      "quantity": "MDOF §2 — peak roof Ux |modal-rayleigh| relative diff %, dt=0.0125s (finest)",
      "unit": "%",
-     "strix": "0.000259",
+     "strix": "0.000188",
      "ref": "0",
-     "diffPct": 0.000259,
+     "diffPct": 0.000188,
      "verdict": "PASS"
     }
    ]

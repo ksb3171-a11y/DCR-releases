@@ -4,7 +4,8 @@
  *  🚨 이 파일은 지금 **아무 데서도 읽지 않습니다** (2026-07-31 실측).
  *     §14 에서 레이아웃 모델을 바꾸면서 발표 내용의 원천이 `data/deck.js` 로 옮겨갔고,
  *     `index.html` 은 이 파일을 로드조차 하지 않습니다. `window.__DECK_CONFIG__` 를 읽는 곳은
- *     옛 P1 덱(`_archive/index_p1_flow.html`) 하나뿐입니다.
+ *     옛 P1 덱(`_archive/index_p1_flow.html`) 하나뿐이었고, 그 파일은 2026-11-10 삭제했습니다
+ *     (OpenSees 홍보 문구 제거 — opensees_wording_removal_devplan.md 표 E). 지금은 소비처가 없습니다.
  *     → **여기를 고쳐도 화면은 안 바뀝니다.** 표지·연락처를 고치려면
  *        덱을 열고 E 키(편집 모드)로 그 자리를 직접 고치거나 `data/deck.js` 를 고치세요.
  *     아래 값들은 옛 덱과 어긋나지 않게 참고용으로만 최신 상태를 유지합니다.
@@ -18,7 +19,7 @@ window.__DECK_CONFIG__ = {
   title:     'STRIX',
   // 표지 큰 제목
 
-  subtitle:  'OpenSees 기반 구조해석 · 설계 통합 플랫폼',
+  subtitle:  '구조해석 · 설계 통합 플랫폼',
   // 표지 부제 — 한 줄로 제품을 설명하는 문장
 
   tagline:   '연구급 정확도를 실무의 손에',

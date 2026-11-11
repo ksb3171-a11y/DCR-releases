@@ -112,8 +112,8 @@
       "description": "Brace axial force, apex displacement & reactions — determinate bar absolute check. STRIX matches the reference solution to 0.00% against a 0% tolerance…",
       "url": "https://lpksoft.com/verification/SB10.html",
       "inLanguage": "en",
-      "datePublished": "2026-08-31",
-      "dateModified": "2026-08-31",
+      "datePublished": "2026-11-10",
+      "dateModified": "2026-11-10",
       "author": {
         "@type": "Organization",
         "name": "LPK SOFT Co., Ltd."
@@ -130,7 +130,7 @@
       "about": [
         {
           "@type": "Thing",
-          "name": "element Truss — linear (small-displacement) bar"
+          "name": "STRIX engine 2-node truss bar — linear (small-displacement)"
         },
         {
           "@type": "Thing",
@@ -146,11 +146,11 @@
         },
         {
           "@type": "Thing",
-          "name": "Axial from elem_force.out localForce"
+          "name": "Axial force from elem_force.out (member local end forces)"
         }
       ],
       "citation": "Statically-determinate truss closed form — joint equilibrium (method of joints) gives the member axial forces and EA/L bar stiffness gives the apex displacement; a linear (small-displacement) bar carries no geometric offset, so every quantity is exact.",
-      "keywords": "SB10, Element Benchmarks, static-truss, structural analysis verification, benchmark, OpenSees"
+      "keywords": "SB10, Element Benchmarks, static-truss, structural analysis verification, benchmark"
     },
     {
       "@type": "BreadcrumbList",
@@ -206,16 +206,16 @@
   <section class="bm-sec">
     <div class="bm-sec-head"><span class="bm-sec-no">§2</span><h2>Technical features tested</h2></div>
     <ul class="bm-chips">
-        <li><b>element Truss</b> — linear (small-displacement) bar</li>
+        <li><b>STRIX engine 2-node truss bar</b> — linear (small-displacement)</li>
         <li>memberType <b>brace</b>, two-sided, no P-Delta</li>
         <li>Orthonormal braces &rArr; <b>K = (EA/L)·I</b></li>
         <li>Statically determinate &rArr; exact closed form</li>
-        <li>Axial from <span class="mono">elem_force.out</span> localForce</li>
+        <li>Axial force from <span class="mono">elem_force.out</span> (member local end forces)</li>
     </ul>
   </section>
   <section class="bm-sec">
     <div class="bm-sec-head"><span class="bm-sec-no">§3</span><h2>Problem description</h2></div>
-    <p class="bm-body">Two prismatic braces span from a free apex&nbsp;N3 up to two fully fixed supports N1 and N2. A single apex point load with components along global &minus;X and &minus;Z puts both braces in tension. Because the two bar directions are mutually orthogonal, the assembled apex stiffness is diagonal, and the configuration is statically determinate — so the member axial forces, the apex displacement, and the two support reactions all follow from equilibrium and the EA/L bar law in closed form. A two-sided brace with P-Delta off is emitted as a linear <span class="mono">Truss</span>, which carries no geometric offset, so STRIX must reproduce every quantity to machine precision.</p>
+    <p class="bm-body">Two prismatic braces span from a free apex&nbsp;N3 up to two fully fixed supports N1 and N2. A single apex point load with components along global &minus;X and &minus;Z puts both braces in tension. Because the two bar directions are mutually orthogonal, the assembled apex stiffness is diagonal, and the configuration is statically determinate — so the member axial forces, the apex displacement, and the two support reactions all follow from equilibrium and the EA/L bar law in closed form. A two-sided brace with P-Delta off is modelled as a linear two-node truss bar, which carries no geometric offset, so STRIX must reproduce every quantity to machine precision.</p>
     <figure class="bm-fig">
       <svg viewBox="0 0 620 250" role="img" aria-label="Asymmetric two-bar truss schematic">
           <!-- support hatching under the two fixed nodes -->
@@ -371,7 +371,7 @@
         </tbody>
       </table>
     </div>
-    <p class="bm-body">A statically-determinate truss needs no compatibility relations: the member forces follow from nodal equilibrium alone, and one linear <span class="mono">Truss</span> per member represents each bar exactly. There is nothing to refine — the response is <span class="pill">discretization-exact</span>, and every reference value is reproduced to machine precision (0 error against a 10⁻⁶% tolerance).</p>
+    <p class="bm-body">A statically-determinate truss needs no compatibility relations: the member forces follow from nodal equilibrium alone, and one linear truss bar per member represents each bar exactly. There is nothing to refine — the response is <span class="pill">discretization-exact</span>, and every reference value is reproduced to machine precision (0 error against a 10⁻⁶% tolerance).</p>
   </section>
   <section class="bm-sec">
     <div class="bm-sec-head"><span class="bm-sec-no">§8</span><h2>Conclusion</h2></div>
@@ -384,14 +384,13 @@
     <div class="bm-sec-head"><span class="bm-sec-no">§9</span><h2>References &amp; analysis files</h2></div>
     <ol class="bm-refs">
       <li>Hibbeler, R. C. — <i>Structural Analysis.</i> Method of joints for statically-determinate trusses; bar elongation δ = NL/EA.</li>
-      <li>OpenSees — <span class="mono">element Truss</span> (linear, small-displacement bar).</li>
-      <li>STRIX headless harness: <span class="mono">generatePyForLoadCase → python.exe → parseAll</span>.</li>
+      <li>STRIX headless harness: <span class="mono">generatePyForLoadCase → STRIX engine (static-single route) → node_disp.out · elem_force.out</span>.</li>
     </ol>
     <dl class="bm-evidence">
-      <dt>Engine</dt><dd class="mono">v1.0.6 (opensees.pyd)</dd>
-      <dt>Run date</dt><dd class="mono">2026-08-31</dd>
+      <dt>Engine</dt><dd class="mono">STRIX engine 0.134.1 (84a381f)</dd>
+      <dt>Run date</dt><dd class="mono">2026-11-10</dd>
       <dt>Record</dt><dd class="mono">records/SB10.json</dd>
-      <dt>Evidence archive</dt><dd class="mono">verif-evidence-eng1.0.6-win-x64.zip · SB10/</dd>
+      <dt>Evidence archive</dt><dd class="mono">verif-evidence-strix0.134.1-win-x64.zip · SB10/</dd>
       <dt>sha256</dt><dd class="mono">(pending publish)</dd>
     </dl>
   </section>

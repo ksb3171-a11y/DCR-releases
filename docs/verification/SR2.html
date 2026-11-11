@@ -112,8 +112,8 @@
       "description": "Full 3-D response-spectrum pipeline verified on an eccentric rigid-diaphragm frame with four combination rules. STRIX matches the reference solution to…",
       "url": "https://lpksoft.com/verification/SR2.html",
       "inLanguage": "en",
-      "datePublished": "2026-08-19",
-      "dateModified": "2026-08-19",
+      "datePublished": "2026-11-10",
+      "dateModified": "2026-11-10",
       "author": {
         "@type": "Organization",
         "name": "LPK SOFT Co., Ltd."
@@ -154,7 +154,7 @@
         }
       ],
       "citation": "CSI SAP2000 Software Verification, Example 1-024 (Response-Spectrum Analysis of a Three-Dimensional Moment Frame); independent solution = Peterson (1981), reproduced exactly by SAP2000. A two-story, two-bay-by-two-bay fixed-base 3-D moment frame with a plan eccentricity between the geometric centre (35, 25 ft) and the centre of mass (38, 27 ft), excited by a constant 0.4 g response spectrum in the X direction with 4% modal damping. Bending and axial deformations are retained; shear is ignored (shear area 0). Story mass acts in X and Y only (no rotational mass inertia), giving four natural modes. Reference values (Peterson) are the four modal periods and the roof centre-of-mass X-displacement under four modal-combination rules (SRSS, CQC, ABS, NRC-10%).",
-      "keywords": "SR2, Analysis Benchmarks, response-spectrum-3d-frame, structural analysis verification, benchmark, OpenSees"
+      "keywords": "SR2, Analysis Benchmarks, response-spectrum-3d-frame, structural analysis verification, benchmark"
     },
     {
       "@type": "BreadcrumbList",
@@ -202,7 +202,7 @@
     <p class="bm-sub">Full 3-D response-spectrum pipeline verified on an eccentric rigid-diaphragm frame with four combination rules</p>
     <div class="bm-verdict">
       <span class="bm-vbadge">PASS</span>
-      <span class="bm-vfig"><b>+0.069%</b> error</span>
+      <span class="bm-vfig"><b>+0.104%</b> error</span>
       <span class="bm-vfig">tolerance 1%</span>
       <span class="bm-vfig">0.22705 s vs 0.2271 s</span>
     </div>
@@ -320,7 +320,7 @@
             <td class="mono">eigen · s</td>
             <td class="num">0.22705</td>
             <td class="num">0.2271</td>
-            <td class="num"><span class="delta good">−0.021%</span></td>
+            <td class="num"><span class="delta good">−0.022%</span></td>
             <td>PASS</td>
           </tr>
           <tr>
@@ -350,9 +350,9 @@
           <tr>
             <td>Roof CM Ux — SRSS <span class="dim">(ft)</span></td>
             <td class="mono">SRSS · ft</td>
-            <td class="num">0.02011</td>
+            <td class="num">0.0201</td>
             <td class="num">0.02012</td>
-            <td class="num"><span class="delta good">−0.05%</span></td>
+            <td class="num"><span class="delta good">−0.085%</span></td>
             <td>PASS</td>
           </tr>
           <tr>
@@ -360,23 +360,23 @@
             <td class="mono">CQC · ft</td>
             <td class="num">0.02013</td>
             <td class="num">0.02014</td>
-            <td class="num"><span class="delta good">−0.029%</span></td>
+            <td class="num"><span class="delta good">−0.064%</span></td>
             <td>PASS</td>
           </tr>
           <tr>
             <td>Roof CM Ux — ABS <span class="dim">(ft)</span></td>
             <td class="mono">ABS · ft</td>
-            <td class="num">0.02049</td>
+            <td class="num">0.02048</td>
             <td class="num">0.0205</td>
-            <td class="num"><span class="delta good">−0.045%</span></td>
+            <td class="num"><span class="delta good">−0.079%</span></td>
             <td>PASS</td>
           </tr>
           <tr>
             <td>Roof CM Ux — NRC 10% <span class="dim">(ft)</span></td>
             <td class="mono">NRC10 · ft</td>
-            <td class="num">0.02015</td>
+            <td class="num">0.02014</td>
             <td class="num">0.02016</td>
-            <td class="num"><span class="delta good">−0.069%</span></td>
+            <td class="num"><span class="delta good">−0.104%</span></td>
             <td>PASS</td>
           </tr>
         </tbody>
@@ -390,31 +390,31 @@
         <thead><tr><th>Method</th><th class="num">Roof CM Ux (ft)</th><th class="num">Δ</th></tr></thead>
         <tbody>
           <tr>
-            <td>SRSS</td><td class="num">0.02011</td>
-            <td class="num">−0.05%</td>
+            <td>SRSS</td><td class="num">0.0201</td>
+            <td class="num">−0.085%</td>
           </tr>
           <tr>
             <td>CQC</td><td class="num">0.02013</td>
-            <td class="num">−0.029%</td>
+            <td class="num">−0.064%</td>
           </tr>
           <tr>
-            <td>ABS</td><td class="num">0.02049</td>
-            <td class="num">−0.045%</td>
+            <td>ABS</td><td class="num">0.02048</td>
+            <td class="num">−0.079%</td>
           </tr>
           <tr>
-            <td>NRC 10%</td><td class="num">0.02015</td>
-            <td class="num">−0.069%</td>
+            <td>NRC 10%</td><td class="num">0.02014</td>
+            <td class="num">−0.104%</td>
           </tr>
         </tbody>
       </table>
     </div>
-    <p class="bm-body">The reference publishes the roof centre-of-mass displacement under <b>four modal-combination rules</b>, and STRIX reproduces each: <b>SRSS</b> and <b>CQC</b> through the production RsaCalculator (Der Kiureghian CQC), and <b>ABS</b> (absolute sum) and <b>NRC-10%</b> (U.S. NRC Regulatory Guide 1.92 ten-percent method) combined from the same per-mode responses. The four rules span a narrow band (<span class="mono">SRSS 0.02012 → ABS 0.02050 ft</span>) because the fundamental X mode dominates the eccentric torsional contributions; <b>all four</b> land <span class="pill">within tolerance</span> of the independent reference — verifying the complete combination surface, not only the rule the reference happens to favour.</p>
+    <p class="bm-body">The reference publishes the roof centre-of-mass displacement under <b>four modal-combination rules</b>, and STRIX reproduces each: <b>SRSS</b> and <b>CQC</b> through the production RsaCalculator (Der Kiureghian CQC), and <b>ABS</b> (absolute sum) and <b>NRC-10%</b> (U.S. NRC Regulatory Guide 1.92 ten-percent method) combined from the same per-mode responses. The four rules span a narrow band (<span class="mono">SRSS 0.02010 → ABS 0.02048 ft</span>) because the fundamental X mode dominates the eccentric torsional contributions; <b>all four</b> land <span class="pill">within tolerance</span> of the independent reference — verifying the complete combination surface, not only the rule the reference happens to favour.</p>
   </section>
   <section class="bm-sec">
     <div class="bm-sec-head"><span class="bm-sec-no">§8</span><h2>Conclusion</h2></div>
     <div class="bm-conclusion">
       <span class="bm-vbadge">PASS</span>
-      <p>STRIX reproduces the <b>four modal periods</b> and the <b>roof centre-of-mass displacement under all four combination rules</b> of the <b>CSI 1-024 / Peterson 1981</b> eccentric 3-D frame to <b>better than a tenth of a percent</b>. This verifies the full <b>three-dimensional response-spectrum pipeline</b> that real buildings trigger: the rigid-diaphragm modal condensation, the per-mode inertia-force analysis under the diaphragm constraint, spectral scaling, and the SRSS, CQC, ABS and NRC-10% combinations. Together with SR1 (planar RSA) and SM5/SM5b (the modal and diaphragm-condensation foundation), it closes the core of STRIX’s seismic-analysis capability. The diaphragm static solve uses the Transformation constraint handler — the correction this benchmark’s own de-risk spike surfaced, having caught the earlier Penalty handler overstating the eccentric roof displacement by ~6%.</p>
+      <p>STRIX reproduces the <b>four modal periods</b> and the <b>roof centre-of-mass displacement under all four combination rules</b> of the <b>CSI 1-024 / Peterson 1981</b> eccentric 3-D frame to <b>about a tenth of a percent</b> (worst 0.104%, NRC-10%). This verifies the full <b>three-dimensional response-spectrum pipeline</b> that real buildings trigger: the rigid-diaphragm modal condensation, the per-mode inertia-force analysis under the diaphragm constraint, spectral scaling, and the SRSS, CQC, ABS and NRC-10% combinations. Together with SR1 (planar RSA) and SM5/SM5b (the modal and diaphragm-condensation foundation), it closes the core of STRIX’s seismic-analysis capability. The run is on the <b>STRIX engine</b> in the app&rsquo;s own order (modal solve, then the RSA run reusing those modes); the diaphragm is condensed exactly by transformation, and the reduced mass is singular in the floor rotation (point masses, no rotational inertia), which the modal solve accepts as a rank-deficient mass and returns the four finite modes rather than failing.</p>
     </div>
   </section>
   <section class="bm-sec">
@@ -422,13 +422,13 @@
     <ol class="bm-refs">
       <li>CSI SAP2000 Software Verification, Example 1-024 &mdash; Response-Spectrum Analysis of a Three-Dimensional Moment Frame.</li>
       <li>F. E. Peterson (1981) &mdash; independent response-spectrum solution reproduced exactly by SAP2000.</li>
-      <li>U.S. Nuclear Regulatory Commission, <i>Regulatory Guide 1.92</i>, Rev. 1 &mdash; modal-combination rules (grouping / ten-percent methods). E. L. Wilson, A. Der Kiureghian &amp; E. P. Bayo, <i>EESD</i> <b>9</b>(2), 1981 &mdash; CQC rule. STRIX harness: <span class="mono">buildRsaPy → opensees.pyd (de-Zhu T-matrix + Transformation) → rsa_modal.bin</span>.</li>
+      <li>U.S. Nuclear Regulatory Commission, <i>Regulatory Guide 1.92</i>, Rev. 1 &mdash; modal-combination rules (grouping / ten-percent methods). E. L. Wilson, A. Der Kiureghian &amp; E. P. Bayo, <i>EESD</i> <b>9</b>(2), 1981 &mdash; CQC rule. STRIX harness: <span class="mono">buildEigenPy → STRIX engine (eigen route; rigid-diaphragm transformation, rank-deficient reduced mass) → buildRsaRunPy (reuses the eigen results) → STRIX engine (rsa route) → rsa_modal.bin</span>.</li>
     </ol>
     <dl class="bm-evidence">
-      <dt>Engine</dt><dd class="mono">v1.0.6 (opensees.pyd)</dd>
-      <dt>Run date</dt><dd class="mono">2026-08-19</dd>
+      <dt>Engine</dt><dd class="mono">STRIX engine 0.134.1 (84a381f)</dd>
+      <dt>Run date</dt><dd class="mono">2026-11-10</dd>
       <dt>Record</dt><dd class="mono">records/SR2.json</dd>
-      <dt>Evidence archive</dt><dd class="mono">verif-evidence-eng1.0.6-win-x64.zip · SR2/</dd>
+      <dt>Evidence archive</dt><dd class="mono">verif-evidence-strix0.134.1-win-x64.zip · SR2/</dd>
       <dt>sha256</dt><dd class="mono">(pending publish)</dd>
     </dl>
   </section>

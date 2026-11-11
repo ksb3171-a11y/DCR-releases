@@ -147,8 +147,8 @@
             '<span data-i18n="foot.bizEmailLabel">Email</span> ' +
             '<a href="mailto:support@lpksoft.com">support@lpksoft.com</a></p>' +
           '<p><span data-i18n="foot.bizHostLabel">Hosting</span> ' +
-            '<span class="ph-todo" data-i18n="foot.todoHost">[GitHub, Inc. TBC]</span>' + BIZ_SEP +
-            '<span class="ph-todo" data-i18n="foot.todoBizCheck">[Business info check]</span></p>' +
+            '<span data-i18n="foot.bizHost">GitHub, Inc. (GitHub Pages)</span>' + BIZ_SEP +
+            '<a href="https://www.ftc.go.kr/bizCommPop.do?wrkr_no=5928103752" target="_blank" rel="noopener" data-i18n="foot.bizCheck">Business info</a></p>' +
         '</div>' +
       '</div>' +
       '<div class="footer-col"><h4 data-i18n="foot.product">Product</h4>' +
@@ -171,7 +171,7 @@
     '</div>' +
     '<div class="container footer-bottom">' +
       '<span data-i18n="foot.copyright">© 2026 LPK SOFT Co., Ltd. All rights reserved.</span>' +
-      '<span class="mono" style="color:var(--text-mute)">Built with OpenSees · React · Electron</span>' +
+      '<span class="mono" style="color:var(--text-mute)">Built with React · Electron</span>' +
     '</div></footer>';
 
   var MODALS = '' +
@@ -294,6 +294,27 @@
   inject('site-nav', NAV);
   inject('site-footer', FOOTER);
   inject('site-modals', MODALS);
+
+  // Install-warning help — one component, mounted under every download button
+  // (<div data-install-help></div>). dl.warn.review is the "signing under review"
+  // sentence on its own key: delete that key's use here once the code-signing
+  // certificate is applied.
+  var INSTALL_HELP =
+    '<details class="install-help">' +
+      '<summary data-i18n="dl.warn.title">Seeing a warning when you install?</summary>' +
+      '<div class="install-help-body">' +
+        '<p><span data-i18n="dl.warn.review">The company code-signing certificate for the STRIX installer is currently under review by Microsoft.</span> ' +
+          '<span data-i18n="dl.warn.smartscreen">Until then, Windows may show a "Windows protected your PC" window.</span></p>' +
+        '<ol>' +
+          '<li data-i18n="dl.warn.step1">In that window, click "More info".</li>' +
+          '<li data-i18n="dl.warn.step2">On the screen that shows the publisher, click "Run anyway".</li>' +
+        '</ol>' +
+        '<p data-i18n="dl.warn.av">If your antivirus software blocks the installation or an analysis, add the STRIX installation folder as an exception. Download the installer only from lpksoft.com.</p>' +
+      '</div>' +
+    '</details>';
+  Array.prototype.forEach.call(document.querySelectorAll('[data-install-help]'), function (el) {
+    el.innerHTML = INSTALL_HELP;
+  });
 
   // Active nav link for the current page
   var active = document.querySelector('.nav-links a[data-nav="' + page + '"]');

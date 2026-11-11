@@ -261,6 +261,16 @@ img, svg, video { display: block; max-width: 100%; }
 .footer-brand .footer-biz p { color: inherit; font-size: inherit; margin-top: 0; max-width: none; }
 .footer-biz-sep { color: var(--text-mute); }
 .ph-todo { color: var(--warn); background: var(--warn-soft); border-radius: 3px; padding: 0 3px; font-weight: var(--fw-sb); }
+
+/* Install-warning help under the download button (layout.js INSTALL_HELP) — collapsed by default */
+.install-help { max-width: 560px; margin: var(--sp-5) auto 0; text-align: left; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface-2); font-size: var(--fs-sm); color: var(--text-soft); }
+.install-help summary { cursor: pointer; padding: var(--sp-3) var(--sp-4); color: var(--text); font-weight: var(--fw-sb); }
+.install-help summary:hover { color: var(--accent); }
+.install-help-body { padding: 0 var(--sp-4) var(--sp-4); }
+.install-help-body p { margin: 0 0 var(--sp-3); }
+.install-help-body ol { margin: 0 0 var(--sp-3); padding-left: var(--sp-5); }
+.install-help-body li { margin-bottom: var(--sp-1); }
+.install-help-body p:last-child { margin-bottom: 0; }
 .footer-bottom { margin-top: var(--sp-5); padding-top: var(--sp-5); border-top: 1px solid var(--border); display: flex; justify-content: space-between; flex-wrap: wrap; gap: var(--sp-3); color: var(--text-mute); font-size: var(--fs-cap); }
 
 /* ============================================================================
@@ -307,6 +317,11 @@ img, svg, video { display: block; max-width: 100%; }
 .legal-body ol { list-style: decimal; }
 .legal-body ul { list-style: disc; }
 .legal-body li { margin-bottom: var(--sp-1); }
+/* Each legal page carries the Korean governing text and its English translation.
+   The page language (static /ko/ copy or the runtime switcher — both set <html lang>)
+   picks one: Korean on ko, English everywhere else (en · ja · zh). */
+html:lang(ko) .legal-body[lang="en"],
+html:not(:lang(ko)) .legal-body[lang="ko"] { display: none; }
 .legal-table-wrap { overflow-x: auto; margin-bottom: var(--sp-3); }
 .legal-body table { width: 100%; border-collapse: collapse; font-size: var(--fs-sm); }
 .legal-body th, .legal-body td { border: 1px solid var(--border-strong); padding: var(--sp-2) var(--sp-3); text-align: left; vertical-align: top; }

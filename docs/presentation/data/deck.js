@@ -102,7 +102,7 @@ window.__DECK__ = {
      "y": 491,
      "w": 1376,
      "h": 64.8,
-     "html": "<div class=\"csub\">OpenSees 기반 구조해석 · 설계 통합 플랫폼</div>"
+     "html": "<div class=\"csub\">구조해석 · 설계 통합 플랫폼</div>"
     },
     {
      "id": "e4",
@@ -160,25 +160,16 @@ window.__DECK__ = {
      "type": "text",
      "x": 112,
      "y": 291.8,
-     "w": 439.5,
+     "w": 673.5,
      "h": 283.9,
-     "html": "<div class=\"card accent\">\n        <div class=\"num\"><span data-bind=\"_.total\">21</span><span style=\"font-size:.45em\">건</span></div>\n        <h3>국제 벤치마크 전건 통과</h3>\n        <p>CSI SAP2000 공식 검증예제 · NAFEMS · 고전 이론해와 대조.\n           개별 검증항목 <b data-bind=\"_.quantities\">131</b>개 전부 PASS.</p>\n      </div>"
-    },
-    {
-     "id": "e4",
-     "type": "text",
-     "x": 580.3,
-     "y": 291.8,
-     "w": 439.5,
-     "h": 283.9,
-     "html": "<div class=\"card\">\n        <div class=\"num\">OpenSees</div>\n        <h3>세계 표준 연구용 솔버</h3>\n        <p>미국 PEER 주도로 개발된 오픈소스 유한요소 프레임워크.\n           비선형·지진해석 분야의 사실상 표준.</p>\n      </div>"
+     "html": "<div class=\"card accent\">\n        <div class=\"num\"><span data-bind=\"_.total\">21</span><span style=\"font-size:.45em\">건</span></div>\n        <h3>벤치마크 전건 통과</h3>\n        <p>CSI SAP2000 공식 검증예제 · NAFEMS · 고전 이론해와 대조.\n           개별 검증항목 <b data-bind=\"_.quantities\">131</b>개 전부 PASS.</p>\n      </div>"
     },
     {
      "id": "e5",
      "type": "text",
-     "x": 1048.5,
+     "x": 814.5,
      "y": 291.8,
-     "w": 439.5,
+     "w": 673.5,
      "h": 283.9,
      "html": "<div class=\"card\">\n        <div class=\"num\">All In One</div>\n        <h3>실무 전 과정을 한 앱에</h3>\n        <p>모델링 · 해석 · 설계 · 내진성능평가 · 성능기반설계 ·\n           계산서 · 도면 · 물량까지 All In One Solution</p>\n      </div>"
     },
@@ -189,7 +180,7 @@ window.__DECK__ = {
      "y": 601.3,
      "w": 1376,
      "h": 108.3,
-     "html": "<div class=\"split-note\">\n      <b>STRIX는 </b>전 세계 연구자가 30년간 검증해 온 <b style=\"background-color: rgb(22, 24, 28); font-size: 21.6px;\">OpenSees </b><span style=\"font-size: 21.6px;\">엔진의 정확성과 </span><b style=\"font-size: 21.6px;\">구조엔지니어가 설계에 전념하도록 반복되는 전·후처리 입력과 설계 자동화</b><span style=\"font-size: 21.6px;\">를 구현했습니다.\n      그리고 그 결과가 맞는지를 </span><b style=\"font-size: 21.6px;\">공개된 국제 검증예제로 스스로 증명</b><span style=\"font-size: 21.6px;\">합니다.</span><b style=\"background-color: rgb(22, 24, 28); font-size: 21.6px;\"><br></b></div>"
+     "html": "<div class=\"split-note\">\n      <b>STRIX는 </b><b style=\"font-size: 21.6px;\">구조엔지니어가 설계에 전념하도록 반복되는 전·후처리 입력과 설계 자동화</b><span style=\"font-size: 21.6px;\">를 구현했습니다.\n      그리고 그 결과가 맞는지를 </span><b style=\"font-size: 21.6px;\">STRIX 엔진 벤치마크로 스스로 증명</b><span style=\"font-size: 21.6px;\">합니다.</span><b style=\"background-color: rgb(22, 24, 28); font-size: 21.6px;\"><br></b></div>"
     }
    ],
    "ch": "c1"
@@ -214,179 +205,46 @@ window.__DECK__ = {
      "y": 120.4,
      "w": 1376,
      "h": 67.2,
-     "html": "<h2 class=\"title\">STRIX를 이루는 다섯 가지</h2>"
-    },
-    {
-     "id": "e3",
-     "type": "text",
-     "x": 112,
-     "y": 328,
-     "w": 252.2,
-     "h": 345.5,
-     "html": "<div class=\"card\">\n        <h3>Open-Source<br>Solver</h3>\n        <p>해석 엔진은 <b>OpenSees</b>.\n           전 세계가 검증해 온 오픈소스 코드를 사용합니다.</p>\n      </div>"
+     "html": "<h2 class=\"title\">STRIX를 이루는 네 가지</h2>"
     },
     {
      "id": "e4",
      "type": "text",
-     "x": 393,
+     "x": 112,
      "y": 328,
-     "w": 252.2,
+     "w": 322.4,
      "h": 345.5,
-     "html": "<div class=\"card accent\">\n        <h3>Accuracy</h3>\n        <p>공개된 국제 검증예제로 <b>스스로 증명</b>합니다.\n           숫자와 증거를 함께 공개합니다.</p>\n      </div>"
+     "html": "<div class=\"card accent\">\n        <h3>Accuracy</h3>\n        <p>STRIX 엔진 벤치마크로 <b>스스로 증명</b>합니다.\n           숫자와 증거를 함께 공개합니다.</p>\n      </div>"
     },
     {
      "id": "e5",
      "type": "text",
-     "x": 673.9,
+     "x": 463.2,
      "y": 328,
-     "w": 252.2,
+     "w": 322.4,
      "h": 345.5,
      "html": "<div class=\"card\">\n        <h3>User-friendly<br>UI</h3>\n        <p>익숙한 리본 체계.\n           <b>새로 배우지 않아도</b> 쓸 수 있는 화면을 목표로 했습니다.</p>\n      </div>"
     },
     {
      "id": "e6",
      "type": "text",
-     "x": 954.9,
+     "x": 814.4,
      "y": 328,
-     "w": 252.2,
+     "w": 322.4,
      "h": 345.5,
      "html": "<div class=\"card\">\n        <h3>AI Prompt</h3>\n        <p>전처리와 후처리 양쪽에 AI를 활용해 모델을 만들고, 편집하고, 결과를 읽어 줍니다.</p>\n      </div>"
     },
     {
      "id": "e7",
      "type": "text",
-     "x": 1235.8,
+     "x": 1165.6,
      "y": 328,
-     "w": 252.2,
+     "w": 322.4,
      "h": 345.5,
      "html": "<div class=\"card\">\n        <h3>All In One</h3>\n        <p>모델링부터 설계, 최종결과물까지 제공합니다. 탄성,비탄성,판해석,단위부재설계를 모두 지원합니다.</p>\n      </div>"
     }
    ],
    "ch": "c1"
-  },
-  {
-   "id": "s06",
-   "name": "OpenSees란",
-   "els": [
-    {
-     "id": "e1",
-     "type": "text",
-     "x": 112,
-     "y": 73.6,
-     "w": 1376,
-     "h": 32.4,
-     "html": "<div class=\"kicker\">Solver</div>"
-    },
-    {
-     "id": "e2",
-     "type": "text",
-     "x": 112,
-     "y": 120.4,
-     "w": 1376,
-     "h": 67.2,
-     "html": "<h2 class=\"title\">OpenSees</h2>"
-    },
-    {
-     "id": "e3",
-     "type": "text",
-     "x": 112,
-     "y": 206.8,
-     "w": 1301,
-     "h": 45.4,
-     "html": "<p class=\"lead\">Open System for Earthquake Engineering Simulation</p>"
-    },
-    {
-     "id": "e4",
-     "type": "text",
-     "x": 112,
-     "y": 280.9,
-     "w": 808.3,
-     "h": 345.6,
-     "html": "<ul class=\"bul\">\n          <li><b>지진공학·구조공학 시뮬레이션을 위한 오픈소스 유한요소 프레임워크</b>\n            <span class=\"sub\">구조물과 지반의 지진 응답을 모사하기 위해 개발되었습니다.</span></li>\n          <li><b>미국 PEER(태평양지진공학연구센터) 주도</b>\n            <span class=\"sub\">UC 버클리를 비롯한 미국 주요 대학이 참여해 개발했습니다.</span></li>\n          <li><b>전 세계 지진·구조 연구자의 표준 도구</b>\n            <span class=\"sub\">비선형 해석 논문에서 가장 널리 쓰이는 연구용 코드 중 하나입니다.</span></li>\n          <li><b>C++ 객체지향 구조</b>\n            <span class=\"sub\">재료·요소·알고리즘을 코드로 추가할 수 있게 설계되었습니다.</span></li>\n        </ul>",
-     "k": 0.9986
-    },
-    {
-     "id": "e5",
-     "type": "text",
-     "x": 112,
-     "y": 652.1,
-     "w": 808.3,
-     "h": 108.2,
-     "html": "<div class=\"split-note\">\n          연구 영역에서 30년 가까이 <b>수많은 연구자가 사용하고 검증해 온 코드</b>입니다.\n          STRIX는 이 검증의 축적 위에 서 있습니다.\n        </div>",
-     "k": 0.9986
-    },
-    {
-     "id": "e6",
-     "type": "text",
-     "x": 949.1,
-     "y": 280.9,
-     "w": 538.9,
-     "h": 504.3,
-     "html": "<svg class=\"dia\" viewBox=\"0 0 540 505\" preserveAspectRatio=\"xMidYMid meet\" role=\"img\"\n  aria-label=\"OpenSees 프레임워크 구성과 STRIX 가 맡는 자리\">\n <text x=\"0\" y=\"13\" class=\"t3\" font-size=\"12\" letter-spacing=\"1.6\">FRAMEWORK</text>\n\n <rect class=\"bx-a\" x=\"0\"  y=\"28\"  width=\"360\" height=\"62\" rx=\"6\"/>\n <text x=\"16\" y=\"52\"  class=\"ta\" font-size=\"15\">ModelBuilder</text>\n <text x=\"16\" y=\"74\"  class=\"t2\" font-size=\"12.5\">해석 모델을 정의하는 입력 계층</text>\n\n <path class=\"ln-a\" d=\"M180 90 L180 112\" stroke-width=\"1.4\"/>\n <path class=\"ln-a\" d=\"M175 106 L180 113 L185 106\" stroke-width=\"1.4\"/>\n\n <rect class=\"bx\" x=\"0\" y=\"113\" width=\"360\" height=\"104\" rx=\"6\"/>\n <text x=\"16\" y=\"137\" class=\"t1\" font-size=\"15\">Domain</text>\n <text x=\"16\" y=\"160\" class=\"t2\" font-size=\"12.5\">Node · Element · Material · Section</text>\n <text x=\"16\" y=\"180\" class=\"t2\" font-size=\"12.5\">Constraint · Load · Mass</text>\n <text x=\"16\" y=\"202\" class=\"t3\" font-size=\"11.5\">모델의 상태를 보관하는 컨테이너</text>\n\n <path class=\"ln\" d=\"M180 217 L180 239\" stroke-width=\"1.4\"/>\n <path class=\"ln\" d=\"M175 233 L180 240 L185 233\" stroke-width=\"1.4\"/>\n\n <rect class=\"bx\" x=\"0\" y=\"240\" width=\"360\" height=\"124\" rx=\"6\"/>\n <text x=\"16\" y=\"264\" class=\"t1\" font-size=\"15\">Analysis</text>\n <text x=\"16\" y=\"287\" class=\"t2\" font-size=\"12.5\">Constraint Handler · DOF Numberer</text>\n <text x=\"16\" y=\"307\" class=\"t2\" font-size=\"12.5\">System of Equations · Solver</text>\n <text x=\"16\" y=\"327\" class=\"t2\" font-size=\"12.5\">Algorithm · Integrator · Convergence Test</text>\n <text x=\"16\" y=\"349\" class=\"t3\" font-size=\"11.5\">푸는 방법을 조립해서 바꿀 수 있다</text>\n\n <path class=\"ln\" d=\"M180 364 L180 386\" stroke-width=\"1.4\"/>\n <path class=\"ln\" d=\"M175 380 L180 387 L185 380\" stroke-width=\"1.4\"/>\n\n <rect class=\"bx-a\" x=\"0\" y=\"387\" width=\"360\" height=\"62\" rx=\"6\"/>\n <text x=\"16\" y=\"411\" class=\"ta\" font-size=\"15\">Recorder</text>\n <text x=\"16\" y=\"433\" class=\"t2\" font-size=\"12.5\">계산 결과를 파일로 내보내는 출력 계층</text>\n\n <path class=\"ln-a\" d=\"M372 40 L384 40 L384 78 L372 78\" stroke-width=\"1.3\"/>\n <text x=\"392\" y=\"52\" class=\"ta\" font-size=\"12.5\">STRIX 가</text>\n <text x=\"392\" y=\"70\" class=\"ta\" font-size=\"12.5\">여기를 씁니다</text>\n <text x=\"392\" y=\"92\" class=\"t3\" font-size=\"11.5\">모델 → 입력 스크립트</text>\n\n <path class=\"ln-a\" d=\"M372 399 L384 399 L384 437 L372 437\" stroke-width=\"1.3\"/>\n <text x=\"392\" y=\"411\" class=\"ta\" font-size=\"12.5\">STRIX 가</text>\n <text x=\"392\" y=\"429\" class=\"ta\" font-size=\"12.5\">여기를 읽습니다</text>\n <text x=\"392\" y=\"451\" class=\"t3\" font-size=\"11.5\">결과 → 표 · 그래프 · 설계</text>\n\n <path class=\"ln\" d=\"M372 120 L382 120 L382 357 L372 357\" stroke-width=\"1.1\" stroke-dasharray=\"4 3\"/>\n <text x=\"392\" y=\"228\" class=\"t3\" font-size=\"11.5\">해석의 정확도는</text>\n <text x=\"392\" y=\"246\" class=\"t3\" font-size=\"11.5\">OpenSees 가</text>\n <text x=\"392\" y=\"264\" class=\"t3\" font-size=\"11.5\">책임지는 영역</text>\n\n <text x=\"0\" y=\"474\" class=\"t3\" font-size=\"11.5\">Domain 과 Analysis 가 분리돼 있어, 같은 모델을</text>\n <text x=\"0\" y=\"492\" class=\"t3\" font-size=\"11.5\">정적 · 고유치 · 응답스펙트럼 · 비선형 해석에 그대로 쓴다.</text>\n</svg>"
-    }
-   ],
-   "ch": "c2"
-  },
-  {
-   "id": "s07",
-   "name": "OpenSees 강점",
-   "els": [
-    {
-     "id": "e1",
-     "type": "text",
-     "x": 112,
-     "y": 73.6,
-     "w": 1376,
-     "h": 32.4,
-     "html": "<div class=\"kicker\">Why OpenSees</div>"
-    },
-    {
-     "id": "e2",
-     "type": "text",
-     "x": 112,
-     "y": 120.4,
-     "w": 1376,
-     "h": 67.2,
-     "html": "<h2 class=\"title\">왜 이 엔진인가?</h2>"
-    },
-    {
-     "id": "e3",
-     "type": "text",
-     "x": 112,
-     "y": 302.5,
-     "w": 439.5,
-     "h": 262.6,
-     "html": "<div class=\"card\">\n        <h3>강력한 비선형 해석</h3>\n        <p>구조물이 강한 지진하중을 받아 손상·붕괴에 이르는 과정과 같은\n           복잡한 <b>비선형 동적해석</b>에서 탁월한 성능을 보입니다.\n           성능기반설계가 요구하는 영역입니다.</p>\n      </div>"
-    },
-    {
-     "id": "e4",
-     "type": "text",
-     "x": 580.3,
-     "y": 302.5,
-     "w": 439.5,
-     "h": 262.6,
-     "html": "<div class=\"card\">\n        <h3>오픈소스 · 확장성</h3>\n        <p>C++ 객체지향 구조로 설계되어 새로운 <b>재료모델 · 요소 · 알고리즘</b>을\n           직접 구현해 추가할 수 있습니다. 필요한 기능을 기다리지 않아도 됩니다.</p>\n      </div>"
-    },
-    {
-     "id": "e5",
-     "type": "text",
-     "x": 1048.5,
-     "y": 302.5,
-     "w": 439.5,
-     "h": 262.6,
-     "html": "<div class=\"card\">\n        <h3>지반-구조물 상호작용</h3>\n        <p>구조물뿐 아니라 <b>지반의 거동까지 함께 모델링</b>할 수 있어,\n           지반과 구조물이 서로 미치는 영향을 통합적으로 다룰 수 있습니다.</p>\n      </div>"
-    },
-    {
-     "id": "e6",
-     "type": "text",
-     "x": 112,
-     "y": 590.7,
-     "w": 1376,
-     "h": 108.3,
-     "html": "<div class=\"split-note\">STRIX는 실제로 이 프레임워크 위에\n      <b>자체 요소와 자체 힌지 모델을 구현해</b> 쓰고 있으며, 그 요소들도 검증 대상에 포함했습니다.\n    </div>"
-    }
-   ],
-   "ch": "c2"
   },
   {
    "id": "s10",
@@ -478,7 +336,7 @@ window.__DECK__ = {
      "y": 355.9,
      "w": 327.2,
      "h": 255.3,
-     "html": "<div class=\"st now\">\n        <div class=\"n\">STEP 1 <span class=\"ko\">— 완료</span></div>\n        <h4>FEM 단위요소 검증</h4>\n        <p>보 · 셸 · 판 · 트러스 · 링크 등 <b>요소 단위</b>로\n           국제 벤치마크 및 고전 이론해와 대조.\n           <span class=\"tag pass\"><span data-bind=\"_.total\">21</span>건 전체 PASS</span></p>\n      </div>"
+     "html": "<div class=\"st now\">\n        <div class=\"n\">STEP 1 <span class=\"ko\">— 완료</span></div>\n        <h4>FEM 단위요소 검증</h4>\n        <p>보 · 셸 · 판 · 트러스 · 링크 등 <b>요소 단위</b>로\n           벤치마크 및 고전 이론해와 대조.\n           <span class=\"tag pass\"><span data-bind=\"_.total\">21</span>건 전체 PASS</span></p>\n      </div>"
     },
     {
      "id": "e5",
@@ -549,7 +407,7 @@ window.__DECK__ = {
      "y": 291.3,
      "w": 299,
      "h": 121,
-     "html": "<div class=\"step\"><div class=\"t\">벤치마크 모델</div><div class=\"d\">국제 검증예제를 코드로 구성</div></div>",
+     "html": "<div class=\"step\"><div class=\"t\">벤치마크 모델</div><div class=\"d\">검증예제를 코드로 구성</div></div>",
      "v": "mid"
     },
     {
@@ -619,7 +477,7 @@ window.__DECK__ = {
      "y": 447.5,
      "w": 439.5,
      "h": 262.6,
-     "html": "<div class=\"card\">\n        <h3>실제 코드로 돌립니다</h3>\n        <p>검증용 별도 계산기를 만들지 않았습니다.\n           <b>사용자가 쓰는 바로 그 경로</b>(입력 생성 → OpenSees → 결과 파싱)를\n           화면만 떼고 그대로 실행합니다.</p>\n      </div>"
+     "html": "<div class=\"card\">\n        <h3>실제 코드로 돌립니다</h3>\n        <p>검증용 별도 계산기를 만들지 않았습니다.\n           <b>사용자가 쓰는 바로 그 경로</b>(입력 생성 → 해석 엔진 → 결과 파싱)를\n           화면만 떼고 그대로 실행합니다.</p>\n      </div>"
     },
     {
      "id": "e11",
@@ -746,7 +604,7 @@ window.__DECK__ = {
      "y": 206.8,
      "w": 1301,
      "h": 45.4,
-     "html": "<p class=\"lead\">국제 유한요소 벤치마크 협회(NAFEMS)의 표준 선형탄성 예제입니다.</p>"
+     "html": "<p class=\"lead\">유한요소 벤치마크 협회(NAFEMS)의 표준 선형탄성 예제입니다.</p>"
     },
     {
      "id": "e4",
@@ -951,7 +809,7 @@ window.__DECK__ = {
      "y": 272,
      "w": 744,
      "h": 508,
-     "html": "<div class=\"fbody\"><ul class=\"bul\" style=\"--li:1\"><li><b>모델에서 해석까지</b><span class=\"sub\">절점·부재·경계조건·하중을 하나의 모델에서 구성하고 OpenSees 해석 입력으로 변환합니다.</span></li><li><b>결과를 한 흐름으로</b><span class=\"sub\">변형 형상, 반력, 축력·전단력·휨모멘트를 동일한 하중케이스와 조합 기준으로 조회합니다.</span></li><li><b>후속 설계의 출발점</b><span class=\"sub\">RC·강구조·슬래브·기초 설계와 단면 최적화가 탄성해석 결과를 직접 사용합니다.</span></li></ul><div class=\"mpath\"><span class=\"lbl\">메뉴</span><span class=\"mi\">Analysis ▸ Run Analysis</span></div></div>"
+     "html": "<div class=\"fbody\"><ul class=\"bul\" style=\"--li:1\"><li><b>모델에서 해석까지</b><span class=\"sub\">절점·부재·경계조건·하중을 하나의 모델에서 구성하고 해석 엔진 입력으로 변환합니다.</span></li><li><b>결과를 한 흐름으로</b><span class=\"sub\">변형 형상, 반력, 축력·전단력·휨모멘트를 동일한 하중케이스와 조합 기준으로 조회합니다.</span></li><li><b>후속 설계의 출발점</b><span class=\"sub\">RC·강구조·슬래브·기초 설계와 단면 최적화가 탄성해석 결과를 직접 사용합니다.</span></li></ul><div class=\"mpath\"><span class=\"lbl\">메뉴</span><span class=\"mi\">Analysis ▸ Run Analysis</span></div></div>"
     },
     {
      "id": "e5",
@@ -3693,7 +3551,7 @@ window.__DECK__ = {
      "y": 216.9,
      "w": 440.2,
      "h": 217.8,
-     "html": "<div class=\"card\">\n        <h3>지금까지</h3>\n        <p>요소 단위 검증을 <b>국제 벤치마크로 전건 통과</b>했습니다.\n           숫자와 원시 증거를 함께 공개합니다.</p>\n      </div>",
+     "html": "<div class=\"card\">\n        <h3>지금까지</h3>\n        <p>요소 단위 검증을 <b>STRIX 엔진으로 벤치마크 전건 통과</b>했습니다.\n           숫자와 원시 증거를 함께 공개합니다.</p>\n      </div>",
      "k": 0.9623
     },
     {

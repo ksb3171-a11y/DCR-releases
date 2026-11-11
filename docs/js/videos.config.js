@@ -129,6 +129,11 @@ window.STRIX_VIDEOS = {
             "duration": "5:28"
           },
           {
+            "id": "j3m5J1-vPF0",
+            "title": "인방보 강성 조정 따라하기 — 벽식 아파트 인방보 휨 NG 자동 해결",
+            "duration": "4:39"
+          },
+          {
             "id": "ut2Mjb7df64",
             "title": "말뚝 위치이탈 검토 따라하기 — 독립기초 현장시공 위치 재해석",
             "duration": "3:24"
@@ -329,6 +334,11 @@ window.STRIX_VIDEOS = {
             "id": "fpF2Dg916RE",
             "title": "STRIX RC Section Optimization Tutorial — Design Optimization",
             "duration": "5:59"
+          },
+          {
+            "id": "5jYCvMS54Rk",
+            "title": "STRIX Coupling Beam Stiffness Tuning Tutorial — Auto-Tune for Wall-Type Apartments",
+            "duration": "5:18"
           },
           {
             "id": "OKDtOKK9R7U",
@@ -1123,6 +1133,11 @@ window.STRIX_VIDEOS = {
             "duration": "1:43"
           },
           {
+            "id": "sUBuISbW6Kc",
+            "title": "수화열 타설 블록",
+            "duration": "1:05"
+          },
+          {
             "id": "Og-ujIEdjiw",
             "title": "콘크리트 배합 (Concrete Mix)",
             "duration": "1:39"
@@ -1176,6 +1191,11 @@ window.STRIX_VIDEOS = {
             "id": "alJjn5imEwA",
             "title": "전처리 테이블 (Pre-Process Tables)",
             "duration": "1:01"
+          },
+          {
+            "id": "lRKfKJ7wcA0",
+            "title": "중복 절점·요소 찾기 (Find Duplicates)",
+            "duration": "1:06"
           },
           {
             "id": "zHf7116awlQ",
@@ -1236,6 +1256,11 @@ window.STRIX_VIDEOS = {
             "id": "O8zgGV1PMVs",
             "title": "선택과 표시 범위",
             "duration": "1:39"
+          },
+          {
+            "id": "bY_gx5Cfuxw",
+            "title": "오류제보 (Bug Report)",
+            "duration": "0:54"
           },
           {
             "id": "_x8foXtDDrI",
@@ -1720,6 +1745,11 @@ window.STRIX_VIDEOS = {
             "duration": "1:15"
           },
           {
+            "id": "AXw5gmIr4p8",
+            "title": "Design Optimization",
+            "duration": "1:14"
+          },
+          {
             "id": "7gSzZWtg5wc",
             "title": "Beam-Column Joint Check (B-C Joint Check)",
             "duration": "1:10"
@@ -1798,6 +1828,11 @@ window.STRIX_VIDEOS = {
             "id": "-IPSXLaDodI",
             "title": "Infill Assign",
             "duration": "1:33"
+          },
+          {
+            "id": "WD_OmPwdVeU",
+            "title": "Restrained Columns (Restrained Col.)",
+            "duration": "1:07"
           },
           {
             "id": "VxRe7u9agm4",
