@@ -24,6 +24,11 @@ window.STRIX_VIDEOS = {
       "videos": {
         "ko": [
           {
+            "id": "HtT8zNemx1o",
+            "title": "STRIX 뷰포트 화면조정 따라하기 — Pan · Rotate · Zoom · HotKey 마우스 설정",
+            "duration": "0:51"
+          },
+          {
             "id": "ol-r3YDlHFY",
             "title": "RC 골조 구조해석 따라하기 — 3층 모델링 · 해석 · 후처리",
             "duration": "6:12"
@@ -87,11 +92,6 @@ window.STRIX_VIDEOS = {
             "id": "Key0AeGsqH4",
             "title": "풍동실험 풍하중 입력 따라하기 — Wind Tunnel Loads",
             "duration": "3:32"
-          },
-          {
-            "id": "fc3bvE7BPlk",
-            "title": "STRIX 건축평면도로 구조 모델링 따라하기 — AI CAD 로 구조도 작성 · 모델 생성",
-            "duration": "3:27"
           },
           {
             "id": "ywNcSayW4x0",
@@ -199,6 +199,11 @@ window.STRIX_VIDEOS = {
             "duration": "6:41"
           },
           {
+            "id": "wfQW__ZFLcg",
+            "title": "STRIX Claude 로 구조해석 따라하기 — MCP 서버 연결 · 일람표 배정 · 밤샘 해석",
+            "duration": "8:18"
+          },
+          {
             "id": "HbW4ImYW3pI",
             "title": "푸시오버 해석 따라하기 — RC 기둥",
             "duration": "7:44"
@@ -230,6 +235,11 @@ window.STRIX_VIDEOS = {
           }
         ],
         "en": [
+          {
+            "id": "-wmYmzRtywI",
+            "title": "STRIX Viewport Navigation Tutorial — Pan, Rotate, Zoom and Mouse Settings",
+            "duration": "0:52"
+          },
           {
             "id": "tRiri0Xd8JY",
             "title": "STRIX RC Frame Structural Analysis Tutorial — 3-Story Modeling and Results",
@@ -294,11 +304,6 @@ window.STRIX_VIDEOS = {
             "id": "fcpnwzqt6GU",
             "title": "STRIX Wind Tunnel Load Input Tutorial — Wind Tunnel Loads",
             "duration": "3:50"
-          },
-          {
-            "id": "Prq4MQ4z83k",
-            "title": "STRIX Architectural Plan to Structural Model Tutorial — Drawing to Modeling with AI CAD",
-            "duration": "3:40"
           },
           {
             "id": "qztkqwrr3Fo",
@@ -406,6 +411,11 @@ window.STRIX_VIDEOS = {
             "duration": "7:22"
           },
           {
+            "id": "8kGA7upRZNA",
+            "title": "STRIX Structural Analysis with Claude Tutorial — MCP Server, Schedules and Overnight Jobs",
+            "duration": "8:49"
+          },
+          {
             "id": "msNKdLXjWHg",
             "title": "Pushover Analysis Tutorial — RC Column",
             "duration": "8:12"
@@ -508,6 +518,11 @@ window.STRIX_VIDEOS = {
             "duration": "0:49"
           },
           {
+            "id": "_PoMSNu-zJA",
+            "title": "타워(동) 분리 (Towers)",
+            "duration": "1:17"
+          },
+          {
             "id": "vVyHUk1nyu4",
             "title": "층 정의 (Story)",
             "duration": "0:53"
@@ -521,11 +536,6 @@ window.STRIX_VIDEOS = {
             "id": "pfirHSpFOZk",
             "title": "빌딩 컨트롤 (Bldg. Control)",
             "duration": "1:03"
-          },
-          {
-            "id": "_PoMSNu-zJA",
-            "title": "타워(동) 분리 (Towers)",
-            "duration": "1:17"
           },
           {
             "id": "zAng7G0kq8s",
@@ -1330,6 +1340,11 @@ window.STRIX_VIDEOS = {
             "duration": "0:52"
           },
           {
+            "id": "gGr3LXIxLAk",
+            "title": "Towers / Multi-Tower",
+            "duration": "1:17"
+          },
+          {
             "id": "mKXq1YPFGOk",
             "title": "Story (Floor Level) Definition",
             "duration": "0:57"
@@ -1343,11 +1358,6 @@ window.STRIX_VIDEOS = {
             "id": "3xkajYBI-Jk",
             "title": "Building Control (Bldg. Control)",
             "duration": "1:05"
-          },
-          {
-            "id": "gGr3LXIxLAk",
-            "title": "Towers / Multi-Tower",
-            "duration": "1:17"
           },
           {
             "id": "qJAUZDuLQiM",
