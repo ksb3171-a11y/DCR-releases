@@ -67,7 +67,8 @@
 
   // ── state ──────────────────────────────────────────────────────────────────
   var _seq = 0
-  var _sessions = {}   // scope ('post' | 'comment') -> session
+  var _sessions = {}   // scope ('post' | 'comment' | 'reply') -> session
+                       // 'reply' = staff reply on a post: images only, claimed by the post
 
   // ── small helpers ──────────────────────────────────────────────────────────
   function sb() { return window._sb || null }
@@ -363,6 +364,12 @@
 
     var kind = forceKind || (isImage(file) ? 'image' : 'file')
 
+    // images-only session (staff reply): its uploads are claimed by the POST, so a
+    // file would show up in the post's own attachment list — refuse it here
+    if (s.imagesOnly && kind !== 'image') {
+      showMsg(s, ct('comm.attFailImgOnly', 'Only images can be attached here.')); return
+    }
+
     if (kind === 'image') {
       if (countLive(s, 'image') >= MAX_IMAGES) {
         showMsg(s, ct('comm.attFailImgCount', 'Up to 10 images per post.')); return
@@ -597,6 +604,7 @@
     s.ta = ta
     s.chipsEl = opts.chipsEl || null
     s.msgEl = opts.msgEl || null
+    s.imagesOnly = !!opts.imagesOnly
     if (!ta.__cmupBound) { bindEvents(s, ta); ta.__cmupBound = true }
     paintChips(s)
     return s
@@ -667,6 +675,12 @@
   /**
    * Delete IMAGE attachments of a parent whose token is no longer in the body.
    * Files are never pruned — they live in the attachment list, not in the body.
+   *
+   * A post's images live in TWO texts: its body and the staff reply (both are
+   * claimed by post_id). So for a post the saved body AND admin_reply are read
+   * back and every token in either is kept — otherwise editing the body would
+   * delete the reply's screenshots, and saving the reply would delete the body's.
+   * If that read fails nothing is deleted (a leftover is swept, a loss is not).
    */
   async function prune(kind, parentId, body) {
     if (!parentId || !sb()) return
@@ -675,6 +689,11 @@
       .select('id,bucket,path').eq(col, parentId).eq('kind', 'image')
     if (!res || res.error || !res.data || !res.data.length) return
     var text = String(body || '')
+    if (kind !== 'comment') {
+      var pr = await sb().from('community_posts').select('body,admin_reply').eq('id', parentId).single()
+      if (!pr || pr.error || !pr.data) return
+      text += '\n' + String(pr.data.body || '') + '\n' + String(pr.data.admin_reply || '')
+    }
     var dead = res.data.filter(function (r) {
       var u = publicUrl(r.bucket, r.path)
       return !u || text.indexOf(u) < 0

@@ -41,6 +41,7 @@
   var _editingPostId = null;                     // compose screen: id when editing
   var _composeKey = null;                        // board|editId the 'post' session belongs to
   var _editingCommentId = null;                  // detail screen: comment being edited in place
+  var _detailDraft = null;                       // { pid, reply, comment } carried across renderDetail()'s Loading… wipe
 
   // ── helpers ──────────────────────────────────────────────────────────────────
   function ct(key, fallback) {
@@ -299,9 +300,11 @@
     { id: 'hr', label: '―', en: 'Divider' }
   ];
   var FMT_TARGETS = { cmNewBody: 1, cmCommentBody: 1, cmEditCommentBody: 1, cmReply: 1 };
-  // 업로드 세션(cmUpload)이 붙은 칸만 🖼·📎 를 단다 — 댓글 수정·공식 답변 칸은 업로드가 없다.
+  // 업로드 세션(cmUpload)이 붙은 칸만 🖼·📎 를 단다 — 댓글 수정 칸은 업로드가 없다.
+  // 공식 답변 칸(cmReply)은 이미지만(🖼) — 답변 첨부는 글(post_id)에 묶이므로 파일은 글의 첨부 목록에 섞인다.
   // 이미지 표식은 cmUpload 가 기억한 커서 자리에 들어간다.
-  var FMT_UPLOAD_SCOPE = { cmNewBody: 'post', cmCommentBody: 'comment' };
+  var FMT_UPLOAD_SCOPE = { cmNewBody: 'post', cmCommentBody: 'comment', cmReply: 'reply' };
+  var FMT_IMAGES_ONLY = { cmReply: 1 };
   var FMT_UPLOAD_BTNS = [
     { id: 'image', label: '🖼', key: 'comm.attAddImage', en: 'Add image' },
     { id: 'file', label: '📎', key: 'comm.attAddFile', en: 'Attach file' }
@@ -318,7 +321,10 @@
       bar.className = 'cm-fmtbar';
       bar.setAttribute('role', 'toolbar');
       bar.setAttribute('data-target', id);
-      var btns = FMT_BTNS.concat(FMT_UPLOAD_SCOPE[id] && cmup() ? FMT_UPLOAD_BTNS : []);
+      var upBtns = FMT_UPLOAD_SCOPE[id] && cmup()
+        ? FMT_UPLOAD_BTNS.filter(function (b) { return !FMT_IMAGES_ONLY[id] || b.id === 'image'; })
+        : [];
+      var btns = FMT_BTNS.concat(upBtns);
       btns.concat([{ id: 'preview', label: ct('comm.fmt.preview', 'Preview') }]).forEach(function (b) {
         var btn = document.createElement('button');
         btn.type = 'button';
@@ -462,7 +468,9 @@
       e.preventDefault();
       var f = btn.getAttribute('data-fmt');
       if (f === 'preview') fmtTogglePreview(bar, ta);
-      else if (f === 'image' || f === 'file') { if (FMT_UPLOAD_SCOPE[id] && cmup()) cmup().pick(FMT_UPLOAD_SCOPE[id], f); }
+      else if (f === 'image' || f === 'file') {
+        if (FMT_UPLOAD_SCOPE[id] && cmup() && !(FMT_IMAGES_ONLY[id] && f !== 'image')) cmup().pick(FMT_UPLOAD_SCOPE[id], f);
+      }
       else fmtApply(ta, f);
     });
     el.addEventListener('keydown', function (e) {
@@ -728,6 +736,14 @@
     cancelRead();
     if (!_curPost || _curPost.id !== id) _editingCommentId = null;   // 다른 글로 가면 댓글 수정 상태를 버린다
     var el = app(); if (!el) return;
+    // 「Loading…」 로 비우기 전에 같은 글의 작성 중 답변·댓글을 챙긴다 — 고정·숨김·언어 전환·인증 변화가
+    // 이 경로로 다시 그리므로, 안 챙기면 이미 올린 캡처의 표식이 사라진다(paintDetail 이 되돌려 놓는다)
+    var rKeep = document.getElementById('cmReply'), cKeep = document.getElementById('cmCommentBody');
+    _detailDraft = {
+      pid: id,
+      reply: rKeep && rKeep.getAttribute('data-pid') === id ? rKeep.value : null,
+      comment: cKeep && _curPost && _curPost.id === id ? cKeep.value : null
+    };
     el.innerHTML = '<div class="cm-empty">' + esc(ct('comm.loading', 'Loading…')) + '</div>';
     if (!window._sb) return;
     window._sb.from('community_posts').select('*').eq('id', id).single().then(function (res) {
@@ -807,9 +823,12 @@
         (stOpts.length ? '<label class="cm-fl">' + esc(ct('comm.status', 'Status')) + '<select id="cmStatus">' +
           stOpts.map(function (s) { return '<option value="' + s + '"' + (s === p.status ? ' selected' : '') + '>' + esc(stLabel(s)) + '</option>'; }).join('') +
           '</select></label>' : '') +
-        '<label class="cm-fl">' + esc(ct('comm.staffReply', 'Staff reply')) + '<textarea id="cmReply" placeholder="' + esc(ct('comm.replyPh', 'Official reply…')) + '">' + esc(p.admin_reply || '') + '</textarea></label>' +
+        '<label class="cm-fl">' + esc(ct('comm.staffReply', 'Staff reply')) + '<textarea id="cmReply" data-pid="' + esc(p.id) + '" placeholder="' + esc(ct('comm.replyPh', 'Official reply…')) + '">' + esc(p.admin_reply || '') + '</textarea></label>' +
+        (cmup() ? '<div class="cm-attbar"><span class="cm-atthint">' + esc(ct('comm.attHintImg', 'Paste a screenshot (Ctrl+V) or drop images here.')) + '</span></div>' +
+          '<div class="cm-chips" id="cmReplyChips"></div>' : '') +
+        '<div class="cm-msg" id="cmReplyMsg"></div>' +
         '<div class="cm-admin-act">' +
-          '<button class="cm-btn" onclick="STRIX_CM.adminSave(\'' + p.id + '\')">' + esc(ct('comm.save', 'Save')) + '</button>' +
+          '<button class="cm-btn" id="cmReplySave" onclick="STRIX_CM.adminSave(\'' + p.id + '\')">' + esc(ct('comm.save', 'Save')) + '</button>' +
           (b.id === 'notice' ? '<button class="cm-btn ghost" onclick="STRIX_CM.pin(\'' + p.id + '\')">' + esc(p.is_pinned ? ct('comm.unpin', 'Unpin') : ct('comm.pin', 'Pin')) + '</button>' : '') +
           '<button class="cm-btn ghost" onclick="STRIX_CM.hide(\'' + p.id + '\')">' + esc(p.is_hidden ? ct('comm.unhide', 'Unhide') : ct('comm.hideBtn', 'Hide')) + '</button>' +
         '</div></div>';
@@ -864,10 +883,17 @@
     // paid for. Carry the draft across the re-render.
     var prev = document.getElementById('cmCommentBody');
     var draft = prev ? prev.value : '';
+    var stash = _detailDraft && _detailDraft.pid === p.id ? _detailDraft : null;
+    _detailDraft = null;
+    if (!prev && stash && stash.comment) draft = stash.comment;
     // 같은 이유로 수정 중인 댓글의 입력값도 다시 그리기를 건너 옮긴다
     //   (다른 댓글로 수정 대상을 바꿨으면 옮기지 않는다 — data-cid 로 주인을 가린다)
     var prevEdit = document.getElementById('cmEditCommentBody');
     var editDraft = prevEdit && prevEdit.getAttribute('data-cid') === _editingCommentId ? prevEdit.value : null;
+    // 공식 답변도 같은 이유 — 이미 올린 캡처의 표식이 다시 그리기에 지워지면 안 된다(같은 글일 때만)
+    var prevReply = document.getElementById('cmReply');
+    var replyDraft = prevReply && prevReply.getAttribute('data-pid') === p.id ? prevReply.value
+      : (stash ? stash.reply : null);
 
     el.innerHTML = html;
     mountFormatBars();
@@ -887,6 +913,16 @@
         scope: 'comment',
         chipsEl: document.getElementById('cmCommentChips'),
         msgEl: document.getElementById('cmCommentMsg')
+      });
+    }
+    var replyBox = document.getElementById('cmReply');
+    if (replyBox && replyDraft !== null) replyBox.value = replyDraft;
+    if (replyBox && cmup()) {
+      cmup().attach(replyBox, {
+        scope: 'reply',
+        imagesOnly: true,
+        chipsEl: document.getElementById('cmReplyChips'),
+        msgEl: document.getElementById('cmReplyMsg')
       });
     }
   }
@@ -1173,16 +1209,31 @@
     renderNew(_curPost.board, _curPost);
   }
 
-  function adminSave(id) {
+  async function adminSave(id) {
     var patch = {};
     var sEl = document.getElementById('cmStatus');
     if (sEl) patch.status = sEl.value;
     var rEl = document.getElementById('cmReply');
-    if (rEl) { var r = rEl.value.trim(); patch.admin_reply = r || null; patch.admin_reply_at = r ? new Date().toISOString() : null; }
-    window._sb.from('community_posts').update(patch).eq('id', id).then(function (res) {
-      if (res && res.error) { alert('Save failed: ' + res.error.message); return; }
+    var msg = document.getElementById('cmReplyMsg');
+    var r = rEl ? rEl.value.trim() : null;
+    if (rEl) { patch.admin_reply = r || null; patch.admin_reply_at = r ? new Date().toISOString() : null; }
+    if (cmup() && cmup().hasPending('reply')) {
+      return showMsg(msg, ct('comm.attWait', 'Please wait until the uploads finish.'));
+    }
+    var btn = document.getElementById('cmReplySave'); if (btn) btn.disabled = true;
+    try {
+      var res = await window._sb.from('community_posts').update(patch).eq('id', id);
+      if (res && res.error) { if (btn) btn.disabled = false; alert('Save failed: ' + res.error.message); return; }
+      // 답변에 붙인 캡처를 글(post_id)에 묶고, 답변·본문 어디에도 없는 이미지는 정리한다
+      if (rEl) {
+        var le = await finishAttachments('reply', 'post', id, r || '');
+        if (le) { if (btn) btn.disabled = false; return showMsg(msg, le); }
+      }
       renderDetail(id);
-    });
+    } catch (e) {
+      if (btn) btn.disabled = false;
+      showMsg(msg, ct('comm.saveFail', 'Save failed.') + ' ' + ((e && e.message) || e));
+    }
   }
 
   function pin(id) {
@@ -1406,7 +1457,7 @@
           _composeKey = null;
           _editingPostId = null;
         }
-        if (h !== prevHash && prevHash.indexOf('p/') === 0) u.discard('comment');
+        if (h !== prevHash && prevHash.indexOf('p/') === 0) { u.discard('comment'); u.discard('reply'); }
       }
       prevHash = h;
       route();
