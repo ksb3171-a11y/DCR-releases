@@ -135,6 +135,8 @@ function enableAdminMode() {
 // (일반 방문자 페이지 무게를 늘리지 않는다 — members_dashboard_devplan.md).
 // 데이터는 admin_* RPC 로만 읽는다. 운영자 판정은 DB 함수 안에서 한다(화면 판정은 편의일 뿐이다).
 const AUTH_SCRIPT_SRC = (document.currentScript && document.currentScript.src) || location.href
+// 대시보드 파일을 고치면 이 값을 바꾼다 — 브라우저가 옛 파일을 계속 쓰지 않게(2026-11-27 실사고: 배포 뒤에도 화면 그대로)
+const MEMBERS_DASH_VER = '20261127b'
 let _membersDashLoading = null
 
 function loadMembersDashboard() {
@@ -143,10 +145,10 @@ function loadMembersDashboard() {
   _membersDashLoading = new Promise((resolve, reject) => {
     const css = document.createElement('link')
     css.rel = 'stylesheet'
-    css.href = new URL('../css/admin-members.css', AUTH_SCRIPT_SRC).href
+    css.href = new URL('../css/admin-members.css?v=' + MEMBERS_DASH_VER, AUTH_SCRIPT_SRC).href
     document.head.appendChild(css)
     const js = document.createElement('script')
-    js.src = new URL('admin-members.js', AUTH_SCRIPT_SRC).href
+    js.src = new URL('admin-members.js?v=' + MEMBERS_DASH_VER, AUTH_SCRIPT_SRC).href
     js.onload = () => resolve()
     js.onerror = () => { _membersDashLoading = null; reject(new Error('admin-members.js load failed')) }
     document.head.appendChild(js)
