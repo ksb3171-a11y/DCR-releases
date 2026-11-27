@@ -169,5 +169,40 @@
         body.style.maxHeight = open ? body.scrollHeight + 'px' : '0';
       });
     });
+
+    /* ── Latest version (download section) ──
+       Single source = the same GitHub "latest" release that the download button
+       (auth.js DOWNLOAD_URLS.win) and the app's auto-updater use. Nothing is
+       hard-coded on the page: if the lookup fails, the version line stays hidden
+       and the rest of the note still reads correctly.
+       site_engine_report_publish_devplan.md F5 */
+    const latestBoxes = document.querySelectorAll('[data-latest-version]');
+    if (latestBoxes.length) {
+      const KEY = 'strix-latest-tag';
+      const show = tag => {
+        if (!/^v\d+\.\d+\.\d+$/.test(tag || '')) return;
+        latestBoxes.forEach(box => {
+          const slot = box.querySelector('[data-latest-tag]');
+          if (slot) slot.textContent = tag;
+          box.hidden = false;
+        });
+      };
+      let cached = null;
+      try { cached = sessionStorage.getItem(KEY); } catch (e) {}
+      if (cached) show(cached);
+      else {
+        fetch('https://api.github.com/repos/ksb3171-a11y/DCR-releases/releases/latest', {
+          headers: { Accept: 'application/vnd.github+json' }
+        })
+          .then(r => (r.ok ? r.json() : null))
+          .then(j => {
+            const tag = j && typeof j.tag_name === 'string' ? j.tag_name : '';
+            if (!/^v\d+\.\d+\.\d+$/.test(tag)) return;
+            try { sessionStorage.setItem(KEY, tag); } catch (e) {}
+            show(tag);
+          })
+          .catch(() => {});
+      }
+    }
   });
 })();
